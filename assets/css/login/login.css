@@ -3,10 +3,8 @@ html{
 }
 
 body{
-    background-color: #FFD700;
+    background-image: url('http://localhost/crm-gink/assets/img/bg-1.jpg');
     font-family:  'Raleway', sans-serif;
-    padding: 0;
-    margin: 0;
 }
 
 
@@ -58,4 +56,30 @@ body{
 
 .login-form-container form input[type=submit]:hover{
     background-color: rgba(0, 0, 187, 0.842);
+}
+
+
+.login-logo img{
+    float: center;
+    height: 50px;
+    margin-top: 10px;
+}
+
+.register .reg{
+    padding: 1%;
+    float: left;
+    text-decoration: none;
+    color: black;
+}
+
+.register .forget-pw{
+    padding: 1%;
+    float: right;
+    text-decoration: none;
+    color: black;
+}
+
+.register .reg:hover, .register .forget-pw:hover{
+    color: brown;
+
 }

@@ -41,7 +41,42 @@ class Login extends CI_Controller {
 		}
 	}
 
+	public function email(){
+		$this->load->view("login/email");
+	}
+
 	public function register(){
 		$this->load->view('login/register');
 	}
+
+	public function send_email(){
+		
+		$email_to = $this->input->post('email');
+
+		$config = Array(
+			'protocol' => 'smtp',
+			'smtp_host' => 'ssl://smtp.googlemail.com',
+			'smtp_port' =>	587,
+			'smtp_user' => 'indrawanaldi75@gmail.com',
+			'smtp_pass' => 'memangcantik',
+			'mailtype'  => 'html', 
+			'charset'   => 'iso-8859-1'
+		);
+
+		$this->load->library('email', $config);  
+		$this->email->set_newline("\r\n"); 
+        $this->email->from('indrawanaldi75@gmail.com');
+        $this->email->to("aldi.14117055@student.itera.ac.id");
+        $this->email->subject('Contoh Kirim Email Dengan Codeigniter');
+        $this->email->message('Contoh pesan yang dikirim dengan codeigniter');
+        if($this->email->send()) {
+            echo 'Email berhasil dikirim';
+        }
+        else {
+            echo 'Email tidak berhasil dikirim';
+            echo '<br />';
+        	echo $this->email->print_debugger();
+        }
+	}
+
 }

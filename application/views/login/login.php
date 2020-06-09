@@ -22,7 +22,7 @@
             </form>
             <div class="register">
                 <a class="reg" href="<?php echo base_url('index.php/login/register')?>">Register</a>
-                <a class="forget-pw"  href="">Lupa Password ?</a>
+                <a class="forget-pw"  href="<?php echo base_url('index.php/login/email')?>">Lupa Password ?</a>
             </div>
         </div>
     </div>

@@ -6,6 +6,7 @@ class Register extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('login_model');
         $this->load->library('form_validation');
     }
     public function index()
@@ -30,7 +31,7 @@ class Register extends CI_Controller
                 'password' => $this->input->post('password')
             ];
 
-            $this->login_model->getstaff($data);
+            $staff = $this->login_model->regisStaff($data);
         }
     }
 }

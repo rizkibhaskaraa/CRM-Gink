@@ -30,7 +30,7 @@ class Register extends CI_Controller
                 'password' => $this->input->post('password')
             ];
 
-            $this->db->insert('staff', $data);
+            $this->login_model->getstaff($data);
         }
     }
 }

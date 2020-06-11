@@ -5,7 +5,6 @@ class Login extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('login_model');
-		$this->load->library('form_validation');
 	}
 
 	public function index()
@@ -31,7 +30,7 @@ class Login extends CI_Controller {
 		if ($staff) { //jika hasil ada
 			$saved_password = password_hash($staff['password'], PASSWORD_DEFAULT);
 			if(password_verify($password, $saved_password)){
-				$this->load->view('Home/home',$data); //jgnn lupa diubah tujuan
+				redirect(base_url('index.php/home/index/').$email);
 			} else {
 				$this->load->view('login/login');
 			}

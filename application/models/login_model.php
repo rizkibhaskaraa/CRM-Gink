@@ -8,6 +8,7 @@ class login_model extends CI_model
         $this->db->or_where("username = ", $email);
         return $this->db->get('staff')->row_array();
     }
+    
     public function regisStaff($data)
     {
         $this->db->insert('staff', $data);

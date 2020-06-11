@@ -16,11 +16,52 @@
     <title>Gink Technology</title>
 </head>
 <body>
-    <h1><?php echo $staff["nama"]?></h1>
-    <h1>ini page home</h1>
-    <div class="alert alert-primary judul" role="alert">
-    A simple primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
-    </div>  
-    
+    <div class="container-task">
+        <h1>hai <?php echo $user?></h1>
+        <a href="">buat tugas</a>
+        <div class="belum">
+            <h3>belum selesai</h3>
+            <table style="border:1px solid; width:100%">
+                <tr>
+                    <th>subject</th>
+                    <th>dateline</th>
+                    <th>status</th>
+                    <th>aksi</th>
+                </tr>
+                <?php foreach ($taskbelum as $value) { ?>
+                    <tr>
+                        <td><?php echo $value["subject"]?></td>
+                        <td><?php echo $value["dateline"]?></td>
+                        <td><?php echo $value["status"]?></td>
+                        <td>
+                        <a href="">Buka</a>
+                        <a href="<?php echo base_url('index.php/home/status/').$value["id"]?>">Selesai</a>
+                        </td>
+                    </tr>
+                <?php }?>
+            </table>
+        </div>
+        <div class="selesai">
+            <h3>sudah selesai</h3>
+            <table style="border:1px solid; width:100%">
+                <tr>
+                    <th>subject</th>
+                    <th>dateline</th>
+                    <th>status</th>
+                    <th>aksi</th>
+                </tr>
+                <?php foreach ($taskselesai as $value) { ?>
+                    <tr>
+                        <td><?php echo $value["subject"]?></td>
+                        <td><?php echo $value["dateline"]?></td>
+                        <td><?php echo $value["status"]?></td>
+                        <td>
+                        <a href="">Buka</a>
+                        </td>
+                    </tr>
+                <?php }?>
+            </table>
+        </div>
+    </div>    
 </body>
 </html>

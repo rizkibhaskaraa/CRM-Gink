@@ -5,7 +5,6 @@ class Login extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('login_model');
-		$this->load->library('form_validation');
 	}
 
 	public function index()
@@ -31,7 +30,7 @@ class Login extends CI_Controller {
 		if ($staff) { //jika hasil ada
 			$saved_password = password_hash($staff['password'], PASSWORD_DEFAULT);
 			if(password_verify($password, $saved_password)){
-				$this->load->view('Home/home',$data); //jgnn lupa diubah tujuan
+				redirect(base_url('index.php/home/index/').$email);
 			} else {
 				$this->load->view('login/login');
 			}
@@ -51,24 +50,26 @@ class Login extends CI_Controller {
 
 	public function send_email(){
 		
-		$email_to = $this->input->post('email');
+		//$email_to = $this->input->post('email');
 
-		$config = Array(
+		$config = [
 			'protocol' => 'smtp',
 			'smtp_host' => 'ssl://smtp.googlemail.com',
-			'smtp_port' =>	587,
-			'smtp_user' => 'indrawanaldi75@gmail.com',
-			'smtp_pass' => 'memangcantik',
+			'smtp_port' =>	465,
+			'smtp_user' => 'technologygink@gmail.com',
+			'smtp_pass' => 'kpgink1234',
 			'mailtype'  => 'html', 
-			'charset'   => 'iso-8859-1'
-		);
+			'charset'   => 'utf-8',
+			'wordwrap' => TRUE
+		];
 
-		$this->load->library('email', $config);  
-		$this->email->set_newline("\r\n"); 
-        $this->email->from('indrawanaldi75@gmail.com');
+		$this->load->library('email',$config);
+		$this->email->set_newline("\r\n");
+        $this->email->from('technologygink@gmail.com','gink technology');
         $this->email->to("aldi.14117055@student.itera.ac.id");
         $this->email->subject('Contoh Kirim Email Dengan Codeigniter');
-        $this->email->message('Contoh pesan yang dikirim dengan codeigniter');
+		$this->email->message('Contoh pesan yang dikirim dengan codeigniter');
+		
         if($this->email->send()) {
             echo 'Email berhasil dikirim';
         }

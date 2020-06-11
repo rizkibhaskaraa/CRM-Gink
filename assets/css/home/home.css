@@ -1,5 +1,21 @@
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    background-image: url('http://localhost/crm-gink/assets/img/bg-1.jpg');
+    font-family:  'Raleway', sans-serif;
+}
+
 .judul {
     height: 1000px;
     font-weight: 900;
     opacity: 50%;
+}
+
+.container-task{
+    width: 80%;
+    margin: auto;
+    background-color: cornsilk;
+    padding: 1%;
 }

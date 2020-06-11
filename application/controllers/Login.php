@@ -57,16 +57,16 @@ class Login extends CI_Controller {
 			'protocol' => 'smtp',
 			'smtp_host' => 'ssl://smtp.googlemail.com',
 			'smtp_port' =>	465,
-			'smtp_user' => 'indrawanaldi75@gmail.com',
-			'smtp_pass' => 'memangcantik',
+			'smtp_user' => 'technologygink@gmail.com',
+			'smtp_pass' => 'kpgink1234',
 			'mailtype'  => 'html', 
-			'charset'   => 'iso-8859-1',
+			'charset'   => 'utf-8',
 			'wordwrap' => TRUE
 		];
 
 		$this->load->library('email',$config);
 		$this->email->set_newline("\r\n");
-        $this->email->from('indrawanaldi75@gmail.com');
+        $this->email->from('technologygink@gmail.com','gink technology');
         $this->email->to("aldi.14117055@student.itera.ac.id");
         $this->email->subject('Contoh Kirim Email Dengan Codeigniter');
 		$this->email->message('Contoh pesan yang dikirim dengan codeigniter');

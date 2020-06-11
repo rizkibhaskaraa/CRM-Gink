@@ -25,6 +25,7 @@ class Register extends CI_Controller
         } else {
             $data = [
                 'nama' => $this->input->post('nama'),
+                'role' => $this->input->post('role'),
                 'departemen' => $this->input->post('departemen'),
                 'username' => $this->input->post('username'),
                 'email' => $this->input->post('email'),

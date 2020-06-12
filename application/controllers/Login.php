@@ -25,10 +25,10 @@ class Login extends CI_Controller {
 	public function validationLogin(){
 		$email = $this->input->post('username');
 		$password = $this->input->post('password');
-		$staff = $this->login_model->getstaff($email);
-		$data["staff"] = $staff;
-		if ($staff) { //jika hasil ada
-			$saved_password = password_hash($staff['password'], PASSWORD_DEFAULT);
+		$user = $this->login_model->getuser($email);
+		$data["user"] = $user;
+		if ($user) { //jika hasil ada
+			$saved_password = password_hash($user['password'], PASSWORD_DEFAULT);
 			if(password_verify($password, $saved_password)){
 				redirect(base_url('index.php/home/index/').$email);
 			} else {

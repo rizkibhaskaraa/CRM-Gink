@@ -8,9 +8,10 @@ class Home extends CI_Controller {
     }
 
     public function index($user){
-        $data["user"] = $user;
-        $data["taskselesai"] = $this->home_model->gettaskselesai($user);
-        $data["taskbelum"] = $this->home_model->gettaskbelum($user);
+        $employ = $this->home_model->getemploy($user);
+        $data["employ_nama"] = $employ["nama"];
+        $data["taskselesai"] = $this->home_model->gettaskselesai($employ["id_employ"]);
+        $data["taskbelum"] = $this->home_model->gettaskbelum($employ["id_employ"]);
         $this->load->view('home/home',$data);
     }
     

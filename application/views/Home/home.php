@@ -17,25 +17,25 @@
 </head>
 <body>
     <div class="container-task">
-        <h1>hai <?php echo $user?></h1>
-        <a href="">buat tugas</a>
+        <h1>hai <?php echo $employ_nama?></h1>
+        <a href="">buat tiket</a>
         <div class="belum">
             <h3>belum selesai</h3>
             <table style="border:1px solid; width:100%">
                 <tr>
-                    <th>subject</th>
+                    <th>title</th>
                     <th>dateline</th>
                     <th>status</th>
                     <th>aksi</th>
                 </tr>
                 <?php foreach ($taskbelum as $value) { ?>
                     <tr>
-                        <td><?php echo $value["subject"]?></td>
+                        <td><?php echo $value["title"]?></td>
                         <td><?php echo $value["dateline"]?></td>
                         <td><?php echo $value["status"]?></td>
                         <td>
                         <a href="">Buka</a>
-                        <a href="<?php echo base_url('index.php/home/status/').$value["id"]?>">Selesai</a>
+                        <a href="<?php echo base_url('index.php/home/status/').$value["id_task"]?>">Selesai</a>
                         </td>
                     </tr>
                 <?php }?>
@@ -45,14 +45,14 @@
             <h3>sudah selesai</h3>
             <table style="border:1px solid; width:100%">
                 <tr>
-                    <th>subject</th>
+                    <th>title</th>
                     <th>dateline</th>
                     <th>status</th>
                     <th>aksi</th>
                 </tr>
                 <?php foreach ($taskselesai as $value) { ?>
                     <tr>
-                        <td><?php echo $value["subject"]?></td>
+                        <td><?php echo $value["title"]?></td>
                         <td><?php echo $value["dateline"]?></td>
                         <td><?php echo $value["status"]?></td>
                         <td>

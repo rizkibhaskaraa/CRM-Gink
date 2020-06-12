@@ -18,7 +18,7 @@
 <body>
     <div class="container-task">
         <h1>hai <?php echo $employ_nama?></h1>
-        <a href="">buat tiket</a>
+        <a href="<?php echo base_url('index.php/tiket/index/').$employ_id?>">buat tiket</a>
         <div class="belum">
             <h3>belum selesai</h3>
             <table style="border:1px solid; width:100%">

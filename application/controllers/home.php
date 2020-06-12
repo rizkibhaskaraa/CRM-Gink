@@ -10,6 +10,7 @@ class Home extends CI_Controller {
     public function index($user){
         $employ = $this->home_model->getemploy($user);
         $data["employ_nama"] = $employ["nama"];
+        $data["employ_id"] = $employ["id_employ"];
         $data["taskselesai"] = $this->home_model->gettaskselesai($employ["id_employ"]);
         $data["taskbelum"] = $this->home_model->gettaskbelum($employ["id_employ"]);
         $this->load->view('home/home',$data);

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2020 at 11:37 AM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.11
+-- Generation Time: Jun 13, 2020 at 04:29 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 5.6.40
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -31,7 +31,15 @@ SET time_zone = "+00:00";
 CREATE TABLE `departemen` (
   `id_departemen` varchar(30) NOT NULL,
   `nama_departemen` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `departemen`
+--
+
+INSERT INTO `departemen` (`id_departemen`, `nama_departemen`) VALUES
+('dev', 'developer'),
+('fin', 'finance');
 
 -- --------------------------------------------------------
 
@@ -44,7 +52,17 @@ CREATE TABLE `employe` (
   `nama` varchar(50) DEFAULT NULL,
   `id_departemen` varchar(30) NOT NULL,
   `status` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `employe`
+--
+
+INSERT INTO `employe` (`id_employ`, `nama`, `id_departemen`, `status`) VALUES
+('120698', 'muhammad muttaqin', 'fin', 'kepala'),
+('121198', 'Aldi Indrawan', 'dev', 'staff'),
+('121212', 'Rizki Bhaskara', 'dev', 'kepala'),
+('151098', 'shanti puspita sari', 'fin', 'staff');
 
 -- --------------------------------------------------------
 
@@ -57,7 +75,7 @@ CREATE TABLE `pelanggan` (
   `customer` varchar(50) DEFAULT NULL,
   `layanan` varchar(50) DEFAULT NULL,
   `status` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -77,8 +95,16 @@ CREATE TABLE `task` (
   `kategori_masalah` varchar(20) DEFAULT NULL,
   `date` date DEFAULT NULL,
   `dateline` date DEFAULT NULL,
-  `berkas` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `berkas` varchar(50) DEFAULT NULL,
+  `status` varchar(14) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `task`
+--
+
+INSERT INTO `task` (`id_task`, `id_pelanggan`, `id_employ_tujuan`, `nama_dept_tujuan`, `id_employ_kirim`, `nama_dept_kirim`, `title`, `deskripsi`, `kategori_masalah`, `date`, `dateline`, `berkas`, `status`) VALUES
+('351', NULL, NULL, 'developer', '121198', 'developer', 'fix bug', 'perbaiki bug pada aplikasi ............. dengan pelanggan .............', NULL, '2020-06-13', '2020-06-15', NULL, 'belum selesai');
 
 -- --------------------------------------------------------
 
@@ -90,7 +116,17 @@ CREATE TABLE `user` (
   `username` varchar(30) NOT NULL,
   `password` varchar(20) DEFAULT NULL,
   `id_employ` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`username`, `password`, `id_employ`) VALUES
+('aldi12', '123456', '121198'),
+('muhammad12', '123456', '120698'),
+('rizki12', '123456', '121212'),
+('shanti12', '123456', '151098');
 
 --
 -- Indexes for dumped tables
@@ -122,8 +158,6 @@ ALTER TABLE `task`
   ADD PRIMARY KEY (`id_task`),
   ADD KEY `id_employ_tujuan` (`id_employ_tujuan`),
   ADD KEY `id_employ_kirim` (`id_employ_kirim`),
-  ADD KEY `nama_dept_kirim` (`nama_dept_kirim`),
-  ADD KEY `nama_dept_tujuan` (`nama_dept_tujuan`),
   ADD KEY `id_pelanggan` (`id_pelanggan`);
 
 --
@@ -149,8 +183,6 @@ ALTER TABLE `employe`
 ALTER TABLE `task`
   ADD CONSTRAINT `task_ibfk_1` FOREIGN KEY (`id_employ_tujuan`) REFERENCES `employe` (`id_employ`),
   ADD CONSTRAINT `task_ibfk_2` FOREIGN KEY (`id_employ_kirim`) REFERENCES `employe` (`id_employ`),
-  ADD CONSTRAINT `task_ibfk_3` FOREIGN KEY (`nama_dept_kirim`) REFERENCES `departemen` (`id_departemen`),
-  ADD CONSTRAINT `task_ibfk_4` FOREIGN KEY (`nama_dept_tujuan`) REFERENCES `departemen` (`id_departemen`),
   ADD CONSTRAINT `task_ibfk_5` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`);
 
 --

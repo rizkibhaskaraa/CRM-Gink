@@ -1,12 +1,3 @@
-html{
-    scroll-behavior: smooth;
-}
-
-body{
-    background-image: url('http://localhost/crm-gink/assets/img/bg-1.jpg');
-    font-family:  'Raleway', sans-serif;
-}
-
 .judul {
     height: 1000px;
     font-weight: 900;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 13, 2020 at 04:29 AM
+-- Generation Time: Jun 13, 2020 at 07:29 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 5.6.40
 
@@ -38,6 +38,7 @@ CREATE TABLE `departemen` (
 --
 
 INSERT INTO `departemen` (`id_departemen`, `nama_departemen`) VALUES
+('CS', 'Customer Service'),
 ('dev', 'developer'),
 ('fin', 'finance');
 
@@ -59,6 +60,7 @@ CREATE TABLE `employe` (
 --
 
 INSERT INTO `employe` (`id_employ`, `nama`, `id_departemen`, `status`) VALUES
+('1111111', 'dwiki martin', 'CS', 'staff'),
 ('120698', 'muhammad muttaqin', 'fin', 'kepala'),
 ('121198', 'Aldi Indrawan', 'dev', 'staff'),
 ('121212', 'Rizki Bhaskara', 'dev', 'kepala'),
@@ -76,6 +78,14 @@ CREATE TABLE `pelanggan` (
   `layanan` varchar(50) DEFAULT NULL,
   `status` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pelanggan`
+--
+
+INSERT INTO `pelanggan` (`id_pelanggan`, `customer`, `layanan`, `status`) VALUES
+('111', 'son sony', 'app website', 'aktif'),
+('123', 'jaya bakery', 'website', 'aktif');
 
 -- --------------------------------------------------------
 
@@ -104,7 +114,10 @@ CREATE TABLE `task` (
 --
 
 INSERT INTO `task` (`id_task`, `id_pelanggan`, `id_employ_tujuan`, `nama_dept_tujuan`, `id_employ_kirim`, `nama_dept_kirim`, `title`, `deskripsi`, `kategori_masalah`, `date`, `dateline`, `berkas`, `status`) VALUES
-('351', NULL, NULL, 'developer', '121198', 'developer', 'fix bug', 'perbaiki bug pada aplikasi ............. dengan pelanggan .............', NULL, '2020-06-13', '2020-06-15', NULL, 'belum selesai');
+('338', '111', NULL, 'umum', '1111111', NULL, 'belum update', 'belum update hosting pada pelanggan diatas,mereka sudah membayar tapi hosting belum di update mohon ', 'umum', '2020-06-13', '2020-06-16', NULL, 'belum selesai'),
+('351', NULL, NULL, 'developer', '121198', 'developer', 'fix bug', 'perbaiki bug pada aplikasi ............. dengan pelanggan .............', NULL, '2020-06-13', '2020-06-15', NULL, 'belum selesai'),
+('454', NULL, NULL, 'developer', '1111111', 'Customer Service', 'perbarui hosting', 'perbarui hosting dengan pelanggan ....... dengan durasi 6 bulan dan layanan seperti sebelumnya', NULL, '2020-06-13', '2020-06-15', NULL, 'belum selesai'),
+('757', NULL, NULL, 'finance', '121198', 'developer', 'data pelanggan', 'butuh data pelanggan dengan nama pelanggan itera dan layanan DIM itera,mhon segera dibuatkan dan dik', NULL, '2020-06-13', '2020-06-14', NULL, 'belum selesai');
 
 -- --------------------------------------------------------
 
@@ -124,6 +137,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`username`, `password`, `id_employ`) VALUES
 ('aldi12', '123456', '121198'),
+('dwiki12', '123456', '1111111'),
 ('muhammad12', '123456', '120698'),
 ('rizki12', '123456', '121212'),
 ('shanti12', '123456', '151098');

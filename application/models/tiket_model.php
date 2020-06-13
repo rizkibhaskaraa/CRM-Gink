@@ -17,4 +17,8 @@ class tiket_model extends CI_model
     public function insert_task($data_task){
         return $this->db->insert("task",$data_task);
     }
+
+    public function getpelangganid($id_pelanggan){
+        return $this->db->get_where("pelanggan",array("id_pelanggan"=>$id_pelanggan))->row_array();
+    }
 }

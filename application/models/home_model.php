@@ -8,6 +8,10 @@ class home_model extends CI_model
         return $this->db->get_where("employe",array("id_employ"=>$id_employ))->row_array();
     }
     
+    public function getpelanggan(){
+        return $this->db->get("pelanggan")->result_array();
+    }
+
     public function gettaskselesai($id_employ){
         return $this->db->get_where('task', array('id_employ_tujuan'=>$id_employ,"status"=>"selesai"))->result_array();
     }

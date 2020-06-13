@@ -1,10 +1,11 @@
 .container-tiket{
-    width: 80%;
-    background-color: darkgrey;
+    width: 75%;
+    background-color:floralwhite;
     margin: auto;
-    padding: 1%;
+    padding: 3%;
+    opacity: 0.9;
 }
 
 .container-tiket input,.container-tiket select,.container-tiket textarea{
-    width: 75%;
+    width: 100%;
 }

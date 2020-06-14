@@ -2,32 +2,45 @@
 error_reporting(0);
 class home_model extends CI_model
 {
-    public function getemploy($user){
-        $user = $this->db->get_where("user",array("username"=>$user))->row_array();
+    public function getemploy($user)
+    {
+        $user = $this->db->get_where("user", array("username" => $user))->row_array();
         $id_employ = $user["id_employ"];
-        return $this->db->get_where("employe",array("id_employ"=>$id_employ))->row_array();
+        return $this->db->get_where("employe", array("id_employ" => $id_employ))->row_array();
     }
-    
-    public function getpelanggan(){
+
+    public function getpelanggan()
+    {
         return $this->db->get("pelanggan")->result_array();
     }
 
-    public function gettaskselesai($id_employ){
-        return $this->db->get_where('task', array('id_employ_tujuan'=>$id_employ,"status"=>"selesai"))->result_array();
+    public function getdepartemen($id_departemen)
+    {
+        return $this->db->get_where("departemen", array("id_departemen" => $id_departemen))->row_array();
     }
-    public function gettaskbelum($id_employ){
-        return $this->db->get_where('task', array('id_employ_tujuan'=>$id_employ,'status'=>"belum selesai"))->result_array();
+
+    public function gettaskselesai($id_employ)
+    {
+        return $this->db->get_where('task', array('id_employ_tujuan' => $id_employ, "status" => "selesai"))->result_array();
     }
-    
-    public function updatestatus($id){
+    public function gettaskbelum($id_employ)
+    {
+        return $this->db->get_where('task', array('id_employ_tujuan' => $id_employ, 'status' => "belum selesai"))->result_array();
+    }
+    public function gettaskdihead($nama_departemen)
+    {
+        return $this->db->get_where('task', array('nama_dept_tujuan' => $nama_departemen))->result_array();
+    }
+    public function updatestatus($id)
+    {
         //update
-        $this->db->set('status',"selesai");
-        $this->db->where('id_task',$id);
+        $this->db->set('status', "selesai");
+        $this->db->where('id_task', $id);
         $this->db->update('task');
         //data user
-        $task = $this->db->get_where("task",array("id_task"=>$id))->row_array();
-        $employ = $this->db->get_where("employe",array("id_employ"=>$task["id_employ_tujuan"]))->row_array();
-        $user = $this->db->get_where("user",array("id_employ"=>$employ["id_employ"]))->row_array();
+        $task = $this->db->get_where("task", array("id_task" => $id))->row_array();
+        $employ = $this->db->get_where("employe", array("id_employ" => $task["id_employ_tujuan"]))->row_array();
+        $user = $this->db->get_where("user", array("id_employ" => $employ["id_employ"]))->row_array();
         return $user["username"];
     }
 }

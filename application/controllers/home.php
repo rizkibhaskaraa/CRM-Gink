@@ -31,4 +31,9 @@ class Home extends CI_Controller
         $user = $this->home_model->updatestatus($id);
         redirect(base_url('index.php/home/index/') . $user);
     }
+
+    public function detail($id, $task)
+    {
+        redirect(base_url('index.php/detail/index/') . $id . "/" . $task);
+    }
 }

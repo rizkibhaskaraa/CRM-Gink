@@ -82,7 +82,7 @@
                         <td><?php echo $value["dateline"] ?></td>
                         <td><?php echo $value["status"] ?></td>
                         <td>
-                            <a href="">Buka</a>
+                            <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
                             <a href="<?php echo base_url('index.php/home/status/') . $value["id_task"] ?>">Selesai</a>
                         </td>
                     </tr>
@@ -104,7 +104,7 @@
                         <td><?php echo $value["dateline"] ?></td>
                         <td><?php echo $value["status"] ?></td>
                         <td>
-                            <a href="">Buka</a>
+                            <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
                         </td>
                     </tr>
                 <?php } ?>

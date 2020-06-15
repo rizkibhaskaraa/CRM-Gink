@@ -79,8 +79,8 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="container-fluid">
-                                                <button type="submit" class="btn btn-block btn-primary">
-                                                    <i class="fa fa-fw fa-sign-in-alt mr-1"></i> Sign In
+                                                <button type="submit" class="btn btn-block btn-primary mt-3">
+                                                    <i class="fa fa-fw fa-sign-in-alt mr-1 py-2"></i> Sign In
                                                 </button>
                                             </div>
                                         </div>

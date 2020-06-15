@@ -40,7 +40,7 @@ class Tiket extends CI_Controller {
                 $departemen_tujuan = "developer";
             }
         }else{
-            $departemen_tujuan = $departemen["nama_departemen"];
+            $departemen_tujuan = $this->input->post("departemen");
         }
         //akhir menentukan departemen tujuan
 
@@ -56,7 +56,7 @@ class Tiket extends CI_Controller {
                 "id_pelanggan" => $this->input->post("id_pelanggan"),
                 "nama_dept_tujuan" => $departemen_tujuan,
                 "id_employ_kirim" => $id_employ,
-                "nama_dept_kirim" => $departemen["nama"],
+                "nama_dept_kirim" => $departemen["nama_departemen"],
                 "title" => $this->input->post("title"),
                 "deskripsi" => $this->input->post("deskripsi"),
                 "kategori_masalah" => $masalah,
@@ -71,7 +71,7 @@ class Tiket extends CI_Controller {
                 "id_task" => rand(0001,1000),
                 "nama_dept_tujuan" => $this->input->post("departemen"),
                 "id_employ_kirim" => $id_employ,
-                "nama_dept_kirim" => $departemen,
+                "nama_dept_kirim" => $departemen["nama_departemen"],
                 "title" => $this->input->post("title"),
                 "deskripsi" => $this->input->post("deskripsi"),
                 "date" => date("Y-m-d"),

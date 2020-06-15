@@ -34,6 +34,6 @@ class Home extends CI_Controller
 
     public function detail($id, $task)
     {
-        redirect(base_url('index.php/detail/index/') . $id . "/" . $task);
+        redirect(base_url('index.php/detail/detailumum/') . $id . "/" . $task);
     }
 }

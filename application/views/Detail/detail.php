@@ -20,14 +20,22 @@
     <div class="container-task">
         <h1>hai <?php echo $employ_nama ?></h1>
 
-        <table style="border:1px solid; width:100%">
+        <table style="border:1px solid; width:100%; ">
             <tr>
                 <th>title</th>
+                <th width="20%">deskripsi</th>
+                <th>kategori</th>
+                <th>pengirim</th>
+                <th>nama tujuan</th>
                 <th>dateline</th>
                 <th>status</th>
             </tr>
             <tr>
                 <td><?php echo $task["title"] ?></td>
+                <td><?php echo $task["deskripsi"] ?></td>
+                <td><?php echo $task["kategori_masalah"] ?></td>
+                <td><?php echo $task["id_employ_kirim"] ?></td>
+                <td><?php echo $task["id_employ_tujuan"] ?></td>
                 <td><?php echo $task["dateline"] ?></td>
                 <td><?php echo $task["status"] ?></td>
             </tr>

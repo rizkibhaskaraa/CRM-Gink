@@ -29,6 +29,7 @@ class home_model extends CI_model
     }
     public function gettaskdihead($nama_departemen)
     {
+
         return $this->db->get_where('task', array('nama_dept_tujuan' => $nama_departemen))->result_array();
     }
     public function updatestatus($id)

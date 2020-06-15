@@ -24,7 +24,21 @@
         <?php if ($employ_dept == "CS") { ?>
             <div class="pelanggan">
                 <h3 class="text-primary data-pelanggan">data pelanggan</h3>
-                <table class="table table-bordered">
+                <input type="text" id="search" class="form-control col-2 search" name="search" placeholder="Cari Customer">
+                <select name="layanan" id="layanan" class="form-control col-2 layanan">
+                    <option value="semua">Semua Layanan</option>
+                    <option value="app website">App Website</option>
+                    <option value="website">Website</option>
+                    <option value="Hosting">Hosting</option>
+                    <option value="mobile">App Mobile</option>
+                </select>
+                <select name="status" id="status-pelanggan" class="form-control col-2 status-pelanggan">
+                    <option value="semua">Semua Status</option>
+                    <option value="aktif">Aktif</option>
+                    <option value="tidak aktif">Tidak Aktif</option>
+                </select>
+                <input type="text" id="link" name="link" value="<?php echo base_url('index.php/home/search/')?>" hidden>
+                <table class="table table-bordered" id="pelanggan">
                     <thead class="thead-dark">
                         <tr>
                             <th>#id</th>
@@ -159,6 +173,8 @@
             </table>
         </div>
     </div>
+    
+    <script src="<?php echo base_url('assets/ajax/search.js') ?>"></script>
 </body>
 
 </html>

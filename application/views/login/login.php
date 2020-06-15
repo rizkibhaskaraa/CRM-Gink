@@ -70,9 +70,11 @@
                                     <form class="js-validation-signin" action="<?php echo base_url('index.php/login/login')?>" method="POST">
                                         <div class="py-1">
                                             <div class="form-group">
-                                                <input type="text" name="username" class="form-control form-control-alt form-control-lg" id="email-admin" name="login-username" placeholder="Email / Username">
+                                                <input type="text" name="username" class="form-control form-control-alt form-control-lg " id="email-admin" name="login-username" placeholder="Email / Username">
+                                                
+                                                
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group ">
                                                 <input type="password" class="form-control form-control-alt form-control-lg" id="password-admin" name="password" placeholder="Password">
                                             </div>
                 

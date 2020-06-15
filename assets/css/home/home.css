@@ -10,3 +10,11 @@
     background-color: cornsilk;
     padding: 1%;
 }
+
+.tiket{
+    border-radius: 10px;
+}
+
+.data-pelanggan, .belum-selesai, .sudah-selesai, .req-tugas{
+    margin-top: 5%;
+}

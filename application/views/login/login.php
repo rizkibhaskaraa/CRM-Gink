@@ -67,19 +67,19 @@
                                     <!-- Sign In Form -->
                                     <!-- jQuery Validation (.js-validation-signin class is initialized in js/pages/op_auth_signin.min.js which was auto compiled from _es6/pages/op_auth_signin.js) -->
                                     <!-- For more info and examples you can check out https://github.com/jzaefferer/jquery-validation -->
-                                    <form class="js-validation-signin" action="be_pages_auth_all.html" method="POST">
+                                    <form class="js-validation-signin" action="<?php echo base_url('index.php/login/login')?>" method="POST">
                                         <div class="py-1">
                                             <div class="form-group">
-                                                <input type="text" class="form-control form-control-alt form-control-lg" id="login-username" name="login-username" placeholder="Username">
+                                                <input type="text" name="username" class="form-control form-control-alt form-control-lg" id="email-admin" name="login-username" placeholder="Email / Username">
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" class="form-control form-control-alt form-control-lg" id="login-password" name="login-password" placeholder="Password">
+                                                <input type="password" class="form-control form-control-alt form-control-lg" id="password-admin" name="password" placeholder="Password">
                                             </div>
-                                          
+                
                                         </div>
                                         <div class="form-group row">
                                             <div class="container-fluid">
-                                                <button type="submit" class="btn btn-block btn-primary mt-3">
+                                                <button type="submit" class="btn btn-block btn-primary mt-3" value="Login">
                                                     <i class="fa fa-fw fa-sign-in-alt mr-1 py-2"></i> Sign In
                                                 </button>
                                             </div>

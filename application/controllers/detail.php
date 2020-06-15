@@ -9,7 +9,7 @@ class Detail extends CI_Controller
         $this->load->model('detail_model');
     }
 
-    public function index($user, $task)
+    public function detailumum($user, $task)
     {
         $employ = $this->detail_model->getemploy($user);
         $data["employ_nama"] = $employ["nama"];

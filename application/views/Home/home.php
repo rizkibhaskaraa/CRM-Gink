@@ -18,95 +18,143 @@
 
 <body>
     <div class="container-task">
-        <h1>hai <?php echo $employ_nama ?></h1>
-        <a href="<?php echo base_url('index.php/tiket/index/') . $employ_id . "/" ?>">buat tiket</a>
+        <h1>hai,<?php echo $employ_nama ?></h1>
+        <h3><?php echo $status." ".$nama_departemen?> di Gink Technology</h3>
+        <a href="<?php echo base_url('index.php/tiket/index/') . $employ_id . "/" ?>" class="p-2 bg-primary text-white text-decoration-none tiket">buat tiket</a>
         <?php if ($employ_dept == "CS") { ?>
             <div class="pelanggan">
-                <h3>data pelanggan</h3>
-                <table style="border:1px solid; width:100%">
-                    <tr>
-                        <th>id</th>
-                        <th>layanan</th>
-                        <th>costumer</th>
-                        <th>status</th>
-                        <th>buat tiket</th>
-                    </tr>
-                    <?php foreach ($pelanggan as $value) { ?>
+                <h3 class="text-primary data-pelanggan">data pelanggan</h3>
+                <table class="table table-bordered">
+                    <thead class="thead-dark">
                         <tr>
-                            <td><?php echo $value["id_pelanggan"] ?></td>
+                            <th>#id</th>
+                            <th>layanan</th>
+                            <th>costumer</th>
+                            <th>status</th>
+                            <th>buat tiket</th>
+                        </tr>
+                    </thead>
+                    <?php foreach ($pelanggan as $value) { ?>
+                    <tbody>
+                        <tr>
+                            <td>#<?php echo $value["id_pelanggan"] ?></td>
                             <td><?php echo $value["layanan"] ?></td>
                             <td><?php echo $value["customer"] ?></td>
-                            <td><?php echo $value["status"] ?></td>
+                            <?php if($value["status"]=="Tidak aktif"){?>
+                                <td class="text-danger"><?php echo $value["status"] ?></td>
+                            <?php }else{?>
+                                <td class="text-success"><?php echo $value["status"] ?></td>
+                            <?php }?>
                             <td>
-                                <a href="<?php echo base_url('index.php/tiket/index/') . $employ_id . "/" . $value["id_pelanggan"] ?>">+ tiket</a>
+                                <a class="text-decoration-none" href="<?php echo base_url('index.php/tiket/index/') . $employ_id . "/" . $value["id_pelanggan"] ?>">+ tiket</a>
                             </td>
                         </tr>
+                    </tbody>
                     <?php } ?>
                 </table>
             </div>
         <?php } ?>
         <?php if ($status == "kepala") { ?>
-            <h2>Kepala Departemen <?= $nama_departemen ?></h2>
-            <table style="border:1px solid; width:100%">
-                <tr>
-                    <th>title</th>
-                    <th>dateline</th>
-                    <th>status</th>
-                    <th>aksi</th>
-                </tr>
-                <?php foreach ($taskdihead as $value) { ?>
+            <h3 class="text-primary req-tugas">Request Tugas</h3>
+            <table class="table table-bordered">
+                <thead class="thead-dark">
                     <tr>
+                        <th>title</th>
+                        <th>dateline</th>
+                        <th>status</th>
+                        <th>penanggung jawab</th>
+                        <th>aksi</th>
+                    </tr>
+                </thead>
+                <?php foreach ($taskdihead as $value) { ?>
+                <tbody>
+                    <tr>
+                    <?php if($value["id_employ_tujuan"]==NULL){?>
                         <td><?php echo $value["title"] ?></td>
                         <td><?php echo $value["dateline"] ?></td>
-                        <td><?php echo $value["status"] ?></td>
+                        <?php if($value["status"]=="belum selesai"){?>
+                            <td class="text-danger"><?php echo $value["status"] ?></td>
+                        <?php }else{?>
+                            <td class="text-success"><?php echo $value["status"] ?></td>
+                        <?php }?>
+                        <td class="text-danger">Belum ada</td>
                         <td>
-                            <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
+                            <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
                         </td>
+                    <?php }?>
                     </tr>
+                </tbody>
+                <?php } ?>
+                <?php foreach ($taskdihead as $value) { ?>
+                <tbody>
+                    <tr>
+                    <?php if($value["id_employ_tujuan"]!=NULL){?>
+                        <td><?php echo $value["title"] ?></td>
+                        <td><?php echo $value["dateline"] ?></td>
+                        <?php if($value["status"]=="belum selesai"){?>
+                            <td class="text-danger"><?php echo $value["status"] ?></td>
+                        <?php }else{?>
+                            <td class="text-success"><?php echo $value["status"] ?></td>
+                        <?php }?>
+                        <td class="text-success"><?php echo $value["id_employ_tujuan"] ?></td>
+                        <td>
+                            <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
+                        </td>
+                    <?php }?>
+                    </tr>
+                </tbody>
                 <?php } ?>
             </table>
         <?php } ?>
 
         <div class="belum">
-            <h3>belum selesai</h3>
-            <table style="border:1px solid; width:100%">
-                <tr>
-                    <th>title</th>
-                    <th>dateline</th>
-                    <th>status</th>
-                    <th>aksi</th>
-                </tr>
+            <h3 class="text-danger belum-selesai">belum selesai</h3>
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>title</th>
+                        <th>dateline</th>
+                        <th>status</th>
+                        <th>aksi</th>
+                    </tr>
+                </thead>
                 <?php foreach ($taskbelum as $value) { ?>
+                <tbody>
                     <tr>
                         <td><?php echo $value["title"] ?></td>
                         <td><?php echo $value["dateline"] ?></td>
-                        <td><?php echo $value["status"] ?></td>
+                        <td class="text-danger"><?php echo $value["status"] ?></td>
                         <td>
-                            <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
-                            <a href="<?php echo base_url('index.php/home/status/') . $value["id_task"] ?>">Selesai</a>
+                            <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>" class="text-decoration-none">Buka  |  </a>
+                            <a href="<?php echo base_url('index.php/home/status/') . $value["id_task"] ?>" class="text-decoration-none">Selesai</a>
                         </td>
                     </tr>
+                </tbody>
                 <?php } ?>
             </table>
         </div>
-        <div class="selesai">
-            <h3>sudah selesai</h3>
-            <table style="border:1px solid; width:100%">
-                <tr>
-                    <th>title</th>
-                    <th>dateline</th>
-                    <th>status</th>
-                    <th>aksi</th>
-                </tr>
+        <div class="text-success selesai">
+            <h3 class="sudah-selesai">sudah selesai</h3>
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>title</th>
+                        <th>dateline</th>
+                        <th>status</th>
+                        <th>aksi</th>
+                    </tr>
+                </thead>
                 <?php foreach ($taskselesai as $value) { ?>
+                <tbody>
                     <tr>
                         <td><?php echo $value["title"] ?></td>
                         <td><?php echo $value["dateline"] ?></td>
-                        <td><?php echo $value["status"] ?></td>
+                        <td class="text-success"><?php echo $value["status"] ?></td>
                         <td>
-                            <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
+                            <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
                         </td>
                     </tr>
+                </tbody>
                 <?php } ?>
             </table>
         </div>

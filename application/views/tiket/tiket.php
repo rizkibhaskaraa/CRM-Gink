@@ -71,7 +71,7 @@
             <?php }?>
             <div class="form-group">
                 <label for="title">Judul Tugas</label>
-                <input type="text" class="form-control" name="title" id="title" placeholder="judul / subject">
+                <input type="text" class="form-control" name="title" id="title" placeholder="judul / subject" >
                 <?= form_error('title', '<span class="text-danger">', '</span>') ?>
             </div>
             <div class="form-group">

@@ -27,4 +27,11 @@ class Detail extends CI_Controller
         $ubah = $this->detail_model->ubahPJ($this->input->post("PJbaru"), $task);
         redirect(base_url('index.php/detail/detailumum/') . $id . "/" . $task);
     }
+    public function insertLaporan($id, $task)
+    {
+        $file = $this->input->post('file');
+
+        $this->detail_model->Laporan($id, $file, $task);
+        redirect(base_url('index.php/detail/detailumum/') . $id . "/" . $task);
+    }
 }

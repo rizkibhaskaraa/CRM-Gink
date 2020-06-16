@@ -65,10 +65,17 @@
                                 </select>
                             </td>
                         <?php } else if ($status == 'staff') { ?>
-                            <td>Berkas (opsional)</td>
-                            <td>
+                            <?= '</form>' ?>
+                            <form method="post" action="<?php echo base_url('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']) ?>">
+                                <td>Berkas (opsional)</td>
+                                <td>
+                                    <input type="file" name="file" accept=".img, .png, .jpeg, .jpg, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pdf">
+                                </td>
 
-                            </td>
+                                <?= '</tr> </tbody> </table> </br>' ?>
+
+                                <input type="submit" value="Selesai">
+                            </form>
                         <?php } ?>
                     </tr>
                 </tbody>

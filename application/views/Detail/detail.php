@@ -39,27 +39,6 @@
                         <td><?php echo $task["id_employ_kirim"] ?></td>
                     </tr>
                     <tr>
-                        <td>Penanggung Jawab</td>
-                        <td>
-                            <?php $isi = $PJ_task['id_employ_tujuan'] ?>
-                            <select name="PJbaru" id="PJbaru">
-                                <?php if ($isi == null) {
-                                    echo "<option disabled selected> Belum ada </option>";
-                                } else {
-                                    echo "<option value=PJbaru>$isi</option>";
-                                } ?>
-
-                                <?php
-                                foreach ($getPJ as $value) {
-                                    echo "<option value='$value->id_employ'>$value->id_employ</option>";
-                                }
-                                ?>
-                            </select>
-                        </td>
-                    </tr>
-                    <!-- <td><?php echo $task["id_employ_tujuan"] ?></td> -->
-                    </tr>
-                    <tr>
                         <td>Dateline</td>
                         <td><?php echo $task["dateline"] ?></td>
                     </tr>
@@ -67,10 +46,35 @@
                         <td>Status Task</td>
                         <td><?php echo $task["status"] ?></td>
                     </tr>
+                    <tr>
+                        <?php if ($status == 'kepala') { ?>
+                            <td>Penanggung Jawab</td>
+                            <td>
+                                <?php $isi = $PJ_task['id_employ_tujuan'] ?>
+                                <select name="PJbaru" id="PJbaru">
+                                    <?php if ($isi == null) {
+                                        echo "<option disabled selected> Belum ada </option>";
+                                    } else {
+                                        echo "<option value=PJbaru>$isi</option>";
+                                    }
+                                    foreach ($getPJ as $value) {
+                                        echo "<option value='$value->id_employ'>$value->id_employ</option>";
+                                    } ?>
+                                </select>
+                            </td>
+                        <?php } else if ($status == 'staff') { ?>
+                            <td>Berkas (opsional)</td>
+                            <td>
+
+                            </td>
+                        <?php } ?>
+                    </tr>
                 </tbody>
             </table>
             </br>
-            <input type="submit" value="Login">
+            <?php if ($status == 'kepala') { ?>
+                <input type="submit" value="Simpan">
+            <?php } ?>
         </form>
     </div>
 

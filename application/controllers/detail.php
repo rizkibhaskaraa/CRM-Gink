@@ -15,6 +15,7 @@ class Detail extends CI_Controller
         $data["employ_nama"] = $employ["nama"];
         $data["employ_id"] = $employ["id_employ"];
         $data["employ_dept"] = $employ["id_departemen"];
+        $data["status"] = $employ["status"];
 
         $data["getPJ"] = $this->detail_model->getsemuaPJ($employ["id_departemen"]);
         $data["task"] = $this->detail_model->getdetail($task);

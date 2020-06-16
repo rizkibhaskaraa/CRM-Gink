@@ -32,12 +32,21 @@ class Home extends CI_Controller
         redirect(base_url('index.php/home/index/') . $user);
     }
 
+    public function detailhead($id, $task)
+    {
+        redirect(base_url('index.php/detail/detailhead/') . $id . "/" . $task);
+    }
     public function detail($id, $task)
     {
-        redirect(base_url('index.php/detail/detailumum/') . $id . "/" . $task);
+        redirect(base_url('index.php/detail/detail/') . $id . "/" . $task);
     }
+<<<<<<< HEAD
 
     public function search($layanan,$status,$search){
+=======
+    public function search($layanan, $status, $search)
+    {
+>>>>>>> muttaqin
         $search_pelanggan = str_replace('%20', ' ', $search);
         $layanan_pelanggan = str_replace('%20', ' ', $layanan);
         $status_pelanggan = str_replace('%20', ' ', $status);

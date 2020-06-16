@@ -74,7 +74,7 @@
                                     <div role="separator" class="dropdown-divider"></div>
                                     <h5 class="dropdown-header text-uppercase">Actions</h5>
                                     
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="op_auth_signin.html">
+                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?php echo base_url()?>">
                                         <span>Log Out</span>
                                         <i class="si si-logout ml-1"></i>
                                     </a>
@@ -293,34 +293,34 @@
                                     <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0">
                                         <thead class="thead-dark">
                                             <tr class="text-uppercase">
-                                                <th class="font-w700">ID</th>
-                                                <th class="d-none d-sm-table-cell font-w700">Date</th>
-                                                <th class="font-w700">State</th>
-                                                <th class="d-none d-sm-table-cell font-w700 text-right" style="width: 120px;">Price</th>
-                                                <th class="font-w700 text-center" style="width: 60px;"></th>
+                                                <th class="font-w700 text-center">Title</th>
+                                                <th class="d-none d-sm-table-cell font-w700 text-center">Deadline</th>
+                                                <th class="font-w700 text-center">Status</th>
+                                                <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 120px;">Aksi</th>
+                                                
                                             </tr>
                                         </thead>
+                                        <?php foreach ($taskbelum as $value) { ?>
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <span class="font-w600">#07835</span>
+                                                    <span class="font-w600"><?php echo $value["title"] ?></span>
                                                 </td>
                                                 <td class="d-none d-sm-table-cell">
-                                                    <span class="font-size-sm text-muted">today</span>
+                                                    <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
                                                 </td>
-                                                <td>
-                                                    <span class="font-w600 text-warning">Pending..</span>
+                                                <td class="text-danger text-center">
+                                                    <span class="font-w600 "><?php echo $value["status"] ?></span>
                                                 </td>
-                                                <td class="d-none d-sm-table-cell text-right">
-                                                    $999,99
+                                                <td class="d-none d-sm-table-cell text-center">
+                                                <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>" class="text-decoration-none">Buka  |  </a>
+                                                <a href="<?php echo base_url('index.php/home/status/') . $value["id_task"] ?>" class="text-decoration-none">Selesai</a>
+                                        
                                                 </td>
-                                                <td class="text-center">
-                                                    <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Manage">
-                                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                                    </a>
-                                                </td>
+                                               
                                             </tr>
                                         </tbody>
+                                        <?php } ?>
                                     </table>
                                 </div>
                             </div>

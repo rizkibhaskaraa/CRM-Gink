@@ -58,18 +58,17 @@
                                         echo "<option value='$isi'>$isi</option>";
                                     }
                                     foreach ($getPJ as $value) {
-                                        if ($value->id_employ != $isi) {
+                                        if($value->id_employ!=$isi){
                                             echo "<option value='$value->id_employ'>$value->id_employ</option>";
                                         }
                                     } ?>
                                 </select>
                             </td>
                         <?php } else if ($status == 'staff') { ?>
-                            <?= '</form>' ?>
-                            <form method="post" action="<?php echo base_url('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']) ?>">
+                            <form method="post" action="<?php echo base_url('index.php/detail/ubahPJ/' . $employ_id . '/' . $task['id_task']) ?>">
                                 <td>Berkas (opsional)</td>
                                 <td>
-                                    <input type="file" name="file" accept=".img, .png, .jpeg, .jpg, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pdf">
+                                    <input type="file" name="berkas">
                                 </td>
 
                                 <?= '</tr> </tbody> </table> </br>' ?>

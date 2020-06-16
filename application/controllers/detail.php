@@ -25,13 +25,24 @@ class Detail extends CI_Controller
     public function ubahPJ($id, $task)
     {
         $ubah = $this->detail_model->ubahPJ($this->input->post("PJbaru"), $task);
-        redirect(base_url('index.php/detail/detailumum/') . $id . "/" . $task);
+        redirect(base_url());
     }
-    public function insertLaporan($id, $task)
+    public function do_upload()
     {
-        $file = $this->input->post('file');
-
-        $this->detail_model->Laporan($id, $file, $task);
-        redirect(base_url('index.php/detail/detailumum/') . $id . "/" . $task);
+        // setting konfigurasi upload
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        // load library upload
+        $this->load->library('upload', $config);
+        if (!$this->upload->do_upload('gambar')) {
+            $error = $this->upload->display_errors();
+            // menampilkan pesan error
+            print_r($error);
+        } else {
+            $result = $this->upload->data();
+            echo "<pre>";
+            print_r($result);
+            echo "</pre>";
+        }
     }
 }

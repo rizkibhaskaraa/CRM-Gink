@@ -28,14 +28,4 @@ class detail_model extends CI_model
 
         return $id;
     }
-    public function Laporan($id, $file, $task)
-    {
-        //update
-        $this->db->set('berkas', $file);
-        $this->db->where('id_task', $task);
-        $this->db->update('task');
-        //data user
-
-        return $id;
-    }
 }

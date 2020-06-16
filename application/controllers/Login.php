@@ -32,11 +32,11 @@ class Login extends CI_Controller {
 			if(password_verify($password, $saved_password)){
 				redirect(base_url('index.php/home/index/').$email);
 			} else {
-				$this->load->view('login/login');
+				redirect(base_url());
 			}
 		} else {
 			echo "kamu disini";
-			$this->load->view('login/login');
+			redirect(base_url());
 		}
 	}
 

@@ -23,7 +23,6 @@ class Home extends CI_Controller
         $data["taskselesai"] = $this->home_model->gettaskselesai($employ["id_employ"]);
         $data["taskbelum"] = $this->home_model->gettaskbelum($employ["id_employ"]);
         $data["taskdihead"] = $this->home_model->gettaskdihead($departemen["nama_departemen"]);
-        $data["taskumum"] = $this->home_model->gettaskumum();
         $this->load->view('home/home', $data);
     }
 
@@ -38,12 +37,11 @@ class Home extends CI_Controller
         redirect(base_url('index.php/detail/detailumum/') . $id . "/" . $task);
     }
 
-    public function search($layanan, $status, $search)
-    {
+    public function search($layanan,$status,$search){
         $search_pelanggan = str_replace('%20', ' ', $search);
         $layanan_pelanggan = str_replace('%20', ' ', $layanan);
         $status_pelanggan = str_replace('%20', ' ', $status);
-        $data["pelanggan"] = $this->home_model->getsearch($layanan_pelanggan, $status_pelanggan, $search_pelanggan);
-        $this->load->view('home/hasil_search', $data);
+        $data["pelanggan"] = $this->home_model->getsearch($layanan_pelanggan,$status_pelanggan,$search_pelanggan);
+        $this->load->view('home/hasil_search',$data);
     }
 }

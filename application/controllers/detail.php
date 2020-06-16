@@ -16,7 +16,14 @@ class Detail extends CI_Controller
         $data["employ_id"] = $employ["id_employ"];
         $data["employ_dept"] = $employ["id_departemen"];
 
+        $data["getPJ"] = $this->detail_model->getsemuaPJ($employ["id_departemen"]);
         $data["task"] = $this->detail_model->getdetail($task);
+        $data["PJ_task"] = $this->detail_model->getPJ_task($task);
         $this->load->view('detail/detail', $data);
+    }
+    public function ubahPJ($id, $task)
+    {
+        $ubah = $this->detail_model->ubahPJ($this->input->post("PJbaru"), $task);
+        redirect(base_url());
     }
 }

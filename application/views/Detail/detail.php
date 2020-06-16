@@ -19,28 +19,61 @@
 <body>
     <div class="container-task">
         <h1>hai <?php echo $employ_nama ?></h1>
+        <form method="post" action="<?php echo base_url('index.php/detail/ubahPJ/' . $employ_id . '/' . $task['id_task']) ?>">
+            <table style="font-size:20px">
+                <tbody valign="top">
+                    <tr>
+                        <td width="30%">Title</td>
+                        <td width="70%"><?php echo $task["title"] ?> </td>
+                    </tr>
+                    <tr>
+                        <td>Deskripsi Task</td>
+                        <td><?php echo $task["deskripsi"] ?></td>
+                    </tr>
+                    <tr>
+                        <td>Kategori Masalah</td>
+                        <td><?php echo $task["kategori_masalah"] ?></td>
+                    </tr>
+                    <tr>
+                        <td>Nama Pengirim</td>
+                        <td><?php echo $task["id_employ_kirim"] ?></td>
+                    </tr>
+                    <tr>
+                        <td>Penanggung Jawab</td>
+                        <td>
+                            <?php $isi = $PJ_task['id_employ_tujuan'] ?>
+                            <select name="PJbaru" id="PJbaru">
+                                <?php if ($isi == null) {
+                                    echo "<option disabled selected> Belum ada </option>";
+                                } else {
+                                    echo "<option value=PJbaru>$isi</option>";
+                                } ?>
 
-        <table style="border:1px solid; width:100%; ">
-            <tr>
-                <th>title</th>
-                <th width="20%">deskripsi</th>
-                <th>kategori</th>
-                <th>pengirim</th>
-                <th>nama tujuan</th>
-                <th>dateline</th>
-                <th>status</th>
-            </tr>
-            <tr>
-                <td><?php echo $task["title"] ?></td>
-                <td><?php echo $task["deskripsi"] ?></td>
-                <td><?php echo $task["kategori_masalah"] ?></td>
-                <td><?php echo $task["id_employ_kirim"] ?></td>
-                <td><?php echo $task["id_employ_tujuan"] ?></td>
-                <td><?php echo $task["dateline"] ?></td>
-                <td><?php echo $task["status"] ?></td>
-            </tr>
-        </table>
+                                <?php
+                                foreach ($getPJ as $value) {
+                                    echo "<option value='$value->id_employ'>$value->id_employ</option>";
+                                }
+                                ?>
+                            </select>
+                        </td>
+                    </tr>
+                    <!-- <td><?php echo $task["id_employ_tujuan"] ?></td> -->
+                    </tr>
+                    <tr>
+                        <td>Dateline</td>
+                        <td><?php echo $task["dateline"] ?></td>
+                    </tr>
+                    <tr>
+                        <td>Status Task</td>
+                        <td><?php echo $task["status"] ?></td>
+                    </tr>
+                </tbody>
+            </table>
+            </br>
+            <input type="submit" value="Login">
+        </form>
     </div>
+
 </body>
 
 </html>

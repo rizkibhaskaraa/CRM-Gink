@@ -25,6 +25,6 @@ class Detail extends CI_Controller
     public function ubahPJ($id, $task)
     {
         $ubah = $this->detail_model->ubahPJ($this->input->post("PJbaru"), $task);
-        redirect(base_url());
+        redirect(base_url('index.php/detail/detailumum/') . $id . "/" . $task);
     }
 }

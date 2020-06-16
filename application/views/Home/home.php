@@ -19,7 +19,7 @@
 <body>
     <div class="container-task">
         <h1>hai,<?php echo $employ_nama ?></h1>
-        <h3><?php echo $status." ".$nama_departemen?> di Gink Technology</h3>
+        <h3><?php echo $status . " " . $nama_departemen ?> di Gink Technology</h3>
         <a href="<?php echo base_url('index.php/tiket/index/') . $employ_id . "/" ?>" class="p-2 bg-primary text-white text-decoration-none tiket">buat tiket</a>
         <?php if ($employ_dept == "CS") { ?>
             <div class="pelanggan">
@@ -37,7 +37,7 @@
                     <option value="aktif">Aktif</option>
                     <option value="tidak aktif">Tidak Aktif</option>
                 </select>
-                <input type="text" id="link" name="link" value="<?php echo base_url('index.php/home/search/')?>" hidden>
+                <input type="text" id="link" name="link" value="<?php echo base_url('index.php/home/search/') ?>" hidden>
                 <table class="table table-bordered" id="pelanggan">
                     <thead class="thead-dark">
                         <tr>
@@ -49,21 +49,21 @@
                         </tr>
                     </thead>
                     <?php foreach ($pelanggan as $value) { ?>
-                    <tbody>
-                        <tr>
-                            <td>#<?php echo $value["id_pelanggan"] ?></td>
-                            <td><?php echo $value["layanan"] ?></td>
-                            <td><?php echo $value["customer"] ?></td>
-                            <?php if($value["status"]=="Tidak aktif"){?>
-                                <td class="text-danger"><?php echo $value["status"] ?></td>
-                            <?php }else{?>
-                                <td class="text-success"><?php echo $value["status"] ?></td>
-                            <?php }?>
-                            <td>
-                                <a class="text-decoration-none" href="<?php echo base_url('index.php/tiket/index/') . $employ_id . "/" . $value["id_pelanggan"] ?>">+ tiket</a>
-                            </td>
-                        </tr>
-                    </tbody>
+                        <tbody>
+                            <tr>
+                                <td>#<?php echo $value["id_pelanggan"] ?></td>
+                                <td><?php echo $value["layanan"] ?></td>
+                                <td><?php echo $value["customer"] ?></td>
+                                <?php if ($value["status"] == "Tidak aktif") { ?>
+                                    <td class="text-danger"><?php echo $value["status"] ?></td>
+                                <?php } else { ?>
+                                    <td class="text-success"><?php echo $value["status"] ?></td>
+                                <?php } ?>
+                                <td>
+                                    <a class="text-decoration-none" href="<?php echo base_url('index.php/tiket/index/') . $employ_id . "/" . $value["id_pelanggan"] ?>">+ tiket</a>
+                                </td>
+                            </tr>
+                        </tbody>
                     <?php } ?>
                 </table>
             </div>
@@ -81,42 +81,42 @@
                     </tr>
                 </thead>
                 <?php foreach ($taskdihead as $value) { ?>
-                <tbody>
-                    <tr>
-                    <?php if($value["id_employ_tujuan"]==NULL){?>
-                        <td><?php echo $value["title"] ?></td>
-                        <td><?php echo $value["dateline"] ?></td>
-                        <?php if($value["status"]=="belum selesai"){?>
-                            <td class="text-danger"><?php echo $value["status"] ?></td>
-                        <?php }else{?>
-                            <td class="text-success"><?php echo $value["status"] ?></td>
-                        <?php }?>
-                        <td class="text-danger">Belum ada</td>
-                        <td>
-                            <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
-                        </td>
-                    <?php }?>
-                    </tr>
-                </tbody>
+                    <tbody>
+                        <tr>
+                            <?php if ($value["id_employ_tujuan"] == NULL) { ?>
+                                <td><?php echo $value["title"] ?></td>
+                                <td><?php echo $value["dateline"] ?></td>
+                                <?php if ($value["status"] == "belum selesai") { ?>
+                                    <td class="text-danger"><?php echo $value["status"] ?></td>
+                                <?php } else { ?>
+                                    <td class="text-success"><?php echo $value["status"] ?></td>
+                                <?php } ?>
+                                <td class="text-danger">Belum ada</td>
+                                <td>
+                                    <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
+                                </td>
+                            <?php } ?>
+                        </tr>
+                    </tbody>
                 <?php } ?>
                 <?php foreach ($taskdihead as $value) { ?>
-                <tbody>
-                    <tr>
-                    <?php if($value["id_employ_tujuan"]!=NULL){?>
-                        <td><?php echo $value["title"] ?></td>
-                        <td><?php echo $value["dateline"] ?></td>
-                        <?php if($value["status"]=="belum selesai"){?>
-                            <td class="text-danger"><?php echo $value["status"] ?></td>
-                        <?php }else{?>
-                            <td class="text-success"><?php echo $value["status"] ?></td>
-                        <?php }?>
-                        <td class="text-success"><?php echo $value["id_employ_tujuan"] ?></td>
-                        <td>
-                            <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
-                        </td>
-                    <?php }?>
-                    </tr>
-                </tbody>
+                    <tbody>
+                        <tr>
+                            <?php if ($value["id_employ_tujuan"] != NULL) { ?>
+                                <td><?php echo $value["title"] ?></td>
+                                <td><?php echo $value["dateline"] ?></td>
+                                <?php if ($value["status"] == "belum selesai") { ?>
+                                    <td class="text-danger"><?php echo $value["status"] ?></td>
+                                <?php } else { ?>
+                                    <td class="text-success"><?php echo $value["status"] ?></td>
+                                <?php } ?>
+                                <td class="text-success"><?php echo $value["id_employ_tujuan"] ?></td>
+                                <td>
+                                    <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
+                                </td>
+                            <?php } ?>
+                        </tr>
+                    </tbody>
                 <?php } ?>
             </table>
         <?php } ?>
@@ -133,17 +133,17 @@
                     </tr>
                 </thead>
                 <?php foreach ($taskbelum as $value) { ?>
-                <tbody>
-                    <tr>
-                        <td><?php echo $value["title"] ?></td>
-                        <td><?php echo $value["dateline"] ?></td>
-                        <td class="text-danger"><?php echo $value["status"] ?></td>
-                        <td>
-                            <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>" class="text-decoration-none">Buka  |  </a>
-                            <a href="<?php echo base_url('index.php/home/status/') . $value["id_task"] ?>" class="text-decoration-none">Selesai</a>
-                        </td>
-                    </tr>
-                </tbody>
+                    <tbody>
+                        <tr>
+                            <td><?php echo $value["title"] ?></td>
+                            <td><?php echo $value["dateline"] ?></td>
+                            <td class="text-danger"><?php echo $value["status"] ?></td>
+                            <td>
+                                <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>" class="text-decoration-none">Buka | </a>
+                                <a href="<?php echo base_url('index.php/home/status/') . $value["id_task"] ?>" class="text-decoration-none">Selesai</a>
+                            </td>
+                        </tr>
+                    </tbody>
                 <?php } ?>
             </table>
         </div>
@@ -159,21 +159,21 @@
                     </tr>
                 </thead>
                 <?php foreach ($taskselesai as $value) { ?>
-                <tbody>
-                    <tr>
-                        <td><?php echo $value["title"] ?></td>
-                        <td><?php echo $value["dateline"] ?></td>
-                        <td class="text-success"><?php echo $value["status"] ?></td>
-                        <td>
-                            <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
-                        </td>
-                    </tr>
-                </tbody>
+                    <tbody>
+                        <tr>
+                            <td><?php echo $value["title"] ?></td>
+                            <td><?php echo $value["dateline"] ?></td>
+                            <td class="text-success"><?php echo $value["status"] ?></td>
+                            <td>
+                                <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
+                            </td>
+                        </tr>
+                    </tbody>
                 <?php } ?>
             </table>
         </div>
     </div>
-    
+
     <script src="<?php echo base_url('assets/ajax/search.js') ?>"></script>
 </body>
 

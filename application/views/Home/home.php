@@ -29,6 +29,7 @@
         <!-- Fonts and OneUI framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
         <link rel="stylesheet" id="css-main" href="<?php echo base_url('assets/oneui/css/oneui.min.css')?>">
+        <link rel="stylesheet" href="<?php echo base_url('assets/css/home/home.css') ?>">
 
         
         <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
@@ -36,12 +37,6 @@
         <!-- END Stylesheets -->
     </head>
     <body>
-       
-
-                    
-         
-                    
-
                     <!-- Right Section -->
                     <div class="d-flex align-items-center">
                         <!-- User Dropdown -->
@@ -81,11 +76,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- END User Dropdown -->
-
-                        
-
-                      
+                        <!-- END User Dropdown -->    
                     </div>
                     <!-- END Right Section -->
                 </div>
@@ -207,8 +198,22 @@
                                 <div class="block-header border-bottom">
                                     <h3 class="block-title text-primary">Data Pelanggan</h3>
                                 </div>
+                                <input type="text" id="search" class="form-control col-3 search" name="search" placeholder="Cari Customer">
+                                <select name="layanan" id="layanan" class="form-control col-3 layanan">
+                                    <option value="semua">Semua Layanan</option>
+                                    <option value="app website">App Website</option>
+                                    <option value="website">Website</option>
+                                    <option value="Hosting">Hosting</option>
+                                    <option value="mobile">App Mobile</option>
+                                </select>
+                                <select name="status" id="status-pelanggan" class="form-control col-3 status-pelanggan">
+                                    <option value="semua">Semua Status</option>
+                                    <option value="aktif">Aktif</option>
+                                    <option value="tidak aktif">Tidak Aktif</option>
+                                </select>
+                                <input type="text" id="link" name="link" value="<?php echo base_url('index.php/home/search/')?>" hidden>
                                 <div class="block-content block-content-full">
-                                    <table class="table table-striped table-hover table-bordered table-vcenter font-size-sm mb-0">
+                                    <table class="table table-striped table-hover table-bordered table-vcenter font-size-sm mb-0" id="pelanggan">
                                         <thead class="thead-dark">
                                             <tr class="text-uppercase">
                                                 <th class="font-w700 text-center" style="width: 80px;">#ID</th>
@@ -385,5 +390,8 @@
 
         <!-- Page JS Code -->
         <script src="<?php echo base_url('assets/oneui/js/pages/be_pages_dashboard.min.js')?>"></script>
+
+        <!-- search pelanggan -->
+        <script src="<?php echo base_url('assets/ajax/search.js') ?>"></script>
     </body>
 </html>

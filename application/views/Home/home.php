@@ -93,7 +93,7 @@
                                 <?php } ?>
                                 <td class="text-danger">Belum ada</td>
                                 <td>
-                                    <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
+                                    <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detailhead/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
                                 </td>
                             <?php } ?>
                         </tr>
@@ -112,7 +112,7 @@
                                 <?php } ?>
                                 <td class="text-success"><?php echo $value["id_employ_tujuan"] ?></td>
                                 <td>
-                                    <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
+                                    <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detailhead/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
                                 </td>
                             <?php } ?>
                         </tr>

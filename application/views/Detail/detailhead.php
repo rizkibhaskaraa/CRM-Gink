@@ -19,7 +19,7 @@
 <body>
     <div class="container-task">
         <h1>hai <?php echo $employ_nama ?></h1>
-        <form method="post" action="<?php echo base_url('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']) ?>">
+        <form method="post" action="<?php echo base_url('index.php/detail/ubahPJ/' . $employ_id . '/' . $task['id_task']) ?>">
             <table style="font-size:20px">
                 <tbody valign="top">
                     <tr>
@@ -48,16 +48,28 @@
                     </tr>
                     <tr>
 
-                        <td>Berkas (opsional)</td>
+                        <td>Penanggung Jawab</td>
                         <td>
-                            <input type="file" name="file" accept=".img, .png, .jpeg, .jpg, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pdf">
+                            <?php $isi = $PJ_task['id_employ_tujuan'] ?>
+                            <select name="PJbaru" id="PJbaru">
+                                <?php if ($isi == null) {
+                                    echo "<option disabled selected> Belum ada </option>";
+                                } else {
+                                    echo "<option value='$isi'>$isi</option>";
+                                }
+                                foreach ($getPJ as $value) {
+                                    if ($value->id_employ != $isi) {
+                                        echo "<option value='$value->id_employ'>$value->id_employ</option>";
+                                    }
+                                } ?>
+                            </select>
                         </td>
                     </tr>
                 </tbody>
             </table>
             </br>
 
-            <input type="submit" value="Selesai">
+            <input type="submit" value="Simpan">
 
         </form>
     </div>

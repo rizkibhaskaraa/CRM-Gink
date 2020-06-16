@@ -29,7 +29,7 @@ class home_model extends CI_model
     }
     public function gettaskdihead($nama_departemen)
     {
-
+        $this->db->order_by('dateline', 'ASC');
         return $this->db->get_where('task', array('nama_dept_tujuan' => $nama_departemen))->result_array();
     }
     public function updatestatus($id)
@@ -43,5 +43,24 @@ class home_model extends CI_model
         $employ = $this->db->get_where("employe", array("id_employ" => $task["id_employ_tujuan"]))->row_array();
         $user = $this->db->get_where("user", array("id_employ" => $employ["id_employ"]))->row_array();
         return $user["username"];
+    }
+    public function getsearch($layanan,$status,$search){
+        if($layanan == "semua"){
+            if($status == "semua"){
+
+            }else{
+                $this->db->where("status",$status);
+            }
+        }else{
+            if($status == "semua"){
+                $this->db->where("layanan",$layanan);
+            }else{
+                $this->db->where("layanan",$layanan);
+                $this->db->where("status",$status);
+    
+            }
+        }
+        $this->db->like('customer', $search);
+        return $this->db->get("pelanggan")->result_array();
     }
 }

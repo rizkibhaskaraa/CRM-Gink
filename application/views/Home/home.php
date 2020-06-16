@@ -24,7 +24,21 @@
         <?php if ($employ_dept == "CS") { ?>
             <div class="pelanggan">
                 <h3 class="text-primary data-pelanggan">data pelanggan</h3>
-                <table class="table table-bordered">
+                <input type="text" id="search" class="form-control col-2 search" name="search" placeholder="Cari Customer">
+                <select name="layanan" id="layanan" class="form-control col-2 layanan">
+                    <option value="semua">Semua Layanan</option>
+                    <option value="app website">App Website</option>
+                    <option value="website">Website</option>
+                    <option value="Hosting">Hosting</option>
+                    <option value="mobile">App Mobile</option>
+                </select>
+                <select name="status" id="status-pelanggan" class="form-control col-2 status-pelanggan">
+                    <option value="semua">Semua Status</option>
+                    <option value="aktif">Aktif</option>
+                    <option value="tidak aktif">Tidak Aktif</option>
+                </select>
+                <input type="text" id="link" name="link" value="<?php echo base_url('index.php/home/search/')?>" hidden>
+                <table class="table table-bordered" id="pelanggan">
                     <thead class="thead-dark">
                         <tr>
                             <th>#id</th>
@@ -69,6 +83,7 @@
                 <?php foreach ($taskdihead as $value) { ?>
                 <tbody>
                     <tr>
+                    <?php if($value["id_employ_tujuan"]==NULL){?>
                         <td><?php echo $value["title"] ?></td>
                         <td><?php echo $value["dateline"] ?></td>
                         <?php if($value["status"]=="belum selesai"){?>
@@ -76,14 +91,30 @@
                         <?php }else{?>
                             <td class="text-success"><?php echo $value["status"] ?></td>
                         <?php }?>
-                        <?php if($value["id_employ_tujuan"]==NULL){?>
-                            <td class="text-danger">Belum ada</td>
-                        <?php }else{?>
-                            <td class="text-success"><?php echo $value["id_employ_tujuan"] ?></td>
-                        <?php }?>
+                        <td class="text-danger">Belum ada</td>
                         <td>
                             <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
                         </td>
+                    <?php }?>
+                    </tr>
+                </tbody>
+                <?php } ?>
+                <?php foreach ($taskdihead as $value) { ?>
+                <tbody>
+                    <tr>
+                    <?php if($value["id_employ_tujuan"]!=NULL){?>
+                        <td><?php echo $value["title"] ?></td>
+                        <td><?php echo $value["dateline"] ?></td>
+                        <?php if($value["status"]=="belum selesai"){?>
+                            <td class="text-danger"><?php echo $value["status"] ?></td>
+                        <?php }else{?>
+                            <td class="text-success"><?php echo $value["status"] ?></td>
+                        <?php }?>
+                        <td class="text-success"><?php echo $value["id_employ_tujuan"] ?></td>
+                        <td>
+                            <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
+                        </td>
+                    <?php }?>
                     </tr>
                 </tbody>
                 <?php } ?>
@@ -142,6 +173,8 @@
             </table>
         </div>
     </div>
+    
+    <script src="<?php echo base_url('assets/ajax/search.js') ?>"></script>
 </body>
 
 </html>

@@ -63,10 +63,16 @@
                                 </select>
                             </td>
                         <?php } else if ($status == 'staff') { ?>
-                            <td>Berkas (opsional)</td>
-                            <td>
+                            <form method="post" action="<?php echo base_url('index.php/detail/ubahPJ/' . $employ_id . '/' . $task['id_task']) ?>">
+                                <td>Berkas (opsional)</td>
+                                <td>
+                                    <input type="file" name="berkas">
+                                </td>
 
-                            </td>
+                                <?= '</tr> </tbody> </table> </br>' ?>
+
+                                <input type="submit" value="Selesai">
+                            </form>
                         <?php } ?>
                     </tr>
                 </tbody>

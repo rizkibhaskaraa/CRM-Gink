@@ -55,10 +55,12 @@
                                     <?php if ($isi == null) {
                                         echo "<option disabled selected> Belum ada </option>";
                                     } else {
-                                        echo "<option value=PJbaru>$isi</option>";
+                                        echo "<option value='$isi'>$isi</option>";
                                     }
                                     foreach ($getPJ as $value) {
-                                        echo "<option value='$value->id_employ'>$value->id_employ</option>";
+                                        if($value->id_employ!=$isi){
+                                            echo "<option value='$value->id_employ'>$value->id_employ</option>";
+                                        }
                                     } ?>
                                 </select>
                             </td>

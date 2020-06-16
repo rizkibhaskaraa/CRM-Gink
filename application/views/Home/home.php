@@ -124,17 +124,17 @@
 
                 <!-- Page Content -->
                 
-                    <!-- Customers and Latest Orders -->
+                    <!-- request task,pelanggan,tugas selesai,tugas belum selesai -->
                     <div class="row row-deck">
-                        <!-- Latest Customers -->
+                        <!-- Request Task -->
+                    <?php if ($status == "kepala") { ?>
                         <div class="col-lg-6 mt-3">
                             <div class="block block-mode-loading-oneui">
                                 <div class="block-header border-bottom">
                                     <h3 class="block-title text-primary">Request Tugas</h3>
-                                    
                                 </div>
                                 <div class="block-content block-content-full">
-                                    <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0">
+                                    <table class="table table-striped table-hover table-bordered table-vcenter font-size-sm mb-0">
                                         <thead class="thead-dark">
                                             <tr class="text-uppercase">
                                                 <th class="font-w700 text-center" style="width: 80px;">Title</th>
@@ -144,139 +144,136 @@
                                                 <th class="font-w700 text-center" style="width: 60px;">Aksi</th>
                                             </tr>
                                         </thead>
+                                        <?php foreach ($taskdihead as $value) { ?>
                                         <tbody>
                                             <tr>
+                                            <?php if($value["id_employ_tujuan"]==NULL){?>
                                                 <td>
-                                                    <span class="font-w600">#01368</span>
+                                                    <span class="font-w600"><?php echo $value["title"] ?></span>
                                                 </td>
-                                                <td class="d-none d-sm-table-cell text-center">
-                                                    <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar10.jpg" alt="">
+                                                <td >
+                                                    <span class="font-w600"><?php echo $value["dateline"] ?></span>
                                                 </td>
-                                                <td class="font-w600">
-                                                    Justin Hunt                                </td>
-                                                <td class="d-none d-sm-table-cell text-center">
-                                                    <a class="link-fx font-w600" href="javascript:void(0)">5</a>
-                                                </td>
+                                                <?php if($value["status"]=="belum selesai"){?>
+                                                    <td class="text-center"><span class="font-w600 text-danger "><?php echo $value["status"] ?></span></td>
+                                                <?php }else{?>
+                                                    <td class="text-center"><span class="font-w600 text-success"><?php echo $value["status"] ?></span></td>
+                                                <?php }?>
                                                 <td class="text-center">
-                                                    <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Edit">
-                                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                                    </a>
+                                                    <span class="font-w600">Belum ada</span>
                                                 </td>
-                                            </tr>
-                                            <tr>
                                                 <td>
-                                                    <span class="font-w600">#01368</span>
+                                                    <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
                                                 </td>
-                                                <td class="d-none d-sm-table-cell text-center">
-                                                    <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar2.jpg" alt="">
-                                                </td>
-                                                <td class="font-w600">
-                                                    Danielle Jones                                </td>
-                                                <td class="d-none d-sm-table-cell text-center">
-                                                    <a class="link-fx font-w600" href="javascript:void(0)">14</a>
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Edit">
-                                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="font-w600">#01368</span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell text-center">
-                                                    <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar14.jpg" alt="">
-                                                </td>
-                                                <td class="font-w600">
-                                                    Jack Greene                                </td>
-                                                <td class="d-none d-sm-table-cell text-center">
-                                                    <a class="link-fx font-w600" href="javascript:void(0)">15</a>
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Edit">
-                                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="font-w600">#01368</span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell text-center">
-                                                    <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar6.jpg" alt="">
-                                                </td>
-                                                <td class="font-w600">
-                                                    Lisa Jenkins                                </td>
-                                                <td class="d-none d-sm-table-cell text-center">
-                                                    <a class="link-fx font-w600" href="javascript:void(0)">36</a>
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Edit">
-                                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="font-w600">#01368</span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell text-center">
-                                                    <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar15.jpg" alt="">
-                                                </td>
-                                                <td class="font-w600">
-                                                    Brian Cruz                                </td>
-                                                <td class="d-none d-sm-table-cell text-center">
-                                                    <a class="link-fx font-w600" href="javascript:void(0)">3</a>
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Edit">
-                                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="font-w600">#01368</span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell text-center">
-                                                    <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar2.jpg" alt="">
-                                                </td>
-                                                <td class="font-w600">
-                                                    Carol White                                </td>
-                                                <td class="d-none d-sm-table-cell text-center">
-                                                    <a class="link-fx font-w600" href="javascript:void(0)">1</a>
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Edit">
-                                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="font-w600">#01368</span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell text-center">
-                                                    <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar11.jpg" alt="">
-                                                </td>
-                                                <td class="font-w600">
-                                                    Ralph Murray                                </td>
-                                                <td class="d-none d-sm-table-cell text-center">
-                                                    <a class="link-fx font-w600" href="javascript:void(0)">12</a>
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Edit">
-                                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                                    </a>
-                                                </td>
+                                            <?php } ?>
                                             </tr>
                                         </tbody>
+                                        <?php } ?>
+                                        <?php foreach ($taskdihead as $value) { ?>
+                                        <tbody>
+                                            <tr>
+                                            <?php if($value["id_employ_tujuan"]!=NULL){?>
+                                                <td>
+                                                    <span class="font-w600"><?php echo $value["title"] ?></span>
+                                                </td>
+                                                <td >
+                                                    <span class="font-w600"><?php echo $value["dateline"] ?></span>
+                                                </td>
+                                                <?php if($value["status"]=="belum selesai"){?>
+                                                    <td class="text-center"><span class="font-w600 text-danger"><?php echo $value["status"] ?></span></td>
+                                                <?php }else{?>
+                                                    <td class="text-center"><span class="font-w600 text-success"><?php echo $value["status"] ?></span></td>
+                                                <?php }?>
+                                                <td class="text-center">
+                                                    <span class="text-success"><?php echo $value["id_employ_tujuan"] ?></span>
+                                                </td>
+                                                <td>
+                                                    <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
+                                                </td>
+                                            <?php } ?>
+                                            </tr>
+                                        </tbody>
+                                        <?php } ?>
                                     </table>
                                 </div>
                             </div>
                         </div>
-                        <!-- END Latest Customers -->
+                    <?php } ?>
+                        <!-- END Request Task -->
+                        <!-- pelanggan -->
+                    <?php if ($employ_dept == "CS") { ?>
+                        <div class="col-lg-6 mt-3">
+                            <div class="block block-mode-loading-oneui">
+                                <div class="block-header border-bottom">
+                                    <h3 class="block-title text-primary">Data Pelanggan</h3>
+                                </div>
+                                <div class="block-content block-content-full">
+                                    <table class="table table-striped table-hover table-bordered table-vcenter font-size-sm mb-0">
+                                        <thead class="thead-dark">
+                                            <tr class="text-uppercase">
+                                                <th class="font-w700 text-center" style="width: 80px;">#ID</th>
+                                                <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 100px;">Layanan</th>
+                                                <th class="font-w700 text-center">Customer</th>
+                                                <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 200px;">Status</th>
+                                                <th class="font-w700 text-center" style="width: 60px;">+Tiket</th>
+                                            </tr>
+                                        </thead>
+                                        <?php foreach ($pelanggan as $value) { ?>
+                                        <tbody>
+                                            <tr>
+                                            <?php if($value["id_employ_tujuan"]==NULL){?>
+                                                <td>
+                                                    <span class="font-w600">#<?php echo $value["id_pelanggan"] ?></span>
+                                                </td>
+                                                <td >
+                                                    <span class="font-w600"><?php echo $value["layanan"] ?></span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span class="font-w600"><?php echo $value["customer"] ?></span>
+                                                </td>
+                                                <?php if($value["status"]=="tidak aktif"){?>
+                                                    <td class="text-center"><span class="font-w600 text-danger "><?php echo $value["status"] ?></span></td>
+                                                <?php }else{?>
+                                                    <td class="text-center"><span class="font-w600 text-success"><?php echo $value["status"] ?></span></td>
+                                                <?php }?>
+                                                <td>
+                                                <a class="text-decoration-none" href="<?php echo base_url('index.php/tiket/index/') . $employ_id . "/" . $value["id_pelanggan"] ?>">+ tiket</a>
+                                                </td>
+                                            <?php } ?>
+                                            </tr>
+                                        </tbody>
+                                        <?php } ?>
+                                        <?php foreach ($taskdihead as $value) { ?>
+                                        <tbody>
+                                            <tr>
+                                            <?php if($value["id_employ_tujuan"]!=NULL){?>
+                                                <td>
+                                                    <span class="font-w600"><?php echo $value["title"] ?></span>
+                                                </td>
+                                                <td >
+                                                    <span class="font-w600"><?php echo $value["dateline"] ?></span>
+                                                </td>
+                                                <?php if($value["status"]=="belum selesai"){?>
+                                                    <td class="text-center"><span class="font-w600 text-danger"><?php echo $value["status"] ?></span></td>
+                                                <?php }else{?>
+                                                    <td class="text-center"><span class="font-w600 text-success"><?php echo $value["status"] ?></span></td>
+                                                <?php }?>
+                                                <td class="text-center">
+                                                    <span class="text-success"><?php echo $value["id_employ_tujuan"] ?></span>
+                                                </td>
+                                                <td>
+                                                    <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
+                                                </td>
+                                            <?php } ?>
+                                            </tr>
+                                        </tbody>
+                                        <?php } ?>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
+                        <!-- END pelanggan -->
 
                         <!-- Latest Orders -->
                         <div class="col-lg-6 mt-3">
@@ -323,158 +320,6 @@
                                                     </a>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="font-w600">#07834</span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell">
-                                                    <span class="font-size-sm text-muted">today</span>
-                                                </td>
-                                                <td>
-                                                    <span class="font-w600 text-warning">Pending..</span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell text-right">
-                                                    $2.299,00
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Manage">
-                                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="font-w600">#07833</span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell">
-                                                    <span class="font-size-sm text-muted">today</span>
-                                                </td>
-                                                <td>
-                                                    <span class="font-w600 text-success">Completed</span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell text-right">
-                                                    $1200,00
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Manage">
-                                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="font-w600">#07832</span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell">
-                                                    <span class="font-size-sm text-muted">today</span>
-                                                </td>
-                                                <td>
-                                                    <span class="font-w600 text-danger">Cancelled</span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell text-right">
-                                                    $399,00
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Manage">
-                                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="font-w600">#07831</span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell">
-                                                    <span class="font-size-sm text-muted">yesterday</span>
-                                                </td>
-                                                <td>
-                                                    <span class="font-w600 text-success">Completed</span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell text-right">
-                                                    $349,00
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Manage">
-                                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="font-w600">#07830</span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell">
-                                                    <span class="font-size-sm text-muted">yesterday</span>
-                                                </td>
-                                                <td>
-                                                    <span class="font-w600 text-success">Completed</span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell text-right">
-                                                    $999,00
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Manage">
-                                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="font-w600">#07829</span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell">
-                                                    <span class="font-size-sm text-muted">yesterday</span>
-                                                </td>
-                                                <td>
-                                                    <span class="font-w600 text-success">Completed</span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell text-right">
-                                                    $39,99
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Manage">
-                                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="font-w600">#07828</span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell">
-                                                    <span class="font-size-sm text-muted">yesterday</span>
-                                                </td>
-                                                <td>
-                                                    <span class="font-w600 text-success">Completed</span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell text-right">
-                                                    $499,00
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Manage">
-                                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="font-w600">#07827</span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell">
-                                                    <span class="font-size-sm text-muted">yesterday</span>
-                                                </td>
-                                                <td>
-                                                    <span class="font-w600 text-success">Completed</span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell text-right">
-                                                    $325,00
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Manage">
-                                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -482,7 +327,7 @@
                         </div>
                         <!-- END Latest Orders -->
                     </div>
-                    <!-- END Customers and Latest Orders -->
+                    <!-- END request task,pelanggan,tugas selesai,tugas belum selesai -->
                 </div>
                 <!-- END Page Content -->
 

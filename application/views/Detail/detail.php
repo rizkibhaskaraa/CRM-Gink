@@ -41,20 +41,24 @@
                     <tr>
                         <td>Penanggung Jawab</td>
                         <td>
-                            <?php $isi = $PJ_task['id_employ_tujuan'] ?>
-                            <select name="PJbaru" id="PJbaru">
-                                <?php if ($isi == null) {
-                                    echo "<option disabled selected> Belum ada </option>";
-                                } else {
-                                    echo "<option value=PJbaru>$isi</option>";
-                                } ?>
+                            <?php if ($status == 'kepala') { ?>
+                                <?php $isi = $PJ_task['id_employ_tujuan'] ?>
+                                <select name="PJbaru" id="PJbaru">
+                                    <?php if ($isi == null) {
+                                        echo "<option disabled selected> Belum ada </option>";
+                                    } else {
+                                        echo "<option value=PJbaru>$isi</option>";
+                                    } ?>
 
-                                <?php
-                                foreach ($getPJ as $value) {
-                                    echo "<option value='$value->id_employ'>$value->id_employ</option>";
-                                }
-                                ?>
-                            </select>
+                                    <?php
+                                    foreach ($getPJ as $value) {
+                                        echo "<option value='$value->id_employ'>$value->id_employ</option>";
+                                    }
+                                    ?>
+                                </select>
+                            <?php } else if ($status == 'staff') { ?>
+                                <?php echo $task["id_employ_tujuan"] ?>
+                            <?php } ?>
                         </td>
                     </tr>
                     <!-- <td><?php echo $task["id_employ_tujuan"] ?></td> -->

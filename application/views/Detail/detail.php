@@ -20,8 +20,6 @@
     <div class="container-task">
         <h1>hai <?php echo $employ_nama ?></h1>
 
-        <?= $namaPJ->nama ?>
-
         <table style="font-size:20px">
             <tbody valign="top">
                 <tr>

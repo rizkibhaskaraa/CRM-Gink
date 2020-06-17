@@ -22,6 +22,14 @@ class detail_model extends CI_model
     {
         return $this->db->get_where('task', array('id_task' => $id_task))->row_array();
     }
+    public function getnama_PJ($id_task)
+    {
+        $employ = $this->db->get_where('task', array('id_task' => $id_task))->row_array();
+        $id_employ_tujuan = $employ['id_employ_tujuan'];
+        $data_pj = $this->db->get_where('employe', array('id_employ' => $id_employ_tujuan))->row_array();
+        return $data_pj["nama"];
+    }
+
     public function ubahPJ($id_tujuan, $id)
     {
         //update

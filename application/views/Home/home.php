@@ -37,59 +37,52 @@
         <!-- END Stylesheets -->
     </head>
     <body>
-                    <!-- Right Section -->
-                    <div class="d-flex align-items-center">
-                        <!-- User Dropdown -->
-                        <div class="dropdown d-inline-block ml-2">
-                            <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="rounded" src="<?php echo base_url('assets/oneui/media/avatars/avatar10.jpg')?>" alt="Header Avatar" style="width: 18px;">
-
+                <!-- Right Section -->
+                <div class="d-flex align-items-center">
+                    <!-- User Dropdown -->
+                    <div class="dropdown d-inline-block ml-2">
+                        <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="rounded" src="<?php echo base_url('assets/oneui/media/avatars/avatar10.jpg')?>" alt="Header Avatar" style="width: 18px;">        
+                            <span class="d-none d-sm-inline-block ml-1"><?php echo $employ_nama ?>                 </span>
+                            <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm" aria-labelledby="page-header-user-dropdown">
+                            <div class="p-3 text-center bg-primary">
+                                <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?php echo base_url('assets/oneui/media/avatars/avatar10.jpg')?>" alt="">
+                            </div>
+                            <div class="p-2">
+                                <h5 class="dropdown-header text-uppercase">User Options</h5>
+                               
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_profile.html">
+                                    <span>Profile</span>
+                                    <span>
+                                        <span class="badge badge-pill badge-success">1</span>
+                                        <i class="si si-user ml-1"></i>
+                                    </span>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
+                                    <span>Settings</span>
+                                    <i class="si si-settings"></i>
+                                </a>
+                                <div role="separator" class="dropdown-divider"></div>
+                                <h5 class="dropdown-header text-uppercase">Actions</h5>
                                 
-                                <span class="d-none d-sm-inline-block ml-1"><?php echo $employ_nama ?>                 </span>
-                                <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm" aria-labelledby="page-header-user-dropdown">
-                                <div class="p-3 text-center bg-primary">
-                                    <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?php echo base_url('assets/oneui/media/avatars/avatar10.jpg')?>" alt="">
-                                </div>
-                                <div class="p-2">
-                                    <h5 class="dropdown-header text-uppercase">User Options</h5>
-                                   
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_profile.html">
-                                        <span>Profile</span>
-                                        <span>
-                                            <span class="badge badge-pill badge-success">1</span>
-                                            <i class="si si-user ml-1"></i>
-                                        </span>
-                                    </a>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                                        <span>Settings</span>
-                                        <i class="si si-settings"></i>
-                                    </a>
-                                    <div role="separator" class="dropdown-divider"></div>
-                                    <h5 class="dropdown-header text-uppercase">Actions</h5>
-                                    
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?php echo base_url()?>">
-                                        <span>Log Out</span>
-                                        <i class="si si-logout ml-1"></i>
-                                    </a>
-                                </div>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?php echo base_url()?>">
+                                    <span>Log Out</span>
+                                    <i class="si si-logout ml-1"></i>
+                                </a>
                             </div>
                         </div>
-                        <!-- END User Dropdown -->    
                     </div>
-                    <!-- END Right Section -->
+                    <!-- END User Dropdown -->    
                 </div>
-               <!-- Batas account dan main container -->
+                <!-- END Right Section -->
+            <!-- Batas account dan main container -->
 
             <!-- Main Container -->
             <main id="main-container">
-
                 <!-- Hero -->
-
                 <div class="bg-image overflow-hidden" style="background-image: url('http://localhost/crm-gink/assets/oneui/media/photos/photo3@2x.jpg');">
-
-
                     <div class="bg-primary-dark-op">
                         <div class="content content-narrow content-full">
                             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mt-5 mb-2 text-center text-sm-left">
@@ -112,344 +105,366 @@
                     </div>
                 </div>
                 <!-- END Hero -->
-
-                <!-- Page Content -->
-                
-                    <!-- request task,pelanggan,tugas selesai,tugas belum selesai,tiket selesai,tiket belum selesai -->
-                    <div class="row row-deck">
-                        <!-- Request Task -->
-                    <?php if ($status == "kepala") { ?>
-                        <div class="col-lg-6 mt-3">
-                            <div class="block block-mode-loading-oneui">
-                                <div class="block-header border-bottom">
-                                    <h3 class="block-title text-primary">Request Tugas</h3>
-                                </div>
-                                <div class="block-content block-content-full">
-                                    <table class="table table-striped table-hover table-bordered table-vcenter font-size-sm mb-0">
-                                        <thead class="thead-dark">
-                                            <tr class="text-uppercase ">
-                                                <th class="font-w700 text-center" style="width: 80px;">Title</th>
-                                                <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 100px;">Deadline</th>
-                                                <th class="font-w700 text-center" style="width:80px"; >Status</th>
-                                                <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 200px;">Penanggung Jawab</th>
-                                                <th class="font-w700 text-center" style="width: 60px;">Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <?php foreach ($taskdihead as $value) { ?>
-                                        <tbody>
-                                            <tr>
-                                            <?php if($value["id_employ_tujuan"]==NULL){?>
-                                                <td>
-                                                    <span class="font-w600"><?php echo $value["title"] ?></span>
-                                                </td>
-                                                <td class="text-center">
-                                                    <span class="font-w600 "><?php echo $value["dateline"] ?></span>
-                                                </td>
-                                                <?php if($value["status"]=="belum selesai"){?>
-                                                    <td class="text-center"><span class="font-w600 text-danger "><?php echo $value["status"] ?></span></td>
-                                                <?php }else{?>
-                                                    <td class="text-center"><span class="font-w600 text-success"><?php echo $value["status"] ?></span></td>
-                                                <?php }?>
-                                                <td class="text-center">
-                                                    <span class="font-w600">Belum Ada</span>
-                                                </td>
-                                                <td class="text-center">
-                                                    <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
-                                                </td>
-                                            <?php } ?>
-                                            </tr>
-                                        </tbody>
-                                        <?php } ?>
-                                        <?php foreach ($taskdihead as $value) { ?>
-                                        <tbody>
-                                            <tr>
-                                            <?php if($value["id_employ_tujuan"]!=NULL){?>
-                                                <td>
-                                                    <span class="font-w600"><?php echo $value["title"] ?></span>
-                                                </td>
-                                                <td class="text-center">
-                                                    <span class="font-w600"><?php echo $value["dateline"] ?></span>
-                                                </td>
-                                                <?php if($value["status"]=="belum selesai"){?>
-                                                    <td class="text-center"><span class="font-w600 text-danger"><?php echo $value["status"] ?></span></td>
-                                                <?php }else{?>
-                                                    <td class="text-center"><span class="font-w600 text-success"><?php echo $value["status"] ?></span></td>
-                                                <?php }?>
-                                                <td class="text-center">
-                                                    <span class="text-success"><?php echo $value["id_employ_tujuan"] ?></span>
-                                                </td>
-                                                <td class="text-center">
-                                                    <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
-                                                </td>
-                                            <?php } ?>
-                                            </tr>
-                                        </tbody>
-                                        <?php } ?>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    <?php } ?>
-                        <!-- END Request Task -->
-                        <!-- pelanggan -->
-                    <?php if ($employ_dept == "CS") { ?>
-                        <div class="col-lg-6 mt-3">
-                            <div class="block block-mode-loading-oneui">
-                                <div class="block-header border-bottom">
-                                    <h3 class="block-title text-primary">Data Pelanggan</h3>
-                                </div>
-                                <input type="text" id="search" class="form-control col-3 search" name="search" placeholder="Cari Customer">
-                                <select name="layanan" id="layanan" class="form-control col-3 layanan">
-                                    <option value="semua">Semua Layanan</option>
-                                    <option value="app website">App Website</option>
-                                    <option value="website">Website</option>
-                                    <option value="Hosting">Hosting</option>
-                                    <option value="mobile">App Mobile</option>
-                                </select>
-                                <select name="status" id="status-pelanggan" class="form-control col-3 status-pelanggan">
-                                    <option value="semua">Semua Status</option>
-                                    <option value="aktif">Aktif</option>
-                                    <option value="tidak aktif">Tidak Aktif</option>
-                                </select>
-                                <input type="text" id="link" name="link" value="<?php echo base_url('index.php/home/search/')?>" hidden>
-                                <div class="block-content block-content-full">
-                                    <table class="table table-striped table-hover table-bordered table-vcenter font-size-sm mb-0" id="pelanggan">
-                                        <thead class="thead-dark">
-                                            <tr class="text-uppercase">
-                                                <th class="font-w700 text-center" style="width: 80px;">#ID</th>
-                                                <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 100px;">Layanan</th>
-                                                <th class="font-w700 text-center">Customer</th>
-                                                <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 200px;">Status</th>
-                                                <th class="font-w700 text-center" style="width: 60px;">+Tiket</th>
-                                            </tr>
-                                        </thead>
-                                        <?php foreach ($pelanggan as $value) { ?>
-                                        <tbody>
-                                            <tr>
-                                            <?php if($value["id_employ_tujuan"]==NULL){?>
-                                                <td>
-                                                    <span class="font-w600">#<?php echo $value["id_pelanggan"] ?></span>
-                                                </td>
-                                                <td >
-                                                    <span class="font-w600"><?php echo $value["layanan"] ?></span>
-                                                </td>
-                                                <td class="text-center">
-                                                    <span class="font-w600"><?php echo $value["customer"] ?></span>
-                                                </td>
-                                                <?php if($value["status"]=="tidak aktif"){?>
-                                                    <td class="text-center"><span class="font-w600 text-danger "><?php echo $value["status"] ?></span></td>
-                                                <?php }else{?>
-                                                    <td class="text-center"><span class="font-w600 text-success"><?php echo $value["status"] ?></span></td>
-                                                <?php }?>
-                                                <td>
-                                                <a class="text-decoration-none" href="<?php echo base_url('index.php/tiket/index/') . $employ_id . "/" . $value["id_pelanggan"] ?>">+ tiket</a>
-                                                </td>
-                                            <?php } ?>
-                                            </tr>
-                                        </tbody>
-                                        <?php } ?>
-                                        <?php foreach ($taskdihead as $value) { ?>
-                                        <tbody>
-                                            <tr>
-                                            <?php if($value["id_employ_tujuan"]!=NULL){?>
-                                                <td>
-                                                    <span class="font-w600"><?php echo $value["title"] ?></span>
-                                                </td>
-                                                <td >
-                                                    <span class="font-w600"><?php echo $value["dateline"] ?></span>
-                                                </td>
-                                                <?php if($value["status"]=="belum selesai"){?>
-                                                    <td class="text-center"><span class="font-w600 text-danger"><?php echo $value["status"] ?></span></td>
-                                                <?php }else{?>
-                                                    <td class="text-center"><span class="font-w600 text-success"><?php echo $value["status"] ?></span></td>
-                                                <?php }?>
-                                                <td class="text-center">
-                                                    <span class="text-success"><?php echo $value["id_employ_tujuan"] ?></span>
-                                                </td>
-                                                <td>
-                                                    <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
-                                                </td>
-                                            <?php } ?>
-                                            </tr>
-                                        </tbody>
-                                        <?php } ?>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    <?php } ?>
-                        <!-- END pelanggan -->
-                        <!-- Belum Selesai -->
-                        <div class="col-lg-6 mt-3">
-                            <div class="block block-mode-loading-oneui">
-                                <div class="block-header border-bottom">
-                                    <h3 class="block-title text-danger">Belum Selesai</h3>
-                                </div>
-                                <div class="block-content block-content-full">
-                                    <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0">
-                                        <thead class="thead-dark">
-                                            <tr class="text-uppercase">
-                                                <th class="font-w700 text-center">Title</th>
-                                                <th class="d-none d-sm-table-cell font-w700 text-center">Deadline</th>
-                                                <th class="font-w700 text-center">Status</th>
-                                                <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 120px;">Aksi</th>
-                                                
-                                            </tr>
-                                        </thead>
-                                        <?php foreach ($taskbelum as $value) { ?>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <span class="font-w600"><?php echo $value["title"] ?></span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell">
-                                                    <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
-                                                </td>
-                                                <td class="text-danger text-center">
-                                                    <span class="font-w600 "><?php echo $value["status"] ?></span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell text-center">
-                                                <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>" class="text-decoration-none">Buka  |  </a>
-                                                <a href="<?php echo base_url('index.php/home/status/') . $value["id_task"] ?>" class="text-decoration-none">Selesai</a>
-                                        
-                                                </td>
-                                               
-                                            </tr>
-                                        </tbody>
-                                        <?php } ?>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END Belum Selesai -->
-                        <!--  Selesai -->
-                        <div class="col-lg-6 mt-3">
-                            <div class="block block-mode-loading-oneui">
-                                <div class="block-header border-bottom">
-                                    <h3 class="block-title text-success">Sudah Selesai</h3>
-                                </div>
-                                <div class="block-content block-content-full">
-                                    <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0">
-                                        <thead class="thead-dark">
-                                            <tr class="text-uppercase">
-                                                <th class="font-w700 text-center">Title</th>
-                                                <th class="d-none d-sm-table-cell font-w700 text-center">Deadline</th>
-                                                <th class="font-w700 text-center">Status</th>
-                                                <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 120px;">Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <?php foreach ($taskselesai as $value) { ?>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <span class="font-w600"><?php echo $value["title"] ?></span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell">
-                                                    <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
-                                                </td>
-                                                <td class="text-danger text-center">
-                                                    <span class="font-w600 "><?php echo $value["status"] ?></span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell text-center">
-                                                <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>" class="text-decoration-none">Buka</a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                        <?php } ?>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END  Selesai -->
-                        <!--  Tiket Selesai -->
-                        <div class="col-lg-6 mt-3">
-                            <div class="block block-mode-loading-oneui">
-                                <div class="block-header border-bottom">
-                                    <h3 class="block-title text-success">Tiket Saya | Selesai</h3>
-                                </div>
-                                <div class="block-content block-content-full">
-                                    <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0">
-                                        <thead class="thead-dark">
-                                            <tr class="text-uppercase">
-                                                <th class="font-w700 text-center">Title</th>
-                                                <th class="d-none d-sm-table-cell font-w700 text-center">Deadline</th>
-                                                <th class="font-w700 text-center">Status</th>
-                                                <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 120px;">Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <?php foreach ($tiket as $value) { 
-                                            if($value["status"] == "selesai") {?>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <span class="font-w600"><?php echo $value["title"] ?></span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell">
-                                                    <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
-                                                </td>
-                                                <td class="text-success text-center">
-                                                    <span class="font-w600 "><?php echo $value["status"] ?></span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell text-center">
-                                                <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>" class="text-decoration-none">Buka</a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                        <?php } 
-                                        }?>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END  Tiket Selesai -->
-                        <!--  Tiket belum Selesai -->
-                        <div class="col-lg-6 mt-3">
-                            <div class="block block-mode-loading-oneui">
-                                <div class="block-header border-bottom">
-                                    <h3 class="block-title text-danger">Tiket Saya | Belum Selesai</h3>
-                                </div>
-                                <div class="block-content block-content-full">
-                                    <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0">
-                                        <thead class="thead-dark">
-                                            <tr class="text-uppercase">
-                                                <th class="font-w700 text-center">Title</th>
-                                                <th class="d-none d-sm-table-cell font-w700 text-center">Deadline</th>
-                                                <th class="font-w700 text-center">Status</th>
-                                                <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 120px;">Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <?php foreach ($tiket as $value) { 
-                                            if($value["status"] == "belum selesai") {?>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <span class="font-w600"><?php echo $value["title"] ?></span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell">
-                                                    <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
-                                                </td>
-                                                <td class="text-danger text-center">
-                                                    <span class="font-w600 "><?php echo $value["status"] ?></span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell text-center">
-                                                <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>" class="text-decoration-none">Buka</a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                        <?php } 
-                                        }?>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END  Tiket belum Selesai -->
-                    </div>
-                    <!-- END request task,pelanggan,tugas selesai,tugas belum selesai,tiket selesai,tiket belum selesai -->
-                </div>
-                <!-- END Page Content -->
-
             </main>
             <!-- END Main Container -->
+
+            <!-- Page Content -->
+            <!-- request task,pelanggan,tugas selesai,tugas belum selesai,tiket selesai,tiket belum selesai -->
+                <ul class="nav nav-tabs nav-tabs-block" data-toggle="tabs" role="tablist">
+                    <?php if($status == "kepala"){?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#request">Request Tugas</a>
+                        </li>
+                    <?php }
+                    if($employ_dept == "CS"){?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#pelanggan">Data Pelanggan</a>
+                        </li>
+                    <?php }?>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tugas">Tugas Saya</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tiket">Tiket Saya</a>
+                    </li>
+                </ul>
+                <div class="block-content tab-content overflow-hidden">
+                    <!-- Request Task -->
+                    <?php if ($status == "kepala") { ?>
+                        <div class="tab-pane fade fade-up show active" id="request" role="tabpanel">
+                                <div class="container-fluid">
+                                    <div class="block block-mode-loading-oneui">
+                                        <div class="block-header border-bottom">
+                                            <h3 class="block-title text-primary">Request Tugas</h3>
+                                        </div>
+                                        <div class="block-content block-content-full">
+                                            <table class="table table-striped table-hover table-bordered table-vcenter font-size-sm mb-0">
+                                                <thead class="thead-dark">
+                                                    <tr class="text-uppercase ">
+                                                        <th class="font-w700 text-center" style="width: 80px;">Title</th>
+                                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 100px;">Deadline</th>
+                                                        <th class="font-w700 text-center" style="width:80px"; >Status</th>
+                                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 200px;">Penanggung Jawab</th>
+                                                        <th class="font-w700 text-center" style="width: 60px;">Aksi</th>
+                                                    </tr>
+                                                </thead>
+                                                <?php foreach ($taskdihead as $value) { ?>
+                                                <tbody>
+                                                    <tr>
+                                                    <?php if($value["id_employ_tujuan"]==NULL){?>
+                                                        <td>
+                                                            <span class="font-w600"><?php echo $value["title"] ?></span>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span class="font-w600 "><?php echo $value["dateline"] ?></span>
+                                                        </td>
+                                                        <?php if($value["status"]=="belum selesai"){?>
+                                                            <td class="text-center"><span class="font-w600 text-danger "><?php echo $value["status"] ?></span></td>
+                                                        <?php }else{?>
+                                                            <td class="text-center"><span class="font-w600 text-success"><?php echo $value["status"] ?></span></td>
+                                                        <?php }?>
+                                                        <td class="text-center">
+                                                            <span class="font-w600">Belum Ada</span>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
+                                                        </td>
+                                                    <?php } ?>
+                                                    </tr>
+                                                </tbody>
+                                                <?php } ?>
+                                                <?php foreach ($taskdihead as $value) { ?>
+                                                <tbody>
+                                                    <tr>
+                                                    <?php if($value["id_employ_tujuan"]!=NULL){?>
+                                                        <td>
+                                                            <span class="font-w600"><?php echo $value["title"] ?></span>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span class="font-w600"><?php echo $value["dateline"] ?></span>
+                                                        </td>
+                                                        <?php if($value["status"]=="belum selesai"){?>
+                                                            <td class="text-center"><span class="font-w600 text-danger"><?php echo $value["status"] ?></span></td>
+                                                        <?php }else{?>
+                                                            <td class="text-center"><span class="font-w600 text-success"><?php echo $value["status"] ?></span></td>
+                                                        <?php }?>
+                                                        <td class="text-center">
+                                                            <span class="text-success"><?php echo $value["id_employ_tujuan"] ?></span>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
+                                                        </td>
+                                                    <?php } ?>
+                                                    </tr>
+                                                </tbody>
+                                                <?php } ?>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    <?php } ?>
+                    <!-- END Request Task -->                    
+                    <!-- pelanggan -->
+                    <?php if ($employ_dept == "CS") { ?>
+                        <div class="tab-pane fade fade-up show active" id="pelanggan" role="tabpanel">
+                                <div class="container-fluid">
+                                    <div class="block block-mode-loading-oneui">
+                                        <div class="block-header border-bottom">
+                                            <h3 class="block-title text-primary">Data Pelanggan</h3>
+                                        </div>
+                                        <input type="text" id="search" class="form-control col-2 search" name="search" placeholder="Cari Customer">
+                                        <select name="layanan" id="layanan" class="form-control col-2 layanan">
+                                            <option value="semua">Semua Layanan</option>
+                                            <option value="app website">App Website</option>
+                                            <option value="website">Website</option>
+                                            <option value="Hosting">Hosting</option>
+                                            <option value="mobile">App Mobile</option>
+                                        </select>
+                                        <select name="status" id="status-pelanggan" class="form-control col-2 status-pelanggan">
+                                            <option value="semua">Semua Status</option>
+                                            <option value="aktif">Aktif</option>
+                                            <option value="tidak aktif">Tidak Aktif</option>
+                                        </select>
+                                        <input type="text" id="link" name="link" value="<?php echo base_url('index.php/home/search/')?>" hidden>
+                                        <div class="block-content block-content-full">
+                                            <table class="table table-striped table-hover table-bordered table-vcenter font-size-sm mb-0" id="pelanggan">
+                                                <thead class="thead-dark">
+                                                    <tr class="text-uppercase">
+                                                        <th class="font-w700 text-center" style="width: 80px;">#ID</th>
+                                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 100px;">Layanan</th>
+                                                        <th class="font-w700 text-center">Customer</th>
+                                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 200px;">Status</th>
+                                                        <th class="font-w700 text-center" style="width: 60px;">+Tiket</th>
+                                                    </tr>
+                                                </thead>
+                                                <?php foreach ($pelanggan as $value) { ?>
+                                                <tbody>
+                                                    <tr>
+                                                    <?php if($value["id_employ_tujuan"]==NULL){?>
+                                                        <td>
+                                                            <span class="font-w600">#<?php echo $value["id_pelanggan"] ?></span>
+                                                        </td>
+                                                        <td >
+                                                            <span class="font-w600"><?php echo $value["layanan"] ?></span>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span class="font-w600"><?php echo $value["customer"] ?></span>
+                                                        </td>
+                                                        <?php if($value["status"]=="tidak aktif"){?>
+                                                            <td class="text-center"><span class="font-w600 text-danger "><?php echo $value["status"] ?></span></td>
+                                                        <?php }else{?>
+                                                            <td class="text-center"><span class="font-w600 text-success"><?php echo $value["status"] ?></span></td>
+                                                        <?php }?>
+                                                        <td>
+                                                        <a class="text-decoration-none" href="<?php echo base_url('index.php/tiket/index/') . $employ_id . "/" . $value["id_pelanggan"] ?>">+ tiket</a>
+                                                        </td>
+                                                    <?php } ?>
+                                                    </tr>
+                                                </tbody>
+                                                <?php } ?>
+                                                <?php foreach ($taskdihead as $value) { ?>
+                                                <tbody>
+                                                    <tr>
+                                                    <?php if($value["id_employ_tujuan"]!=NULL){?>
+                                                        <td>
+                                                            <span class="font-w600"><?php echo $value["title"] ?></span>
+                                                        </td>
+                                                        <td >
+                                                            <span class="font-w600"><?php echo $value["dateline"] ?></span>
+                                                        </td>
+                                                        <?php if($value["status"]=="belum selesai"){?>
+                                                            <td class="text-center"><span class="font-w600 text-danger"><?php echo $value["status"] ?></span></td>
+                                                        <?php }else{?>
+                                                            <td class="text-center"><span class="font-w600 text-success"><?php echo $value["status"] ?></span></td>
+                                                        <?php }?>
+                                                        <td class="text-center">
+                                                            <span class="text-success"><?php echo $value["id_employ_tujuan"] ?></span>
+                                                        </td>
+                                                        <td>
+                                                            <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>">Buka</a>
+                                                        </td>
+                                                    <?php } ?>
+                                                    </tr>
+                                                </tbody>
+                                                <?php } ?>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    <?php } ?>
+                    <!-- END pelanggan -->
+                        <div class="tab-pane fade fade-up <?php if ($employ_dept != "CS" && $status != "kepala") { echo "show active"; }?>" id="tugas" role="tabpanel">
+                            <!--  Selesai -->
+                            <div class="container-fluid">
+                                <div class="block block-mode-loading-oneui">
+                                    <div class="block-header border-bottom">
+                                        <h3 class="block-title text-success">Sudah Selesai</h3>
+                                    </div>
+                                    <div class="block-content block-content-full">
+                                        <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0">
+                                            <thead class="thead-dark">
+                                                <tr class="text-uppercase">
+                                                    <th class="font-w700 text-center">Title</th>
+                                                    <th class="d-none d-sm-table-cell font-w700 text-center">Deadline</th>
+                                                    <th class="font-w700 text-center">Status</th>
+                                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 120px;">Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <?php foreach ($taskselesai as $value) { ?>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <span class="font-w600"><?php echo $value["title"] ?></span>
+                                                    </td>
+                                                    <td class="d-none d-sm-table-cell">
+                                                        <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
+                                                    </td>
+                                                    <td class="text-danger text-center">
+                                                        <span class="font-w600 "><?php echo $value["status"] ?></span>
+                                                    </td>
+                                                    <td class="d-none d-sm-table-cell text-center">
+                                                    <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>" class="text-decoration-none">Buka</a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <?php } ?>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END  Selesai -->
+                            <!-- Belum Selesai -->
+                            <div class="container-fluid">
+                                <div class="block block-mode-loading-oneui">
+                                    <div class="block-header border-bottom">
+                                        <h3 class="block-title text-danger">Belum Selesai</h3>
+                                    </div>
+                                    <div class="block-content block-content-full">
+                                        <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0">
+                                            <thead class="thead-dark">
+                                                <tr class="text-uppercase">
+                                                    <th class="font-w700 text-center">Title</th>
+                                                    <th class="d-none d-sm-table-cell font-w700 text-center">Deadline</th>
+                                                    <th class="font-w700 text-center">Status</th>
+                                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 120px;">Aksi</th>    
+                                                </tr>
+                                            </thead>
+                                            <?php foreach ($taskbelum as $value) { ?>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <span class="font-w600"><?php echo $value["title"] ?></span>
+                                                    </td>
+                                                    <td class="d-none d-sm-table-cell">
+                                                        <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
+                                                    </td>
+                                                    <td class="text-danger text-center">
+                                                        <span class="font-w600 "><?php echo $value["status"] ?></span>
+                                                    </td>
+                                                    <td class="d-none d-sm-table-cell text-center">
+                                                    <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>" class="text-decoration-none">Buka  |  </a>
+                                                    <a href="<?php echo base_url('index.php/home/status/') . $value["id_task"] ?>" class="text-decoration-none">Selesai</a>
+                                                    </td>                                   
+                                                </tr>
+                                            </tbody>
+                                            <?php } ?>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END Belum Selesai -->
+                        </div>
+                        <div class="tab-pane fade fade-up" id="tiket" role="tabpanel">
+                            <!--  Tiket Selesai -->
+                            <div class="container-fluid">
+                                <div class="block block-mode-loading-oneui">
+                                    <div class="block-header border-bottom">
+                                        <h3 class="block-title text-success">Tiket Saya | Selesai</h3>
+                                    </div>
+                                    <div class="block-content block-content-full">
+                                        <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0">
+                                            <thead class="thead-dark">
+                                                <tr class="text-uppercase">
+                                                    <th class="font-w700 text-center">Title</th>
+                                                    <th class="d-none d-sm-table-cell font-w700 text-center">Deadline</th>
+                                                    <th class="font-w700 text-center">Status</th>
+                                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 120px;">Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <?php foreach ($tiket as $value) { 
+                                                if($value["status"] == "selesai") {?>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <span class="font-w600"><?php echo $value["title"] ?></span>
+                                                    </td>
+                                                    <td class="d-none d-sm-table-cell">
+                                                    <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
+                                                    </td>
+                                                    <td class="text-success text-center">
+                                                        <span class="font-w600 "><?php echo $value["status"] ?></span>
+                                                    </td>
+                                                    <td class="d-none d-sm-table-cell text-center">
+                                                    <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>" class="text-decoration-none">Buka</a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <?php } 
+                                            }?>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END  Tiket Selesai -->
+                            <!--  Tiket belum Selesai -->
+                            <div class="container-fluid">
+                                <div class="block block-mode-loading-oneui">
+                                    <div class="block-header border-bottom">
+                                        <h3 class="block-title text-danger">Tiket Saya | Belum Selesai</h3>
+                                    </div>
+                                    <div class="block-content block-content-full">
+                                        <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0">
+                                            <thead class="thead-dark">
+                                                <tr class="text-uppercase">
+                                                    <th class="font-w700 text-center">Title</th>
+                                                    <th class="d-none d-sm-table-cell font-w700 text-center">Deadline</th>
+                                                    <th class="font-w700 text-center">Status</th>
+                                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 120px;">Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <?php foreach ($tiket as $value) { 
+                                                if($value["status"] == "belum selesai") {?>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <span class="font-w600"><?php echo $value["title"] ?></span>
+                                                    </td>
+                                                    <td class="d-none d-sm-table-cell">
+                                                        <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
+                                                    </td>
+                                                    <td class="text-danger text-center">
+                                                        <span class="font-w600 "><?php echo $value["status"] ?></span>
+                                                    </td>
+                                                    <td class="d-none d-sm-table-cell text-center">
+                                                    <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>" class="text-decoration-none">Buka</a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <?php } 
+                                            }?>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END  Tiket belum Selesai -->
+                        </div>
+                </div>
+            <!-- END request task,pelanggan,tugas selesai,tugas belum selesai,tiket selesai,tiket belum selesai -->
+            <!-- END Page Content -->
+
             <!-- Footer -->
             <footer id="page-footer" class="bg-body-light">
                 <div class="content py-3">
@@ -464,10 +479,6 @@
                 </div>
             </footer>
             <!-- END Footer -->
-
-            
-        </div>
-        <!-- END Page Container -->
 
         <!--
             OneUI JS Core

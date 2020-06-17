@@ -1,5 +1,5 @@
 <?php
-//error_reporting(0);
+error_reporting(0);
 class home_model extends CI_model
 {
     public function getemploy($user)

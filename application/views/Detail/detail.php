@@ -19,48 +19,71 @@
 <body>
     <div class="container-task">
         <h1>hai <?php echo $employ_nama ?></h1>
-        <!-- <form method="post" action="<?php echo base_url('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']) ?>"> -->
-        <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
-        <table style="font-size:20px">
-            <tbody valign="top">
-                <tr>
-                    <td width="30%">Title</td>
-                    <td width="70%"><?php echo $task["title"] ?> </td>
-                </tr>
-                <tr>
-                    <td>Deskripsi Task</td>
-                    <td><?php echo $task["deskripsi"] ?></td>
-                </tr>
-                <tr>
-                    <td>Kategori Masalah</td>
-                    <td><?php echo $task["kategori_masalah"] ?></td>
-                </tr>
-                <tr>
-                    <td>Nama Pengirim</td>
-                    <td><?php echo $task["id_employ_kirim"] ?></td>
-                </tr>
-                <tr>
-                    <td>Dateline</td>
-                    <td><?php echo $task["dateline"] ?></td>
-                </tr>
-                <tr>
-                    <td>Status Task</td>
-                    <td><?php echo $task["status"] ?></td>
-                </tr>
-                <tr>
+        <form method="post" action="<?php echo base_url('index.php/detail/ubahPJ/' . $employ_id . '/' . $task['id_task']) ?>">
+            <table style="font-size:20px">
+                <tbody valign="top">
+                    <tr>
+                        <td width="30%">Title</td>
+                        <td width="70%"><?php echo $task["title"] ?> </td>
+                    </tr>
+                    <tr>
+                        <td>Deskripsi Task</td>
+                        <td><?php echo $task["deskripsi"] ?></td>
+                    </tr>
+                    <tr>
+                        <td>Kategori Masalah</td>
+                        <td><?php echo $task["kategori_masalah"] ?></td>
+                    </tr>
+                    <tr>
+                        <td>Nama Pengirim</td>
+                        <td><?php echo $task["id_employ_kirim"] ?></td>
+                    </tr>
+                    <tr>
+                        <td>Dateline</td>
+                        <td><?php echo $task["dateline"] ?></td>
+                    </tr>
+                    <tr>
+                        <td>Status Task</td>
+                        <td><?php echo $task["status"] ?></td>
+                    </tr>
+                    <tr>
+                        <?php if ($status == 'kepala') { ?>
+                            <td>Penanggung Jawab</td>
+                            <td>
+                                <?php $isi = $PJ_task['id_employ_tujuan'] ?>
+                                <select name="PJbaru" id="PJbaru">
+                                    <?php if ($isi == null) {
+                                        echo "<option disabled selected> Belum ada </option>";
+                                    } else {
+                                        echo "<option value='$isi'>$isi</option>";
+                                    }
+                                    foreach ($getPJ as $value) {
+                                        if($value->id_employ!=$isi){
+                                            echo "<option value='$value->id_employ'>$value->id_employ</option>";
+                                        }
+                                    } ?>
+                                </select>
+                            </td>
+                        <?php } else if ($status == 'staff') { ?>
+                            <form method="post" action="<?php echo base_url('index.php/detail/ubahPJ/' . $employ_id . '/' . $task['id_task']) ?>">
+                                <td>Berkas (opsional)</td>
+                                <td>
+                                    <input type="file" name="berkas">
+                                </td>
 
-                    <td>Berkas (opsional)</td>
-                    <td>
-                        <input type="file" name="file">
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        </br>
+                                <?= '</tr> </tbody> </table> </br>' ?>
 
-        <input type="submit" value="Selesai">
-        <?php echo form_close(); ?>
-        <!-- </form> -->
+                                <input type="submit" value="Selesai">
+                            </form>
+                        <?php } ?>
+                    </tr>
+                </tbody>
+            </table>
+            </br>
+            <?php if ($status == 'kepala') { ?>
+                <input type="submit" value="Simpan">
+            <?php } ?>
+        </form>
     </div>
 
 </body>

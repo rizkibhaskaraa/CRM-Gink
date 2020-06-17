@@ -23,6 +23,7 @@ class Home extends CI_Controller
         $data["taskselesai"] = $this->home_model->gettaskselesai($employ["id_employ"]);
         $data["taskbelum"] = $this->home_model->gettaskbelum($employ["id_employ"]);
         $data["taskdihead"] = $this->home_model->gettaskdihead($departemen["nama_departemen"]);
+        $data["tiket"] = $this->home_model->gettiket($employ["id_employ"]);
         $this->load->view('home/home', $data);
     }
 

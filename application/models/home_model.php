@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+//error_reporting(0);
 class home_model extends CI_model
 {
     public function getemploy($user)
@@ -26,6 +26,10 @@ class home_model extends CI_model
     public function gettaskbelum($id_employ)
     {
         return $this->db->get_where('task', array('id_employ_tujuan' => $id_employ, 'status' => "belum selesai"))->result_array();
+    }
+    public function gettiket($id_employ)
+    {
+        return $this->db->get_where('task', array('id_employ_kirim' => $id_employ))->result_array();
     }
     public function gettaskdihead($nama_departemen)
     {

@@ -115,7 +115,7 @@
 
                 <!-- Page Content -->
                 
-                    <!-- request task,pelanggan,tugas selesai,tugas belum selesai -->
+                    <!-- request task,pelanggan,tugas selesai,tugas belum selesai,tiket selesai,tiket belum selesai -->
                     <div class="row row-deck">
                         <!-- Request Task -->
                     <?php if ($status == "kepala") { ?>
@@ -279,20 +279,11 @@
                         </div>
                     <?php } ?>
                         <!-- END pelanggan -->
-
                         <!-- Belum Selesai -->
                         <div class="col-lg-6 mt-3">
                             <div class="block block-mode-loading-oneui">
                                 <div class="block-header border-bottom">
                                     <h3 class="block-title text-danger">Belum Selesai</h3>
-                                    <div class="block-options">
-                                        <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
-                                            <i class="si si-refresh"></i>
-                                        </button>
-                                        <button type="button" class="btn-block-option">
-                                            <i class="si si-settings"></i>
-                                        </button>
-                                    </div>
                                 </div>
                                 <div class="block-content block-content-full">
                                     <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0">
@@ -331,28 +322,11 @@
                             </div>
                         </div>
                         <!-- END Belum Selesai -->
-                    </div>
-                    <!-- END request task,pelanggan,tugas selesai,tugas belum selesai -->
-                </div>
-                <!-- END Page Content -->
-
-            </main>
-            <!-- END Main Container -->
-
-
-            <!--  Selesai -->
-            <div class="container-fluid">
+                        <!--  Selesai -->
+                        <div class="col-lg-6 mt-3">
                             <div class="block block-mode-loading-oneui">
                                 <div class="block-header border-bottom">
                                     <h3 class="block-title text-success">Sudah Selesai</h3>
-                                    <div class="block-options">
-                                        <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
-                                            <i class="si si-refresh"></i>
-                                        </button>
-                                        <button type="button" class="btn-block-option">
-                                            <i class="si si-settings"></i>
-                                        </button>
-                                    </div>
                                 </div>
                                 <div class="block-content block-content-full">
                                     <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0">
@@ -362,7 +336,6 @@
                                                 <th class="d-none d-sm-table-cell font-w700 text-center">Deadline</th>
                                                 <th class="font-w700 text-center">Status</th>
                                                 <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 120px;">Aksi</th>
-                                                
                                             </tr>
                                         </thead>
                                         <?php foreach ($taskselesai as $value) { ?>
@@ -379,10 +352,7 @@
                                                 </td>
                                                 <td class="d-none d-sm-table-cell text-center">
                                                 <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>" class="text-decoration-none">Buka</a>
-                                                
-                                        
                                                 </td>
-                                               
                                             </tr>
                                         </tbody>
                                         <?php } ?>
@@ -391,7 +361,95 @@
                             </div>
                         </div>
                         <!-- END  Selesai -->
+                        <!--  Tiket Selesai -->
+                        <div class="col-lg-6 mt-3">
+                            <div class="block block-mode-loading-oneui">
+                                <div class="block-header border-bottom">
+                                    <h3 class="block-title text-success">Tiket Saya | Selesai</h3>
+                                </div>
+                                <div class="block-content block-content-full">
+                                    <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0">
+                                        <thead class="thead-dark">
+                                            <tr class="text-uppercase">
+                                                <th class="font-w700 text-center">Title</th>
+                                                <th class="d-none d-sm-table-cell font-w700 text-center">Deadline</th>
+                                                <th class="font-w700 text-center">Status</th>
+                                                <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 120px;">Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <?php foreach ($tiket as $value) { 
+                                            if($value["status"] == "selesai") {?>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <span class="font-w600"><?php echo $value["title"] ?></span>
+                                                </td>
+                                                <td class="d-none d-sm-table-cell">
+                                                    <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
+                                                </td>
+                                                <td class="text-success text-center">
+                                                    <span class="font-w600 "><?php echo $value["status"] ?></span>
+                                                </td>
+                                                <td class="d-none d-sm-table-cell text-center">
+                                                <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>" class="text-decoration-none">Buka</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <?php } 
+                                        }?>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END  Tiket Selesai -->
+                        <!--  Tiket belum Selesai -->
+                        <div class="col-lg-6 mt-3">
+                            <div class="block block-mode-loading-oneui">
+                                <div class="block-header border-bottom">
+                                    <h3 class="block-title text-danger">Tiket Saya | Belum Selesai</h3>
+                                </div>
+                                <div class="block-content block-content-full">
+                                    <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0">
+                                        <thead class="thead-dark">
+                                            <tr class="text-uppercase">
+                                                <th class="font-w700 text-center">Title</th>
+                                                <th class="d-none d-sm-table-cell font-w700 text-center">Deadline</th>
+                                                <th class="font-w700 text-center">Status</th>
+                                                <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 120px;">Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <?php foreach ($tiket as $value) { 
+                                            if($value["status"] == "belum selesai") {?>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <span class="font-w600"><?php echo $value["title"] ?></span>
+                                                </td>
+                                                <td class="d-none d-sm-table-cell">
+                                                    <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
+                                                </td>
+                                                <td class="text-danger text-center">
+                                                    <span class="font-w600 "><?php echo $value["status"] ?></span>
+                                                </td>
+                                                <td class="d-none d-sm-table-cell text-center">
+                                                <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] ?>" class="text-decoration-none">Buka</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <?php } 
+                                        }?>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END  Tiket belum Selesai -->
+                    </div>
+                    <!-- END request task,pelanggan,tugas selesai,tugas belum selesai,tiket selesai,tiket belum selesai -->
+                </div>
+                <!-- END Page Content -->
 
+            </main>
+            <!-- END Main Container -->
             <!-- Footer -->
             <footer id="page-footer" class="bg-body-light">
                 <div class="content py-3">

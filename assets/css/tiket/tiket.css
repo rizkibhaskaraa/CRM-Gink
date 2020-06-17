@@ -1,9 +1,8 @@
 .container-tiket{
     width: 75%;
-    background-color:floralwhite;
+    background-color: lightsteelblue;
     margin: auto;
     padding: 3%;
-    opacity: 0.9;
 }
 
 .container-tiket input,.container-tiket select,.container-tiket textarea{

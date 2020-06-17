@@ -20,6 +20,8 @@
     <div class="container-task">
         <h1>hai <?php echo $employ_nama ?></h1>
 
+        <?= $namaPJ->nama ?>
+
         <table style="font-size:20px">
             <tbody valign="top">
                 <tr>
@@ -56,11 +58,11 @@
                                     <?php if ($isi == null) {
                                         echo "<option disabled selected> Belum ada </option>";
                                     } else {
-                                        echo "<option value='$isi'>$isi</option>";
+                                        echo "<option value='$isi'>$namaPJ</option>";
                                     }
                                     foreach ($getPJ as $value) {
                                         if ($value->id_employ != $isi) {
-                                            echo "<option value='$value->id_employ'>$value->id_employ</option>";
+                                            echo "<option value='$value->id_employ'>$value->nama</option>";
                                         }
                                     } ?>
                                 </select>

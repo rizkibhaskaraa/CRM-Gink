@@ -19,47 +19,48 @@
 <body>
     <div class="container-task">
         <h1>hai <?php echo $employ_nama ?></h1>
-        <form method="post" action="<?php echo base_url('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']) ?>">
-            <table style="font-size:20px">
-                <tbody valign="top">
-                    <tr>
-                        <td width="30%">Title</td>
-                        <td width="70%"><?php echo $task["title"] ?> </td>
-                    </tr>
-                    <tr>
-                        <td>Deskripsi Task</td>
-                        <td><?php echo $task["deskripsi"] ?></td>
-                    </tr>
-                    <tr>
-                        <td>Kategori Masalah</td>
-                        <td><?php echo $task["kategori_masalah"] ?></td>
-                    </tr>
-                    <tr>
-                        <td>Nama Pengirim</td>
-                        <td><?php echo $task["id_employ_kirim"] ?></td>
-                    </tr>
-                    <tr>
-                        <td>Dateline</td>
-                        <td><?php echo $task["dateline"] ?></td>
-                    </tr>
-                    <tr>
-                        <td>Status Task</td>
-                        <td><?php echo $task["status"] ?></td>
-                    </tr>
-                    <tr>
+        <!-- <form method="post" action="<?php echo base_url('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']) ?>"> -->
+        <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
+        <table style="font-size:20px">
+            <tbody valign="top">
+                <tr>
+                    <td width="30%">Title</td>
+                    <td width="70%"><?php echo $task["title"] ?> </td>
+                </tr>
+                <tr>
+                    <td>Deskripsi Task</td>
+                    <td><?php echo $task["deskripsi"] ?></td>
+                </tr>
+                <tr>
+                    <td>Kategori Masalah</td>
+                    <td><?php echo $task["kategori_masalah"] ?></td>
+                </tr>
+                <tr>
+                    <td>Nama Pengirim</td>
+                    <td><?php echo $task["id_employ_kirim"] ?></td>
+                </tr>
+                <tr>
+                    <td>Dateline</td>
+                    <td><?php echo $task["dateline"] ?></td>
+                </tr>
+                <tr>
+                    <td>Status Task</td>
+                    <td><?php echo $task["status"] ?></td>
+                </tr>
+                <tr>
 
-                        <td>Berkas (opsional)</td>
-                        <td>
-                            <input type="file" name="file" accept=".img, .png, .jpeg, .jpg, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pdf">
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            </br>
+                    <td>Berkas (opsional)</td>
+                    <td>
+                        <input type="file" name="file">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </br>
 
-            <input type="submit" value="Selesai">
-
-        </form>
+        <input type="submit" value="Selesai">
+        <?php echo form_close(); ?>
+        <!-- </form> -->
     </div>
 
 </body>

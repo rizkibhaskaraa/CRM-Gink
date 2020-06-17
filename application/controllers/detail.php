@@ -42,9 +42,18 @@ class Detail extends CI_Controller
     }
     public function insertLaporan($id, $task)
     {
-        $file = $this->input->post('file');
+        $config['upload_path']          = './upload/';
+        $config['allowed_types']        = 'gif|jpg|png|img|jpeg|doc|docx|xls|xlsx|ppt|pptx|pdf"';
 
-        $this->detail_model->Laporan($id, $file, $task);
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('file')) {
+            $this->upload->data();
+
+            $data['nama_berkas'] =  $this->upload->data('file_name');
+            $this->detail_model->Laporan($id, $data['nama_berkas'], $task);
+            $this->detail_model->taskSelesai($task);
+        }
         redirect(base_url('index.php/detail/detail/') . $id . "/" . $task);
     }
 }

@@ -11,6 +11,11 @@ class Detail extends CI_Controller
 
     public function detailumum($user, $task, $cekTabel)
     {
+        if(!isset($_SESSION["login"])){
+            redirect(base_url());
+        }else{
+            $user = $_SESSION["staff_id"];
+        }
         $employ = $this->detail_model->getemploy($user);
         $data["employ_nama"] = $employ["nama"];
         $data["employ_id"] = $employ["id_employ"];

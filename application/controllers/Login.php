@@ -30,6 +30,9 @@ class Login extends CI_Controller {
 		if ($user) { //jika hasil ada
 			$saved_password = password_hash($user['password'], PASSWORD_DEFAULT);
 			if(password_verify($password, $saved_password)){
+				$_SESSION["login"] = true;
+				$_SESSION["staff_user"] = $email;
+				$_SESSION["staff_id"] = $user["id_employ"];
 				redirect(base_url('index.php/home/index/').$email);
 			} else {
 				redirect(base_url());

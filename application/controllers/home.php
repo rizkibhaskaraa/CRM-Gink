@@ -8,9 +8,19 @@ class Home extends CI_Controller
         parent::__construct();
         $this->load->model('home_model');
     }
+    
+    public function hapussession(){
+        session_destroy();
+		redirect(base_url());
+    }
 
     public function index($user)
-    {
+    {   
+        if(!isset($_SESSION["login"])){
+            redirect(base_url());
+        }else{
+            $user = $_SESSION["staff_user"];
+        }
         $employ = $this->home_model->getemploy($user);
         $data["employ_nama"] = $employ["nama"];
         $data["employ_id"] = $employ["id_employ"];
@@ -34,7 +44,12 @@ class Home extends CI_Controller
     }
 
     public function detail($id, $task, $cekTabel)
-    {
+    {   
+        if(!isset($_SESSION["login"])){
+            redirect(base_url());
+        }else{
+            $id = $_SESSION["staff_id"];
+        }
         redirect(base_url('index.php/detail/detailumum/') . $id . "/" . $task . "/" . $cekTabel);
     }
 

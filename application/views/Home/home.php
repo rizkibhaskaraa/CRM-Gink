@@ -69,7 +69,7 @@
                     <div role="separator" class="dropdown-divider"></div>
                     <h5 class="dropdown-header text-uppercase">Actions</h5>
 
-                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?php echo base_url() ?>">
+                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?php echo base_url('index.php/home/hapussession') ?>">
                         <span>Log Out</span>
                         <i class="si si-logout ml-1"></i>
                     </a>

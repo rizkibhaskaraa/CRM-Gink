@@ -48,7 +48,7 @@
                 <span class="d-none d-sm-inline-block ml-1"><?php echo $employ_nama ?> </span>
                 <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
             </button>
-            <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm" aria-labelledby="page-header-user-dropdown">
+            <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm " aria-labelledby="page-header-user-dropdown">
                 <div class="p-3 text-center bg-primary">
                     <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?php echo base_url('assets/oneui/media/avatars/avatar10.jpg') ?>" alt="">
                 </div>

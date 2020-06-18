@@ -8,9 +8,19 @@ class Home extends CI_Controller
         parent::__construct();
         $this->load->model('home_model');
     }
+    
+    public function hapussession(){
+        session_destroy();
+		redirect(base_url());
+    }
 
     public function index($user)
-    {
+    {   
+        if(!isset($_SESSION["login"])){
+            redirect(base_url());
+        }else{
+            $user = $_SESSION["staff_user"];
+        }
         $employ = $this->home_model->getemploy($user);
         $data["employ_nama"] = $employ["nama"];
         $data["employ_id"] = $employ["id_employ"];
@@ -34,16 +44,22 @@ class Home extends CI_Controller
     }
 
     public function detail($id, $task, $cekTabel)
-    {
+    {   
+        if(!isset($_SESSION["login"])){
+            redirect(base_url());
+        }else{
+            $id = $_SESSION["staff_id"];
+        }
         redirect(base_url('index.php/detail/detailumum/') . $id . "/" . $task . "/" . $cekTabel);
     }
 
-    public function search($layanan, $status, $search)
+    public function search($employ_id,$layanan, $status, $search)
     {
         $search_pelanggan = str_replace('%20', ' ', $search);
         $layanan_pelanggan = str_replace('%20', ' ', $layanan);
         $status_pelanggan = str_replace('%20', ' ', $status);
         $data["pelanggan"] = $this->home_model->getsearch($layanan_pelanggan, $status_pelanggan, $search_pelanggan);
+        $data["employ_id"] = $employ_id;
         $this->load->view('home/hasil_search', $data);
     }
 }

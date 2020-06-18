@@ -69,7 +69,7 @@
                     <div role="separator" class="dropdown-divider"></div>
                     <h5 class="dropdown-header text-uppercase">Actions</h5>
 
-                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?php echo base_url() ?>">
+                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?php echo base_url('index.php/home/hapussession') ?>">
                         <span>Log Out</span>
                         <i class="si si-logout ml-1"></i>
                     </a>
@@ -229,9 +229,9 @@
                             <option value="aktif">Aktif</option>
                             <option value="tidak aktif">Tidak Aktif</option>
                         </select>
-                        <input type="text" id="link" name="link" value="<?php echo base_url('index.php/home/search/') ?>" hidden>
+                        <input type="text" id="link" name="link" value="<?php echo base_url('index.php/home/search/').$employ_id."/" ?>" hidden>
                         <div class="block-content block-content-full">
-                            <table class="table table-striped table-hover table-bordered table-vcenter font-size-sm mb-0" id="pelanggan">
+                            <table class="table table-striped table-hover table-bordered table-vcenter font-size-sm mb-0" id="tabel-pelanggan">
                                 <thead class="thead-dark">
                                     <tr class="text-uppercase">
                                         <th class="font-w700 text-center" style="width: 80px;">#ID</th>

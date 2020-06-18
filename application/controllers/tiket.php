@@ -8,6 +8,13 @@ class Tiket extends CI_Controller {
     }
 
     public function index($id_employ,$id_pelanggan){
+        //session
+            if(!isset($_SESSION["login"])){
+                redirect(base_url());
+            }else{
+                $id_employ = $_SESSION["staff_id"];
+            }
+        //akhir session
         $pelanggan = $this->tiket_model->getpelangganid($id_pelanggan);
         if ($pelanggan != NULL){
             $data["status"] = "CS";
@@ -22,6 +29,13 @@ class Tiket extends CI_Controller {
     }
 
     public function addtiket($id_employ){
+        //session
+        if(!isset($_SESSION["login"])){
+            redirect(base_url());
+        }else{
+            $id_employ = $_SESSION["staff_id"];
+        }
+        //akhir session
         $user = $this->tiket_model->getuser($id_employ);
         $employ = $this->tiket_model->getemploy($id_employ);
         $departemen = $this->tiket_model->getdept($employ["id_departemen"]);

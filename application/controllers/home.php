@@ -38,12 +38,13 @@ class Home extends CI_Controller
         redirect(base_url('index.php/detail/detailumum/') . $id . "/" . $task . "/" . $cekTabel);
     }
 
-    public function search($layanan, $status, $search)
+    public function search($employ_id,$layanan, $status, $search)
     {
         $search_pelanggan = str_replace('%20', ' ', $search);
         $layanan_pelanggan = str_replace('%20', ' ', $layanan);
         $status_pelanggan = str_replace('%20', ' ', $status);
         $data["pelanggan"] = $this->home_model->getsearch($layanan_pelanggan, $status_pelanggan, $search_pelanggan);
+        $data["employ_id"] = $employ_id;
         $this->load->view('home/hasil_search', $data);
     }
 }

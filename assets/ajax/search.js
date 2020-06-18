@@ -3,7 +3,7 @@ console.log('ok');
 var cari = document.getElementById('search');
 var layanan = document.getElementById("layanan");
 var status_pelanggan = document.getElementById("status-pelanggan");
-var konten = document.getElementById('pelanggan');
+var konten = document.getElementById('tabel-pelanggan');
 var alamat = document.getElementById('link');
 
 cari.addEventListener('keyup', function(){

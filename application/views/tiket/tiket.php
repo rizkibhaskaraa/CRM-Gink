@@ -32,7 +32,6 @@
     <link rel="stylesheet" id="css-main" href="<?php echo base_url('assets/oneui/css/oneui.min.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/tiket/tiket.css')?>">
 
-
     <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
     <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
     <!-- END Stylesheets -->
@@ -148,7 +147,7 @@
             </div>
             <div class="form-group">
                 <label for="dateline">Deadline</label>
-                <input type="text" class="form-control" name="dateline" id="dateline">
+                <input type="text" class="js-datepicker form-control" name="dateline" id="example-datepicker1" data-date-format="yyyy-mm-dd">
             </div>
             <div class="form-group">
                 <label for="deskripsi">Deskripsi</label>
@@ -209,6 +208,9 @@
 
     <!-- Page JS Code -->
     <script src="<?php echo base_url('assets/oneui/js/pages/be_pages_dashboard.min.js') ?>"></script>
+    <script src="<?php echo base_url('assets/oneui/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') ?>"></script>
+    <!-- Page JS Helpers (BS Datepicker + BS Colorpicker + BS Maxlength + Select2 + Masked Inputs + Ion Range Slider plugins) -->
+    <script>jQuery(function(){ One.helpers(['datepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider']); });</script>
 </body>
 
 </html>

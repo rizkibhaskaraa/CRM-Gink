@@ -1,4 +1,4 @@
-<table class="table table-striped table-hover table-bordered table-vcenter font-size-sm mb-0" id="pelanggan">
+<table class="table table-striped table-hover table-bordered table-vcenter font-size-sm mb-0" id="tabel-pelanggan">
     <thead class="thead-dark">
         <tr class="text-uppercase">
             <th class="font-w700 text-center" style="width: 80px;">#ID</th>

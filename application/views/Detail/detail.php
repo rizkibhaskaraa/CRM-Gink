@@ -41,7 +41,6 @@
 </head>
 
 <body>
-
 <!-- Start Popup Detail -->
 
 <!-- Large Block Modal -->
@@ -75,7 +74,7 @@
                 </tr>
                 <tr>
                     <td class="font-weight-bold">Nama Pengirim</td>
-                    <td>: <?php echo $task["id_employ_kirim"] ?></td>
+                    <td>: <?php echo $nama_kirim ." (".$task["nama_dept_kirim"].")"?></td>
                 </tr>
                 <tr>
                     <td  class="font-weight-bold">Deadline</td>
@@ -91,25 +90,38 @@
                         <td>
                             <form method="post" action="<?php echo base_url('index.php/detail/ubahPJ/' . $employ_id . '/' . $task['id_task']) ?>">
                             : <?php $isi = $PJ_task['id_employ_tujuan'] ?>
+                            <?php if ($isi != null) {
+                                echo $namaPJ ."(".$dept_PJtask.")";
+                            } else { ?>
                                 <select name="PJbaru" id="PJbaru">
-                                    <?php if ($isi == null) {
-                                        echo "<option disabled selected> Belum ada </option>";
-                                    } else {
-                                        echo "<option value='$isi'>$namaPJ</option>";
-                                    }
-                                    foreach ($getPJ as $value) {
-                                        if ($value->id_employ != $isi) {
-                                            echo "<option value='$value->id_employ'>$value->nama</option>";
+                                    <option disabled selected> Belum ada </option>
+                                    <?php 
+                                    $employe = [];
+                                    foreach ($tugas_employ as $value) {
+                                        foreach($semua_employ as $value2){
+                                            if($value2["nama"] == $value["nama"]){
+                                                if(!in_array($value["nama"],$employe)){
+                                                    array_push($employe,$value["nama"]);
+                                                }
+                                                ?>
+                                                <option value="<?= $value["id_employ_tujuan"] ?>"><?php echo $value["nama"]." | ".$value["count(task.status)"] ?></option>     
+                                            <?php }
                                         }
-                                    } ?>
+                                    }
+                                    foreach($semua_employ as $value2){
+                                        if(!in_array($value2["nama"],$employe)){ ?>
+                                            <option value="<?= $value2["id_employ"] ?>"><?php echo $value2["nama"]." | 0"?></option>     
+                                        <?php }
+                                    }
+                                    ?>
                                 </select>
-                            
                                 </br>
                                 </br>
                                 <div class="row items-push text-center text-sm-left mb-4">
                                 <div class="col-sm-6 col-xl-4">
                                     <input type="submit" value="Simpan" class="btn btn-primary" data-toggle="click-ripple"></input>
                                 </div>
+                            <?php } ?>
                                 <div class="col-md-6">
                                     <!-- Success -->
                                     <h4 class="border-bottom pb-2">Success</h4>
@@ -123,6 +135,7 @@
                                 </div>
                             </form>
                         </td>
+
                     <?php } else if ($cekTabel == 'TugasBelum') { ?>
                         <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
                         <td class="font-weight-bold">Berkas (opsional)</td>
@@ -147,13 +160,13 @@
                     <tr>
                         <td  class="font-weight-bold">Penanggung Jawab</td>
                         <td>
-                        : <?= $task['id_employ_tujuan'] ?>
+                        : <?= $namaPJ." (".$dept_PJtask.")" ?>
                         </td>
                     </tr>
                     <tr>
                         <td class="font-weight-bold ">Berkas</td>
                         <td>
-                            <a href="<?= $task['berkas'] ?>"><?= $task['berkas'] ?></a>
+                            <a href="<?= base_url('upload/').$task['berkas'] ?>"><?= $task['berkas'] ?></a>
                         </td>
                     </tr>
                 <?php } ?>

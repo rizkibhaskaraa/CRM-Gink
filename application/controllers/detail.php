@@ -16,20 +16,28 @@ class Detail extends CI_Controller
         }else{
             $user = $_SESSION["staff_id"];
         }
+        //data employ yang akses
         $employ = $this->detail_model->getemploy($user);
         $data["employ_nama"] = $employ["nama"];
         $data["employ_id"] = $employ["id_employ"];
         $data["employ_dept"] = $employ["id_departemen"];
         $data["status"] = $employ["status"];
-        $data["cekTabel"] = $cekTabel;
-        $data["getPJ"] = $this->detail_model->getsemuaPJ($employ["id_departemen"]);
-        $data["task"] = $this->detail_model->getdetail($task);
-        $data["PJ_task"] = $this->detail_model->getPJ_task($task);
-        $data["nama_kirim"] = $this->detail_model->getnama_kirim($task);
-        $data["dept_PJtask"] = $this->detail_model->getdeptPJTask($task);
+        //akhir data employ yang akses
+        $data["cekTabel"] = $cekTabel; //cek table asal
 
-        $data['namaPJ'] = $this->detail_model->getnama_PJ($task);
-        $data["tugas_employ"] = $this->detail_model->gettugasemploy($data["task"]["id_employ_kirim"]);
+        $data["getPJ"] = $this->detail_model->getsemuaPJ($employ["id_departemen"]); //data employ di departemen
+        
+        $data["task"] = $this->detail_model->getdetail($task); //data task dengan id $task
+        $data["PJ_task"] = $this->detail_model->getPJ_task($task); //data task dengan id $task
+
+        $data["nama_kirim"] = $this->detail_model->getnama_kirim($task);//nama pengirim
+
+        $data["dept_PJtask"] = $this->detail_model->getdeptPJTask($task); //data departemen PJ task
+        
+        $data["nama_dept"] = $this->detail_model->getdeptcalonpj($data["employ_dept"]); //data departemen calon PJ task
+        $data['namaPJ'] = $this->detail_model->getnama_PJ($task); //data nama PJ task
+        $data['tugas_employ'] = $this->detail_model->gettugaspj($data["nama_dept"]); //data tugas milik calon PJ
+        $data["semua_employ"] = $this->detail_model->getsemuaemploy($data["employ_dept"]); 
         $this->load->view('detail/detail', $data);
     }
     public function ubahPJ($id, $task)

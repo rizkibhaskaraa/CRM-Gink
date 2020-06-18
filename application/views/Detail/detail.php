@@ -88,7 +88,7 @@
                         <td class="font-weight-bold">Penanggung Jawab</td>
                         <td>
                             <form method="post" action="<?php echo base_url('index.php/detail/ubahPJ/' . $employ_id . '/' . $task['id_task']) ?>">
-                                <?php $isi = $PJ_task['id_employ_tujuan'] ?>
+                            : <?php $isi = $PJ_task['id_employ_tujuan'] ?>
                                 <select name="PJbaru" id="PJbaru">
                                     <?php if ($isi == null) {
                                         echo "<option disabled selected> Belum ada </option>";
@@ -101,9 +101,14 @@
                                         }
                                     } ?>
                                 </select>
+                            
                                 </br>
                                 </br>
-                                <input type="submit" value="Simpan">
+                                <div class="row items-push text-center text-sm-left mb-4">
+                                <div class="col-sm-6 col-xl-4">
+                                    <input type="submit" value="Simpan" class="btn btn-primary" data-toggle="click-ripple"></input>
+                                </div>
+                                
                             </form>
                         </td>
                     <?php } else if ($cekTabel == 'TugasBelum') { ?>
@@ -130,11 +135,11 @@
                     <tr>
                         <td  class="font-weight-bold">Penanggung Jawab</td>
                         <td>
-                            <?= $task['id_employ_tujuan'] ?>
+                        : <?= $task['id_employ_tujuan'] ?>
                         </td>
                     </tr>
                     <tr>
-                        <td  class="font-weight-bold">Berkas</td>
+                        <td class="font-weight-bold ">Berkas</td>
                         <td>
                             <a href="<?= $task['berkas'] ?>"><?= $task['berkas'] ?></a>
                         </td>
@@ -144,7 +149,7 @@
             </tbody>
         </table>
                         </div>
-                        <div class="block-content block-content-full text-right border-top">
+                        <div class="block-content block-content-full text-right border-top mt-5">
                             <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Ok</button>
                         </div>

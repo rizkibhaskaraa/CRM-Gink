@@ -39,6 +39,7 @@ class Detail extends CI_Controller
 
         $this->load->library('upload', $config);
         $this->detail_model->taskSelesai($task);
+
         if ($this->upload->do_upload('file')) {
             $this->upload->data();
 

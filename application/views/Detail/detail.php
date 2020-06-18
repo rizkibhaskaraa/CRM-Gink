@@ -27,6 +27,8 @@
     <!-- END Icons -->
 
     <!-- Stylesheets -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/js/plugins/sweetalert2/sweetalert2.min.css')?>">
+    
     <!-- Fonts and OneUI framework -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
     <link rel="stylesheet" id="css-main" href="<?php echo base_url('assets/oneui/css/oneui.min.css') ?>">
@@ -55,16 +57,16 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="block-content font-size-sm mt-3">
-                        <h3>Hallo <?php echo $employ_nama ?> , berikut isi Detail Tasknya</h3>
-            <table style="font-size:18px">
+            <div class="block-content font-size-sm mt-3 text-justify ">
+            <h3>Hallo <?php echo $employ_nama ?> , berikut isi Detail Tasknya</h3>
+            <table style="font-size:18px"  >
             <tbody valign="top">
                 <tr>
-                    <td class="font-weight-bold" width="30%">Title</td>
+                    <td class="font-weight-bold mt-2" width="30%">Title</td>
                     <td width="70%">: <?php echo $task["title"] ?> </td>
                 </tr>
                 <tr>
-                    <td class="font-weight-bold">Deskripsi Task</td>
+                    <td class="font-weight-bold ">Deskripsi Task</td>
                     <td>: <?php echo $task["deskripsi"] ?></td>
                 </tr>
                 <tr>
@@ -108,7 +110,17 @@
                                 <div class="col-sm-6 col-xl-4">
                                     <input type="submit" value="Simpan" class="btn btn-primary" data-toggle="click-ripple"></input>
                                 </div>
-                                
+                                <div class="col-md-6">
+                                    <!-- Success -->
+                                    <h4 class="border-bottom pb-2">Success</h4>
+                                    <p class="font-size-sm text-muted mb-2">
+                                        A dialog showing a message after a successful operation
+                                    </p>
+                                    <button type="button" class="js-swal-success btn btn-light push">
+                                        <i class="fa fa-check-circle text-success mr-1"></i> Launch Dialog
+                                    </button>
+                                    <!-- END Success -->
+                                </div>
                             </form>
                         </td>
                     <?php } else if ($cekTabel == 'TugasBelum') { ?>
@@ -198,6 +210,13 @@
             webpack is putting everything together at assets/_es6/main/app.js
         -->
     <script src="<?php echo base_url('assets/oneui/js/oneui.app.min.js') ?>"></script>
+
+    <!-- Page JS Plugins -->
+    <script src="<?php echo base_url('assets/oneui/js/plugins/es6-promise/es6-promise.auto.min.js') ?>"></script>
+        <script src="<?php echo base_url('assets/oneui/js/plugins/sweetalert2/sweetalert2.min.js') ?>"></script>
+
+        <!-- Page JS Code -->
+        <script src="<?php echo base_url('assets/oneui/js/pages/be_comp_dialogs.min.js')?>"></script>
 
 </body>
 

@@ -57,35 +57,35 @@
                         </div>
                         <div class="block-content font-size-sm mt-3">
                         <h3>Hallo <?php echo $employ_nama ?> , berikut isi Detail Tasknya</h3>
-            <table style="font-size:20px">
+            <table style="font-size:18px">
             <tbody valign="top">
                 <tr>
-                    <td width="30%">Title</td>
-                    <td width="70%"><?php echo $task["title"] ?> </td>
+                    <td class="font-weight-bold" width="30%">Title</td>
+                    <td width="70%">: <?php echo $task["title"] ?> </td>
                 </tr>
                 <tr>
-                    <td>Deskripsi Task</td>
-                    <td><?php echo $task["deskripsi"] ?></td>
+                    <td class="font-weight-bold">Deskripsi Task</td>
+                    <td>: <?php echo $task["deskripsi"] ?></td>
                 </tr>
                 <tr>
-                    <td>Kategori Masalah</td>
-                    <td><?php echo $task["kategori_masalah"] ?></td>
+                    <td class="font-weight-bold">Kategori Masalah</td>
+                    <td>: <?php echo $task["kategori_masalah"] ?></td>
                 </tr>
                 <tr>
-                    <td>Nama Pengirim</td>
-                    <td><?php echo $task["id_employ_kirim"] ?></td>
+                    <td class="font-weight-bold">Nama Pengirim</td>
+                    <td>: <?php echo $task["id_employ_kirim"] ?></td>
                 </tr>
                 <tr>
-                    <td >Deadline</td>
-                    <td><?php echo $task["dateline"] ?></td>
+                    <td  class="font-weight-bold">Deadline</td>
+                    <td>: <?php echo $task["dateline"] ?></td>
                 </tr>
                 <tr>
-                    <td>Status Task</td>
-                    <td><?php echo $task["status"] ?></td>
+                    <td class="font-weight-bold">Status Task</td>
+                    <td>: <?php echo $task["status"] ?></td>
                 </tr>
                 <tr>
                     <?php if ($cekTabel == 'Request') { ?>
-                        <td>Penanggung Jawab</td>
+                        <td class="font-weight-bold">Penanggung Jawab</td>
                         <td>
                             <form method="post" action="<?php echo base_url('index.php/detail/ubahPJ/' . $employ_id . '/' . $task['id_task']) ?>">
                                 <?php $isi = $PJ_task['id_employ_tujuan'] ?>
@@ -108,7 +108,7 @@
                         </td>
                     <?php } else if ($cekTabel == 'TugasBelum') { ?>
                         <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
-                        <td>Berkas (opsional)</td>
+                        <td class="font-weight-bold">Berkas (opsional)</td>
                         <td>
                             <input type="file" name="file">
                         </td>
@@ -116,7 +116,7 @@
                         <?php echo form_close(); ?>
                     <?php } else if ($cekTabel == 'TugasSelesai') { ?>
                         <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
-                        <td>Berkas (opsional)</td>
+                        <td class="font-weight-bold">Berkas (opsional)</td>
                         <td>
                             <input type="file" name="file">
                             </br>
@@ -128,13 +128,13 @@
                 </tr>
                 <?php if ($cekTabel == 'Tiket') { ?>
                     <tr>
-                        <td>Penanggung Jawab</td>
+                        <td  class="font-weight-bold">Penanggung Jawab</td>
                         <td>
                             <?= $task['id_employ_tujuan'] ?>
                         </td>
                     </tr>
                     <tr>
-                        <td>Berkas</td>
+                        <td  class="font-weight-bold">Berkas</td>
                         <td>
                             <a href="<?= $task['berkas'] ?>"><?= $task['berkas'] ?></a>
                         </td>

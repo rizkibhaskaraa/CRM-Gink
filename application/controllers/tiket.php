@@ -16,6 +16,8 @@ class Tiket extends CI_Controller {
         $data["customer"] = $pelanggan["customer"];
         $data["layanan"] = $pelanggan["layanan"];
         $data["id_employ"] = $id_employ;
+        $employ = $this->tiket_model->getemploy($id_employ);
+        $data["employ_nama"] = $employ["nama"];
         $this->load->view("tiket/tiket",$data);
     }
 

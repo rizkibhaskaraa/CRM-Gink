@@ -22,6 +22,16 @@ class detail_model extends CI_model
     {
         return $this->db->get_where('task', array('id_task' => $id_task))->row_array();
     }
+    public function getdept($id_dept)
+    {
+        return $this->db->get_where('departemen', array('id_departemen' => $id_dept))->row_array();
+    }
+    public function gettugasemploy($id_employ)
+    {
+        $this->db->where("id_employ_tujuan",$id_employ);
+        $this->db->where("status","belum selesai");
+        return $this->db->count_all_results('task',FALSE);
+    }
     public function getnama_PJ($id_task)
     {
         $employ = $this->db->get_where('task', array('id_task' => $id_task))->row_array();

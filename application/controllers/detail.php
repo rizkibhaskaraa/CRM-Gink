@@ -25,9 +25,10 @@ class Detail extends CI_Controller
         $data["getPJ"] = $this->detail_model->getsemuaPJ($employ["id_departemen"]);
         $data["task"] = $this->detail_model->getdetail($task);
         $data["PJ_task"] = $this->detail_model->getPJ_task($task);
+        $data["nama_kirim"] = $this->detail_model->getnama_kirim($task);
+        $data["dept_PJtask"] = $this->detail_model->getdeptPJTask($task);
+
         $data['namaPJ'] = $this->detail_model->getnama_PJ($task);
-        $data["nama_kirim"] = $this->detail_model->getemploy($data["task"]["id_employ_kirim"]);
-        $data["dep_kirim"] = $this->detail_model->getdept($data["nama_kirim"]["id_departemen"]);
         $data["tugas_employ"] = $this->detail_model->gettugasemploy($data["task"]["id_employ_kirim"]);
         $this->load->view('detail/detail', $data);
     }
@@ -44,6 +45,7 @@ class Detail extends CI_Controller
 
         $this->load->library('upload', $config);
         $this->detail_model->taskSelesai($task);
+
         if ($this->upload->do_upload('file')) {
             $this->upload->data();
 

@@ -36,7 +36,7 @@
                 </tr>
                 <tr>
                     <td>Nama Pengirim</td>
-                    <td><?php echo $task["id_employ_kirim"] ?></td>
+                    <td><?php echo $nama_kirim . " (" . $task["nama_dept_kirim"] . ")" ?></td>
                 </tr>
                 <tr>
                     <td>Dateline</td>
@@ -93,7 +93,7 @@
                     <tr>
                         <td>Penanggung Jawab</td>
                         <td>
-                            <?= $task['id_employ_tujuan'] ?>
+                            <?= $namaPJ . " (" . $dept_PJtask . ")" ?>
                         </td>
                     </tr>
                     <tr>

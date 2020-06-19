@@ -7,6 +7,7 @@ class Home extends CI_Controller
     {
         parent::__construct();
         $this->load->model('home_model');
+        $this->load->model('detail_model');
     }
     
     public function hapussession(){

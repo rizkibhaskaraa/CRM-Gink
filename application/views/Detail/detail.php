@@ -69,10 +69,6 @@
                                     <td>: <?php echo $task["deskripsi"] ?></td>
                                 </tr>
                                 <tr>
-                                    <td class="font-weight-bold">Kategori Masalah</td>
-                                    <td>: <?php echo $task["kategori_masalah"] ?></td>
-                                </tr>
-                                <tr>
                                     <td class="font-weight-bold">Nama Pengirim</td>
                                     <td>: <?php echo $nama_kirim . " (" . $task["nama_dept_kirim"] . ")" ?></td>
                                 </tr>

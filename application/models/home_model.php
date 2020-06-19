@@ -39,7 +39,9 @@ class home_model extends CI_model
     public function updatestatus($id)
     {
         //update
+        date_default_timezone_set('Asia/Bangkok');
         $this->db->set('status', "selesai");
+        $this->db->set('waktu_selesai', date("Y-m-d H-i-s"));
         $this->db->where('id_task', $id);
         $this->db->update('task');
         //data user

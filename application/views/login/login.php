@@ -79,13 +79,34 @@
                                             </div>
                 
                                         </div>
+
+
+                                        
                                         <div class="form-group row">
-                                            <div class="container-fluid">
-                                                <button type="submit" class="btn btn-block btn-primary mt-3" value="Login">
-                                                    <i class="fa fa-fw fa-sign-in-alt mr-1 py-2"></i> Sign In
-                                                </button>
+                                            <div class="container-fluid ">
+                                                <input type="submit" class="btn btn-block btn-primary mt-3" value="Sign In"
+                                                onclick="One.loader('show');
+                                            setTimeout(function () {
+                                                One.loader('hide');
+                                            }, 3000);"> 
+                                                </input>
                                             </div>
                                         </div>
+
+
+                                    <div class="col">
+                                    <p class="font-size-sm text-muted">
+                                        You can preview the page loader by clicking the following button:
+                                    </p>
+                                    <button type="button" class="btn btn-sm btn-primary mb-3" onclick="One.loader('show');
+                                            setTimeout(function () {
+                                                One.loader('hide');
+                                            }, 3000);">Preview Page Loader</button>
+                                </div>
+                            </div>
+
+                            <div id="page-loader" class="show"></div>
+
                                     </form>
                                     <!-- END Sign In Form -->
                                 </div>

@@ -60,7 +60,7 @@
                                 <div class=" px-lg-4 py-lg-5 " >
 
                                 
-                                    
+                                <div id="page-loader" class="show"></div>
                                     <h1 class="mb-2 ">Sign In</h1>
                                     <p>Masuk untuk melanjutkan akses.</p>
                                 
@@ -94,21 +94,14 @@
                                         </div>
 
 
-                                    <div class="col">
-                                    <p class="font-size-sm text-muted">
-                                        You can preview the page loader by clicking the following button:
-                                    </p>
-                                    <button type="button" class="btn btn-sm btn-primary mb-3" onclick="One.loader('show');
-                                            setTimeout(function () {
-                                                One.loader('hide');
-                                            }, 3000);">Preview Page Loader</button>
-                                </div>
+                                    
                             </div>
 
-                            <div id="page-loader" class="show"></div>
+                         
 
                                     </form>
                                     <!-- END Sign In Form -->
+                                 
                                 </div>
                             </div>
                         </div>
@@ -125,8 +118,10 @@
 
 </main>
 <!-- END Main Container -->
+
 </div>
 <!-- END Page Container -->
+
 
 <!--
 OneUI JS Core

@@ -65,10 +65,11 @@ class detail_model extends CI_model
 
         return $id;
     }
-    public function taskSelesai($task)
+    public function taskSelesai($task, $date)
     {
         //update
         $this->db->set('status', 'selesai');
+        $this->db->set('waktu_selesai', $date);
         $this->db->where('id_task', $task);
         $this->db->update('task');
         //data user
@@ -86,22 +87,25 @@ class detail_model extends CI_model
         return $id;
     }
 
-    public function getdeptcalonpj($id_dept){
+    public function getdeptcalonpj($id_dept)
+    {
         $nama_Dept = $this->db->get_where('departemen', array('id_departemen' => $id_dept))->row_array();
         return $nama_Dept["nama_departemen"];
     }
 
-    public function gettugaspj($dept){
-        $this->db->where("nama_dept_tujuan",$dept);
-        $this->db->where("task.status","belum selesai");
-        $this->db->where_not_in("id_employ_tujuan","");
+    public function gettugaspj($dept)
+    {
+        $this->db->where("nama_dept_tujuan", $dept);
+        $this->db->where("task.status", "belum selesai");
+        $this->db->where_not_in("id_employ_tujuan", "");
         $this->db->select("count(task.status),id_employ_tujuan,nama");
-        $this->db->join("employe","employe.id_employ = task.id_employ_tujuan");
+        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
         $this->db->group_by("id_employ_tujuan");
         return $this->db->get("task")->result_array();
     }
 
-    public function getsemuaemploy($dept){
-        return $this->db->get_where("employe",array("id_departemen"=>$dept))->result_array();
+    public function getsemuaemploy($dept)
+    {
+        return $this->db->get_where("employe", array("id_departemen" => $dept))->result_array();
     }
 }

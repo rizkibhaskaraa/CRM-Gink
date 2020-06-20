@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 18, 2020 at 06:07 AM
+-- Generation Time: Jun 20, 2020 at 04:44 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -107,7 +107,7 @@ CREATE TABLE `task` (
   `date` date DEFAULT NULL,
   `dateline` date DEFAULT NULL,
   `berkas` varchar(100) DEFAULT NULL,
-  `waktu_selesai` date DEFAULT NULL,
+  `waktu_selesai` datetime DEFAULT NULL,
   `status` varchar(14) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -116,13 +116,14 @@ CREATE TABLE `task` (
 --
 
 INSERT INTO `task` (`id_task`, `id_pelanggan`, `id_employ_tujuan`, `nama_dept_tujuan`, `id_employ_kirim`, `nama_dept_kirim`, `title`, `deskripsi`, `kategori_masalah`, `date`, `dateline`, `berkas`, `waktu_selesai`, `status`) VALUES
-('338', '111', '121212', 'umum', '1111111', 'Customer Service', 'tugas lucu', 'belum update hosting pada pelanggan diatas,mereka sudah membayar tapi hosting belum di update mohon ', 'umum', '2020-06-13', '2020-06-16', '6_7_sesi8a_pengendalian_konkurensi.ppt', '0000-00-00', 'selesai'),
-('340', '111', '33333', 'umum', '121212', 'developer', 'belum update', 'belum update hosting pada pelanggan diatas,mereka sudah membayar tapi hosting belum di update mohon ', 'umum', '2020-06-13', '2020-06-16', '6_7_sesi8a_pengendalian_konkurensi.ppt', '0000-00-00', 'selesai'),
-('351', NULL, '33333', 'developer', '121198', 'developer', 'fix bug', 'perbaiki bug pada aplikasi ............. dengan pelanggan .............', NULL, '2020-06-13', '2020-06-15', 'RD_ITE_14117145_14117170.pptx', '0000-00-00', 'selesai'),
-('353', NULL, '33333', 'developer', '121198', 'developer', 'aplikasi jodoh', 'perbaiki bug pada aplikasi ............. dengan pelanggan .............', NULL, '2020-06-13', '2020-06-15', '', '0000-00-00', 'selesai'),
-('454', '111', '33333', 'developer', '1111111', 'Customer Service', 'perbarui hosting', 'perbarui hosting dengan pelanggan ....... dengan durasi 6 bulan dan layanan seperti sebelumnya', NULL, '2020-06-13', '2020-06-15', NULL, '0000-00-00', 'selesai'),
-('757', '111', '120698', 'finance', '121198', 'developer', 'data pelanggan', 'butuh data pelanggan dengan nama pelanggan itera dan layanan DIM itera,mhon segera dibuatkan dan dikjajajajjajajabutuh data pelanggan dengan nama pelanggan itera dan layanan DIM itera,mhon segera dibuatkan dan dikjajajajjajajabutuh data pelanggan dengan nama pelanggan itera dan layanan DIM itera,mhon segera dibuatkan dan dikjajajajjajajabutuh data pelanggan dengan nama pelanggan itera dan layanan DIM itera,mhon segera dibuatkan dan dikjajajajjajajabutuh data pelanggan dengan nama pelanggan itera dan layanan DIM itera,mhon segera dibuatkan dan dikjajajajjajaja', NULL, '2020-06-13', '2020-06-14', NULL, '0000-00-00', 'selesai'),
-('765', '111', '33333', 'developer', '1111111', 'Customer Service', 'Protes', 'Kenapa websitenya jelek!!!!!!!!!!!!!!!!!!!!!!!!!!! Kenapa websitenya jelek!!!!!!!!!!!!!!!!!!!!!!!!!!!', 'support', '2020-06-18', '2020-06-30', NULL, NULL, 'belum selesai');
+('315', '111', '121212', 'developer', '1111111', 'Customer Service', 'Membuat tugas', 'Tugas ini adalah tugas yang akan mempelajari hal yang Tugas ini adalah tugas yang akan mempelajari hal yang  Tugas ini adalah tugas yang akan mempelajari hal yang', 'support', '2020-06-19', '2020-06-25', NULL, NULL, 'belum selesai'),
+('338', '111', '121212', 'umum', '1111111', 'Customer Service', 'tugas lucu', 'belum update hosting pada pelanggan diatas,mereka sudah membayar tapi hosting belum di update mohon ', 'umum', '2020-06-13', '2020-06-16', 'library11.jpg', '2020-06-19 09:54:12', 'selesai'),
+('340', '111', '33333', 'umum', '121212', 'developer', 'belum update', 'belum update hosting pada pelanggan diatas,mereka sudah membayar tapi hosting belum di update mohon ', 'umum', '2020-06-13', '2020-06-16', NULL, NULL, 'belum selesai'),
+('351', NULL, '121198', 'developer', '121198', 'developer', 'fix bug', 'perbaiki bug pada aplikasi ............. dengan pelanggan .............', 'support', '2020-06-13', '2020-06-15', 'RD_ITE_14117145_14117170.pptx', NULL, 'belum selesai'),
+('353', NULL, '33333', 'developer', '121198', 'developer', 'aplikasi jodoh', 'perbaiki bug pada aplikasi ............. dengan pelanggan .............', 'support', '2020-06-13', '2020-06-15', '', NULL, 'belum selesai'),
+('454', '111', '33333', 'developer', '1111111', 'Customer Service', 'perbarui hosting', 'perbarui hosting dengan pelanggan ....... dengan durasi 6 bulan dan layanan seperti sebelumnya', 'support', '2020-06-13', '2020-06-15', NULL, NULL, 'belum selesai'),
+('757', '111', '120698', 'finance', '121198', 'developer', 'data pelanggan', 'butuh data pelanggan dengan nama pelanggan itera dan layanan DIM itera,mhon segera dibuatkan dan dikjajajajjajajabutuh data pelanggan dengan nama pelanggan itera dan layanan DIM itera,mhon segera dibuatkan dan dikjajajajjajajabutuh data pelanggan dengan nama pelanggan itera dan layanan DIM itera,mhon segera dibuatkan dan dikjajajajjajajabutuh data pelanggan dengan nama pelanggan itera dan layanan DIM itera,mhon segera dibuatkan dan dikjajajajjajajabutuh data pelanggan dengan nama pelanggan itera dan layanan DIM itera,mhon segera dibuatkan dan dikjajajajjajaja', 'billing', '2020-06-13', '2020-06-14', NULL, NULL, 'belum selesai'),
+('765', '111', '33333', 'developer', '1111111', 'Customer Service', 'Protes', 'Kenapa websitenya jelek!!!!!!!!!!!!!!!!!!!!!!!!!!! Kenapa websitenya jelek!!!!!!!!!!!!!!!!!!!!!!!!!!!', 'support', '2020-06-18', '2020-06-30', NULL, '2020-06-20 09:24:49', 'selesai');
 
 -- --------------------------------------------------------
 

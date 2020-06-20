@@ -59,7 +59,7 @@
                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_profile.html">
                         <span>Profile</span>
                         <span>
-                            <span class="badge badge-pill badge-success">1</span>
+                       
                             <i class="si si-user ml-1"></i>
                         </span>
                     </a>
@@ -147,10 +147,10 @@
                         <div class="block-content block-content-full">
                             <table class="table table-striped table-hover table-bordered table-vcenter font-size-sm mb-0">
                                 <thead class="thead-dark">
-                                    <tr class="text-uppercase ">
-                                        <th class="font-w700 text-center" style="width: 80px;">Title</th>
+                                    <tr class="text-uppercase">
+                                        <th class="font-w700 text-center" style="width: 120px;">Title</th>
                                         <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 100px;">Deadline</th>
-                                        <th class="font-w700 text-center" style="width:80px" ;>Status</th>
+                                        <th class="font-w700 text-center" style="width:40px" ;>Status</th>
                                         <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 200px;">Penanggung Jawab</th>
                                         <th class="font-w700 text-center" style="width: 60px;">Aksi</th>
                                     </tr>
@@ -166,9 +166,11 @@
                                                     <span class="font-w600 "><?php echo $value["dateline"] ?></span>
                                                 </td>
                                                 <?php if ($value["status"] == "belum selesai") { ?>
-                                                    <td class="text-center"><span class="font-w600 text-danger "><?php echo $value["status"] ?></span></td>
+                                                    <td class="text-center ">
+                                                        <span  class=" font-w600 btn-sm btn-block btn-danger "><?php echo $value["status"] ?></span>
+                                                    </td>
                                                 <?php } else { ?>
-                                                    <td class="text-center"><span class="font-w600 text-success"><?php echo $value["status"] ?></span></td>
+                                                    <td class="text-center"><span class="font-w600 btn-sm btn-block btn-success"><?php echo $value["status"] ?></span></td>
                                                 <?php } ?>
                                                 <td class="text-center">
                                                     <span class="font-w600">Belum Ada</span>
@@ -191,9 +193,9 @@
                                                     <span class="font-w600"><?php echo $value["dateline"] ?></span>
                                                 </td>
                                                 <?php if ($value["status"] == "belum selesai") { ?>
-                                                    <td class="text-center"><span class="font-w600 text-danger"><?php echo $value["status"] ?></span></td>
+                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-danger"><?php echo $value["status"] ?></span></td>
                                                 <?php } else { ?>
-                                                    <td class="text-center"><span class="font-w600 text-success"><?php echo $value["status"] ?></span></td>
+                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><?php echo $value["status"] ?></span></td>
                                                 <?php } ?>
                                                 <td class="text-center">
                                                     <span class="text-success"><?php echo $value["id_employ_tujuan"] ?></span>
@@ -233,7 +235,7 @@
                             <option value="aktif">Aktif</option>
                             <option value="tidak aktif">Tidak Aktif</option>
                         </select>
-                        <input type="text" id="link" name="link" value="<?php echo base_url('index.php/home/search/').$employ_id."/" ?>" hidden>
+                        <input type="text" id="link" name="link" value="<?php echo base_url('index.php/home/search/') . $employ_id . "/" ?>" hidden>
                         <div class="block-content block-content-full">
                             <table class="table table-striped table-hover table-bordered table-vcenter font-size-sm mb-0" id="tabel-pelanggan">
                                 <thead class="thead-dark">
@@ -259,9 +261,9 @@
                                                     <span class="font-w600"><?php echo $value["customer"] ?></span>
                                                 </td>
                                                 <?php if ($value["status"] == "tidak aktif") { ?>
-                                                    <td class="text-center"><span class="font-w600 text-danger "><?php echo $value["status"] ?></span></td>
+                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-danger "><?php echo $value["status"] ?></span></td>
                                                 <?php } else { ?>
-                                                    <td class="text-center"><span class="font-w600 text-success"><?php echo $value["status"] ?></span></td>
+                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><?php echo $value["status"] ?></span></td>
                                                 <?php } ?>
                                                 <td>
                                                     <a class="btn btn-primary px-4 py-2" class="p-2 bg-primary text-white text-decoration-none tiket" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"]?>" onclick="datapelanggan(this,'CS');">
@@ -308,8 +310,8 @@
                                         <td class="d-none d-sm-table-cell text-center" style="width: 35%;">
                                             <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
                                         </td>
-                                        <td class="text-danger text-center" style="width: 15%;">
-                                            <span class="font-w600 "><?php echo $value["status"] ?></span>
+                                        <td class="text-success text-center" style="width: 15%;">
+                                            <span class="font-w600   btn-sm btn-block btn-success "><?php echo $value["status"] ?></span>
                                         </td>
                                         <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
                                             <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/TugasSelesai" ?>" class="text-decoration-none">Buka</a>
@@ -375,9 +377,10 @@
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
                                     <th class="font-w700 text-center" style="width: 35%;">Title</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 35%;">Deadline</th>
+                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 15%;">Deadline</th>
                                     <th class="font-w700 text-center" style="width: 15%;">Status</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 15%;">Aksi</th>
+                                    <th class="font-w700 text-center" style="width: 15%;">Waktu Selesai</th>
+                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 10%;">Aksi</th>
                                 </tr>
                             </thead>
                             <?php foreach ($tiket as $value) {
@@ -386,14 +389,17 @@
                                         <tr>
                                             <td style="width: 35%;">
                                                 <span class="font-w600"><?php echo $value["title"] ?></span>
-                                            </td style="width: 35%;">
-                                            <td class="d-none d-sm-table-cell text-center">
+                                            </td>
+                                            <td class="d-none d-sm-table-cell text-center style=" style="width: 15%">
                                                 <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
                                             </td>
                                             <td class="text-success text-center" style="width: 15%;">
-                                                <span class="font-w600 "><?php echo $value["status"] ?></span>
+                                                <span class="font-w600   btn-sm btn-block btn-success"><?php echo $value["status"] ?></span>
                                             </td>
-                                            <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
+                                            <td class="text-success text-center" style="width: 15%;">
+                                                <span class="font-w600 "><?php echo $value["waktu_selesai"] ?></span>
+                                            </td>
+                                            <td class="d-none d-sm-table-cell text-center" style="width: 10%;">
                                                 <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
                                             </td>
                                         </tr>
@@ -431,8 +437,8 @@
                                             <td class="d-none d-sm-table-cell text-center" style="width: 35%;">
                                                 <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
                                             </td>
-                                            <td class="text-danger text-center" style="width: 15%;">
-                                                <span class="font-w600 "><?php echo $value["status"] ?></span>
+                                            <td class=" text-center" style="width: 15%;">
+                                                <span class="font-w600   btn-sm btn-block btn-danger "><?php echo $value["status"] ?></span>
                                             </td>
                                             <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
                                                 <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>

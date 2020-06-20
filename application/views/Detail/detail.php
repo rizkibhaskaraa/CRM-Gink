@@ -32,7 +32,7 @@
     <!-- Fonts and OneUI framework -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
     <link rel="stylesheet" id="css-main" href="<?php echo base_url('assets/oneui/css/oneui.min.css') ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/home/home.css') ?>">
+    
 
 
     <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
@@ -41,22 +41,73 @@
 </head>
 
 <body>
-    <!-- Start Popup Detail -->
+    <!-- Right Section -->
+    <div class="d-flex align-items-center">
+        <!-- User Dropdown -->
+        <div class="dropdown d-inline-block ml-2">
+            <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img class="rounded" src="<?php echo base_url('assets/oneui/media/avatars/avatar10.jpg') ?>" alt="Header Avatar" style="width: 18px;">
+                <span class="d-none d-sm-inline-block ml-1"><?php echo $employ_nama ?> </span>
+                <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm " aria-labelledby="page-header-user-dropdown">
+                <div class="p-3 text-center bg-primary">
+                    <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?php echo base_url('assets/oneui/media/avatars/avatar10.jpg') ?>" alt="">
+                </div>
+                <div class="p-2">
+                    <h5 class="dropdown-header text-uppercase">User Options</h5>
 
-    <!-- Large Block Modal -->
-    <div class="modal fade" id="modal-block-large" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="block block-themed block-transparent mb-0">
-                    <div class="block-header bg-primary-dark">
-                        <h3 class="block-title">Detail Task</h3>
-                        <div class="block-options">
-                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
-                                <i class="fa fa-fw fa-times"></i>
-                            </button>
+                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_profile.html">
+                        <span>Profile</span>
+                        <span>
+                            <span class="badge badge-pill badge-success">1</span>
+                            <i class="si si-user ml-1"></i>
+                        </span>
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
+                        <span>Settings</span>
+                        <i class="si si-settings"></i>
+                    </a>
+                    <div role="separator" class="dropdown-divider"></div>
+                    <h5 class="dropdown-header text-uppercase">Actions</h5>
+
+                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?php echo base_url('index.php/home/hapussession') ?>">
+                        <span>Log Out</span>
+                        <i class="si si-logout ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- END User Dropdown -->
+    </div>
+    <!-- END Right Section -->
+    <!-- Batas account dan main container -->
+
+    <!-- Main Container -->
+    <main id="main-container">
+        <!-- Hero -->
+        <div class="bg-image overflow-hidden" style="background-image: url('http://localhost/crm-gink/assets/oneui/media/photos/photo3@2x.jpg');">
+            <div class="bg-primary-dark-op">
+                <div class="content content-narrow content-full">
+                    <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mt-5 mb-2 text-center text-sm-left">
+                        <div class="flex-sm-fill">
+                            <h1 class="font-w600 text-white mb-0 invisible" data-toggle="appear">Detail Tiket</h1>
+
+                            <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250">Selama Datang , <?php echo $employ_nama ?></h2>
+
+                            <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250"><?php echo $status . " " . $nama_dept ?> di Gink Technology</h2>
                         </div>
+                        
                     </div>
-                    <div class="block-content font-size-sm mt-3 text-justify ">
+                </div>
+            </div>
+        </div>
+        <!-- END Hero -->
+    </main>
+    <!-- END Main Container -->
+
+
+    <div class="block-content font-size-sm mt-3 text-justify ">
                         <h3>Hallo <?php echo $employ_nama ?> , berikut isi Detail Tasknya</h3>
                         <table style="font-size:18px">
                             <tbody valign="top">
@@ -118,17 +169,7 @@
                                                             <input type="submit" value="Simpan" class="btn btn-primary" data-toggle="click-ripple"></input>
                                                         </div>
                                                     <?php } ?>
-                                                    <div class="col-md-6">
-                                                        <!-- Success -->
-                                                        <h4 class="border-bottom pb-2">Success</h4>
-                                                        <p class="font-size-sm text-muted mb-2">
-                                                            A dialog showing a message after a successful operation
-                                                        </p>
-                                                        <button type="button" class="js-swal-success btn btn-light push">
-                                                            <i class="fa fa-check-circle text-success mr-1"></i> Launch Dialog
-                                                        </button>
-                                                        <!-- END Success -->
-                                                    </div>
+                                                    
                                             </form>
                                         </td>
 
@@ -179,7 +220,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="font-weight-bold ">Berkas</td>
+                                        <td class="font-weight-bold  ">Berkas</td>
                                         <td>
                                             :
                                             <?php if ($task['berkas'] == null) {
@@ -193,33 +234,6 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="block-content block-content-full text-right border-top mt-5">
-                        <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Ok</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- END Large Block Modal -->
-
-
-    <div class="col-md-6">
-        <!-- Size: Large -->
-        <div class="block">
-            <div class="block-header">
-                <h3 class="block-title">Size: Large</h3>
-            </div>
-            <div class="block-content">
-                <p class="font-size-sm text-muted">
-                    If you need more space you can use the large size variation
-                </p>
-                <button type="button" class="btn btn-sm btn-primary push" data-toggle="modal" data-target="#modal-block-large">Launch Modal</button>
-            </div>
-        </div>
-        <!-- END Size: Large -->
-        <!-- END Popup Detail -->
-
 
 
 

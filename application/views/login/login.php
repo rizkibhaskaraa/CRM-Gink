@@ -64,10 +64,7 @@
                                     <h1 class="mb-2 ">Sign In</h1>
                                     <p>Masuk untuk melanjutkan akses.</p>
                                 
-                                    <!-- Sign In Form -->
-                                    <!-- jQuery Validation (.js-validation-signin class is initialized in js/pages/op_auth_signin.min.js which was auto compiled from _es6/pages/op_auth_signin.js) -->
-                                    <!-- For more info and examples you can check out https://github.com/jzaefferer/jquery-validation -->
-                                    <form class="js-validation-signin" action="<?php echo base_url('index.php/login/login')?>" method="POST">
+                                     <form class="js-validation-signin" action="<?php echo base_url('index.php/login/login')?>" method="POST">
                                         <div class="py-1">
                                             <div class="form-group">
                                                 <input type="text" name="username" class="form-control form-control-alt form-control-lg " id="email-admin" name="login-username" placeholder="Email / Username">
@@ -82,9 +79,9 @@
 
 
                                         
-                                        <div class="form-group row">
-                                            <div class="container-fluid ">
-                                                <input type="submit" class="btn btn-block btn-primary mt-3" value="Sign In"
+                                        <div class="form-group row ">
+                                            <div class="container-fluid  ">
+                                                <input type="submit" class="btn btn-block btn-primary mt-3 " value="Sign In"
                                                 onclick="One.loader('show');
                                             setTimeout(function () {
                                                 One.loader('hide');

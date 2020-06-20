@@ -21,11 +21,11 @@ class home_model extends CI_model
 
     public function gettaskselesai($id_employ)
     {
-        return $this->db->get_where('task', array('id_employ_tujuan' => $id_employ, "status" => "selesai"))->result_array();
+        return $this->db->get_where('task', array('id_employ_tujuan' => $id_employ, "status" => "Selesai"))->result_array();
     }
     public function gettaskbelum($id_employ)
     {
-        return $this->db->get_where('task', array('id_employ_tujuan' => $id_employ, 'status' => "belum selesai"))->result_array();
+        return $this->db->get_where('task', array('id_employ_tujuan' => $id_employ, 'status' => "Belum Selesai"))->result_array();
     }
     public function gettiket($id_employ)
     {
@@ -40,7 +40,7 @@ class home_model extends CI_model
     {
         //update
         date_default_timezone_set('Asia/Bangkok');
-        $this->db->set('status', "selesai");
+        $this->db->set('status', "Selesai");
         $this->db->set('waktu_selesai', date("Y-m-d H-i-s"));
         $this->db->where('id_task', $id);
         $this->db->update('task');

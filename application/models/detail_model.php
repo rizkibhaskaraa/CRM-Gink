@@ -68,7 +68,7 @@ class detail_model extends CI_model
     public function taskSelesai($task, $date)
     {
         //update
-        $this->db->set('status', 'selesai');
+        $this->db->set('status', 'Selesai');
         $this->db->set('waktu_selesai', $date);
         $this->db->where('id_task', $task);
         $this->db->update('task');
@@ -96,7 +96,7 @@ class detail_model extends CI_model
     public function gettugaspj($dept)
     {
         $this->db->where("nama_dept_tujuan", $dept);
-        $this->db->where("task.status", "belum selesai");
+        $this->db->where("task.status", "Belum Selesai");
         $this->db->where_not_in("id_employ_tujuan", "");
         $this->db->select("count(task.status),id_employ_tujuan,nama");
         $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");

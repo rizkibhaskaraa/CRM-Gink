@@ -384,7 +384,7 @@
                                 </tr>
                             </thead>
                             <?php foreach ($tiket as $value) {
-                                if ($value["status"] == "selesai") { ?>
+                                if ($value["status"] == "Selesai") { ?>
                                     <tbody>
                                         <tr>
                                             <td style="width: 35%;">

@@ -27,7 +27,8 @@
                 <td class="text-center"><span class="font-w600 text-success"><?php echo $value["status"] ?></span></td>
             <?php }?>
             <td>
-            <a class="text-decoration-none" href="<?php echo base_url('index.php/tiket/index/') . $employ_id . "/" . $value["id_pelanggan"] ?>">+ tiket</a>
+            <!-- <a class="text-decoration-none" href="<?php echo base_url('index.php/tiket/index/') . $employ_id . "/" . $value["id_pelanggan"] ?>">+ tiket</a> -->
+            <a class="text-decoration-none" href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"]?>" onclick="datapelanggan(this,'CS');">+ tiket</a>
             </td>
         <?php } ?>
         </tr>

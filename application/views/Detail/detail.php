@@ -66,7 +66,7 @@
                                 </tr>
                                 <tr>
                                     <td class="font-weight-bold ">Deskripsi Task</td>
-                                    <td>: <?php echo $task["deskripsi"] ?></td>
+                                    <td><textarea cols="50" rows="3" readonly value="<?php echo $task["deskripsi"] ?>"><?php echo $task["deskripsi"] ?></textarea></td>
                                 </tr>
                                 <tr>
                                     <td class="font-weight-bold">Nama Pengirim</td>
@@ -137,8 +137,12 @@
                                         <td class="font-weight-bold">Berkas (opsional)</td>
                                         <td>
                                             : <input type="file" name="file">
+                                            <div class="block-content block-content-full text-right border-top mt-5">
+                                            <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
+                                            <input type="submit" class="btn btn-sm btn-primary" value="Selesai">
+                                        </div>
                                         </td>
-                                        <input type="submit" value="Selesai">
+                                        <!-- <input type="submit" value="Selesai"> -->
                                         <?php echo form_close(); ?>
                                     <?php } else if ($cekTabel == 'TugasSelesai') { ?>
                                         <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>

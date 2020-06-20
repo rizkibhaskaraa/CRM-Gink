@@ -63,4 +63,10 @@ class Home extends CI_Controller
         $data["employ_id"] = $employ_id;
         $this->load->view('home/hasil_search', $data);
     }
+
+    function get_pelanggan(){
+		$id_pelanggan=$this->input->get('id');
+		$data=$this->home_model->getpelangganbyid($id_pelanggan);
+		echo json_encode($data);
+	}
 }

@@ -39,6 +39,7 @@
 </head>
 
 <body>
+
     <!-- Right Section -->
     <div class="d-flex align-items-center">
         <!-- User Dropdown -->
@@ -97,7 +98,10 @@
                         </div>
                         <div class="flex-sm-00-auto mt-3 mt-sm-0 ml-sm-3">
                             <span class="d-inline-block invisible" data-toggle="appear" data-timeout="350">
-                                <a class="btn btn-primary px-4 py-2" data-toggle="click-ripple" href="<?php echo base_url('index.php/tiket/index/') . $employ_id . "/" ?>" class="p-2 bg-primary text-white text-decoration-none tiket">
+                                <!-- <a class="btn btn-primary px-4 py-2" data-toggle="click-ripple" href="<?php echo base_url('index.php/tiket/index/') . $employ_id . "/" ?>" class="p-2 bg-primary text-white text-decoration-none tiket">
+                                    <i class="fa fa-plus mr-1"></i> Buat Tiket
+                                </a> -->
+                                <a class="btn btn-primary px-4 py-2" class="p-2 bg-primary text-white text-decoration-none tiket" data-toggle="modal" data-target="#modal-block-large" onclick="datapelanggan(this,'staff')" href="">
                                     <i class="fa fa-plus mr-1"></i> Buat Tiket
                                 </a>
                             </span>
@@ -260,6 +264,9 @@
                                                     <td class="text-center"><span class="font-w600 text-success"><?php echo $value["status"] ?></span></td>
                                                 <?php } ?>
                                                 <td>
+                                                    <a class="btn btn-primary px-4 py-2" class="p-2 bg-primary text-white text-decoration-none tiket" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"]?>" onclick="datapelanggan(this,'CS');">
+                                                        <i class="fa fa-plus mr-1"></i> Buat Tiket
+                                                    </a>
                                                     <a class="text-decoration-none" href="<?php echo base_url('index.php/tiket/index/') . $employ_id . "/" . $value["id_pelanggan"] ?>">+ tiket</a>
                                                 </td>
                                             <?php } ?>
@@ -443,7 +450,102 @@
     </div>
     <!-- END request task,pelanggan,tugas selesai,tugas belum selesai,tiket selesai,tiket belum selesai -->
     <!-- END Page Content -->
-
+    <!-- POP UP BUAT TIKET -->
+    <script>
+        function datapelanggan(a,status){
+            var id_pelanggan = a.id;
+            $.ajax({
+                    type : "GET",
+                    url  : "<?php echo base_url('index.php/home/get_pelanggan')?>",
+                    dataType : "JSON",
+                    data : {id:id_pelanggan},
+                    success: function(data){
+                        $('input[name="customer"]').val(data["customer"]);
+                        $("#layanan_pelanggan").val(data["layanan"]);
+                        $('input[name="id_pelanggan"]').val(id_pelanggan);
+                    }
+                });
+        }
+    </script>
+    <div class="modal fade" id="modal-block-large" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
+    
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="block block-themed block-transparent mb-0">
+                    <div class="block-header bg-primary-dark">
+                        <h3 class="block-title">Buat Tiket</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                <i class="fa fa-fw fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content font-size-sm mt-3 text-justify ">
+                        <h4>Isi data dibawah ini dengan lengkap untuk membuat tiket</h4>
+                        <form action="<?php echo base_url('index.php/tiket/addtiket/').$employ_id?>" method="POST">
+                        <!-- jika CS yang buat tiket dari complain customer-->
+                            <?php
+                            if($status == "CS"){?>
+                                <input type="text" name="id_pelanggan" id="id_pelanggan" value="123" hidden>
+                                <div class="form-group">
+                                    <label for="title">Customer</label>
+                                    <input type="text" class="form-control" name="customer" id="customer" placeholder="<?php echo $customer?>" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="title">Layanan</label>
+                                    <input type="text" class="form-control" name="layanan" id="layanan_pelanggan" placeholder="<?php echo $layanan?>" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="masalah">Jenis Masalah</label>
+                                    <select name="masalah" id="masalah" class="form-control">
+                                        <option value="umum">General</option>
+                                        <option value="support">Support</option>
+                                        <option value="hosting">Hosting</option>
+                                        <option value="biling">Billing</option>
+                                    </select>
+                                </div>
+                            <!-- akhir jika CS yang buat tiket dari complain customer-->
+                            <!-- jika staff yang buat tiket untuk staff lainnya-->
+                            <?php }else{?>
+                                <input type="text" name="id_pelanggan" value="<?php echo $id_pelanggan?>" hidden>
+                                <input type="text" name="masalah" value="" hidden>
+                                <input type="text" name="layanan" value="" hidden>
+                                <div class="form-group">
+                                    <label for="departemen">Departemen tujuan</label>
+                                    <select name="departemen" id="departemen" class="form-control">
+                                        <option value="developer">Developer</option>
+                                        <option value="finance">Finance</option>
+                                    </select>
+                                </div>
+                            <?php }?>
+                            <div class="form-group">
+                                <label for="title">Judul Tugas</label>
+                                <input type="text" class="form-control" name="title" id="title" placeholder="judul / subject" >
+                                <?= form_error('title', '<span class="text-danger">', '</span>') ?>
+                            </div>
+                            <div class="form-group">
+                                <label for="dateline">Deadline</label>
+                                <input type="text" class="js-datepicker form-control" name="dateline" id="example-datepicker1" data-date-format="yyyy-mm-dd">
+                            </div>
+                            <div class="form-group">
+                                <label for="deskripsi">Deskripsi</label>
+                                <textarea class="form-control" name="deskripsi" id="deskripsi" rows="3" placeholder="isi deskripsi"></textarea>
+                                <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Buat</button>
+                            <button type="reset" class="btn btn-primary">Reset</button>
+                            <!-- akhir jika staff yang buat tiket untuk staff lainnya-->
+                        </form>
+                    </div>
+                    <div class="block-content block-content-full text-right border-top mt-5">
+                        <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END POP UP BUAT TIKET -->    
     <!-- Footer -->
     <footer id="page-footer" class="bg-body-light">
         <div class="content py-3">

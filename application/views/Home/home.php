@@ -229,7 +229,7 @@
                             <option value="aktif">Aktif</option>
                             <option value="tidak aktif">Tidak Aktif</option>
                         </select>
-                        <input type="text" id="link" name="link" value="<?php echo base_url('index.php/home/search/').$employ_id."/" ?>" hidden>
+                        <input type="text" id="link" name="link" value="<?php echo base_url('index.php/home/search/') . $employ_id . "/" ?>" hidden>
                         <div class="block-content block-content-full">
                             <table class="table table-striped table-hover table-bordered table-vcenter font-size-sm mb-0" id="tabel-pelanggan">
                                 <thead class="thead-dark">
@@ -368,9 +368,10 @@
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
                                     <th class="font-w700 text-center" style="width: 35%;">Title</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 35%;">Deadline</th>
+                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 15%;">Deadline</th>
                                     <th class="font-w700 text-center" style="width: 15%;">Status</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 15%;">Aksi</th>
+                                    <th class="font-w700 text-center" style="width: 15%;">Waktu Selesai</th>
+                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 10%;">Aksi</th>
                                 </tr>
                             </thead>
                             <?php foreach ($tiket as $value) {
@@ -379,14 +380,17 @@
                                         <tr>
                                             <td style="width: 35%;">
                                                 <span class="font-w600"><?php echo $value["title"] ?></span>
-                                            </td style="width: 35%;">
-                                            <td class="d-none d-sm-table-cell text-center">
+                                            </td>
+                                            <td class="d-none d-sm-table-cell text-center style=" style="width: 15%">
                                                 <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
                                             </td>
                                             <td class="text-success text-center" style="width: 15%;">
                                                 <span class="font-w600 "><?php echo $value["status"] ?></span>
                                             </td>
-                                            <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
+                                            <td class="text-success text-center" style="width: 15%;">
+                                                <span class="font-w600 "><?php echo $value["waktu_selesai"] ?></span>
+                                            </td>
+                                            <td class="d-none d-sm-table-cell text-center" style="width: 10%;">
                                                 <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
                                             </td>
                                         </tr>

@@ -9,17 +9,18 @@ class Home extends CI_Controller
         $this->load->model('home_model');
         $this->load->model('detail_model');
     }
-    
-    public function hapussession(){
+
+    public function hapussession()
+    {
         session_destroy();
-		redirect(base_url());
+        redirect(base_url());
     }
 
     public function index($user)
-    {   
-        if(!isset($_SESSION["login"])){
+    {
+        if (!isset($_SESSION["login"])) {
             redirect(base_url());
-        }else{
+        } else {
             $user = $_SESSION["staff_user"];
         }
         $employ = $this->home_model->getemploy($user);
@@ -34,6 +35,7 @@ class Home extends CI_Controller
         $data["taskselesai"] = $this->home_model->gettaskselesai($employ["id_employ"]);
         $data["taskbelum"] = $this->home_model->gettaskbelum($employ["id_employ"]);
         $data["taskdihead"] = $this->home_model->gettaskdihead($departemen["nama_departemen"]);
+        $data["taskumumdihead"] = $this->home_model->gettaskumum();
         $data["tiket"] = $this->home_model->gettiket($employ["id_employ"]);
         $this->load->view('home/home', $data);
     }
@@ -45,16 +47,16 @@ class Home extends CI_Controller
     }
 
     public function detail($id, $task, $cekTabel)
-    {   
-        if(!isset($_SESSION["login"])){
+    {
+        if (!isset($_SESSION["login"])) {
             redirect(base_url());
-        }else{
+        } else {
             $id = $_SESSION["staff_id"];
         }
         redirect(base_url('index.php/detail/detailumum/') . $id . "/" . $task . "/" . $cekTabel);
     }
 
-    public function search($employ_id,$layanan, $status, $search)
+    public function search($employ_id, $layanan, $status, $search)
     {
         $search_pelanggan = str_replace('%20', ' ', $search);
         $layanan_pelanggan = str_replace('%20', ' ', $layanan);
@@ -64,9 +66,10 @@ class Home extends CI_Controller
         $this->load->view('home/hasil_search', $data);
     }
 
-    function get_pelanggan(){
-		$id_pelanggan=$this->input->get('id');
-		$data=$this->home_model->getpelangganbyid($id_pelanggan);
-		echo json_encode($data);
-	}
+    function get_pelanggan()
+    {
+        $id_pelanggan = $this->input->get('id');
+        $data = $this->home_model->getpelangganbyid($id_pelanggan);
+        echo json_encode($data);
+    }
 }

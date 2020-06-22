@@ -239,12 +239,14 @@
                                 </tr>
                                 <?php if ($cekTabel == 'Tiket') { ?>
                                     <tr>
+                                        <td></td>
                                         <td class="font-weight-bold">Penanggung Jawab</td>
                                         <td>
                                             : <?= $namaPJ . " (" . $dept_PJtask . ")" ?>
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td></td>
                                         <td class="font-weight-bold">Waktu Selesai</td>
                                         <td>
                                             :
@@ -255,6 +257,7 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td></td>
                                         <td class="font-weight-bold  ">Berkas</td>
                                         <td>
                                             :

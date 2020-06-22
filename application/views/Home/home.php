@@ -41,7 +41,7 @@
 <body>
 
     <!-- Right Section -->
-    <div class="d-flex align-items-center">
+    <div class="col-md-3 ml-auto">
         <!-- User Dropdown -->
         <div class="dropdown d-inline-block ml-2">
             <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -56,20 +56,7 @@
                 <div class="p-2">
                     <h5 class="dropdown-header text-uppercase">User Options</h5>
 
-                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_profile.html">
-                        <span>Profile</span>
-                        <span>
-
-                            <i class="si si-user ml-1"></i>
-                        </span>
-                    </a>
-                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                        <span>Settings</span>
-                        <i class="si si-settings"></i>
-                    </a>
-                    <div role="separator" class="dropdown-divider"></div>
-                    <h5 class="dropdown-header text-uppercase">Actions</h5>
-
+    
                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?php echo base_url('index.php/home/hapussession') ?>">
                         <span>Log Out</span>
                         <i class="si si-logout ml-1"></i>
@@ -116,7 +103,7 @@
 
     <!-- Page Content -->
     <!-- request task,pelanggan,tugas selesai,tugas Belum Selesai,tiket selesai,tiket Belum Selesai -->
-    <ul class="nav nav-tabs nav-tabs-block" data-toggle="tabs" role="tablist">
+    <ul class="nav nav-tabs nav-tabs-block ml-3 px-3 mt-3" data-toggle="tabs" role="tablist">
         <?php if ($status == "kepala") { ?>
             <li class="nav-item">
                 <a style="background-color:lavender" class="nav-link" href="#request">Request Tugas</a>

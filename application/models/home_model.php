@@ -16,7 +16,7 @@ class home_model extends CI_model
 
     public function getpelangganbyid($id)
     {
-        return $this->db->get_where("pelanggan",array("id_pelanggan"=>$id))->row_array();
+        return $this->db->get_where("pelanggan", array("id_pelanggan" => $id))->row_array();
     }
 
     public function getdepartemen($id_departemen)
@@ -35,6 +35,11 @@ class home_model extends CI_model
     public function gettiket($id_employ)
     {
         return $this->db->get_where('task', array('id_employ_kirim' => $id_employ))->result_array();
+    }
+    public function gettaskumum()
+    {
+        $this->db->order_by('dateline', 'ASC');
+        return $this->db->get_where('task', array('nama_dept_tujuan' => 'umum'))->result_array();
     }
     public function gettaskdihead($nama_departemen)
     {
@@ -55,20 +60,19 @@ class home_model extends CI_model
         $user = $this->db->get_where("user", array("id_employ" => $employ["id_employ"]))->row_array();
         return $user["username"];
     }
-    public function getsearch($layanan,$status,$search){
-        if($layanan == "semua"){
-            if($status == "semua"){
-
-            }else{
-                $this->db->where("status",$status);
+    public function getsearch($layanan, $status, $search)
+    {
+        if ($layanan == "semua") {
+            if ($status == "semua") {
+            } else {
+                $this->db->where("status", $status);
             }
-        }else{
-            if($status == "semua"){
-                $this->db->where("layanan",$layanan);
-            }else{
-                $this->db->where("layanan",$layanan);
-                $this->db->where("status",$status);
-    
+        } else {
+            if ($status == "semua") {
+                $this->db->where("layanan", $layanan);
+            } else {
+                $this->db->where("layanan", $layanan);
+                $this->db->where("status", $status);
             }
         }
         $this->db->like('customer', $search);

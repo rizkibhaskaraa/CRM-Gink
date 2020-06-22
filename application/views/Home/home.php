@@ -59,7 +59,7 @@
                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_profile.html">
                         <span>Profile</span>
                         <span>
-                       
+
                             <i class="si si-user ml-1"></i>
                         </span>
                     </a>
@@ -155,6 +155,58 @@
                                         <th class="font-w700 text-center" style="width: 60px;">Aksi</th>
                                     </tr>
                                 </thead>
+                                <?php foreach ($taskumumdihead as $value) { ?>
+                                    <tbody>
+                                        <tr>
+                                            <?php if ($value["id_employ_tujuan"] == NULL) { ?>
+                                                <td>
+                                                    <span class="font-w600"><?php echo $value["title"] ?></span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span class="font-w600 "><?php echo $value["dateline"] ?></span>
+                                                </td>
+                                                <?php if ($value["status"] == "belum selesai") { ?>
+                                                    <td class="text-center ">
+                                                        <span class=" font-w600 btn-sm btn-block btn-danger "><?php echo $value["status"] ?></span>
+                                                    </td>
+                                                <?php } else { ?>
+                                                    <td class="text-center"><span class="font-w600 btn-sm btn-block btn-success"><?php echo $value["status"] ?></span></td>
+                                                <?php } ?>
+                                                <td class="text-center">
+                                                    <span class="font-w600">Belum Ada</span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
+                                                </td>
+                                            <?php } ?>
+                                        </tr>
+                                    </tbody>
+                                <?php } ?>
+                                <?php foreach ($taskumumdihead as $value) { ?>
+                                    <tbody>
+                                        <tr>
+                                            <?php if ($value["id_employ_tujuan"] != NULL) { ?>
+                                                <td>
+                                                    <span class="font-w600"><?php echo $value["title"] ?></span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span class="font-w600"><?php echo $value["dateline"] ?></span>
+                                                </td>
+                                                <?php if ($value["status"] == "belum selesai") { ?>
+                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-danger"><?php echo $value["status"] ?></span></td>
+                                                <?php } else { ?>
+                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><?php echo $value["status"] ?></span></td>
+                                                <?php } ?>
+                                                <td class="text-center">
+                                                    <span class="text-success"><?php echo $value["id_employ_tujuan"] ?></span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
+                                                </td>
+                                            <?php } ?>
+                                        </tr>
+                                    </tbody>
+                                <?php } ?>
                                 <?php foreach ($taskdihead as $value) { ?>
                                     <tbody>
                                         <tr>
@@ -167,7 +219,7 @@
                                                 </td>
                                                 <?php if ($value["status"] == "belum selesai") { ?>
                                                     <td class="text-center ">
-                                                        <span  class=" font-w600 btn-sm btn-block btn-danger "><?php echo $value["status"] ?></span>
+                                                        <span class=" font-w600 btn-sm btn-block btn-danger "><?php echo $value["status"] ?></span>
                                                     </td>
                                                 <?php } else { ?>
                                                     <td class="text-center"><span class="font-w600 btn-sm btn-block btn-success"><?php echo $value["status"] ?></span></td>
@@ -266,10 +318,10 @@
                                                     <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><?php echo $value["status"] ?></span></td>
                                                 <?php } ?>
                                                 <td>
-                                                    <!-- <a class="btn btn-primary px-4 py-2" class="p-2 bg-primary text-white text-decoration-none tiket" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"]?>" onclick="datapelanggan(this,'CS');">
+                                                    <!-- <a class="btn btn-primary px-4 py-2" class="p-2 bg-primary text-white text-decoration-none tiket" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"] ?>" onclick="datapelanggan(this,'CS');">
                                                         <i class="fa fa-plus mr-1"></i> Buat Tiket
                                                     </a> -->
-                                                    <a class="text-decoration-none" href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"]?>" onclick="datapelanggan(this,'CS');">+ tiket</a>
+                                                    <a class="text-decoration-none" href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"] ?>" onclick="datapelanggan(this,'CS');">+ tiket</a>
                                                 </td>
                                             <?php } ?>
                                         </tr>
@@ -311,7 +363,7 @@
                                             <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
                                         </td>
                                         <td class="text-success text-center" style="width: 15%;">
-                                            <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span>
+                                            <span class="font-w600   btn-sm btn-block btn-success "><?php echo $value["status"] ?></span>
                                         </td>
                                         <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
                                             <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/TugasSelesai" ?>" class="text-decoration-none">Buka</a>
@@ -350,7 +402,7 @@
                                             <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
                                         </td>
                                         <td class="text-danger text-center" style="width: 15%;">
-                                            <span class="font-w600 "><i class="fa fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
+                                            <span class="font-w600 "><?php echo $value["status"] ?></span>
                                         </td>
                                         <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
                                             <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/TugasBelum" ?>" class="text-decoration-none">Buka | </a>
@@ -394,7 +446,7 @@
                                                 <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
                                             </td>
                                             <td class="text-success text-center" style="width: 15%;">
-                                                <span class="font-w600   btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span>
+                                                <span class="font-w600   btn-sm btn-block btn-success"><?php echo $value["status"] ?></span>
                                             </td>
                                             <td class="text-success text-center" style="width: 15%;">
                                                 <span class="font-w600 "><?php echo $value["waktu_selesai"] ?></span>
@@ -438,7 +490,7 @@
                                                 <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
                                             </td>
                                             <td class=" text-center" style="width: 15%;">
-                                                <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
+                                                <span class="font-w600   btn-sm btn-block btn-danger "><?php echo $value["status"] ?></span>
                                             </td>
                                             <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
                                                 <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
@@ -458,19 +510,21 @@
     <!-- END Page Content -->
     <!-- POP UP BUAT TIKET -->
     <script>
-        function datapelanggan(a,status){
+        function datapelanggan(a, status) {
             var id_pelanggan = a.id;
             $.ajax({
-                    type : "GET",
-                    url  : "<?php echo base_url('index.php/home/get_pelanggan')?>",
-                    dataType : "JSON",
-                    data : {id:id_pelanggan},
-                    success: function(data){
-                        $('input[name="customer"]').val(data["customer"]);
-                        $("#layanan_pelanggan").val(data["layanan"]);
-                        $('input[name="id_pelanggan"]').val(id_pelanggan);
-                    }
-                });
+                type: "GET",
+                url: "<?php echo base_url('index.php/home/get_pelanggan') ?>",
+                dataType: "JSON",
+                data: {
+                    id: id_pelanggan
+                },
+                success: function(data) {
+                    $('input[name="customer"]').val(data["customer"]);
+                    $("#layanan_pelanggan").val(data["layanan"]);
+                    $('input[name="id_pelanggan"]').val(id_pelanggan);
+                }
+            });
         }
     </script>
     <!-- pop up tiket pelanggan -->
@@ -488,51 +542,46 @@
                     </div>
                     <div class="block-content font-size-sm mt-3 text-justify ">
                         <h4>Isi data dibawah ini dengan lengkap untuk membuat tiket</h4>
-                        <form action="<?php echo base_url('index.php/tiket/addtiket/').$employ_id?>" method="POST">
-                                <input type="text" name="id_pelanggan" id="id_pelanggan" value="123" hidden>
-                                <div class="form-group">
-                                    <label for="title">Customer</label>
-                                    <input type="text" class="form-control" name="customer" id="customer" placeholder="<?php echo $customer?>" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label for="title">Layanan</label>
-                                    <input type="text" class="form-control" name="layanan" id="layanan_pelanggan" placeholder="<?php echo $layanan?>" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label for="masalah">Jenis Masalah</label>
-                                    <select name="masalah" id="masalah" class="form-control">
-                                        <option value="umum">General</option>
-                                        <option value="support">Support</option>
-                                        <option value="hosting">Hosting</option>
-                                        <option value="biling">Billing</option>
-                                    </select>
-                                </div>
+                        <form action="<?php echo base_url('index.php/tiket/addtiket/') . $employ_id ?>" method="POST">
+                            <input type="text" name="id_pelanggan" id="id_pelanggan" value="123" hidden>
+                            <div class="form-group">
+                                <label for="title">Customer</label>
+                                <input type="text" class="form-control" name="customer" id="customer" placeholder="<?php echo $customer ?>" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="title">Layanan</label>
+                                <input type="text" class="form-control" name="layanan" id="layanan_pelanggan" placeholder="<?php echo $layanan ?>" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="masalah">Jenis Masalah</label>
+                                <select name="masalah" id="masalah" class="form-control">
+                                    <option value="umum">General</option>
+                                    <option value="support">Support</option>
+                                    <option value="hosting">Hosting</option>
+                                    <option value="biling">Billing</option>
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label for="title">Judul Tugas</label>
-                                <input type="text" class="form-control" name="title" id="title" placeholder="judul / subject" >
+                                <input type="text" class="form-control" name="title" id="title" placeholder="judul / subject">
                                 <?= form_error('title', '<span class="text-danger">', '</span>') ?>
                             </div>
                             <div class="form-group">
                                 <label for="dateline">Deadline</label>
-                                <div class="input-group">
-                                    <input type="text" class="js-datepicker form-control" name="dateline" id="example-datepicker1" data-date-format="yyyy-mm-dd">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text input-group-text-alt">
-                                            <i class="far fa-calendar-alt"></i>
-                                        </span>
-                                    </div>
-                                </div>
+                                <input type="text" class="js-datepicker form-control" name="dateline" id="example-datepicker1" data-date-format="yyyy-mm-dd">
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
                                 <textarea class="form-control" name="deskripsi" id="deskripsi" rows="3" placeholder="isi deskripsi"></textarea>
                                 <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
                             </div>
-                            <div style="float:right;margin-bottom:5%">
-                                <button type="submit" class="btn btn-primary">Buat</button>
-                                <button type="reset" class="btn btn-primary">Reset</button>
-                            </div>
+                            <button type="submit" class="btn btn-primary">Buat</button>
+                            <button type="reset" class="btn btn-primary">Reset</button>
                         </form>
+                    </div>
+                    <div class="block-content block-content-full text-right border-top mt-5">
+                        <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Ok</button>
                     </div>
                 </div>
             </div>
@@ -553,44 +602,39 @@
                         </div>
                     </div>
                     <div class="block-content font-size-sm mt-3 text-justify ">
-                        <h5>Isi data dibawah ini dengan lengkap untuk membuat tiket</h5>
-                        <form action="<?php echo base_url('index.php/tiket/addtiket/').$employ_id?>" method="POST">
-                                <input type="text" name="id_pelanggan" value="<?php echo $id_pelanggan?>" hidden>
-                                <input type="text" name="masalah" value="" hidden>
-                                <input type="text" name="layanan" value="" hidden>
-                                <div class="form-group">
-                                    <label for="departemen">Departemen tujuan</label>
-                                    <select name="departemen" id="departemen" class="form-control">
-                                        <option value="developer">Developer</option>
-                                        <option value="finance">Finance</option>
-                                    </select>
-                                </div>
+                        <h4>Isi data dibawah ini dengan lengkap untuk membuat tiket</h4>
+                        <form action="<?php echo base_url('index.php/tiket/addtiket/') . $employ_id ?>" method="POST">
+                            <input type="text" name="id_pelanggan" value="<?php echo $id_pelanggan ?>" hidden>
+                            <input type="text" name="masalah" value="" hidden>
+                            <input type="text" name="layanan" value="" hidden>
+                            <div class="form-group">
+                                <label for="departemen">Departemen tujuan</label>
+                                <select name="departemen" id="departemen" class="form-control">
+                                    <option value="developer">Developer</option>
+                                    <option value="finance">Finance</option>
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label for="title">Judul Tugas</label>
-                                <input type="text" class="form-control" name="title" id="title" placeholder="judul / subject" >
+                                <input type="text" class="form-control" name="title" id="title" placeholder="judul / subject">
                                 <?= form_error('title', '<span class="text-danger">', '</span>') ?>
                             </div>
                             <div class="form-group">
                                 <label for="dateline">Deadline</label>
-                                <div class="input-group">
-                                    <input type="text" class="js-datepicker form-control" name="dateline" id="example-datepicker1" data-date-format="yyyy-mm-dd">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text input-group-text-alt">
-                                            <i class="far fa-calendar-alt"></i>
-                                        </span>
-                                    </div>
-                                </div>
+                                <input type="text" class="js-datepicker form-control" name="dateline" id="example-datepicker1" data-date-format="yyyy-mm-dd">
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
                                 <textarea class="form-control" name="deskripsi" id="deskripsi" rows="3" placeholder="isi deskripsi"></textarea>
                                 <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
                             </div>
-                            <div style="float:right;margin-bottom:5%">
-                                <button type="submit" class="btn btn-primary">Buat</button>
-                                <button type="reset" class="btn btn-primary">Reset</button>
-                            </div>
+                            <button type="submit" class="btn btn-primary">Buat</button>
+                            <button type="reset" class="btn btn-primary">Reset</button>
                         </form>
+                    </div>
+                    <div class="block-content block-content-full text-right border-top mt-5">
+                        <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Ok</button>
                     </div>
                 </div>
             </div>
@@ -650,7 +694,11 @@
 
     <script src="<?php echo base_url('assets/oneui/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') ?>"></script>
     <!-- Page JS Helpers (BS Datepicker + BS Colorpicker + BS Maxlength + Select2 + Masked Inputs + Ion Range Slider plugins) -->
-    <script>jQuery(function(){ One.helpers(['datepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider']); });</script>
+    <script>
+        jQuery(function() {
+            One.helpers(['datepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider']);
+        });
+    </script>
 </body>
 
 </html>

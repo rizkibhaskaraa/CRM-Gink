@@ -21,7 +21,7 @@ class Detail extends CI_Controller
         $data["employ_nama"] = $employ["nama"];
         $data["employ_id"] = $employ["id_employ"];
         $data["employ_dept"] = $employ["id_departemen"];
-        $data["status"] = $employ["status"];
+        $data["status"] = $employ["status_employ"];
         //akhir data employ yang akses
         $data["cekTabel"] = $cekTabel; //cek table asal
 

@@ -27,7 +27,7 @@ class Home extends CI_Controller
         $data["employ_nama"] = $employ["nama"];
         $data["employ_id"] = $employ["id_employ"];
         $data["employ_dept"] = $employ["id_departemen"];
-        $data["status"] = $employ["status"];
+        $data["status"] = $employ["status_employ"];
         $data["pelanggan"] = $pelanggan = $this->home_model->getpelanggan();
         $departemen = $this->home_model->getdepartemen($employ["id_departemen"]);
         $data["nama_departemen"] = $departemen["nama_departemen"];

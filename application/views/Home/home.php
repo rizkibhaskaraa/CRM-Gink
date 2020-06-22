@@ -173,7 +173,7 @@
                                                     <td class="text-center"><span class="font-w600 btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"> <?php echo $value["status"] ?></span></td>
                                                 <?php } ?>
                                                 <td class="text-center">
-                                                    <span class="font-w600 text-danger"><i class="fa fa-fw fa-exclamation-circle"></i> Belum Ada</span>
+                                                    <span class="font-w600 text-danger">Belum Ada</span>
                                                 </td>
                                                 <td class="text-center">
                                                     <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
@@ -195,10 +195,10 @@
                                                 <?php if ($value["status"] == "belum selesai") { ?>
                                                     <td class="text-center"><span class="font-w600   btn-sm btn-block btn-danger"><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span></td>
                                                 <?php } else { ?>
-                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"> <?php echo $value["status"] ?></span></td>
+                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span></td>
                                                 <?php } ?>
                                                 <td class="text-center">
-                                                    <span class="text-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["id_employ_tujuan"] ?></span>
+                                                    <span class="text-success"><?php echo $value["nama"] ?></span>
                                                 </td>
                                                 <td class="text-center">
                                                     <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
@@ -225,7 +225,7 @@
                                                     <td class="text-center"><span class="font-w600 btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span></td>
                                                 <?php } ?>
                                                 <td class="text-center">
-                                                    <span class="font-w600 text-danger"><i class="fa fa-fw fa-exclamation-circle"></i>  Belum Ada</span>
+                                                    <span class="font-w600 text-danger">Belum Ada</span>
                                                 </td>
                                                 <td class="text-center">
                                                     <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
@@ -250,7 +250,7 @@
                                                     <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span></td>
                                                 <?php } ?>
                                                 <td class="text-center">
-                                                    <span class="text-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["id_employ_tujuan"] ?></span>
+                                                    <span class="text-success"><?php echo $value["nama"] ?></span>
                                                 </td>
                                                 <td class="text-center">
                                                     <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>

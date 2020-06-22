@@ -13,7 +13,7 @@
                 Selamat Datang Di
             </span>
         <div class="login-logo">
-            <img src="<?php echo base_url('assets/img/logo.png')?>" alt="Gink Technology"> 
+            <img src="https://c7.uihere.com/files/688/356/876/giant-panda-bear-baby-pandas-drawing-clip-art-gambar-kartun-panda-thumb.jpg" alt="Gink Technology"> 
         </div>
             <span>Masukan email untuk reset password</span>
             <form method="post" action="<?php echo base_url('index.php/login/send_email')?>">

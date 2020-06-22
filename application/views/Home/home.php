@@ -151,7 +151,7 @@
                                         <th class="font-w700 text-center" style="width: 20%;">Title</th>
                                         <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Penanggung Jawab</th>
                                         <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Deadline</th>
-                                        <th class="font-w700 text-center" style="width:10%" ;>Status</th>
+                                        <th class="font-w700 text-center" style="width:15%" ;>Status</th>
                                         
                                         <th class="font-w700 text-center" style="width: 20%;">Aksi</th>
                                     </tr>

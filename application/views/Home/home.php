@@ -41,7 +41,7 @@
 <body>
 
     <!-- Right Section -->
-    <div class="col-md-3 ml-auto">
+    <div class="col-md-2 ml-auto px-4">
         <!-- User Dropdown -->
         <div class="dropdown d-inline-block ml-2">
             <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

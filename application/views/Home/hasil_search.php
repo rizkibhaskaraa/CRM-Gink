@@ -21,15 +21,15 @@
             <td class="text-center">
                 <span class="font-w600"><?php echo $value["customer"] ?></span>
             </td>
-            <?php if($value["status"]=="tidak aktif"){?>
-                <td class="text-center"><span class="font-w600 text-danger "><?php echo $value["status"] ?></span></td>
-            <?php }else{?>
-                <td class="text-center"><span class="font-w600 text-success"><?php echo $value["status"] ?></span></td>
-            <?php }?>
-            <td>
-            <!-- <a class="text-decoration-none" href="<?php echo base_url('index.php/tiket/index/') . $employ_id . "/" . $value["id_pelanggan"] ?>">+ tiket</a> -->
-            <a class="text-decoration-none" href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"]?>" onclick="datapelanggan(this,'CS');">+ tiket</a>
-            </td>
+            <?php if ($value["status"] == "tidak aktif") { ?>
+                <td class="text-center"><span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span></td>
+            <?php } else { ?>
+                <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span></td>
+            <?php } ?>
+            <td class="text-center">
+                <a href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"] ?>" onclick="datapelanggan(this,'CS');"><button class="btn btn-light"><i class="fa fa-plus fa-2x"></i></button></a>                         
+                        <!-- <a class="text-decoration-none" href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"] ?>" onclick="datapelanggan(this,'CS');">+ tiket</a> -->
+                </td>
         <?php } ?>
         </tr>
     </tbody>

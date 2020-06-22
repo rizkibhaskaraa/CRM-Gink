@@ -311,7 +311,7 @@
                                             <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
                                         </td>
                                         <td class="text-success text-center" style="width: 15%;">
-                                            <span class="font-w600   btn-sm btn-block btn-success "><?php echo $value["status"] ?></span>
+                                            <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span>
                                         </td>
                                         <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
                                             <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/TugasSelesai" ?>" class="text-decoration-none">Buka</a>
@@ -350,7 +350,7 @@
                                             <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
                                         </td>
                                         <td class="text-danger text-center" style="width: 15%;">
-                                            <span class="font-w600 "><?php echo $value["status"] ?></span>
+                                            <span class="font-w600 "><i class="fa fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
                                         </td>
                                         <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
                                             <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/TugasBelum" ?>" class="text-decoration-none">Buka | </a>
@@ -394,7 +394,7 @@
                                                 <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
                                             </td>
                                             <td class="text-success text-center" style="width: 15%;">
-                                                <span class="font-w600   btn-sm btn-block btn-success"><?php echo $value["status"] ?></span>
+                                                <span class="font-w600   btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span>
                                             </td>
                                             <td class="text-success text-center" style="width: 15%;">
                                                 <span class="font-w600 "><?php echo $value["waktu_selesai"] ?></span>
@@ -438,7 +438,7 @@
                                                 <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
                                             </td>
                                             <td class=" text-center" style="width: 15%;">
-                                                <span class="font-w600   btn-sm btn-block btn-danger "><?php echo $value["status"] ?></span>
+                                                <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
                                             </td>
                                             <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
                                                 <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
@@ -514,20 +514,25 @@
                             </div>
                             <div class="form-group">
                                 <label for="dateline">Deadline</label>
-                                <input type="text" class="js-datepicker form-control" name="dateline" id="example-datepicker1" data-date-format="yyyy-mm-dd">
+                                <div class="input-group">
+                                    <input type="text" class="js-datepicker form-control" name="dateline" id="example-datepicker1" data-date-format="yyyy-mm-dd">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text input-group-text-alt">
+                                            <i class="far fa-calendar-alt"></i>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
                                 <textarea class="form-control" name="deskripsi" id="deskripsi" rows="3" placeholder="isi deskripsi"></textarea>
                                 <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
                             </div>
-                            <button type="submit" class="btn btn-primary">Buat</button>
-                            <button type="reset" class="btn btn-primary">Reset</button>
+                            <div style="float:right;margin-bottom:5%">
+                                <button type="submit" class="btn btn-primary">Buat</button>
+                                <button type="reset" class="btn btn-primary">Reset</button>
+                            </div>
                         </form>
-                    </div>
-                    <div class="block-content block-content-full text-right border-top mt-5">
-                        <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Ok</button>
                     </div>
                 </div>
             </div>
@@ -548,7 +553,7 @@
                         </div>
                     </div>
                     <div class="block-content font-size-sm mt-3 text-justify ">
-                        <h4>Isi data dibawah ini dengan lengkap untuk membuat tiket</h4>
+                        <h5>Isi data dibawah ini dengan lengkap untuk membuat tiket</h5>
                         <form action="<?php echo base_url('index.php/tiket/addtiket/').$employ_id?>" method="POST">
                                 <input type="text" name="id_pelanggan" value="<?php echo $id_pelanggan?>" hidden>
                                 <input type="text" name="masalah" value="" hidden>
@@ -567,20 +572,25 @@
                             </div>
                             <div class="form-group">
                                 <label for="dateline">Deadline</label>
-                                <input type="text" class="js-datepicker form-control" name="dateline" id="example-datepicker1" data-date-format="yyyy-mm-dd">
+                                <div class="input-group">
+                                    <input type="text" class="js-datepicker form-control" name="dateline" id="example-datepicker1" data-date-format="yyyy-mm-dd">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text input-group-text-alt">
+                                            <i class="far fa-calendar-alt"></i>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
                                 <textarea class="form-control" name="deskripsi" id="deskripsi" rows="3" placeholder="isi deskripsi"></textarea>
                                 <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
                             </div>
-                            <button type="submit" class="btn btn-primary">Buat</button>
-                            <button type="reset" class="btn btn-primary">Reset</button>
+                            <div style="float:right;margin-bottom:5%">
+                                <button type="submit" class="btn btn-primary">Buat</button>
+                                <button type="reset" class="btn btn-primary">Reset</button>
+                            </div>
                         </form>
-                    </div>
-                    <div class="block-content block-content-full text-right border-top mt-5">
-                        <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Ok</button>
                     </div>
                 </div>
             </div>

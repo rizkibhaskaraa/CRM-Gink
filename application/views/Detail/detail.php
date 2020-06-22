@@ -120,8 +120,8 @@
                             <table class="table table-borderless">
                                 <tbody>
                                   
-                                    <tr rowspan="5" >
-                                        <td class="d-none d-sm-table-cell text-center"  style="width: 15%;">
+                                    <tr  >
+                                        <td class="d-none d-sm-table-cell text-center" rowspan="10"  style="width: 15%;">
                                             <p>
                                                 <a href="be_pages_generic_profile.html">
                                                     <img class="img-avatar " src="<?php echo base_url('assets/oneui/media/avatars/avatar7.jpg')?>" alt="">
@@ -140,32 +140,32 @@
                                     </tr>
                                     
                                     <tr >
-                                        <td></td>
+                                     
                                     <td class="font-weight-bold  ">Deskripsi Task</td>
                                     <td><textarea cols="50" rows="3" readonly value="<?php echo $task["deskripsi"] ?>"><?php echo $task["deskripsi"] ?></textarea></td>
                                     </tr>
                         
 
                                     <tr>
-                                        <td></td>
+                                        
                                     <td class="font-weight-bold">Nama Pengirim</td>
                                     <td>: <?php echo $nama_kirim . " (" . $task["nama_dept_kirim"] . ")" ?></td>
                                     </tr>
 
                                     <tr>
-                                        <td></td>
+                                        
                                     <td class="font-weight-bold">Deadline</td>
                                     <td>: <?php echo $task["dateline"] ?></td>
                                 </tr>
                                 <tr>
-                                    <td></td>
+                                    
                                     <td class="font-weight-bold">Status Task</td>
                                     <td>: <?php echo $task["status"] ?></td>
                                 </tr>
 
                                 <tr>
                                     <?php if ($cekTabel == 'Request') { ?>
-                                        <td></td>
+                                        
                                         <td class="font-weight-bold">Penanggung Jawab</td>
                                         <td>
                                             <form method="post" action="<?php echo base_url('index.php/detail/ubahPJ/' . $employ_id . '/' . $task['id_task']) ?>">
@@ -208,7 +208,7 @@
 
                                     <?php } else if ($cekTabel == 'TugasBelum') { ?>
                                         <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
-                                        <td></td>
+                                        
                                         <td class="font-weight-bold">Berkas (opsional)</td>
                                         <td>
                                             : <input type="file" name="file">
@@ -221,7 +221,7 @@
                                         <?php echo form_close(); ?>
                                     <?php } else if ($cekTabel == 'TugasSelesai') { ?>
                                         <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
-                                        <td></td>
+                                        
                                         <td class="font-weight-bold">Berkas (opsional)</td>
                                         <td>
                                             :
@@ -239,14 +239,14 @@
                                 </tr>
                                 <?php if ($cekTabel == 'Tiket') { ?>
                                     <tr>
-                                        <td></td>
+                                        
                                         <td class="font-weight-bold">Penanggung Jawab</td>
                                         <td>
                                             : <?= $namaPJ . " (" . $dept_PJtask . ")" ?>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td></td>
+                                        
                                         <td class="font-weight-bold">Waktu Selesai</td>
                                         <td>
                                             :
@@ -257,7 +257,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td></td>
+                                        
                                         <td class="font-weight-bold  ">Berkas</td>
                                         <td>
                                             :

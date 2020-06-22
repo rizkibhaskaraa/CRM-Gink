@@ -100,7 +100,7 @@
         <!-- END Hero -->
     </main>
     <!-- END Main Container -->
-
+    
     <!-- Page Content -->
     <!-- request task,pelanggan,tugas selesai,tugas Belum Selesai,tiket selesai,tiket Belum Selesai -->
     <ul class="nav nav-tabs nav-tabs-block ml-3 px-3 mt-3" data-toggle="tabs" role="tablist">
@@ -165,7 +165,7 @@
                                                 <?php } ?>
                                                 
                                                 <td class="text-center">
-                                                    <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
+                                                        <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
                                                 </td>
                                             <?php } ?>
                                         </tr>
@@ -191,7 +191,7 @@
                                                 <?php } ?>
                                                
                                                 <td class="text-center">
-                                                    <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
+                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
                                                 </td>
                                             <?php } ?>
                                         </tr>
@@ -219,7 +219,7 @@
                                                 <?php } ?>
                                                
                                                 <td class="text-center">
-                                                    <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
+                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
                                                 </td>
                                             <?php } ?>
                                         </tr>
@@ -245,7 +245,7 @@
                                                 <?php } ?>
                                                 
                                                 <td class="text-center">
-                                                    <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
+                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
                                                 </td>
                                             <?php } ?>
                                         </tr>
@@ -266,15 +266,15 @@
                         <div class="block-header border-bottom">
                             <h3 class="block-title text-primary">Data Pelanggan</h3>
                         </div>
-                        <input type="text" id="search" class="form-control col-2 search" name="search" placeholder="Cari Customer">
-                        <select name="layanan" id="layanan" class="form-control col-2 layanan">
+                        <input type="text" id="search" class="form-control col-2 search  mt-3 ml-2 mr-4" name="search" placeholder="Cari Customer">
+                        <select name="layanan" id="layanan" class="form-control col-2 layanan  mt-3  ml-2">
                             <option value="semua">Semua Layanan</option>
                             <option value="app website">App Website</option>
                             <option value="website">Website</option>
                             <option value="Hosting">Hosting</option>
                             <option value="mobile">App Mobile</option>
                         </select>
-                        <select name="status" id="status-pelanggan" class="form-control col-2 status-pelanggan">
+                        <select name="status" id="status-pelanggan" class="form-control col-2 status-pelanggan mt-3">
                             <option value="semua">Semua Status</option>
                             <option value="aktif">Aktif</option>
                             <option value="tidak aktif">Tidak Aktif</option>
@@ -359,8 +359,8 @@
                                             <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
                                         </td>
                                         <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
-                                            <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/TugasBelum" ?>" class="text-decoration-none">Buka | </a>
-                                            <a href="<?php echo base_url('index.php/home/status/') . $value["id_task"] ?>" class="text-decoration-none">Selesai</a>
+                                            <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/TugasBelum" ?>" class="text-decoration-none">Buka | </a>
+                                            <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/status/') . $value["id_task"] ?>" class="text-decoration-none">Selesai</a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -400,7 +400,7 @@
                                             <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span>
                                         </td>
                                         <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
-                                            <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/TugasSelesai" ?>" class="text-decoration-none">Buka</a>
+                                            <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/TugasSelesai" ?>" class="text-decoration-none">Buka</a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -445,7 +445,7 @@
                                                 <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
                                             </td>
                                             <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
-                                                <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
+                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -493,7 +493,7 @@
                                             </td>
                                            
                                             <td class="d-none d-sm-table-cell text-center" style="width: 10%;">
-                                                <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
+                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -564,7 +564,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="title">Judul Tugas</label>
-                                <input type="text" class="form-control" name="title" id="title" placeholder="judul / subject">
+                                <input type="text" class="form-control" name="title" id="title" placeholder="Judul/Subject">
                                 <?= form_error('title', '<span class="text-danger">', '</span>') ?>
                             </div>
                             <div class="form-group">
@@ -578,7 +578,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
-                                <textarea class="form-control" name="deskripsi" id="deskripsi" rows="3" placeholder="isi deskripsi"></textarea>
+                                <textarea class="form-control" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
                                 <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
                             </div>
                             <div style="float:right;margin-bottom:3%">
@@ -606,7 +606,7 @@
                         </div>
                     </div>
                     <div class="block-content font-size-sm mt-3 text-justify ">
-                        <h4>Isi data dibawah ini dengan lengkap untuk membuat tiket</h4>
+                        <h4>Isi Data Dibawah Ini dengan Lengkap untuk Membuat Tiket</h4>
                         <form action="<?php echo base_url('index.php/tiket/addtiket/') . $employ_id ?>" method="POST">
                             <input type="text" name="id_pelanggan" value="<?php echo $id_pelanggan ?>" hidden>
                             <input type="text" name="masalah" value="" hidden>
@@ -620,7 +620,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="title">Judul Tugas</label>
-                                <input type="text" class="form-control" name="title" id="title" placeholder="judul / subject">
+                                <input type="text" class="form-control" name="title" id="title" placeholder="Judul/Subject">
                                 <?= form_error('title', '<span class="text-danger">', '</span>') ?>
                             </div>
                             <div class="form-group">
@@ -634,12 +634,14 @@
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
-                                <textarea class="form-control" name="deskripsi" id="deskripsi" rows="3" placeholder="isi deskripsi"></textarea>
+                                <textarea class="form-control" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
                                 <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
                             </div>
                             <div style="float:right;margin-bottom:3%">
+                                <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
+                                
                                 <button type="submit" class="btn btn-primary">Buat</button>
-                                <button type="reset" class="btn btn-primary">Reset</button>
+                                
                             </div>
                         </form>
                     </div>

@@ -44,7 +44,7 @@
 <main id="main-container">
 
     <!-- Page Content -->
-    <div class="bg-image" style="background-image: url('assets/oneui/media/photos/photo6@2x.jpg');">
+    <div class="bg-image" style="background-image: url('assets/oneui/media/photos/photo36@2x.jpg');">
         <div class="hero-static bg-white-95">
             <div class="content">
                 <div class="row justify-content-center">
@@ -103,12 +103,13 @@
                             </div>
                         </div>
                         <!-- END Sign In Block -->
+                        <div class="content content-full font-size-sm text-muted text-center">
+                <strong>ARM TEAM</strong> &copy; <span data-toggle="year-copy"></span>
+            </div>
                     </div>
                 </div>
             </div>
-            <div class="content content-full font-size-sm text-muted text-center">
-                <strong>ARM TEAM</strong> &copy; <span data-toggle="year-copy"></span>
-            </div>
+           
         </div>
     </div>
     <!-- END Page Content -->

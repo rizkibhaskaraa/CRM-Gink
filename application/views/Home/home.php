@@ -115,7 +115,7 @@
     <!-- END Main Container -->
 
     <!-- Page Content -->
-    <!-- request task,pelanggan,tugas selesai,tugas belum selesai,tiket selesai,tiket belum selesai -->
+    <!-- request task,pelanggan,tugas selesai,tugas Belum Selesai,tiket selesai,tiket Belum Selesai -->
     <ul class="nav nav-tabs nav-tabs-block" data-toggle="tabs" role="tablist">
         <?php if ($status == "kepala") { ?>
             <li class="nav-item">
@@ -148,12 +148,12 @@
                             <table class="table table-striped table-hover table-bordered table-vcenter font-size-sm mb-0">
                                 <thead class="thead-dark">
                                     <tr class="text-uppercase">
-                                        <th class="font-w700 text-center" style="width: 120px;">Title</th>
-                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 200px;">Penanggung Jawab</th>
-                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 100px;">Deadline</th>
-                                        <th class="font-w700 text-center" style="width:40px" ;>Status</th>
+                                        <th class="font-w700 text-center" style="width: 20%;">Title</th>
+                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Penanggung Jawab</th>
+                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Deadline</th>
+                                        <th class="font-w700 text-center" style="width:10%" ;>Status</th>
                                         
-                                        <th class="font-w700 text-center" style="width: 60px;">Aksi</th>
+                                        <th class="font-w700 text-center" style="width: 20%;">Aksi</th>
                                     </tr>
                                 </thead>
                                 <?php foreach ($taskumumdihead as $value) { ?>
@@ -169,7 +169,7 @@
                                                 <td class="text-center">
                                                     <span class="font-w600 "><?php echo $value["dateline"] ?></span>
                                                 </td>
-                                                <?php if ($value["status"] == "belum selesai") { ?>
+                                                <?php if ($value["status"] == "Belum Selesai") { ?>
                                                     <td class="text-center ">
                                                         <span class=" font-w600 btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
                                                     </td>
@@ -197,7 +197,7 @@
                                                 <td class="text-center">
                                                     <span class="font-w600"><?php echo $value["dateline"] ?></span>
                                                 </td>
-                                                <?php if ($value["status"] == "belum selesai") { ?>
+                                                <?php if ($value["status"] == "Belum Selesai") { ?>
                                                     <td class="text-center"><span class="font-w600   btn-sm btn-block btn-danger"><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span></td>
                                                 <?php } else { ?>
                                                     <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span></td>
@@ -223,7 +223,7 @@
                                                 <td class="text-center">
                                                     <span class="font-w600 "><?php echo $value["dateline"] ?></span>
                                                 </td>
-                                                <?php if ($value["status"] == "belum selesai") { ?>
+                                                <?php if ($value["status"] == "Belum Selesai") { ?>
                                                     <td class="text-center ">
                                                         <span class=" font-w600 btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
                                                     </td>
@@ -251,7 +251,7 @@
                                                 <td class="text-center">
                                                     <span class="font-w600"><?php echo $value["dateline"] ?></span>
                                                 </td>
-                                                <?php if ($value["status"] == "belum selesai") { ?>
+                                                <?php if ($value["status"] == "Belum Selesai") { ?>
                                                     <td class="text-center"><span class="font-w600   btn-sm btn-block btn-danger"><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span></td>
                                                 <?php } else { ?>
                                                     <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span></td>
@@ -428,7 +428,7 @@
         <div class="tab-pane fade fade-up" id="tiket" role="tabpanel">
 
 
-<!--  Tiket belum Selesai -->
+<!--  Tiket Belum Selesai -->
 <div class="container-fluid">
                 <div class="block block-mode-loading-oneui">
                     <div class="block-header border-bottom">
@@ -445,7 +445,7 @@
                                 </tr>
                             </thead>
                             <?php foreach ($tiket as $value) {
-                                if ($value["status"] == "belum selesai") { ?>
+                                if ($value["status"] == "Belum Selesai") { ?>
                                     <tbody>
                                         <tr>
                                             <td style="width: 35%;">
@@ -468,7 +468,7 @@
                     </div>
                 </div>
             </div>
-            <!-- END  Tiket belum Selesai -->
+            <!-- END  Tiket Belum Selesai -->
 
             <!--  Tiket Selesai -->
             <div class="container-fluid">
@@ -520,7 +520,7 @@
             
         </div>
     </div>
-    <!-- END request task,pelanggan,tugas selesai,tugas belum selesai,tiket selesai,tiket belum selesai -->
+    <!-- END request task,pelanggan,tugas selesai,tugas Belum Selesai,tiket selesai,tiket Belum Selesai -->
     <!-- END Page Content -->
     <!-- POP UP BUAT TIKET -->
     <script>

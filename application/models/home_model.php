@@ -39,11 +39,13 @@ class home_model extends CI_model
     public function gettaskumum()
     {
         $this->db->order_by('dateline', 'ASC');
+        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
         return $this->db->get_where('task', array('nama_dept_tujuan' => 'umum'))->result_array();
     }
     public function gettaskdihead($nama_departemen)
     {
         $this->db->order_by('dateline', 'ASC');
+        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
         return $this->db->get_where('task', array('nama_dept_tujuan' => $nama_departemen))->result_array();
     }
     public function updatestatus($id)

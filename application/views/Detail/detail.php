@@ -93,7 +93,7 @@
                         <div class="flex-sm-fill">
                             <h1 class="font-w600 text-white mb-0 invisible" data-toggle="appear">Detail Tiket</h1>
 
-                            <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250">Selama Datang , <?php echo $employ_nama ?></h2>
+                            <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250">Selamat Datang , <?php echo $employ_nama ?></h2>
 
                             <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250"><?php echo $status . " " . $nama_dept ?> di Gink Technology</h2>
                         </div>
@@ -105,6 +105,71 @@
         <!-- END Hero -->
     </main>
     <!-- END Main Container -->
+
+
+
+    <!-- Page Content -->
+    <div class="content">
+                    <!-- Discussion -->
+                    <div class="block">
+                        <div class="block-header block-header-default">
+                           <h3 class="block-title dark">Hallo <?php echo $employ_nama ?> , berikut isi Detail Tasknya</h3>
+                            
+                        </div>
+                        <div class="block-content">
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <tr class="table-active">
+                                        <td class="d-none d-sm-table-cell"></td>
+                                        <td class="font-size-sm text-muted">
+                                            <a class="text-black font-weight-bolder">Nama Pengirim <?php echo $nama_kirim . " (" . $task["nama_dept_kirim"] . ")" ?></a> on <em>July 1, 2019 16:15</em>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="d-none d-sm-table-cell text-center" style="width: 140px;">
+                                            <p>
+                                                <a href="be_pages_generic_profile.html">
+                                                    <img class="img-avatar " src="<?php echo base_url('assets/oneui/media/avatars/avatar7.jpg')?>" alt="">
+                                             
+                                                </a>
+                                            </p>
+                                            <p class="font-size-sm"><?php echo $nama_kirim . " (" . $task["nama_dept_kirim"] . ")" ?></p>
+                                        </td>
+                                        <td>
+                                            
+                                            <hr>
+                                            <p class="font-size-sm text-muted">There is only one way to avoid criticism: do nothing, say nothing, and be nothing.</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="table-active">
+                                        <td class="d-none d-sm-table-cell"></td>
+                                        <td class="font-size-sm text-muted">
+                                            <a href="be_pages_generic_profile.html">Jesse Fisher</a> on <em>July 10, 2019 10:09</em>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                            </table>
+                        </div> 
+                    </div>
+                    <!-- END Discussion -->
+                </div>
+                <!-- END Page Content -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <div class="block-content font-size-sm mt-3 text-justify ">

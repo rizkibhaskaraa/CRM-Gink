@@ -167,13 +167,13 @@
                                                 </td>
                                                 <?php if ($value["status"] == "belum selesai") { ?>
                                                     <td class="text-center ">
-                                                        <span class=" font-w600 btn-sm btn-block btn-danger "><?php echo $value["status"] ?></span>
+                                                        <span class=" font-w600 btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
                                                     </td>
                                                 <?php } else { ?>
-                                                    <td class="text-center"><span class="font-w600 btn-sm btn-block btn-success"><?php echo $value["status"] ?></span></td>
+                                                    <td class="text-center"><span class="font-w600 btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"> <?php echo $value["status"] ?></span></td>
                                                 <?php } ?>
                                                 <td class="text-center">
-                                                    <span class="font-w600">Belum Ada</span>
+                                                    <span class="font-w600 text-danger"><i class="fa fa-fw fa-exclamation-circle"></i> Belum Ada</span>
                                                 </td>
                                                 <td class="text-center">
                                                     <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
@@ -193,12 +193,12 @@
                                                     <span class="font-w600"><?php echo $value["dateline"] ?></span>
                                                 </td>
                                                 <?php if ($value["status"] == "belum selesai") { ?>
-                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-danger"><?php echo $value["status"] ?></span></td>
+                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-danger"><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span></td>
                                                 <?php } else { ?>
-                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><?php echo $value["status"] ?></span></td>
+                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"> <?php echo $value["status"] ?></span></td>
                                                 <?php } ?>
                                                 <td class="text-center">
-                                                    <span class="text-success"><?php echo $value["id_employ_tujuan"] ?></span>
+                                                    <span class="text-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["id_employ_tujuan"] ?></span>
                                                 </td>
                                                 <td class="text-center">
                                                     <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
@@ -219,13 +219,13 @@
                                                 </td>
                                                 <?php if ($value["status"] == "belum selesai") { ?>
                                                     <td class="text-center ">
-                                                        <span class=" font-w600 btn-sm btn-block btn-danger "><?php echo $value["status"] ?></span>
+                                                        <span class=" font-w600 btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
                                                     </td>
                                                 <?php } else { ?>
-                                                    <td class="text-center"><span class="font-w600 btn-sm btn-block btn-success"><?php echo $value["status"] ?></span></td>
+                                                    <td class="text-center"><span class="font-w600 btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span></td>
                                                 <?php } ?>
                                                 <td class="text-center">
-                                                    <span class="font-w600">Belum Ada</span>
+                                                    <span class="font-w600 text-danger"><i class="fa fa-fw fa-exclamation-circle"></i>  Belum Ada</span>
                                                 </td>
                                                 <td class="text-center">
                                                     <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
@@ -245,12 +245,12 @@
                                                     <span class="font-w600"><?php echo $value["dateline"] ?></span>
                                                 </td>
                                                 <?php if ($value["status"] == "belum selesai") { ?>
-                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-danger"><?php echo $value["status"] ?></span></td>
+                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-danger"><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span></td>
                                                 <?php } else { ?>
-                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><?php echo $value["status"] ?></span></td>
+                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span></td>
                                                 <?php } ?>
                                                 <td class="text-center">
-                                                    <span class="text-success"><?php echo $value["id_employ_tujuan"] ?></span>
+                                                    <span class="text-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["id_employ_tujuan"] ?></span>
                                                 </td>
                                                 <td class="text-center">
                                                     <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
@@ -313,15 +313,13 @@
                                                     <span class="font-w600"><?php echo $value["customer"] ?></span>
                                                 </td>
                                                 <?php if ($value["status"] == "tidak aktif") { ?>
-                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-danger "><?php echo $value["status"] ?></span></td>
+                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span></td>
                                                 <?php } else { ?>
-                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><?php echo $value["status"] ?></span></td>
+                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span></td>
                                                 <?php } ?>
-                                                <td>
-                                                    <!-- <a class="btn btn-primary px-4 py-2" class="p-2 bg-primary text-white text-decoration-none tiket" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"] ?>" onclick="datapelanggan(this,'CS');">
-                                                        <i class="fa fa-plus mr-1"></i> Buat Tiket
-                                                    </a> -->
-                                                    <a class="text-decoration-none" href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"] ?>" onclick="datapelanggan(this,'CS');">+ tiket</a>
+                                                <td class="text-center">
+                                                    <a href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"] ?>" onclick="datapelanggan(this,'CS');"><button class="btn btn-light"><i class="fa fa-plus fa-2x"></i></button></a>                         
+                                                    <!-- <a class="text-decoration-none" href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"] ?>" onclick="datapelanggan(this,'CS');">+ tiket</a> -->
                                                 </td>
                                             <?php } ?>
                                         </tr>
@@ -363,7 +361,7 @@
                                             <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
                                         </td>
                                         <td class="text-success text-center" style="width: 15%;">
-                                            <span class="font-w600   btn-sm btn-block btn-success "><?php echo $value["status"] ?></span>
+                                            <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span>
                                         </td>
                                         <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
                                             <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/TugasSelesai" ?>" class="text-decoration-none">Buka</a>
@@ -402,7 +400,7 @@
                                             <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
                                         </td>
                                         <td class="text-danger text-center" style="width: 15%;">
-                                            <span class="font-w600 "><?php echo $value["status"] ?></span>
+                                            <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
                                         </td>
                                         <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
                                             <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/TugasBelum" ?>" class="text-decoration-none">Buka | </a>
@@ -446,7 +444,7 @@
                                                 <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
                                             </td>
                                             <td class="text-success text-center" style="width: 15%;">
-                                                <span class="font-w600   btn-sm btn-block btn-success"><?php echo $value["status"] ?></span>
+                                                <span class="font-w600   btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i><?php echo $value["status"] ?></span>
                                             </td>
                                             <td class="text-success text-center" style="width: 15%;">
                                                 <span class="font-w600 "><?php echo $value["waktu_selesai"] ?></span>
@@ -490,7 +488,7 @@
                                                 <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
                                             </td>
                                             <td class=" text-center" style="width: 15%;">
-                                                <span class="font-w600   btn-sm btn-block btn-danger "><?php echo $value["status"] ?></span>
+                                                <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
                                             </td>
                                             <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
                                                 <a href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
@@ -568,20 +566,23 @@
                             </div>
                             <div class="form-group">
                                 <label for="dateline">Deadline</label>
-                                <input type="text" class="js-datepicker form-control" name="dateline" id="example-datepicker1" data-date-format="yyyy-mm-dd">
+                                <div class="input-group">
+                                    <input type="text" class="js-datepicker form-control" name="dateline" id="example-datepicker1" data-date-format="yyyy-mm-dd">
+                                    <span class="input-group-text input-group-text-alt">
+                                        <i class="far fa-calendar-alt"></i>
+                                    </span>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
                                 <textarea class="form-control" name="deskripsi" id="deskripsi" rows="3" placeholder="isi deskripsi"></textarea>
                                 <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
                             </div>
-                            <button type="submit" class="btn btn-primary">Buat</button>
-                            <button type="reset" class="btn btn-primary">Reset</button>
+                            <div style="float:right;margin-bottom:3%">
+                                <button type="submit" class="btn btn-primary">Buat</button>
+                                <button type="reset" class="btn btn-primary">Reset</button>
+                            </div>
                         </form>
-                    </div>
-                    <div class="block-content block-content-full text-right border-top mt-5">
-                        <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Ok</button>
                     </div>
                 </div>
             </div>
@@ -621,20 +622,23 @@
                             </div>
                             <div class="form-group">
                                 <label for="dateline">Deadline</label>
-                                <input type="text" class="js-datepicker form-control" name="dateline" id="example-datepicker1" data-date-format="yyyy-mm-dd">
+                                <div class="input-group">
+                                    <input type="text" class="js-datepicker form-control" name="dateline" id="example-datepicker1" data-date-format="yyyy-mm-dd">
+                                    <span class="input-group-text input-group-text-alt">
+                                        <i class="far fa-calendar-alt"></i>
+                                    </span>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
                                 <textarea class="form-control" name="deskripsi" id="deskripsi" rows="3" placeholder="isi deskripsi"></textarea>
                                 <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
                             </div>
-                            <button type="submit" class="btn btn-primary">Buat</button>
-                            <button type="reset" class="btn btn-primary">Reset</button>
+                            <div style="float:right;margin-bottom:3%">
+                                <button type="submit" class="btn btn-primary">Buat</button>
+                                <button type="reset" class="btn btn-primary">Reset</button>
+                            </div>
                         </form>
-                    </div>
-                    <div class="block-content block-content-full text-right border-top mt-5">
-                        <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Ok</button>
                     </div>
                 </div>
             </div>

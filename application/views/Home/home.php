@@ -149,9 +149,10 @@
                                 <thead class="thead-dark">
                                     <tr class="text-uppercase">
                                         <th class="font-w700 text-center" style="width: 120px;">Title</th>
+                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 200px;">Penanggung Jawab</th>
                                         <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 100px;">Deadline</th>
                                         <th class="font-w700 text-center" style="width:40px" ;>Status</th>
-                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 200px;">Penanggung Jawab</th>
+                                        
                                         <th class="font-w700 text-center" style="width: 60px;">Aksi</th>
                                     </tr>
                                 </thead>
@@ -163,6 +164,9 @@
                                                     <span class="font-w600"><?php echo $value["title"] ?></span>
                                                 </td>
                                                 <td class="text-center">
+                                                    <span class="font-w600 text-danger"><i class="fa fa-fw fa-exclamation-circle"></i> Belum Ada</span>
+                                                </td>
+                                                <td class="text-center">
                                                     <span class="font-w600 "><?php echo $value["dateline"] ?></span>
                                                 </td>
                                                 <?php if ($value["status"] == "belum selesai") { ?>
@@ -172,9 +176,7 @@
                                                 <?php } else { ?>
                                                     <td class="text-center"><span class="font-w600 btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"> <?php echo $value["status"] ?></span></td>
                                                 <?php } ?>
-                                                <td class="text-center">
-                                                    <span class="font-w600 text-danger"><i class="fa fa-fw fa-exclamation-circle"></i> Belum Ada</span>
-                                                </td>
+                                                
                                                 <td class="text-center">
                                                     <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
                                                 </td>
@@ -190,6 +192,9 @@
                                                     <span class="font-w600"><?php echo $value["title"] ?></span>
                                                 </td>
                                                 <td class="text-center">
+                                                    <span class="text-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["id_employ_tujuan"] ?></span>
+                                                </td>
+                                                <td class="text-center">
                                                     <span class="font-w600"><?php echo $value["dateline"] ?></span>
                                                 </td>
                                                 <?php if ($value["status"] == "belum selesai") { ?>
@@ -197,9 +202,7 @@
                                                 <?php } else { ?>
                                                     <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"> <?php echo $value["status"] ?></span></td>
                                                 <?php } ?>
-                                                <td class="text-center">
-                                                    <span class="text-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["id_employ_tujuan"] ?></span>
-                                                </td>
+                                               
                                                 <td class="text-center">
                                                     <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
                                                 </td>
@@ -215,6 +218,9 @@
                                                     <span class="font-w600"><?php echo $value["title"] ?></span>
                                                 </td>
                                                 <td class="text-center">
+                                                    <span class="font-w600 text-danger"><i class="fa fa-fw fa-exclamation-circle"></i>  Belum Ada</span>
+                                                </td>
+                                                <td class="text-center">
                                                     <span class="font-w600 "><?php echo $value["dateline"] ?></span>
                                                 </td>
                                                 <?php if ($value["status"] == "belum selesai") { ?>
@@ -224,9 +230,7 @@
                                                 <?php } else { ?>
                                                     <td class="text-center"><span class="font-w600 btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span></td>
                                                 <?php } ?>
-                                                <td class="text-center">
-                                                    <span class="font-w600 text-danger"><i class="fa fa-fw fa-exclamation-circle"></i>  Belum Ada</span>
-                                                </td>
+                                               
                                                 <td class="text-center">
                                                     <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
                                                 </td>
@@ -242,6 +246,9 @@
                                                     <span class="font-w600"><?php echo $value["title"] ?></span>
                                                 </td>
                                                 <td class="text-center">
+                                                    <span class="text-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["id_employ_tujuan"] ?></span>
+                                                </td>
+                                                <td class="text-center">
                                                     <span class="font-w600"><?php echo $value["dateline"] ?></span>
                                                 </td>
                                                 <?php if ($value["status"] == "belum selesai") { ?>
@@ -249,9 +256,7 @@
                                                 <?php } else { ?>
                                                     <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span></td>
                                                 <?php } ?>
-                                                <td class="text-center">
-                                                    <span class="text-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["id_employ_tujuan"] ?></span>
-                                                </td>
+                                                
                                                 <td class="text-center">
                                                     <a class="text-decoration-none" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
                                                 </td>

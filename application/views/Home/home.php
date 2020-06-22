@@ -583,7 +583,7 @@
                             <div class="form-group">
                                 <label for="dateline">Deadline</label>
                                 <div class="input-group">
-                                    <input type="text" class="js-datepicker form-control" name="dateline" id="example-datepicker1" data-date-format="yyyy-mm-dd">
+                                    <input type="text" class="js-datepicker form-control" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true">
                                     <span class="input-group-text input-group-text-alt">
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
@@ -639,7 +639,7 @@
                             <div class="form-group">
                                 <label for="dateline">Deadline</label>
                                 <div class="input-group">
-                                    <input type="text" class="js-datepicker form-control" name="dateline" id="example-datepicker1" data-date-format="yyyy-mm-dd">
+                                    <input type="text" class="js-datepicker form-control" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true"  >
                                     <span class="input-group-text input-group-text-alt">
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
@@ -715,6 +715,11 @@
     <script src="<?php echo base_url('assets/oneui/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') ?>"></script>
     <!-- Page JS Helpers (BS Datepicker + BS Colorpicker + BS Maxlength + Select2 + Masked Inputs + Ion Range Slider plugins) -->
     <script>
+        $(document).ready(function(){
+            $('#dateline').datepicker({
+            startDate: '-1m',
+            });
+        });
         jQuery(function() {
             One.helpers(['datepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider']);
         });

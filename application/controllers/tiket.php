@@ -76,7 +76,7 @@ class Tiket extends CI_Controller
                     "kategori_masalah" => $masalah,
                     "date" => date("Y-m-d H-i-s"),
                     "dateline" => $this->input->post("dateline"),
-                    "status" => "belum selesai"
+                    "status" => "Belum Selesai"
                 );
                 //akhir jika CS yang buat tiket dari pelanggan
             } else {
@@ -91,7 +91,7 @@ class Tiket extends CI_Controller
                     "deskripsi" => $this->input->post("deskripsi"),
                     "date" => date("Y-m-d H-i-s"),
                     "dateline" => $this->input->post("dateline"),
-                    "status" => "belum selesai"
+                    "status" => "Belum Selesai"
                 );
                 //akhir jika staff yang buat tiket untuk staff
             }

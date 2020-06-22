@@ -543,15 +543,15 @@
                     </div>
                     <div class="block-content font-size-sm mt-3 text-justify ">
                         <h4>Isi data dibawah ini dengan lengkap untuk membuat tiket</h4>
-                        <form action="<?php echo base_url('index.php/tiket/addtiket/') . $employ_id ?>" method="POST">
+                        <form action="<?php echo base_url('index.php/tiket/addtiket/') . $employ_id ?>" method="POST" id="form-tiket">
                             <input type="text" name="id_pelanggan" id="id_pelanggan" value="123" hidden>
                             <div class="form-group">
                                 <label for="title">Customer</label>
-                                <input type="text" class="form-control" name="customer" id="customer" placeholder="<?php echo $customer ?>" readonly>
+                                <input type="text" class="form-control" name="customer" id="customer" value="<?php echo $customer ?>" placeholder="<?php echo $customer ?>" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="title">Layanan</label>
-                                <input type="text" class="form-control" name="layanan" id="layanan_pelanggan" placeholder="<?php echo $layanan ?>" readonly>
+                                <input type="text" class="form-control" name="layanan" id="layanan_pelanggan" value="<?php echo $layanan ?>" placeholder="<?php echo $layanan ?>" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="masalah">Jenis Masalah</label>
@@ -564,21 +564,21 @@
                             </div>
                             <div class="form-group">
                                 <label for="title">Judul Tugas</label>
-                                <input type="text" class="form-control" name="title" id="title" placeholder="Judul/Subject">
+                                <input type="text" class="form-control required" name="title" id="title" placeholder="Judul/Subject">
                                 <?= form_error('title', '<span class="text-danger">', '</span>') ?>
                             </div>
                             <div class="form-group">
                                 <label for="dateline">Deadline</label>
                                 <div class="input-group">
-                                    <input type="text" class="js-datepicker form-control" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true">
                                     <span class="input-group-text input-group-text-alt">
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
+                                    <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
-                                <textarea class="form-control" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
+                                <textarea class="form-control required" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
                                 <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
                             </div>
                             <div style="float:right;margin-bottom:3%">
@@ -607,7 +607,7 @@
                     </div>
                     <div class="block-content font-size-sm mt-3 text-justify ">
                         <h4>Isi Data Dibawah Ini dengan Lengkap untuk Membuat Tiket</h4>
-                        <form action="<?php echo base_url('index.php/tiket/addtiket/') . $employ_id ?>" method="POST">
+                        <form action="<?php echo base_url('index.php/tiket/addtiket/') . $employ_id ?>" method="POST" id="form-staff">
                             <input type="text" name="id_pelanggan" value="<?php echo $id_pelanggan ?>" hidden>
                             <input type="text" name="masalah" value="" hidden>
                             <input type="text" name="layanan" value="" hidden>
@@ -620,21 +620,21 @@
                             </div>
                             <div class="form-group">
                                 <label for="title">Judul Tugas</label>
-                                <input type="text" class="form-control" name="title" id="title" placeholder="Judul/Subject">
+                                <input type="text" class="form-control required" name="title" id="title" placeholder="Judul/Subject">
                                 <?= form_error('title', '<span class="text-danger">', '</span>') ?>
                             </div>
                             <div class="form-group">
                                 <label for="dateline">Deadline</label>
                                 <div class="input-group">
-                                    <input type="text" class="js-datepicker form-control" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true"  >
                                     <span class="input-group-text input-group-text-alt">
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
+                                    <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true"  >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
-                                <textarea class="form-control" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
+                                <textarea class="form-control required" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
                                 <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
                             </div>
                             <div style="float:right;margin-bottom:3%">
@@ -683,6 +683,19 @@
         -->
     <script src="<?php echo base_url('assets/oneui/js/oneui.core.min.js') ?>"></script>
 
+    <!-- validasi form -->
+    <script src="<?php echo base_url('assets/oneui/js/plugins/jquery-validation/jquery.validate.js') ?>"></script>
+    <script>
+        $(document).ready(function(){
+            $("#form-staff").validate();
+            });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $("#form-tiket").validate();
+            });
+    </script>
+    <!-- akhir validasi form -->
 
     <!--
             OneUI JS

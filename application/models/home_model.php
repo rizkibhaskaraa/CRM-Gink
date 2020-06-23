@@ -9,6 +9,14 @@ class home_model extends CI_model
         return $this->db->get_where("employe", array("id_employ" => $id_employ))->row_array();
     }
 
+    public function getuser($id_employ){
+        return $this->db->get_where("user",array("id_employ"=>$id_employ))->row_array();
+    }
+
+    public function getemploytiket($id_employ){
+        return $this->db->get_where("employe",array("id_employ"=>$id_employ))->row_array();
+    }
+
     public function getpelanggan()
     {
         return $this->db->get("pelanggan")->result_array();
@@ -36,17 +44,22 @@ class home_model extends CI_model
     {
         return $this->db->get_where('task', array('id_employ_kirim' => $id_employ))->result_array();
     }
-    public function gettaskumum()
-    {
-        $this->db->order_by('dateline', 'ASC');
-        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
-        return $this->db->get_where('task', array('nama_dept_tujuan' => 'umum'))->result_array();
-    }
     public function gettaskdihead($nama_departemen)
-    {
+    {   
+        $departemen = array($nama_departemen,"umum");
+        $this->db->order_by('status', 'ASC');
         $this->db->order_by('dateline', 'ASC');
         $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
-        return $this->db->get_where('task', array('nama_dept_tujuan' => $nama_departemen))->result_array();
+        $this->db->where_in('nama_dept_tujuan', $departemen);
+        return $this->db->get('task')->result_array();
+    }
+    public function gettaskdiheadkosong($nama_departemen)
+    {   
+        $departemen = array($nama_departemen,"umum");
+        $this->db->order_by('status', 'ASC');
+        $this->db->order_by('dateline', 'ASC');
+        $this->db->where_in('nama_dept_tujuan', $departemen);
+        return $this->db->get('task')->result_array();
     }
     public function updatestatus($id)
     {
@@ -79,5 +92,9 @@ class home_model extends CI_model
         }
         $this->db->like('customer', $search);
         return $this->db->get("pelanggan")->result_array();
+    }
+
+    public function insert_task($data_task){
+        return $this->db->insert("task",$data_task);
     }
 }

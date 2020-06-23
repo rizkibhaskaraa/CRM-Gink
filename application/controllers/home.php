@@ -35,7 +35,7 @@ class Home extends CI_Controller
         $data["taskselesai"] = $this->home_model->gettaskselesai($employ["id_employ"]);
         $data["taskbelum"] = $this->home_model->gettaskbelum($employ["id_employ"]);
         $data["taskdihead"] = $this->home_model->gettaskdihead($departemen["nama_departemen"]);
-        $data["taskumumdihead"] = $this->home_model->gettaskumum();
+        $data["taskdiheadkosong"] = $this->home_model->gettaskdiheadkosong($departemen["nama_departemen"]);
         $data["tiket"] = $this->home_model->gettiket($employ["id_employ"]);
         $this->load->view('home/home', $data);
     }
@@ -71,5 +71,68 @@ class Home extends CI_Controller
         $id_pelanggan = $this->input->get('id');
         $data = $this->home_model->getpelangganbyid($id_pelanggan);
         echo json_encode($data);
+    }
+
+    public function addtiket($id_employ)
+    {
+        date_default_timezone_set('Asia/Bangkok');
+
+        $employ = $this->home_model->getemploytiket($id_employ);
+        $departemen = $this->home_model->getdepartemen($employ["id_departemen"]);
+
+        //validasi form
+        $this->form_validation->set_rules('title', 'Judul', 'required|trim');
+        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
+        //akhir validasi form
+
+        if ($this->form_validation->run() == false) {
+            $data["id_employ"] = $id_employ;
+            redirect(base_url('index.php/home/index/'));
+        } else {
+            //menentukan departemen tujuan
+            $masalah = $this->input->post("masalah");
+            if ($masalah != null) {
+                if ($masalah == "umum") {
+                    $departemen_tujuan = "umum";
+                } else if ($masalah == "hosting" || $masalah == "billing") {
+                    $departemen_tujuan = "finance";
+                } else if ($masalah == "support") {
+                    $departemen_tujuan = "developer";
+                }
+                //jika CS yang buat tiket dari pelanggan
+                $data_task = array(
+                    "id_task" => rand(0001, 1000),
+                    "id_pelanggan" => $this->input->post("id_pelanggan"),
+                    "nama_dept_tujuan" => $departemen_tujuan,
+                    "id_employ_kirim" => $id_employ,
+                    "nama_dept_kirim" => $departemen["nama_departemen"],
+                    "title" => $this->input->post("title"),
+                    "deskripsi" => $this->input->post("deskripsi"),
+                    "kategori_masalah" => $masalah,
+                    "date" => date("Y-m-d H-i-s"),
+                    "dateline" => $this->input->post("dateline"),
+                    "status" => "Belum Selesai"
+                );
+                //akhir jika CS yang buat tiket dari pelanggan
+            } else {
+                $departemen_tujuan = $this->input->post("departemen");
+                //jika staff yang buat tiket untuk staff
+                $data_task = array(
+                    "id_task" => rand(0001, 1000),
+                    "nama_dept_tujuan" => $departemen_tujuan,
+                    "id_employ_kirim" => $id_employ,
+                    "nama_dept_kirim" => $departemen["nama_departemen"],
+                    "title" => $this->input->post("title"),
+                    "deskripsi" => $this->input->post("deskripsi"),
+                    "date" => date("Y-m-d H-i-s"),
+                    "dateline" => $this->input->post("dateline"),
+                    "status" => "Belum Selesai"
+                );
+                //akhir jika staff yang buat tiket untuk staff
+            }
+            //akhir menentukan departemen tujuan
+            $this->home_model->insert_task($data_task);
+            redirect(base_url('index.php/home/index/') . $user["username"]);
+        }
     }
 }

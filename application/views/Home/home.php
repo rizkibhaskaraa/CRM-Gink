@@ -243,7 +243,7 @@
                                 <?php foreach ($pelanggan as $value) { ?>
                                     <tbody>
                                         <tr>
-                                            <?php if ($value["id_employ_tujuan"] == NULL) { ?>
+                                            
                                                 <td class="text-center">
                                                     <span class="font-w600 ">#<?php echo $value["id_pelanggan"] ?></span>
                                                 </td>
@@ -262,7 +262,7 @@
                                                     <a href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"] ?>" onclick="datapelanggan(this,'CS');"><button class="btn btn-light"><i class="fa fa-plus fa-2x"></i></button></a>                         
                                                     <!-- <a class="text-decoration-none" href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"] ?>" onclick="datapelanggan(this,'CS');">+ tiket</a> -->
                                                 </td>
-                                            <?php } ?>
+                                            
                                         </tr>
                                     </tbody>
                                 <?php } ?>

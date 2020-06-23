@@ -135,4 +135,15 @@ class Home extends CI_Controller
             redirect(base_url('index.php/home/index/') . $user["username"]);
         }
     }
+
+    public function addpelanggan(){
+        $data_pelanggan = array(
+            "id_pelanggan" => rand(0001, 1000),
+            "customer" => $this->input->post("customer"),
+            "layanan" => $this->input->post("layanan"),
+            "status" => "Aktif"
+        );
+        $this->home_model->insert_pelanggan($data_pelanggan);
+        redirect(base_url('index.php/home/index/') . $user["username"]);
+    }
 }

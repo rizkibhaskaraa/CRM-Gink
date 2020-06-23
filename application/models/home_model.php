@@ -97,4 +97,7 @@ class home_model extends CI_model
     public function insert_task($data_task){
         return $this->db->insert("task",$data_task);
     }
+    public function insert_pelanggan($data_pelanggan){
+        return $this->db->insert("pelanggan",$data_pelanggan);
+    }
 }

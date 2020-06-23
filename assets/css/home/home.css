@@ -17,8 +17,10 @@
 .data-pelanggan, .belum-selesai, .sudah-selesai, .req-tugas{
     margin-top: 5%;
 }
-
+.tambah_pelanggan{
+    float: left;
+}
 .search,.layanan,.status-pelanggan{
     float: right;
-    margin-bottom: 1%;
+    margin: 1%;
 }

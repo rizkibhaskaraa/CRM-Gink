@@ -212,6 +212,9 @@
                         <div class="block-header border-bottom">
                             <h3 class="block-title text-primary">Data Pelanggan</h3>
                         </div>
+                        <a class="btn btn-primary mt-3 ml-4 tambah_pelanggan" data-toggle="modal" data-target="#modal-block-large-pelanggan" href="">
+                            <i class="fa fa-plus mr-1"></i> Pelanggan
+                        </a>
                         <input type="text" id="search" class="form-control col-2 search  mt-3 ml-2 mr-4" name="search" placeholder="Cari Customer">
                         <select name="layanan" id="layanan" class="form-control col-2 layanan  mt-3  ml-2">
                             <option value="semua">Semua Layanan</option>
@@ -586,7 +589,46 @@
                             </div>
                             <div style="float:right;margin-bottom:3%">
                                 <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
-                                
+                                <button type="submit" class="btn btn-primary">Buat</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- akhir pop up tiket staff -->
+    <!-- pop up tambah pelanggan -->
+    <div class="modal fade" id="modal-block-large-pelanggan" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="block block-themed block-transparent mb-0">
+                    <div class="block-header bg-primary-dark">
+                        <h3 class="block-title">Tambah Pelanggan</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                <i class="fa fa-fw fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content font-size-sm mt-3 text-justify ">
+                        <h4>Isi Data Dibawah Ini dengan Lengkap Untuk Menambah Pelanggan</h4>
+                        <form action="<?php echo base_url('index.php/home/addpelanggan/')?>" method="POST" id="form-pelanggan">
+                            <div class="form-group">
+                                <label for="title">Customer</label>
+                                <input type="text" class="form-control required" name="customer" id="customer" placeholder="Nama Customer">
+                            </div>
+                            <div class="form-group">
+                                <label for="layanan">Jenis Layanan</label>
+                                <select name="layanan" id="layanan" class="form-control">
+                                    <option value="Website">Website</option>
+                                    <option value="APP Website">APP Website</option>
+                                    <option value="Mobile">Mobile</option>
+                                    <option value="Aplikasi Desktop">Aplikasi Desktop</option>
+                                </select>
+                            </div>
+                            <div style="float:right;margin-bottom:3%">
+                                <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
                                 <button type="submit" class="btn btn-primary">Buat</button>
                                 
                             </div>
@@ -596,7 +638,7 @@
             </div>
         </div>
     </div>
-    <!-- akhir pop up tiket staff -->
+    <!-- akhir pop up tambah pelanggan -->
     <!-- Footer -->
     <footer id="page-footer" class="bg-body-light">
         <div class="content py-3">
@@ -636,11 +678,12 @@
         $(document).ready(function(){
             $("#form-staff").validate();
             });
-    </script>
-    <script>
+        $(document).ready(function(){
+            $("#form-pelanggan").validate();
+        })
         $(document).ready(function(){
             $("#form-tiket").validate();
-            });
+        });
     </script>
     <!-- akhir validasi form -->
 

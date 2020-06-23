@@ -284,21 +284,21 @@
                             <table class="table table-striped table-hover table-bordered table-vcenter font-size-sm mb-0" id="tabel-pelanggan">
                                 <thead class="thead-dark">
                                     <tr class="text-uppercase">
-                                        <th class="font-w700 text-center" style="width: 80px;">#ID</th>
-                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 100px;">Layanan</th>
-                                        <th class="font-w700 text-center">Customer</th>
-                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 200px;">Status</th>
-                                        <th class="font-w700 text-center" style="width: 60px;">+Tiket</th>
+                                        <th class="font-w700 text-center" style="width: 10%;">#ID</th>
+                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Layanan</th>
+                                        <th class="font-w700 text-center" style="width: 40%;">Customer</th>
+                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 15%;">Status</th>
+                                        <th class="font-w700 text-center" style="width: 15%;">+Tiket</th>
                                     </tr>
                                 </thead>
                                 <?php foreach ($pelanggan as $value) { ?>
                                     <tbody>
                                         <tr>
                                             <?php if ($value["id_employ_tujuan"] == NULL) { ?>
-                                                <td>
-                                                    <span class="font-w600">#<?php echo $value["id_pelanggan"] ?></span>
+                                                <td class="text-center">
+                                                    <span class="font-w600 ">#<?php echo $value["id_pelanggan"] ?></span>
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <span class="font-w600"><?php echo $value["layanan"] ?></span>
                                                 </td>
                                                 <td class="text-center">
@@ -542,7 +542,7 @@
                         </div>
                     </div>
                     <div class="block-content font-size-sm mt-3 text-justify ">
-                        <h4>Isi data dibawah ini dengan lengkap untuk membuat tiket</h4>
+                        <h4>Isi Data Dibawah Ini dengan Lengkap Untuk Membuat Tiket</h4>
                         <form action="<?php echo base_url('index.php/tiket/addtiket/') . $employ_id ?>" method="POST" id="form-tiket">
                             <input type="text" name="id_pelanggan" id="id_pelanggan" value="123" hidden>
                             <div class="form-group">
@@ -582,8 +582,9 @@
                                 <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
                             </div>
                             <div style="float:right;margin-bottom:3%">
+                                <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
                                 <button type="submit" class="btn btn-primary">Buat</button>
-                                <button type="reset" class="btn btn-primary">Reset</button>
+                                
                             </div>
                         </form>
                     </div>

@@ -125,11 +125,11 @@
             <div class="tab-pane fade fade-up show active" id="request" role="tabpanel">
                 <div class="container-fluid">
                     <div class="block block-mode-loading-oneui">
-                        <div class="block-header border-bottom">
+                        <div class="block-header border-bottom ">
                             <h3 class="block-title text-primary">Request Tugas</h3>
                         </div>
                         <div class="block-content block-content-full">
-                            <table class="table table-striped table-hover table-bordered table-vcenter font-size-sm mb-0">
+                            <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
                                 <thead class="thead-dark">
                                     <tr class="text-uppercase">
                                         <th class="font-w700 text-center" style="width: 20%;">Title</th>
@@ -227,7 +227,7 @@
                         </select>
                         <input type="text" id="link" name="link" value="<?php echo base_url('index.php/home/search/') . $employ_id . "/" ?>" hidden>
                         <div class="block-content block-content-full">
-                            <table class="table table-striped table-hover table-bordered table-vcenter font-size-sm mb-0" id="tabel-pelanggan">
+                            <table class="table table-striped table-hover  table-vcenter font-size-sm mb-0" id="tabel-pelanggan">
                                 <thead class="thead-dark">
                                     <tr class="text-uppercase">
                                         <th class="font-w700 text-center" style="width: 10%;">#ID</th>
@@ -283,7 +283,7 @@
                                 <h3 class="block-title text-danger">Tugas Saya | Belum Selesai</h3>
                             </div>
                             <div class="block-content block-content-full">
-                                <table class="table table-striped table-hover table-bordered table-vcenter font-size-sm mb-0">
+                                <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
                                     <thead class="thead-dark">
                                         <tr class="text-uppercase">
                                             <th class="font-w700 text-center" style="width: 35%;">Title</th>
@@ -324,7 +324,7 @@
                                 <h3 class="block-title text-success">Tugas Saya | Selesai</h3>
                             </div>
                             <div class="block-content block-content-full">
-                                <table class="table table-striped table-hover table-bordered table-vcenter font-size-sm mb-0">
+                                <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
                                     <thead class="thead-dark">
                                         <tr class="text-uppercase">
                                             <th class="font-w700 text-center" style="width: 35%;">Title</th>
@@ -368,7 +368,7 @@
                         <h3 class="block-title text-danger">Tiket Saya | Belum Selesai</h3>
                     </div>
                     <div class="block-content block-content-full">
-                        <table class="table table-striped table-hover table-bordered table-vcenter font-size-sm mb-0">
+                        <table class="table table-striped table-hover  table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
                                     <th class="font-w700 text-center" style="width: 35%;">Title</th>
@@ -410,7 +410,7 @@
                         <h3 class="block-title text-success">Tiket Saya | Selesai</h3>
                     </div>
                     <div class="block-content block-content-full">
-                        <table class="table table-striped table-hover table-bordered table-vcenter font-size-sm mb-0">
+                        <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
                                     <th class="font-w700 text-center" style="width: 35%;">Title</th>

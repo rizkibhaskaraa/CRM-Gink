@@ -42,7 +42,7 @@
 
 <body>
     <!-- Right Section -->
-    <div class="d-flex align-items-center">
+    <div class="col-md-2 ml-auto px-4">
         <!-- User Dropdown -->
         <div class="dropdown d-inline-block ml-2">
             <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -142,7 +142,7 @@
                                     <tr >
                                      
                                     <td class="font-weight-bold  ">Deskripsi Task</td>
-                                    <td><textarea cols="50" rows="3" readonly value="<?php echo $task["deskripsi"] ?>"><?php echo $task["deskripsi"] ?></textarea></td>
+                                    <td><p >: <?php echo $task["deskripsi"] ?>"><?php echo $task["deskripsi"] ?></p></td>
                                     </tr>
                         
 

@@ -142,7 +142,7 @@
                                     <tr >
                                      
                                     <td class="font-weight-bold  ">Deskripsi Task</td>
-                                    <td><p >: <?php echo $task["deskripsi"] ?>"><?php echo $task["deskripsi"] ?></p></td>
+                                    <td><p >: <?php echo $task["deskripsi"] ?></p></td>
                                     </tr>
                         
 

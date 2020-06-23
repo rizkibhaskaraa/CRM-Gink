@@ -298,8 +298,8 @@
                                                 <td style="width: 35%;">
                                                     <span class="font-w600"><?php echo $value["title"] ?></span>
                                                 </td>
-                                                <td class="d-none d-sm-table-cell text-center" style="width: 35%;">
-                                                    <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
+                                                <td class="d-none d-sm-table-cell text-center font-w700" style="width: 35%;">
+                                                    <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
                                                 </td>
                                                 <td class="text-danger text-center" style="width: 15%;">
                                                     <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
@@ -339,8 +339,8 @@
                                                 <td style="width: 35%;">
                                                     <span class="font-w600"><?php echo $value["title"] ?></span>
                                                 </td>
-                                                <td class="d-none d-sm-table-cell text-center" style="width: 35%;">
-                                                    <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
+                                                <td class="d-none d-sm-table-cell text-center font-w700" style="width: 35%;">
+                                                    <span class="font-size-sm"><?php echo $value["dateline"] ?></span>
                                                 </td>
                                                 <td class="text-success text-center" style="width: 15%;">
                                                     <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span>
@@ -384,8 +384,8 @@
                                             <td style="width: 35%;">
                                                 <span class="font-w600"><?php echo $value["title"] ?></span>
                                             </td>
-                                            <td class="d-none d-sm-table-cell text-center" style="width: 35%;">
-                                                <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
+                                            <td class="d-none d-sm-table-cell text-center font-w700" style="width: 35%;">
+                                                <span class="font-size-sm"><?php echo $value["dateline"] ?></span>
                                             </td>
                                             <td class=" text-center" style="width: 15%;">
                                                 <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
@@ -429,7 +429,7 @@
                                                 <span class="font-w600"><?php echo $value["title"] ?></span>
                                             </td>
                                             <td class="d-none d-sm-table-cell text-center style=" style="width: 15%">
-                                                <span class="font-size-sm text-muted"><?php echo $value["dateline"] ?></span>
+                                                <span class="font-size-sm font-w700"><?php echo $value["dateline"] ?></span>
                                             </td>
                                             <td class="text-success text-center" style="width: 15%;">
                                                 <span class="font-w600 "><?php echo $value["waktu_selesai"] ?></span>

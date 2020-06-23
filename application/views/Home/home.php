@@ -105,8 +105,8 @@
     <!-- request task,pelanggan,tugas selesai,tugas Belum Selesai,tiket selesai,tiket Belum Selesai -->
     <ul class="nav nav-tabs nav-tabs-block ml-3 px-3 mt-3" data-toggle="tabs" role="tablist">
         <?php if ($status == "kepala") { ?>
-            <li class="nav-item">
-                <a style="background-color:lavender" class="nav-link" href="#request">Request Tugas</a>
+            <li style="background-color:lavender" class="nav-item">
+                <a class="nav-link" href="#request">Request Tugas</a>
             </li>
         <?php }
         if ($employ_dept == "CS") { ?>
@@ -115,11 +115,11 @@
             </li>
         <?php } ?>
         </li>
-        <li class="nav-item">
-            <a style="background-color:lavender" class="nav-link" href="#tugas">Tugas Saya</a>
+        <li style="background-color:lavender" class="nav-item" >
+            <a class="nav-link" href="#tugas">Tugas Saya</a>
         </li>
-        <li class="nav-item">
-            <a style="background-color:lavender" class="nav-link" href="#tiket">Tiket Saya</a>
+        <li style="background-color:lavender" class="nav-item">
+            <a class="nav-link" href="#tiket">Tiket Saya</a>
         </li>
     </ul>
     <div class="block-content tab-content overflow-hidden">

@@ -104,6 +104,9 @@
             <li style="background-color:lavender" class="nav-item">
                 <a class="nav-link" href="#request">Request Tugas</a>
             </li>
+            <li style="background-color:lavender" class="nav-item">
+                <a class="nav-link" href="#report">Report Staff</a>
+            </li>
         <?php }
         if ($employ_dept == "CS") { ?>
             <li style="background-color:lavender" class="nav-item">
@@ -120,7 +123,7 @@
     </ul>
     <!-- akhir navigasi bar pilih tabel -->
     <div class="block-content tab-content overflow-hidden">
-        <!-- Request Task -->
+        <!-- Request Task dan report -->
         <?php if ($status == "kepala") { ?>
             <div class="tab-pane fade fade-up show active" id="request" role="tabpanel">
                 <div class="container-fluid">
@@ -202,8 +205,81 @@
                     </div>
                 </div>
             </div>
+            <div class="tab-pane fade fade-up" id="report" role="tabpanel">
+                <div class="container-fluid">
+                    <div class="block block-mode-loading-oneui">
+                        <div class="block-header border-bottom ">
+                            <h3 class="block-title text-primary">Report Staff</h3>
+                        </div>
+                        <input type="text" id="tgl-end" class="form-control col-2 search  mt-3 ml-2 mr-4" name="egl-end" placeholder="Tanggal End">
+                        <h1 class="search"><i class="far fa-window-minimize"></i></h1>
+                        <input type="text" id="tgl-start" class="form-control col-2 search  mt-3 ml-2 mr-2" name="tgl-mulai" placeholder="Tanggal Start">
+                        <div class="block-content block-content-full">
+                            <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
+                                <thead class="thead-dark">
+                                    <tr class="text-uppercase">
+                                        <th class="font-w700 text-center" style="width: 35%;">Nama</th>
+                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Request Tugas</th>
+                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Selesai</th>
+                                        <th class="font-w700 text-center" style="width:15%" ;>Pending / On Progress</th>
+                                    </tr>
+                                </thead>
+                                <?php $employe = [];
+                                foreach ($report as $value) { ?>
+                                    <tbody>
+                                    <?php foreach ($tugas_selesai as $value2) { 
+                                            if($value2["nama"]==$value["nama"]){
+                                                array_push($employe, $value["nama"]);?>
+                                                <tr>
+                                                            <td>
+                                                                <span class="font-w600"><?php echo $value["nama"]?></span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <span class="font-w600"><?php echo $value["count(task.status)"]?> Tugas</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <span class="font-w600 text-success"><?php echo $value2["count(task.status)"]?> Tugas</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <span class="font-w600 text-danger"><?php echo $value["count(task.status)"]-$value2["count(task.status)"]?> Tugas</span>
+                                                            </td>
+                                                </tr>
+                                        <?php       
+                                            }
+                                        }?>
+                                    </tbody>
+                                <?php } ?>
+                                <?php foreach ($report as $value) { ?>
+                                    <tbody>
+                                    <?php foreach ($tugas_belum as $value2) { 
+                                            if($value2["nama"]==$value["nama"] && !in_array($value["nama"], $employe)){
+                                                array_push($employe, $value["nama"]);?>
+                                                <tr>
+                                                            <td>
+                                                                <span class="font-w600"><?php echo $value["nama"]?></span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <span class="font-w600"><?php echo $value["count(task.status)"]?> Tugas</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <span class="font-w600 text-success"><?php echo $value["count(task.status)"]-$value2["count(task.status)"]?> Tugas</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <span class="font-w600 text-danger"><?php echo $value2["count(task.status)"]?> Tugas</span>
+                                                            </td>
+                                                </tr>
+                                        <?php       
+                                            }
+                                        }?>
+                                    </tbody>
+                                <?php } ?>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         <?php } ?>
-        <!-- END Request Task -->
+        <!-- END Request Task dan report-->
         <!-- pelanggan -->
         <?php if ($employ_dept == "CS") { ?>
             <div class="tab-pane fade fade-up show active" id="pelanggan" role="tabpanel">
@@ -212,9 +288,6 @@
                         <div class="block-header border-bottom">
                             <h3 class="block-title text-primary">Data Pelanggan</h3>
                         </div>
-                        <a class="btn btn-primary mt-3 ml-4 tambah_pelanggan" data-toggle="modal" data-target="#modal-block-large-pelanggan" href="">
-                            <i class="fa fa-plus mr-1"></i> Pelanggan
-                        </a>
                         <input type="text" id="search" class="form-control col-2 search  mt-3 ml-2 mr-4" name="search" placeholder="Cari Customer">
                         <select name="layanan" id="layanan" class="form-control col-2 layanan  mt-3  ml-2">
                             <option value="semua">Semua Layanan</option>
@@ -254,30 +327,10 @@
                                                     <span class="font-w600"><?php echo $value["customer"] ?></span>
                                                 </td>
                                                 <?php if ($value["status"] == "Tidak Aktif") { ?>
-                                                    <td class="text-center">
-                                                        <a href="" id="<?php echo $value["id_pelanggan"] ?>" data-toggle="modal" data-target="#modal-block-large-edit_status_pelanggan" style="text-decoration:none" onclick="idpelanggan(this);">
-                                                            <span class="font-w600   btn-sm btn-block btn-danger ">
-                                                                <i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?>
-                                                            </span>
-                                                        </a>
-                                                    </td>
-                                                <?php } else if ($value["status"] == "Aktif") { ?>
-                                                    <td class="text-center">
-                                                        <a href="" id="<?php echo $value["id_pelanggan"] ?>" data-toggle="modal" data-target="#modal-block-large-edit_status_pelanggan" style="text-decoration:none" onclick="idpelanggan(this);">
-                                                            <span class="font-w600   btn-sm btn-block btn-success">
-                                                                <i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?>  
-                                                            </span>
-                                                        </a>
-                                                    </td>
+                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span></td>
                                                 <?php } else { ?>
-                                                    <td class="text-center">
-                                                        <a href="" id="<?php echo $value["id_pelanggan"] ?>" data-toggle="modal" data-target="#modal-block-large-edit_status_pelanggan" style="text-decoration:none" onclick="idpelanggan(this);">
-                                                            <span class="font-w600   btn-sm btn-block btn-primary">
-                                                                <i class="fa fa-cog"></i> <?php echo $value["status"] ?>
-                                                            </span>
-                                                        </a>
-                                                    </td>
-                                                <?php }?>
+                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span></td>
+                                                <?php } ?>
                                                 <td class="text-center">
                                                     <a href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"] ?>" onclick="datapelanggan(this,'CS');"><button class="btn btn-light"><i class="fa fa-plus fa-2x"></i></button></a>                         
                                                     <!-- <a class="text-decoration-none" href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"] ?>" onclick="datapelanggan(this,'CS');">+ tiket</a> -->
@@ -609,7 +662,9 @@
                             </div>
                             <div style="float:right;margin-bottom:3%">
                                 <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
+                                
                                 <button type="submit" class="btn btn-primary">Buat</button>
+                                
                             </div>
                         </form>
                     </div>
@@ -618,91 +673,6 @@
         </div>
     </div>
     <!-- akhir pop up tiket staff -->
-    <!-- pop up tambah pelanggan -->
-    <div class="modal fade" id="modal-block-large-pelanggan" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="block block-themed block-transparent mb-0">
-                    <div class="block-header bg-primary-dark">
-                        <h3 class="block-title">Tambah Pelanggan</h3>
-                        <div class="block-options">
-                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
-                                <i class="fa fa-fw fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="block-content font-size-sm mt-3 text-justify ">
-                        <h4>Isi Data Dibawah Ini dengan Lengkap Untuk Menambah Pelanggan</h4>
-                        <form action="<?php echo base_url('index.php/home/addpelanggan/')?>" method="POST" id="form-pelanggan">
-                            <div class="form-group">
-                                <label for="title">Customer</label>
-                                <input type="text" class="form-control required" name="customer" id="customer" placeholder="Nama Customer">
-                            </div>
-                            <div class="form-group">
-                                <label for="layanan">Jenis Layanan</label>
-                                <select name="layanan" id="layanan" class="form-control">
-                                    <option value="Website">Website</option>
-                                    <option value="APP Website">APP Website</option>
-                                    <option value="Mobile">Mobile</option>
-                                    <option value="Aplikasi Desktop">Aplikasi Desktop</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="status">Status</label>
-                                <select name="status_customer" id="status_customer" class="form-control">
-                                    <option value="Pending">Pending</option>
-                                    <option value="Aktif">Aktif</option>
-                                    <option value="Tidak Aktif">Tidak Aktif</option>
-                                </select>
-                            </div>
-                            <div style="float:right;margin-bottom:3%">
-                                <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
-                                <button type="submit" class="btn btn-primary">Tambah</button>
-                                
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- akhir pop up tambah pelanggan -->
-    <!-- pop up update status pelanggan -->
-    <div class="modal fade" id="modal-block-large-edit_status_pelanggan" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="block block-themed block-transparent mb-0">
-                    <div class="block-header bg-primary-dark">
-                        <h3 class="block-title">Edit Status Pelanggan</h3>
-                        <div class="block-options">
-                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
-                                <i class="fa fa-fw fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="block-content font-size-sm mt-3 text-justify ">
-                        <form action="<?php echo base_url('index.php/home/editpelanggan/')?>" method="POST" id="form-pelanggan">
-                            <input type="text" name="id_pelanggan" id="id_pelanggan" hidden>
-                            <div class="form-group">
-                                <label for="status_pelanggan">Status Pelanggan</label>
-                                <select name="status_pelanggan" id="status_pelanggan" class="form-control">
-                                    <option value="Pending">Pending</option>
-                                    <option value="Aktif">Aktif</option>
-                                    <option value="Tidak Aktif">Tidak Aktif</option>
-                                </select>
-                            </div>
-                            <div style="float:right;margin-bottom:3%">
-                                <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- akhir pop up update status pelanggan -->
     <!-- Footer -->
     <footer id="page-footer" class="bg-body-light">
         <div class="content py-3">
@@ -742,16 +712,11 @@
         $(document).ready(function(){
             $("#form-staff").validate();
             });
-        $(document).ready(function(){
-            $("#form-pelanggan").validate();
-        })
+    </script>
+    <script>
         $(document).ready(function(){
             $("#form-tiket").validate();
-        });
-        function idpelanggan(aref) {
-            var id_pelanggan = aref.id;
-            $('input[name="id_pelanggan"]').val(id_pelanggan);
-        }
+            });
     </script>
     <!-- akhir validasi form -->
 

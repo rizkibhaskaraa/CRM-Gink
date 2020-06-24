@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+//error_reporting(0);
 class home_model extends CI_model
 {
     public function getemploy($user)
@@ -75,19 +75,6 @@ class home_model extends CI_model
         $user = $this->db->get_where("user", array("id_employ" => $employ["id_employ"]))->row_array();
         return $user["username"];
     }
-
-    public function updatestatuspelanggan($id,$status)
-    {
-        $this->db->set('status', $status);
-        $this->db->where('id_pelanggan', $id);
-        $this->db->update('pelanggan');
-
-        $task = $this->db->get_where("task", array("id_task" => $id))->row_array();
-        $employ = $this->db->get_where("employe", array("id_employ" => $task["id_employ_tujuan"]))->row_array();
-        $user = $this->db->get_where("user", array("id_employ" => $employ["id_employ"]))->row_array();
-        return $user["username"];
-    }
-
     public function getsearch($layanan, $status, $search)
     {
         if ($layanan == "semua") {
@@ -110,7 +97,34 @@ class home_model extends CI_model
     public function insert_task($data_task){
         return $this->db->insert("task",$data_task);
     }
-    public function insert_pelanggan($data_pelanggan){
-        return $this->db->insert("pelanggan",$data_pelanggan);
+
+    public function getreport($dept){
+        $this->db->where("nama_dept_tujuan", $dept);
+        $this->db->select("count(task.status),id_employ_tujuan,nama");
+        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
+        $this->db->group_by("id_employ_tujuan");
+        return $this->db->get("task")->result_array();
+    }
+
+    public function gettugaspjselesai($dept)
+    {
+        $this->db->where("nama_dept_tujuan", $dept);
+        $this->db->where("task.status", "Selesai");
+        $this->db->where_not_in("id_employ_tujuan", "");
+        $this->db->select("count(task.status),id_employ_tujuan,nama");
+        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
+        $this->db->group_by("id_employ_tujuan");
+        return $this->db->get("task")->result_array();
+    }
+
+    public function gettugaspjbelum($dept)
+    {
+        $this->db->where("nama_dept_tujuan", $dept);
+        $this->db->where("task.status", "Belum Selesai");
+        $this->db->where_not_in("id_employ_tujuan", "");
+        $this->db->select("count(task.status),id_employ_tujuan,nama");
+        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
+        $this->db->group_by("id_employ_tujuan");
+        return $this->db->get("task")->result_array();
     }
 }

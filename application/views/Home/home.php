@@ -211,9 +211,9 @@
                         <div class="block-header border-bottom ">
                             <h3 class="block-title text-primary">Report Staff</h3>
                         </div>
-                        <input type="text" id="tgl-end" class="form-control col-2 search  mt-3 ml-2 mr-4" name="egl-end" placeholder="Tanggal End">
+                        <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-end" id="tgl-end" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal End">
                         <h1 class="search"><i class="far fa-window-minimize"></i></h1>
-                        <input type="text" id="tgl-start" class="form-control col-2 search  mt-3 ml-2 mr-2" name="tgl-mulai" placeholder="Tanggal Start">
+                        <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-start" id="tgl-start" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal Start">
                         <div class="block-content block-content-full">
                             <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
                                 <thead class="thead-dark">

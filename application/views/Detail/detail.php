@@ -154,6 +154,11 @@
 
                                     <tr>
                                         
+                                        <td class="font-weight-bold">Departemen Tujuan</td>
+                                        <td>: <?php echo $task["nama_dept_tujuan"] ?></td>
+                                        </tr>
+                                    <tr>
+                                        
                                     <td class="font-weight-bold">Deadline</td>
                                     <td>: <?php echo $task["dateline"] ?></td>
                                 </tr>

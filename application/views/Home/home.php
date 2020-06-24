@@ -104,6 +104,9 @@
             <li style="background-color:lavender" class="nav-item">
                 <a class="nav-link" href="#request">Request Tugas</a>
             </li>
+            <li style="background-color:lavender" class="nav-item">
+                <a class="nav-link" href="#report">Report Staff</a>
+            </li>
         <?php }
         if ($employ_dept == "CS") { ?>
             <li style="background-color:lavender" class="nav-item">
@@ -120,7 +123,7 @@
     </ul>
     <!-- akhir navigasi bar pilih tabel -->
     <div class="block-content tab-content overflow-hidden">
-        <!-- Request Task -->
+        <!-- Request Task dan report -->
         <?php if ($status == "kepala") { ?>
             <div class="tab-pane fade fade-up show active" id="request" role="tabpanel">
                 <div class="container-fluid">
@@ -202,8 +205,81 @@
                     </div>
                 </div>
             </div>
+            <div class="tab-pane fade fade-up" id="report" role="tabpanel">
+                <div class="container-fluid">
+                    <div class="block block-mode-loading-oneui">
+                        <div class="block-header border-bottom ">
+                            <h3 class="block-title text-primary">Report Staff</h3>
+                        </div>
+                        <input type="text" id="tgl-end" class="form-control col-2 search  mt-3 ml-2 mr-4" name="egl-end" placeholder="Tanggal End">
+                        <h1 class="search"><i class="far fa-window-minimize"></i></h1>
+                        <input type="text" id="tgl-start" class="form-control col-2 search  mt-3 ml-2 mr-2" name="tgl-mulai" placeholder="Tanggal Start">
+                        <div class="block-content block-content-full">
+                            <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
+                                <thead class="thead-dark">
+                                    <tr class="text-uppercase">
+                                        <th class="font-w700 text-center" style="width: 35%;">Nama</th>
+                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Request Tugas</th>
+                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Selesai</th>
+                                        <th class="font-w700 text-center" style="width:15%" ;>Pending / On Progress</th>
+                                    </tr>
+                                </thead>
+                                <?php $employe = [];
+                                foreach ($report as $value) { ?>
+                                    <tbody>
+                                    <?php foreach ($tugas_selesai as $value2) { 
+                                            if($value2["nama"]==$value["nama"]){
+                                                array_push($employe, $value["nama"]);?>
+                                                <tr>
+                                                            <td>
+                                                                <span class="font-w600"><?php echo $value["nama"]?></span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <span class="font-w600"><?php echo $value["count(task.status)"]?> Tugas</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <span class="font-w600 text-success"><?php echo $value2["count(task.status)"]?> Tugas</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <span class="font-w600 text-danger"><?php echo $value["count(task.status)"]-$value2["count(task.status)"]?> Tugas</span>
+                                                            </td>
+                                                </tr>
+                                        <?php       
+                                            }
+                                        }?>
+                                    </tbody>
+                                <?php } ?>
+                                <?php foreach ($report as $value) { ?>
+                                    <tbody>
+                                    <?php foreach ($tugas_belum as $value2) { 
+                                            if($value2["nama"]==$value["nama"] && !in_array($value["nama"], $employe)){
+                                                array_push($employe, $value["nama"]);?>
+                                                <tr>
+                                                            <td>
+                                                                <span class="font-w600"><?php echo $value["nama"]?></span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <span class="font-w600"><?php echo $value["count(task.status)"]?> Tugas</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <span class="font-w600 text-success"><?php echo $value["count(task.status)"]-$value2["count(task.status)"]?> Tugas</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <span class="font-w600 text-danger"><?php echo $value2["count(task.status)"]?> Tugas</span>
+                                                            </td>
+                                                </tr>
+                                        <?php       
+                                            }
+                                        }?>
+                                    </tbody>
+                                <?php } ?>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         <?php } ?>
-        <!-- END Request Task -->
+        <!-- END Request Task dan report-->
         <!-- pelanggan -->
         <?php if ($employ_dept == "CS") { ?>
             <div class="tab-pane fade fade-up show active" id="pelanggan" role="tabpanel">
@@ -250,7 +326,7 @@
                                                 <td class="text-center">
                                                     <span class="font-w600"><?php echo $value["customer"] ?></span>
                                                 </td>
-                                                <?php if ($value["status"] == "tidak aktif") { ?>
+                                                <?php if ($value["status"] == "Tidak Aktif") { ?>
                                                     <td class="text-center"><span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span></td>
                                                 <?php } else { ?>
                                                     <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span></td>

@@ -108,4 +108,6 @@ class detail_model extends CI_model
     {
         return $this->db->get_where("employe", array("id_departemen" => $dept))->result_array();
     }
+
+    
 }

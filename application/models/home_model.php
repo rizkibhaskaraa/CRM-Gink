@@ -75,6 +75,19 @@ class home_model extends CI_model
         $user = $this->db->get_where("user", array("id_employ" => $employ["id_employ"]))->row_array();
         return $user["username"];
     }
+
+    public function updatestatuspelanggan($id,$status)
+    {
+        $this->db->set('status', $status);
+        $this->db->where('id_pelanggan', $id);
+        $this->db->update('pelanggan');
+
+        $task = $this->db->get_where("task", array("id_task" => $id))->row_array();
+        $employ = $this->db->get_where("employe", array("id_employ" => $task["id_employ_tujuan"]))->row_array();
+        $user = $this->db->get_where("user", array("id_employ" => $employ["id_employ"]))->row_array();
+        return $user["username"];
+    }
+
     public function getsearch($layanan, $status, $search)
     {
         if ($layanan == "semua") {

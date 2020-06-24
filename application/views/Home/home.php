@@ -253,11 +253,31 @@
                                                 <td class="text-center">
                                                     <span class="font-w600"><?php echo $value["customer"] ?></span>
                                                 </td>
-                                                <?php if ($value["status"] == "tidak aktif") { ?>
-                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span></td>
+                                                <?php if ($value["status"] == "Tidak Aktif") { ?>
+                                                    <td class="text-center">
+                                                        <a href="" id="<?php echo $value["id_pelanggan"] ?>" data-toggle="modal" data-target="#modal-block-large-edit_status_pelanggan" style="text-decoration:none" onclick="idpelanggan(this);">
+                                                            <span class="font-w600   btn-sm btn-block btn-danger ">
+                                                                <i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?>
+                                                            </span>
+                                                        </a>
+                                                    </td>
+                                                <?php } else if ($value["status"] == "Aktif") { ?>
+                                                    <td class="text-center">
+                                                        <a href="" id="<?php echo $value["id_pelanggan"] ?>" data-toggle="modal" data-target="#modal-block-large-edit_status_pelanggan" style="text-decoration:none" onclick="idpelanggan(this);">
+                                                            <span class="font-w600   btn-sm btn-block btn-success">
+                                                                <i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?>  
+                                                            </span>
+                                                        </a>
+                                                    </td>
                                                 <?php } else { ?>
-                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span></td>
-                                                <?php } ?>
+                                                    <td class="text-center">
+                                                        <a href="" id="<?php echo $value["id_pelanggan"] ?>" data-toggle="modal" data-target="#modal-block-large-edit_status_pelanggan" style="text-decoration:none" onclick="idpelanggan(this);">
+                                                            <span class="font-w600   btn-sm btn-block btn-primary">
+                                                                <i class="fa fa-cog"></i> <?php echo $value["status"] ?>
+                                                            </span>
+                                                        </a>
+                                                    </td>
+                                                <?php }?>
                                                 <td class="text-center">
                                                     <a href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"] ?>" onclick="datapelanggan(this,'CS');"><button class="btn btn-light"><i class="fa fa-plus fa-2x"></i></button></a>                         
                                                     <!-- <a class="text-decoration-none" href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"] ?>" onclick="datapelanggan(this,'CS');">+ tiket</a> -->
@@ -627,9 +647,17 @@
                                     <option value="Aplikasi Desktop">Aplikasi Desktop</option>
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <select name="status_customer" id="status_customer" class="form-control">
+                                    <option value="Pending">Pending</option>
+                                    <option value="Aktif">Aktif</option>
+                                    <option value="Tidak Aktif">Tidak Aktif</option>
+                                </select>
+                            </div>
                             <div style="float:right;margin-bottom:3%">
                                 <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
-                                <button type="submit" class="btn btn-primary">Buat</button>
+                                <button type="submit" class="btn btn-primary">Tambah</button>
                                 
                             </div>
                         </form>
@@ -639,6 +667,42 @@
         </div>
     </div>
     <!-- akhir pop up tambah pelanggan -->
+    <!-- pop up update status pelanggan -->
+    <div class="modal fade" id="modal-block-large-edit_status_pelanggan" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="block block-themed block-transparent mb-0">
+                    <div class="block-header bg-primary-dark">
+                        <h3 class="block-title">Edit Status Pelanggan</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                <i class="fa fa-fw fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content font-size-sm mt-3 text-justify ">
+                        <form action="<?php echo base_url('index.php/home/editpelanggan/')?>" method="POST" id="form-pelanggan">
+                            <input type="text" name="id_pelanggan" id="id_pelanggan" hidden>
+                            <div class="form-group">
+                                <label for="status_pelanggan">Status Pelanggan</label>
+                                <select name="status_pelanggan" id="status_pelanggan" class="form-control">
+                                    <option value="Pending">Pending</option>
+                                    <option value="Aktif">Aktif</option>
+                                    <option value="Tidak Aktif">Tidak Aktif</option>
+                                </select>
+                            </div>
+                            <div style="float:right;margin-bottom:3%">
+                                <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- akhir pop up update status pelanggan -->
     <!-- Footer -->
     <footer id="page-footer" class="bg-body-light">
         <div class="content py-3">
@@ -684,6 +748,10 @@
         $(document).ready(function(){
             $("#form-tiket").validate();
         });
+        function idpelanggan(aref) {
+            var id_pelanggan = aref.id;
+            $('input[name="id_pelanggan"]').val(id_pelanggan);
+        }
     </script>
     <!-- akhir validasi form -->
 

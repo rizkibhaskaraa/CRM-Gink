@@ -46,6 +46,14 @@ class Home extends CI_Controller
         redirect(base_url('index.php/home/index/') . $user);
     }
 
+    public function editpelanggan()
+    {   
+        $id = $this->input->post("id_pelanggan");
+        $status = $this->input->post("status_pelanggan");
+        $user = $this->home_model->updatestatuspelanggan($id,$status);
+        redirect(base_url('index.php/home/index/') . $user);
+    }
+
     public function detail($id, $task, $cekTabel)
     {
         if (!isset($_SESSION["login"])) {
@@ -141,7 +149,7 @@ class Home extends CI_Controller
             "id_pelanggan" => rand(0001, 1000),
             "customer" => $this->input->post("customer"),
             "layanan" => $this->input->post("layanan"),
-            "status" => "Aktif"
+            "status" => $this->input->post("status_customer")
         );
         $this->home_model->insert_pelanggan($data_pelanggan);
         redirect(base_url('index.php/home/index/') . $user["username"]);

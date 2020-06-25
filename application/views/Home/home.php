@@ -132,13 +132,6 @@
                         <h3 class="block-title text-primary">Data Pelanggan</h3>
                     </div>
                     <input type="text" id="search" class="form-control col-2 search  mt-3 ml-2 mr-4" name="search" placeholder="Cari Customer">
-                    <select name="layanan" id="layanan" class="form-control col-2 layanan  mt-3  ml-2">
-                        <option value="semua">Semua Layanan</option>
-                        <option value="app website">App Website</option>
-                        <option value="website">Website</option>
-                        <option value="Hosting">Hosting</option>
-                        <option value="mobile">App Mobile</option>
-                    </select>
                     <select name="status" id="status-pelanggan" class="form-control col-2 status-pelanggan mt-3">
                         <option value="semua">Semua Status</option>
                         <option value="aktif">Aktif</option>
@@ -285,10 +278,12 @@
                         <div class="block-header border-bottom ">
                             <h3 class="block-title text-primary">Report Staff</h3>
                         </div>
+                        <button class="btn btn-primary search mt-3 ml-2 mr-4" id="button-report">Terapkan</button>
                         <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-end" id="tgl-end" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal End">
                         <h1 class="search"><i class="far fa-window-minimize mr-3"></i></h1>
                         <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-start" id="tgl-start" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal Start">
-                        <div class="block-content block-content-full">
+                        <input type="text" name="alamat-report" id="alamat-report" value="<?php echo base_url('index.php/home/searchreport/') . $employ_id . "/" ?>" hidden>
+                        <div class="block-content block-content-full" id="report-table">
                             <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
                                 <thead class="thead-dark">
                                     <tr class="text-uppercase">

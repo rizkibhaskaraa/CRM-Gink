@@ -1,5 +1,5 @@
 <?php
-//error_reporting(0);
+error_reporting(0);
 class detail_model extends CI_model
 {
     public function getuser($id)
@@ -13,6 +13,14 @@ class detail_model extends CI_model
     public function getdetail($id_task)
     {
         return $this->db->get_where('task', array('id_task' => $id_task))->row_array();
+    }
+    public function getsubtask($id_parent)
+    {
+        $this->db->order_by('status', 'ASC');
+        $this->db->order_by('dateline', 'ASC');
+        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
+        $this->db->where('id_parent', $id_parent);
+        return $this->db->get('task')->result_array();
     }
     public function getsemuaPJ($id_departemen)
     {

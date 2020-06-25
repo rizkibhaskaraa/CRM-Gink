@@ -197,7 +197,7 @@
         <!-- END pelanggan -->
         <!-- Request Task dan report -->
         <?php if ($status == "kepala") { ?>
-            <div class="tab-pane fade fade-up show active" id="request" role="tabpanel">
+            <div class="tab-pane fade fade-up" id="request" role="tabpanel">
                 <div class="container-fluid">
                     <div class="block block-mode-loading-oneui">
                         <div class="block-header border-bottom ">
@@ -218,28 +218,30 @@
                                 <?php foreach ($taskdiheadkosong as $value) { ?>
                                     <tbody>
                                         <tr>
-                                            <!-- <?php if ($value["id_employ_tujuan"] == NULL) { ?> -->
-                                            <td>
-                                                <span class="font-w600"><?php echo $value["title"] ?></span>
-                                            </td>
-                                            <td class="text-center">
-                                                <span class="font-w600 text-danger">Belum Ada</span>
-                                            </td>
-                                            <td class="text-center">
-                                                <span class="font-w600 "><?php echo $value["dateline"] ?></span>
-                                            </td>
-                                            <?php if ($value["status"] == "Belum Selesai") { ?>
-                                                <td class="text-center ">
-                                                    <span class=" font-w600 btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
+                                            <?php if ($value["id_parent"] == NULL) { 
+                                                if ($value["id_employ_tujuan"] == NULL) {?>
+                                                <td>
+                                                    <span class="font-w600"><?php echo $value["title"] ?></span>
                                                 </td>
-                                            <?php } else { ?>
-                                                <td class="text-center"><span class="font-w600 btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span></td>
-                                            <?php } ?>
+                                                <td class="text-center">
+                                                    <span class="font-w600 text-danger">Belum Ada</span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span class="font-w600 "><?php echo $value["dateline"] ?></span>
+                                                </td>
+                                                <?php if ($value["status"] == "Belum Selesai") { ?>
+                                                    <td class="text-center ">
+                                                        <span class=" font-w600 btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
+                                                    </td>
+                                                <?php } else { ?>
+                                                    <td class="text-center"><span class="font-w600 btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span></td>
+                                                <?php } ?>
 
-                                            <td class="text-center">
-                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
-                                            </td>
-                                            <!-- <?php } ?> -->
+                                                <td class="text-center">
+                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
+                                                </td>
+                                            <?php }
+                                            } ?>
                                         </tr>
                                     </tbody>
                                 <?php } ?>
@@ -248,7 +250,7 @@
                                 <?php foreach ($taskdihead as $value) { ?>
                                     <tbody>
                                         <tr>
-                                            <!-- <?php if ($value["id_employ_tujuan"] != NULL) { ?> -->
+                                        <?php if ($value["id_parent"] == NULL) { ?>
                                             <td>
                                                 <span class="font-w600"><?php echo $value["title"] ?></span>
                                             </td>
@@ -267,7 +269,7 @@
                                             <td class="text-center">
                                                 <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
                                             </td>
-                                            <!-- <?php } ?> -->
+                                        <?php } ?>
                                         </tr>
                                     </tbody>
                                 <?php } ?>

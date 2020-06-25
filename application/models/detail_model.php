@@ -117,7 +117,12 @@ class detail_model extends CI_model
         return $this->db->get_where("employe", array("id_departemen" => $dept))->result_array();
     }
 
-    public function insert_sub_task($data_sub_task){
+    public function insert_sub_task($data_sub_task,$id_employ,$task){
+        //update
+        $this->db->set('id_employ_tujuan', $id_employ);
+        $this->db->where('id_task', $task);
+        $this->db->update('task');
+        //data user
         return $this->db->insert("task",$data_sub_task);
     }
     

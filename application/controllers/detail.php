@@ -85,7 +85,7 @@ class Detail extends CI_Controller
             "dateline" => $this->input->post("dateline"),
             "status" => "Belum Selesai"
         );
-        $this->detail_model->insert_sub_task($data_sub_task);
+        $this->detail_model->insert_sub_task($data_sub_task,$id_employ,$id_Task);
         redirect(base_url('index.php/detail/detailumum/') . $id_employ . "/" . $id_Task . "/" . $tabel);
     }
 }

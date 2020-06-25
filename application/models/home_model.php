@@ -60,6 +60,21 @@ class home_model extends CI_model
         $this->db->where_in('nama_dept_tujuan', $departemen);
         return $this->db->get('task')->result_array();
     }
+    public function gettaskparent($nama_departemen)
+    {
+        $departemen = array($nama_departemen, "umum");
+        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
+        $this->db->where_in('nama_dept_tujuan', $departemen);
+        $this->db->where('id_parent', "");
+        return $this->db->get('task')->result_array();
+    }
+    public function gettasksaya($id_employ)
+    {
+        $this->db->where('id_parent', "");
+        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
+        $this->db->where('id_employ_tujuan', $id_employ);
+        return $this->db->get('task')->result_array();
+    }
     public function gettaskdiheadkosong($nama_departemen)
     {
         $departemen = array($nama_departemen, "umum");

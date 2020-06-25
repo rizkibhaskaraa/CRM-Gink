@@ -132,13 +132,6 @@
                         <h3 class="block-title text-primary">Data Pelanggan</h3>
                     </div>
                     <input type="text" id="search" class="form-control col-2 search  mt-3 ml-2 mr-4" name="search" placeholder="Cari Customer">
-                    <select name="layanan" id="layanan" class="form-control col-2 layanan  mt-3  ml-2">
-                        <option value="semua">Semua Layanan</option>
-                        <option value="app website">App Website</option>
-                        <option value="website">Website</option>
-                        <option value="Hosting">Hosting</option>
-                        <option value="mobile">App Mobile</option>
-                    </select>
                     <select name="status" id="status-pelanggan" class="form-control col-2 status-pelanggan mt-3">
                         <option value="semua">Semua Status</option>
                         <option value="aktif">Aktif</option>
@@ -218,28 +211,28 @@
                                 <?php foreach ($taskdiheadkosong as $value) { ?>
                                     <tbody>
                                         <tr>
-                                            <?php if ($value["id_parent"] == NULL) { 
-                                                if ($value["id_employ_tujuan"] == NULL) {?>
-                                                <td>
-                                                    <span class="font-w600"><?php echo $value["title"] ?></span>
-                                                </td>
-                                                <td class="text-center">
-                                                    <span class="font-w600 text-danger">Belum Ada</span>
-                                                </td>
-                                                <td class="text-center">
-                                                    <span class="font-w600 "><?php echo $value["dateline"] ?></span>
-                                                </td>
-                                                <?php if ($value["status"] == "Belum Selesai") { ?>
-                                                    <td class="text-center ">
-                                                        <span class=" font-w600 btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
+                                            <?php if ($value["id_parent"] == NULL) {
+                                                if ($value["id_employ_tujuan"] == NULL) { ?>
+                                                    <td>
+                                                        <span class="font-w600"><?php echo $value["title"] ?></span>
                                                     </td>
-                                                <?php } else { ?>
-                                                    <td class="text-center"><span class="font-w600 btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span></td>
-                                                <?php } ?>
+                                                    <td class="text-center">
+                                                        <span class="font-w600 text-danger">Belum Ada</span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="font-w600 "><?php echo $value["dateline"] ?></span>
+                                                    </td>
+                                                    <?php if ($value["status"] == "Belum Selesai") { ?>
+                                                        <td class="text-center ">
+                                                            <span class=" font-w600 btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
+                                                        </td>
+                                                    <?php } else { ?>
+                                                        <td class="text-center"><span class="font-w600 btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span></td>
+                                                    <?php } ?>
 
-                                                <td class="text-center">
-                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
-                                                </td>
+                                                    <td class="text-center">
+                                                        <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
+                                                    </td>
                                             <?php }
                                             } ?>
                                         </tr>
@@ -250,26 +243,26 @@
                                 <?php foreach ($taskdihead as $value) { ?>
                                     <tbody>
                                         <tr>
-                                        <?php if ($value["id_parent"] == NULL) { ?>
-                                            <td>
-                                                <span class="font-w600"><?php echo $value["title"] ?></span>
-                                            </td>
-                                            <td class="text-center">
-                                                <span class="text-success"><?php echo $value["nama"] ?></span>
-                                            </td>
-                                            <td class="text-center">
-                                                <span class="font-w600"><?php echo $value["dateline"] ?></span>
-                                            </td>
-                                            <?php if ($value["status"] == "Belum Selesai") { ?>
-                                                <td class="text-center"><span class="font-w600   btn-sm btn-block btn-danger"><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span></td>
-                                            <?php } else { ?>
-                                                <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span></td>
-                                            <?php } ?>
+                                            <?php if ($value["id_parent"] == NULL) { ?>
+                                                <td>
+                                                    <span class="font-w600"><?php echo $value["title"] ?></span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span class="text-success"><?php echo $value["nama"] ?></span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span class="font-w600"><?php echo $value["dateline"] ?></span>
+                                                </td>
+                                                <?php if ($value["status"] == "Belum Selesai") { ?>
+                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-danger"><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span></td>
+                                                <?php } else { ?>
+                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span></td>
+                                                <?php } ?>
 
-                                            <td class="text-center">
-                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
-                                            </td>
-                                        <?php } ?>
+                                                <td class="text-center">
+                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Request" ?>">Buka</a>
+                                                </td>
+                                            <?php } ?>
                                         </tr>
                                     </tbody>
                                 <?php } ?>
@@ -285,10 +278,12 @@
                         <div class="block-header border-bottom ">
                             <h3 class="block-title text-primary">Report Staff</h3>
                         </div>
+                        <button class="btn btn-primary search mt-3 ml-2 mr-4" id="button-report">Terapkan</button>
                         <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-end" id="tgl-end" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal End">
                         <h1 class="search"><i class="far fa-window-minimize mr-3"></i></h1>
                         <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-start" id="tgl-start" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal Start">
-                        <div class="block-content block-content-full">
+                        <input type="text" name="alamat-report" id="alamat-report" value="<?php echo base_url('index.php/home/searchreport/') . $employ_id . "/" ?>" hidden>
+                        <div class="block-content block-content-full" id="report-table">
                             <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
                                 <thead class="thead-dark">
                                     <tr class="text-uppercase">
@@ -375,72 +370,72 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php foreach ($tasksaya as $valueparent) { 
-                                if($valueparent["status"]=="Belum Selesai"){?>
-                                <tr>    
-                                        <td style="width: 10%;" rowspan="<?= $row ?>">
-                                            <span class="font-w600">#<?php echo $valueparent["id_task"]?></span>
-                                        </td>
-                                        <td style="width: 10%;" rowspan="<?= $row ?>">
-                                            <span class="font-w600"><?php echo $valueparent["nama"]?></span>
-                                        </td>
-                                        <td style="width: 10%;">
-                                            <span class="font-w600"><?php echo $valueparent["title"] ?></span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
-                                            <span class="font-size-sm  "><?php echo $valueparent["dateline"] ?></span>
-                                        </td>
-                                        <td class="text-danger text-center" style="width: 15%;">
-                                            <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $valueparent["status"] ?></span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
-                                            <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $valueparent['id_task'] . "/TugasBelum" ?>" class="text-decoration-none">Buka</a>
-                                        </td>
-                                </tr>
-                            <?php }
-                            }?>
+                                <?php foreach ($tasksaya as $valueparent) {
+                                    if ($valueparent["status"] == "Belum Selesai") { ?>
+                                        <tr>
+                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                                <span class="font-w600">#<?php echo $valueparent["id_task"] ?></span>
+                                            </td>
+                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                                <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
+                                            </td>
+                                            <td style="width: 10%;">
+                                                <span class="font-w600"><?php echo $valueparent["title"] ?></span>
+                                            </td>
+                                            <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
+                                                <span class="font-size-sm  "><?php echo $valueparent["dateline"] ?></span>
+                                            </td>
+                                            <td class="text-danger text-center" style="width: 15%;">
+                                                <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $valueparent["status"] ?></span>
+                                            </td>
+                                            <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
+                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $valueparent['id_task'] . "/TugasBelum" ?>" class="text-decoration-none">Buka</a>
+                                            </td>
+                                        </tr>
+                                <?php }
+                                } ?>
                             <tbody>
                             <tbody>
-                            <?php foreach ($taskparent as $valueparent) {
-                                $i = 1; 
-                                $row = 1;
-                                foreach ($taskbelum as $value) {
-                                    if($valueparent["id_task"] == $value["id_parent"]){
-                                        $row += 1;
+                                <?php foreach ($taskparent as $valueparent) {
+                                    $i = 1;
+                                    $row = 1;
+                                    foreach ($taskbelum as $value) {
+                                        if ($valueparent["id_task"] == $value["id_parent"]) {
+                                            $row += 1;
+                                        }
                                     }
-                                }
                                 ?>
-                                <tr>
-                                    <?php if($row != 1){?>
-                                        <td style="width: 10%;" rowspan="<?= $row ?>">
-                                            <span class="font-w600">#<?php echo $valueparent["id_task"]?></span>
-                                        </td>
-                                        <td style="width: 10%;" rowspan="<?= $row ?>">
-                                            <span class="font-w600"><?php echo $valueparent["nama"]?></span>
-                                        </td>
-                                    <?php } ?>
-                                </tr>
-                                <?php foreach ($taskbelum as $value) { 
-                                    if($valueparent["id_task"] == $value["id_parent"]){?>
                                     <tr>
-                                        <td style="width: 10%;">
-                                            <span class="font-w600"><?php echo $i.".".$value["title"] ?></span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
-                                            <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
-                                        </td>
-                                        <td class="text-danger text-center" style="width: 15%;">
-                                            <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
-                                            <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/TugasBelum" ?>" class="text-decoration-none">Buka | </a>
-                                            <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/status/') . $value["id_task"] ?>" class="text-decoration-none">Selesai</a>
-                                        </td>
+                                        <?php if ($row != 1) { ?>
+                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                                <span class="font-w600">#<?php echo $valueparent["id_task"] ?></span>
+                                            </td>
+                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                                <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
+                                            </td>
+                                        <?php } ?>
                                     </tr>
-                            <?php   $i += 1;
+                                    <?php foreach ($taskbelum as $value) {
+                                        if ($valueparent["id_task"] == $value["id_parent"]) { ?>
+                                            <tr>
+                                                <td style="width: 10%;">
+                                                    <span class="font-w600"><?php echo $i . "." . $value["title"] ?></span>
+                                                </td>
+                                                <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
+                                                    <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
+                                                </td>
+                                                <td class="text-danger text-center" style="width: 15%;">
+                                                    <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
+                                                </td>
+                                                <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
+                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/TugasBelum" ?>" class="text-decoration-none">Buka | </a>
+                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/status/') . $value["id_task"] ?>" class="text-decoration-none">Selesai</a>
+                                                </td>
+                                            </tr>
+                                <?php $i += 1;
+                                        }
                                     }
-                                } 
-                            }?>
+                                } ?>
                             </tbody>
                         </table>
                     </div>
@@ -467,70 +462,70 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php foreach ($tasksaya as $valueparent) { 
-                                if($valueparent["status"]=="Selesai"){?>
-                                <tr>    
-                                        <td style="width: 10%;" rowspan="<?= $row ?>">
-                                            <span class="font-w600">#<?php echo $valueparent["id_task"]?></span>
-                                        </td>
-                                        <td style="width: 10%;" rowspan="<?= $row ?>">
-                                            <span class="font-w600"><?php echo $valueparent["nama"]?></span>
-                                        </td>
-                                        <td style="width: 10%;">
-                                            <span class="font-w600"><?php echo $valueparent["title"] ?></span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
-                                            <span class="font-size-sm  "><?php echo $valueparent["dateline"] ?></span>
-                                        </td>
-                                        <td class="text-danger text-center" style="width: 15%;">
-                                            <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $valueparent["status"] ?></span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
-                                            <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $valueparent['id_task'] . "/TugasBelum" ?>" class="text-decoration-none">Buka</a>
-                                        </td>
-                                </tr>
-                            <?php }
-                            }?>
+                                <?php foreach ($tasksaya as $valueparent) {
+                                    if ($valueparent["status"] == "Selesai") { ?>
+                                        <tr>
+                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                                <span class="font-w600">#<?php echo $valueparent["id_task"] ?></span>
+                                            </td>
+                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                                <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
+                                            </td>
+                                            <td style="width: 10%;">
+                                                <span class="font-w600"><?php echo $valueparent["title"] ?></span>
+                                            </td>
+                                            <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
+                                                <span class="font-size-sm  "><?php echo $valueparent["dateline"] ?></span>
+                                            </td>
+                                            <td class="text-danger text-center" style="width: 15%;">
+                                                <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $valueparent["status"] ?></span>
+                                            </td>
+                                            <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
+                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $valueparent['id_task'] . "/TugasSelesai" ?>" class="text-decoration-none">Buka</a>
+                                            </td>
+                                        </tr>
+                                <?php }
+                                } ?>
                             <tbody>
-                            <?php foreach ($taskparent as $valueparent) {
-                                $i = 1; 
-                                $row = 1;
-                                foreach ($taskselesai as $value) {
-                                    if($valueparent["id_task"] == $value["id_parent"]){
-                                        $row += 1;
+                                <?php foreach ($taskparent as $valueparent) {
+                                    $i = 1;
+                                    $row = 1;
+                                    foreach ($taskselesai as $value) {
+                                        if ($valueparent["id_task"] == $value["id_parent"]) {
+                                            $row += 1;
+                                        }
                                     }
-                                }
                                 ?>
-                                <tr>
-                                    <?php if($row != 1){?>
-                                        <td style="width: 10%;" rowspan="<?= $row ?>">
-                                            <span class="font-w600">#<?php echo $valueparent["id_task"]?></span>
-                                        </td>
-                                        <td style="width: 10%;" rowspan="<?= $row ?>">
-                                            <span class="font-w600"><?php echo $valueparent["nama"]?></span>
-                                        </td>
-                                    <?php }?>
-                                </tr>
-                                <?php foreach ($taskselesai as $value) { 
-                                    if($valueparent["id_task"] == $value["id_parent"]){?>
                                     <tr>
-                                        <td style="width: 10%;">
-                                            <span class="font-w600"><?php echo $i.".".$value["title"] ?></span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
-                                            <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
-                                        </td>
-                                        <td class="text-danger text-center" style="width: 15%;">
-                                            <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
-                                            <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/TugasBelum" ?>" class="text-decoration-none">Buka</a>
-                                        </td>
+                                        <?php if ($row != 1) { ?>
+                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                                <span class="font-w600">#<?php echo $valueparent["id_task"] ?></span>
+                                            </td>
+                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                                <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
+                                            </td>
+                                        <?php } ?>
                                     </tr>
-                            <?php   $i += 1;
+                                    <?php foreach ($taskselesai as $value) {
+                                        if ($valueparent["id_task"] == $value["id_parent"]) { ?>
+                                            <tr>
+                                                <td style="width: 10%;">
+                                                    <span class="font-w600"><?php echo $i . "." . $value["title"] ?></span>
+                                                </td>
+                                                <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
+                                                    <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
+                                                </td>
+                                                <td class="text-danger text-center" style="width: 15%;">
+                                                    <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span>
+                                                </td>
+                                                <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
+                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/TugasSelesai" ?>" class="text-decoration-none">Buka</a>
+                                                </td>
+                                            </tr>
+                                <?php $i += 1;
+                                        }
                                     }
-                                } 
-                            }?>
+                                } ?>
                             </tbody>
                         </table>
                     </div>
@@ -561,45 +556,45 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php foreach ($taskparent as $valueparent) {
-                                $i = 1; 
-                                $row = 1;
-                                foreach ($tiket as $value) {
-                                    if($valueparent["id_task"] == $value["id_parent"] && $value["status"] == "Belum Selesai"){
-                                        $row += 1;
+                                <?php foreach ($taskparent as $valueparent) {
+                                    $i = 1;
+                                    $row = 1;
+                                    foreach ($tiket as $value) {
+                                        if ($valueparent["id_task"] == $value["id_parent"] && $value["status"] == "Belum Selesai") {
+                                            $row += 1;
+                                        }
                                     }
-                                }
                                 ?>
-                                <tr>
-                                    <?php if($row != 1){?>
-                                        <td style="width: 10%;" rowspan="<?= $row ?>">
-                                            <span class="font-w600">#<?php echo $valueparent["id_task"]?></span>
-                                        </td>
-                                        <td style="width: 10%;" rowspan="<?= $row ?>">
-                                            <span class="font-w600"><?php echo $valueparent["nama"]?></span>
-                                        </td>
-                                    <?php }?>
-                                </tr>
-                                <?php foreach ($tiket as $value) { 
-                                    if($valueparent["id_task"] == $value["id_parent"] && $value["status"] == "Belum Selesai"){?>
                                     <tr>
-                                        <td style="width: 10%;">
-                                            <span class="font-w600"><?php echo $i.".".$value["title"] ?></span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
-                                            <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
-                                        </td>
-                                        <td class="text-danger text-center" style="width: 15%;">
-                                            <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
-                                            <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/TugasBelum" ?>" class="text-decoration-none">Buka</a>
-                                        </td>
+                                        <?php if ($row != 1) { ?>
+                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                                <span class="font-w600">#<?php echo $valueparent["id_task"] ?></span>
+                                            </td>
+                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                                <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
+                                            </td>
+                                        <?php } ?>
                                     </tr>
-                            <?php   $i += 1;
+                                    <?php foreach ($tiket as $value) {
+                                        if ($valueparent["id_task"] == $value["id_parent"] && $value["status"] == "Belum Selesai") { ?>
+                                            <tr>
+                                                <td style="width: 10%;">
+                                                    <span class="font-w600"><?php echo $i . "." . $value["title"] ?></span>
+                                                </td>
+                                                <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
+                                                    <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
+                                                </td>
+                                                <td class="text-danger text-center" style="width: 15%;">
+                                                    <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
+                                                </td>
+                                                <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
+                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
+                                                </td>
+                                            </tr>
+                                <?php $i += 1;
+                                        }
                                     }
-                                } 
-                            }?>
+                                } ?>
                             </tbody>
                         </table>
                     </div>
@@ -626,45 +621,45 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php foreach ($taskparent as $valueparent) {
-                                $i = 1; 
-                                $row = 1;
-                                foreach ($tiket as $value) {
-                                    if($valueparent["id_task"] == $value["id_parent"] && $value["status"] == "Selesai"){
-                                        $row += 1;
+                                <?php foreach ($taskparent as $valueparent) {
+                                    $i = 1;
+                                    $row = 1;
+                                    foreach ($tiket as $value) {
+                                        if ($valueparent["id_task"] == $value["id_parent"] && $value["status"] == "Selesai") {
+                                            $row += 1;
+                                        }
                                     }
-                                }
                                 ?>
-                                <tr>
-                                    <?php if($row != 1){?>
-                                        <td style="width: 10%;" rowspan="<?= $row ?>">
-                                            <span class="font-w600">#<?php echo $valueparent["id_task"]?></span>
-                                        </td>
-                                        <td style="width: 10%;" rowspan="<?= $row ?>">
-                                            <span class="font-w600"><?php echo $valueparent["nama"]?></span>
-                                        </td>
-                                    <?php }?>
-                                </tr>
-                                <?php foreach ($tiket as $value) { 
-                                    if($valueparent["id_task"] == $value["id_parent"] && $value["status"] == "Selesai"){?>
                                     <tr>
-                                        <td style="width: 10%;">
-                                            <span class="font-w600"><?php echo $i.".".$value["title"] ?></span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
-                                            <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
-                                        </td>
-                                        <td class="text-danger text-center" style="width: 15%;">
-                                            <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
-                                            <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/TugasBelum" ?>" class="text-decoration-none">Buka</a>
-                                        </td>
+                                        <?php if ($row != 1) { ?>
+                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                                <span class="font-w600">#<?php echo $valueparent["id_task"] ?></span>
+                                            </td>
+                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                                <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
+                                            </td>
+                                        <?php } ?>
                                     </tr>
-                            <?php   $i += 1;
+                                    <?php foreach ($tiket as $value) {
+                                        if ($valueparent["id_task"] == $value["id_parent"] && $value["status"] == "Selesai") { ?>
+                                            <tr>
+                                                <td style="width: 10%;">
+                                                    <span class="font-w600"><?php echo $i . "." . $value["title"] ?></span>
+                                                </td>
+                                                <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
+                                                    <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
+                                                </td>
+                                                <td class="text-danger text-center" style="width: 15%;">
+                                                    <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span>
+                                                </td>
+                                                <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
+                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
+                                                </td>
+                                            </tr>
+                                <?php $i += 1;
+                                        }
                                     }
-                                } 
-                            }?>
+                                } ?>
                             </tbody>
                         </table>
                     </div>
@@ -800,11 +795,11 @@
                                     <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true">
                                 </div>
                             </div>
-                            <!-- <div class="form-group">
+                            <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
                                 <textarea class="form-control required" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
                                 <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
-                            </div> -->
+                            </div>
 
                             <div class="block-content block-content-full ">
                                 <!-- Summernote Container -->

@@ -16,7 +16,13 @@
                 <span class="font-w600">#<?php echo $value["id_pelanggan"] ?></span>
             </td>
             <td class="text-center">
-                <span class="font-w600"><?php echo $value["layanan"] ?></span>
+                <?php $jumlah = 0; ?>
+                    <?php foreach ($layanan as $value1) { ?>
+                        <?php if ($value["id_pelanggan"] == $value1["id_pelanggan"]) { ?>
+                            <?php $jumlah++ ?>
+                            <span class="font-w600"><?php echo $jumlah . ". " . $value1["nama_layanan"] . '<br>' ?></span>
+                        <?php } ?>
+                    <?php } ?>
             </td>
             <td class="text-center">
                 <span class="font-w600"><?php echo $value["customer"] ?></span>

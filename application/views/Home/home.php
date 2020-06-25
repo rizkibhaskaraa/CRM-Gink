@@ -658,11 +658,11 @@
                                     <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true"  >
                                 </div>
                             </div>
-                            <!-- <div class="form-group">
+                            <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
                                 <textarea class="form-control required" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
                                 <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
-                            </div> -->
+                            </div>
                             <div class="block-content block-content-full " name="deskripsi" id="deskripsi">
                                             <!-- Summernote Container -->
                                             <div class="js-summernote-air" name="deskripsi" id="deskripsi">

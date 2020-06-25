@@ -97,7 +97,13 @@
 
                             <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250"><?php echo $status . " " . $nama_dept ?> di Gink Technology</h2>
                         </div>
-                        
+                        <div class="flex-sm-00-auto mt-3 mt-sm-0 ml-sm-3">
+                            <span class="d-inline-block invisible" data-toggle="appear" data-timeout="350">
+                                <a class="btn btn-primary px-4 py-2" class="p-2 bg-primary text-white text-decoration-none tiket" data-toggle="modal" data-target="#modal-block-large-sub-tiket" href="">
+                                    <i class="fa fa-plus mr-1"></i> Buat Sub Tiket
+                                </a>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -114,13 +120,11 @@
                     <div class="block">
                         <div class="block-header block-header-default ">
                            <h3 class="block-title dark ">Hallo <?php echo $employ_nama ?> , berikut isi Detail Tasknya</h3>
-                            
                         </div>
                         <div class="block-content">
                             <table class="table table-borderless">
                                 <tbody>
-                                  
-                                    <tr  >
+                                    <tr>
                                         <td class="d-none d-sm-table-cell text-center" rowspan="10"  style="width: 15%;">
                                             <p>
                                                 <a href="be_pages_generic_profile.html">
@@ -130,152 +134,126 @@
                                             </p>
                                             <p class="font-size-sm "><?php echo $nama_kirim . " (" . $task["nama_dept_kirim"] . ")" ?></p>
                                         </td>
-                                        
-                                     
-                                    <td class="font-weight-bold mt-2" width="15%">Title</td>
-                                    <td width="70%">: <?php echo $task["title"] ?> </td>
-                               
-                                    
-                                    
+                                        <td class="font-weight-bold mt-2" width="15%">Title</td>
+                                        <td width="70%">: <?php echo $task["title"] ?> </td>
                                     </tr>
-                                    
                                     <tr >
-                                     
-                                    <td class="font-weight-bold  ">Deskripsi Task</td>
-                                    <td><p >: <?php echo $task["deskripsi"] ?></p></td>
+                                        <td class="font-weight-bold  ">Deskripsi Task</td>
+                                        <td><p >: <?php echo $task["deskripsi"] ?></p></td>
                                     </tr>
-                        
-
                                     <tr>
-                                        
-                                    <td class="font-weight-bold">Nama Pengirim</td>
-                                    <td>: <?php echo $nama_kirim . " (" . $task["nama_dept_kirim"] . ")" ?></td>
+                                        <td class="font-weight-bold">Nama Pengirim</td>
+                                        <td>: <?php echo $nama_kirim . " (" . $task["nama_dept_kirim"] . ")" ?></td>
                                     </tr>
-
                                     <tr>
-                                        
                                         <td class="font-weight-bold">Departemen Tujuan</td>
                                         <td>: <?php echo $task["nama_dept_tujuan"] ?></td>
-                                        </tr>
+                                    </tr>
                                     <tr>
-                                        
-                                    <td class="font-weight-bold">Deadline</td>
-                                    <td>: <?php echo $task["dateline"] ?></td>
-                                </tr>
-                                <tr>
-                                    
-                                    <td class="font-weight-bold">Status Task</td>
-                                    <td>: <?php echo $task["status"] ?></td>
-                                </tr>
-
-                                <tr>
-                                    <?php if ($cekTabel == 'Request') { ?>
-                                        
-                                        <td class="font-weight-bold">Penanggung Jawab</td>
-                                        <td>
-                                            <form method="post" action="<?php echo base_url('index.php/detail/ubahPJ/' . $employ_id . '/' . $task['id_task']) ?>">
-                                                : <?php $isi = $PJ_task['id_employ_tujuan'] ?>
-                                                <?php if ($isi != null) {
-                                                    echo $namaPJ . "(" . $dept_PJtask . ")";
-                                                } else { ?>
-                                                    <select name="PJbaru" id="PJbaru">
-                                                        <option disabled selected> Belum ada </option>
-                                                        <?php
-                                                        $employe = [];
-                                                        foreach ($tugas_employ as $value) {
-                                                            foreach ($semua_employ as $value2) {
-                                                                if ($value2["nama"] == $value["nama"]) {
-                                                                    if (!in_array($value["nama"], $employe)) {
-                                                                        array_push($employe, $value["nama"]);
-                                                                    }
-                                                        ?>
-                                                                    <option value="<?= $value["id_employ_tujuan"] ?>"><?php echo $value["nama"] . " | " . $value["count(task.status)"] ?></option>
-                                                                <?php }
+                                        <td class="font-weight-bold">Deadline</td>
+                                        <td>: <?php echo $task["dateline"] ?></td>
+                                    </tr>
+                                    <tr>    
+                                        <td class="font-weight-bold">Status Task</td>
+                                        <td>: <?php echo $task["status"] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <?php if ($cekTabel == 'Request') { ?>   
+                                            <td class="font-weight-bold">Penanggung Jawab</td>
+                                            <td>
+                                                <form method="post" action="<?php echo base_url('index.php/detail/ubahPJ/' . $employ_id . '/' . $task['id_task']) ?>">
+                                                    : <?php $isi = $PJ_task['id_employ_tujuan'] ?>
+                                                    <?php if ($isi != null) {
+                                                        echo $namaPJ . "(" . $dept_PJtask . ")";
+                                                    } else { ?>
+                                                        <select name="PJbaru" id="PJbaru">
+                                                            <option disabled selected> Belum ada </option>
+                                                            <?php
+                                                            $employe = [];
+                                                            foreach ($tugas_employ as $value) {
+                                                                foreach ($semua_employ as $value2) {
+                                                                    if ($value2["nama"] == $value["nama"]) {
+                                                                        if (!in_array($value["nama"], $employe)) {
+                                                                            array_push($employe, $value["nama"]);
+                                                                        }
+                                                            ?>
+                                                                        <option value="<?= $value["id_employ_tujuan"] ?>"><?php echo $value["nama"] . " | " . $value["count(task.status)"] ?></option>
+                                                                    <?php }
+                                                                }
                                                             }
-                                                        }
-                                                        foreach ($semua_employ as $value2) {
-                                                            if (!in_array($value2["nama"], $employe)) { ?>
-                                                                <option value="<?= $value2["id_employ"] ?>"><?php echo $value2["nama"] . " | 0" ?></option>
-                                                        <?php }
-                                                        }
-                                                        ?>
-                                                    </select>
+                                                            foreach ($semua_employ as $value2) {
+                                                                if (!in_array($value2["nama"], $employe)) { ?>
+                                                                    <option value="<?= $value2["id_employ"] ?>"><?php echo $value2["nama"] . " | 0" ?></option>
+                                                            <?php }
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                        </br>
+                                                        </br>
+                                                        <div class="row items-push text-center text-sm-left mb-4">
+                                                            <div class="col-sm-6 col-xl-4">
+                                                                <input type="submit" value="Simpan" class="btn btn-primary" data-toggle="click-ripple"></input>
+                                                            </div>
+                                                        <?php } ?>
+                                                </form>
+                                            </td>
+                                        <?php } else if ($cekTabel == 'TugasBelum') { ?>
+                                            <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
+                                            <td class="font-weight-bold">Berkas (opsional)</td>
+                                            <td>
+                                                : <input type="file" name="file">
+                                                <div class="block-content block-content-full text-right border-top mt-5">
+                                                <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
+                                                <input type="submit" class="btn btn-sm btn-primary" value="Selesai">
+                                            </div>
+                                            </td>
+                                            <!-- <input type="submit" value="Selesai"> -->
+                                            <?php echo form_close(); ?>
+                                        <?php } else if ($cekTabel == 'TugasSelesai') { ?>
+                                            <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
+                                            <td class="font-weight-bold">Berkas (opsional)</td>
+                                            <td>
+                                                :
+                                                <?php if ($task['berkas'] != null) { ?>
+                                                    <a href="<?= base_url('upload/') . $task['berkas'] ?>"><?= $task['berkas'] ?></a>
                                                     </br>
-                                                    </br>
-                                                    <div class="row items-push text-center text-sm-left mb-4">
-                                                        <div class="col-sm-6 col-xl-4">
-                                                            <input type="submit" value="Simpan" class="btn btn-primary" data-toggle="click-ripple"></input>
-                                                        </div>
-                                                    <?php } ?>
-                                                    
-                                            </form>
-                                        </td>
-
-                                    <?php } else if ($cekTabel == 'TugasBelum') { ?>
-                                        <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
-                                        
-                                        <td class="font-weight-bold">Berkas (opsional)</td>
-                                        <td>
-                                            : <input type="file" name="file">
-                                            <div class="block-content block-content-full text-right border-top mt-5">
-                                            <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
-                                            <input type="submit" class="btn btn-sm btn-primary" value="Selesai">
-                                        </div>
-                                        </td>
-                                        <!-- <input type="submit" value="Selesai"> -->
-                                        <?php echo form_close(); ?>
-                                    <?php } else if ($cekTabel == 'TugasSelesai') { ?>
-                                        <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
-                                        
-                                        <td class="font-weight-bold">Berkas (opsional)</td>
-                                        <td>
-                                            :
-                                            <?php if ($task['berkas'] != null) { ?>
-                                                <a href="<?= base_url('upload/') . $task['berkas'] ?>"><?= $task['berkas'] ?></a>
+                                                <?php } ?>
+                                                <input type="file" name="file">
                                                 </br>
-                                            <?php } ?>
-                                            <input type="file" name="file">
-                                            </br>
-                                            <input type="submit" value="Simpan">
-                                        </td>
-
-                                        <?php echo form_close(); ?>
+                                                <input type="submit" value="Simpan">
+                                            </td>
+                                            <?php echo form_close(); ?>
+                                        <?php } ?>
+                                    </tr>
+                                    <?php if ($cekTabel == 'Tiket') { ?>
+                                        <tr>
+                                            <td class="font-weight-bold">Penanggung Jawab</td>
+                                            <td>
+                                                : <?= $namaPJ . " (" . $dept_PJtask . ")" ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">Waktu Selesai</td>
+                                            <td>
+                                                :
+                                                <?php if ($task['status'] == 'belum selesai') {
+                                                    echo '-';
+                                                } ?>
+                                                <?= $task['waktu_selesai'] ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold  ">Berkas</td>
+                                            <td>
+                                                :
+                                                <?php if ($task['berkas'] == null) {
+                                                    echo '-';
+                                                } ?>
+                                                <a href="<?= base_url('upload/') . $task['berkas'] ?>"><?= $task['berkas'] ?></a>
+                                            </td>
+                                        </tr>
                                     <?php } ?>
-                                </tr>
-                                <?php if ($cekTabel == 'Tiket') { ?>
-                                    <tr>
-                                        
-                                        <td class="font-weight-bold">Penanggung Jawab</td>
-                                        <td>
-                                            : <?= $namaPJ . " (" . $dept_PJtask . ")" ?>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        
-                                        <td class="font-weight-bold">Waktu Selesai</td>
-                                        <td>
-                                            :
-                                            <?php if ($task['status'] == 'belum selesai') {
-                                                echo '-';
-                                            } ?>
-                                            <?= $task['waktu_selesai'] ?>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        
-                                        <td class="font-weight-bold  ">Berkas</td>
-                                        <td>
-                                            :
-                                            <?php if ($task['berkas'] == null) {
-                                                echo '-';
-                                            } ?>
-                                            <a href="<?= base_url('upload/') . $task['berkas'] ?>"><?= $task['berkas'] ?></a>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
-
-                                    </tbody>
-                                    
+                                </tbody>    
                             </table>
                         </div> 
                     </div>
@@ -283,7 +261,75 @@
                 </div>
                 <!-- END Page Content -->
 
-
+    <!-- pop up tiket staff -->
+    <div class="modal fade" id="modal-block-large-sub-tiket" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="block block-themed block-transparent mb-0">
+                    <div class="block-header bg-primary-dark">
+                        <h3 class="block-title">Buat Sub Tiket</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                <i class="fa fa-fw fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content font-size-sm mt-3 text-justify ">
+                        <h4>Isi Data Dibawah Ini dengan Lengkap untuk Membuat Sub Tiket</h4>
+                        <form action="<?php echo base_url('index.php/detail/addsubtiket/') . $employ_id ."/".$task["id_task"]."/".$cekTabel?>" method="POST" id="form-staff">
+                            <input type="text" name="id_parent" value="<?php echo $task["id_task"] ?>" hidden>
+                            <div class="form-group">
+                                <label for="title">Judul Sub Task</label>
+                                <input type="text" class="form-control required" name="title" id="title" placeholder="Judul/Subject">
+                            </div>
+                            <div class="form-group">
+                                <label for="PJsubtask">Penanggung Jawab Sub Task</label></br>
+                                <select name="PJsubtask" id="PJsubtask">
+                                    <option disabled selected> Belum ada </option>
+                                    <?php
+                                    $employe = [];
+                                    foreach ($tugas_employ as $value) {
+                                        foreach ($semua_employ as $value2) {
+                                            if ($value2["nama"] == $value["nama"]) {
+                                                if (!in_array($value["nama"], $employe)) {
+                                                    array_push($employe, $value["nama"]);
+                                                }
+                                    ?>
+                                    <option value="<?= $value["id_employ_tujuan"] ?>"><?php echo $value["nama"] . " | " . $value["count(task.status)"] ?></option>
+                                    <?php }
+                                        }
+                                    }
+                                    foreach ($semua_employ as $value2) {
+                                    if (!in_array($value2["nama"], $employe)) { ?>
+                                            <option value="<?= $value2["id_employ"] ?>"><?php echo $value2["nama"] . " | 0" ?></option>
+                                    <?php }
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="dateline">Deadline</label>
+                                <div class="input-group">
+                                    <span class="input-group-text input-group-text-alt">
+                                        <i class="far fa-calendar-alt"></i>
+                                    </span>
+                                    <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true"  >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="deskripsi">Deskripsi</label>
+                                <textarea class="form-control required" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
+                            </div>
+                                <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
+                                <button type="submit" class="btn btn-primary">Buat</button>
+                            </div>       
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- akhir pop up tiket staff -->
 
 
 
@@ -306,6 +352,13 @@
 
         <!-- Page JS Code -->
         <script src="<?php echo base_url('assets/oneui/js/pages/be_comp_dialogs.min.js') ?>"></script>
+        <script src="<?php echo base_url('assets/oneui/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') ?>"></script>
+    <!-- Page JS Helpers (BS Datepicker + BS Colorpicker + BS Maxlength + Select2 + Masked Inputs + Ion Range Slider plugins) -->
+    <script>
+        jQuery(function() {
+            One.helpers(['datepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider']);
+        });
+    </script>
 
 </body>
 

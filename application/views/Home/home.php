@@ -215,7 +215,7 @@
                             <h3 class="block-title text-primary">Report Staff</h3>
                         </div>
                         <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-end" id="tgl-end" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal End">
-                        <h1 class="search"><i class="far fa-window-minimize"></i></h1>
+                        <h1 class="search"><i class="far fa-window-minimize mr-3"></i></h1>
                         <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-start" id="tgl-start" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal Start">
                         <div class="block-content block-content-full">
                             <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
@@ -663,9 +663,10 @@
                                 <textarea class="form-control required" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
                                 <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
                             </div> -->
-                            <div class="block-content block-content-full " name="deskripsi" id="deskripsi">
+                           
+                            <div class="block-content block-content-full ">
                                             <!-- Summernote Container -->
-                                            <div class="js-summernote-air" name="deskripsi" id="deskripsi">
+                                            <div class="js-summernote-air" >
                                                 
                                             </div>
                                         </div>

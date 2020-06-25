@@ -38,6 +38,7 @@ class Detail extends CI_Controller
         $data['namaPJ'] = $this->detail_model->getnama_PJ($task); //data nama PJ task
         $data['tugas_employ'] = $this->detail_model->gettugaspj($data["nama_dept"]); //data tugas milik calon PJ
         $data["semua_employ"] = $this->detail_model->getsemuaemploy($data["employ_dept"]);
+        $data["subtask"] = $this->detail_model->getsubtask($task);
         $this->load->view('detail/detail', $data);
     }
     public function ubahPJ($id, $task)
@@ -84,7 +85,7 @@ class Detail extends CI_Controller
             "dateline" => $this->input->post("dateline"),
             "status" => "Belum Selesai"
         );
-        $this->detail_model->insert_sub_task($data_sub_task);
+        $this->detail_model->insert_sub_task($data_sub_task,$id_employ,$id_Task);
         redirect(base_url('index.php/detail/detailumum/') . $id_employ . "/" . $id_Task . "/" . $tabel);
     }
 }

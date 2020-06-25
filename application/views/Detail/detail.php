@@ -97,13 +97,15 @@
 
                             <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250"><?php echo $status . " " . $nama_dept ?> di Gink Technology</h2>
                         </div>
-                        <div class="flex-sm-00-auto mt-3 mt-sm-0 ml-sm-3">
-                            <span class="d-inline-block invisible" data-toggle="appear" data-timeout="350">
-                                <a class="btn btn-primary px-4 py-2" class="p-2 bg-primary text-white text-decoration-none tiket" data-toggle="modal" data-target="#modal-block-large-sub-tiket" href="">
-                                    <i class="fa fa-plus mr-1"></i> Buat Sub Tiket
-                                </a>
-                            </span>
-                        </div>
+                        <?php if ($cekTabel == 'Request') { ?>
+                            <div class="flex-sm-00-auto mt-3 mt-sm-0 ml-sm-3">
+                                <span class="d-inline-block invisible" data-toggle="appear" data-timeout="350">
+                                    <a class="btn btn-primary px-4 py-2" class="p-2 bg-primary text-white text-decoration-none tiket" data-toggle="modal" data-target="#modal-block-large-sub-tiket" href="">
+                                        <i class="fa fa-plus mr-1"></i> Buat Sub Tiket
+                                    </a>
+                                </span>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -125,7 +127,7 @@
                             <table class="table table-borderless">
                                 <tbody>
                                     <tr>
-                                        <td class="d-none d-sm-table-cell text-center" rowspan="10"  style="width: 15%;">
+                                        <td class="d-none d-sm-table-cell text-center" rowspan="11"  style="width: 15%;">
                                             <p>
                                                 <a href="be_pages_generic_profile.html">
                                                     <img class="img-avatar " src="<?php echo base_url('assets/oneui/media/avatars/avatar7.jpg')?>" alt="">
@@ -253,6 +255,54 @@
                                             </td>
                                         </tr>
                                     <?php } ?>
+                                    <?php if($cekTabel == "Request") {?>
+                                        <!-- tabel sub task -->
+                                        <div class="container-fluid">
+                                            <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
+                                                <thead class="thead-dark">
+                                                    <tr class="text-uppercase">
+                                                    <th class="font-w700 text-center" style="width: 10%;"># ID Sub Task</th>
+                                                        <th class="font-w700 text-center" style="width: 25%;">Title Sub Task</th>
+                                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Penanggung Jawab</th>
+                                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Deadline</th>
+                                                        <th class="font-w700 text-center" style="width: 15%;">Status</th>
+                                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 10%;">Aksi</th>
+                                                    </tr>
+                                                </thead>
+                                                <?php foreach ($subtask as $value) { ?>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="width: 10%;">
+                                                                <span class="font-w600">#<?php echo $value["id_task"] ?></span>
+                                                            </td>
+                                                            <td style="width: 25%;">
+                                                                <span class="font-w600"><?php echo $value["title"] ?></span>
+                                                            </td>
+                                                            <td style="width: 20%;">
+                                                                <span class="font-w600"><?php echo $value["nama"] ?></span>
+                                                            </td>
+                                                            <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
+                                                                <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
+                                                            </td>
+                                                            <?php if ($value["status"] == "Belum Selesai") { ?>
+                                                                <td class="text-danger text-center" style="width: 15%;">
+                                                                    <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
+                                                                </td>
+                                                            <?php } else { ?>
+                                                                <td class="text-danger text-center" style="width: 15%;">
+                                                                    <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span>
+                                                                </td>
+                                                            <?php } ?>
+                                                            <td class="d-none d-sm-table-cell text-center" style="width: 10%;">
+                                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                <?php } ?>
+                                            </table>
+                                        </div>
+                                        <!-- END tabel sub task -->
+                                                <?php }?>
                                 </tbody>    
                             </table>
                         </div> 

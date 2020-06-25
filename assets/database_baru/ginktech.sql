@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 22, 2020 at 05:28 AM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.11
+-- Generation Time: Jun 25, 2020 at 08:43 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 5.6.40
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -31,16 +31,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `departemen` (
   `id_departemen` varchar(30) NOT NULL,
   `nama_departemen` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `departemen`
 --
 
 INSERT INTO `departemen` (`id_departemen`, `nama_departemen`) VALUES
-('CS', 'Customer Service'),
-('dev', 'developer'),
-('fin', 'finance');
+('dev', 'Developer'),
+('mar', 'Marketing'),
+('sup', 'Support');
 
 -- --------------------------------------------------------
 
@@ -51,21 +51,56 @@ INSERT INTO `departemen` (`id_departemen`, `nama_departemen`) VALUES
 CREATE TABLE `employe` (
   `id_employ` varchar(30) NOT NULL,
   `nama` varchar(50) DEFAULT NULL,
-  `id_departemen` varchar(30) NOT NULL,
-  `status` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id_departemen` varchar(30) DEFAULT NULL,
+  `status_employ` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `employe`
 --
 
-INSERT INTO `employe` (`id_employ`, `nama`, `id_departemen`, `status`) VALUES
-('1111111', 'dwiki martin', 'CS', 'staff'),
-('120698', 'muhammad muttaqin', 'fin', 'kepala'),
-('121198', 'Aldi Indrawan', 'dev', 'staff'),
-('121212', 'Rizki Bhaskara', 'dev', 'kepala'),
-('151098', 'shanti puspita sari', 'fin', 'staff'),
-('33333', 'messi', 'dev', 'staff');
+INSERT INTO `employe` (`id_employ`, `nama`, `id_departemen`, `status_employ`) VALUES
+('082', 'Rizky', 'mar', 'kepala'),
+('100', 'Pika', 'sup', 'staff'),
+('138', 'Muttaqin', 'dev', 'kepala'),
+('151', 'Yusuf', 'dev', 'staff'),
+('161', 'Yopan', 'sup', 'kepala'),
+('199', 'Lucy', 'mar', 'staff');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `komentar`
+--
+
+CREATE TABLE `komentar` (
+  `id_komentar` varchar(30) NOT NULL,
+  `komentar` text,
+  `id_task` varchar(30) DEFAULT NULL,
+  `nama_kirim_komen` varchar(50) DEFAULT NULL,
+  `tanggal_komen` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `layanan_pelanggan`
+--
+
+CREATE TABLE `layanan_pelanggan` (
+  `id_layanan` varchar(10) NOT NULL,
+  `nama_layanan` varchar(50) DEFAULT NULL,
+  `id_pelanggan` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `layanan_pelanggan`
+--
+
+INSERT INTO `layanan_pelanggan` (`id_layanan`, `nama_layanan`, `id_pelanggan`) VALUES
+('LYN-01', 'Website', '001'),
+('LYN-02', 'Hosting', '001'),
+('LYN-03', 'Website Toefl', '002');
 
 -- --------------------------------------------------------
 
@@ -76,17 +111,17 @@ INSERT INTO `employe` (`id_employ`, `nama`, `id_departemen`, `status`) VALUES
 CREATE TABLE `pelanggan` (
   `id_pelanggan` varchar(30) NOT NULL,
   `customer` varchar(50) DEFAULT NULL,
-  `layanan` varchar(50) DEFAULT NULL,
   `status` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pelanggan`
 --
 
-INSERT INTO `pelanggan` (`id_pelanggan`, `customer`, `layanan`, `status`) VALUES
-('111', 'son sony', 'app website', 'aktif'),
-('123', 'jaya bakery', 'website', 'aktif');
+INSERT INTO `pelanggan` (`id_pelanggan`, `customer`, `status`) VALUES
+('001', 'Jaya Bakery', 'Aktif'),
+('002', 'ITERA', 'Aktif'),
+('003', 'Jual Bakery', 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -96,37 +131,36 @@ INSERT INTO `pelanggan` (`id_pelanggan`, `customer`, `layanan`, `status`) VALUES
 
 CREATE TABLE `task` (
   `id_task` varchar(30) NOT NULL,
+  `id_parent` varchar(30) NOT NULL,
   `id_pelanggan` varchar(30) DEFAULT NULL,
   `id_employ_tujuan` varchar(30) DEFAULT NULL,
   `nama_dept_tujuan` varchar(30) DEFAULT NULL,
   `id_employ_kirim` varchar(30) DEFAULT NULL,
   `nama_dept_kirim` varchar(30) DEFAULT NULL,
   `title` varchar(30) DEFAULT NULL,
-  `deskripsi` text DEFAULT NULL,
+  `deskripsi` text,
   `kategori_masalah` varchar(20) DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   `dateline` date DEFAULT NULL,
   `berkas` varchar(100) DEFAULT NULL,
   `waktu_selesai` datetime DEFAULT NULL,
-  `status` varchar(14) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` varchar(14) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `task`
 --
 
-INSERT INTO `task` (`id_task`, `id_pelanggan`, `id_employ_tujuan`, `nama_dept_tujuan`, `id_employ_kirim`, `nama_dept_kirim`, `title`, `deskripsi`, `kategori_masalah`, `date`, `dateline`, `berkas`, `waktu_selesai`, `status`) VALUES
-('200', '111', '33333', 'developer', '1111111', 'Customer Service', 'Tugas paling baru', 'perbarui hosting dengan pelanggan ....... dengan durasi 6 bulan dan layanan seperti sebelumnya', 'support', '2020-06-13 00:00:00', '2020-07-15', NULL, NULL, 'belum selesai'),
-('315', '111', '121212', 'developer', '1111111', 'Customer Service', 'Membuat tugas', 'Tugas ini adalah tugas yang akan mempelajari hal yang Tugas ini adalah tugas yang akan mempelajari hal yang  Tugas ini adalah tugas yang akan mempelajari hal yang', 'support', '2020-06-19 00:00:00', '2020-06-25', NULL, NULL, 'belum selesai'),
-('338', '111', '121212', 'umum', '1111111', 'Customer Service', 'tugas lucu', 'belum update hosting pada pelanggan diatas,mereka sudah membayar tapi hosting belum di update mohon ', 'umum', '2020-06-13 00:00:00', '2020-06-16', 'daftar2.pdf', '2020-06-22 10:27:52', 'Selesai'),
-('340', '111', '33333', 'umum', '121212', 'developer', 'belum update', 'belum update hosting pada pelanggan diatas,mereka sudah membayar tapi hosting belum di update mohon ', 'umum', '2020-06-13 00:00:00', '2020-06-16', NULL, NULL, 'belum selesai'),
-('351', NULL, '121198', 'developer', '121198', 'developer', 'fix bug', 'perbaiki bug pada aplikasi ............. dengan pelanggan .............', 'support', '2020-06-13 00:00:00', '2020-06-15', 'RD_ITE_14117145_14117170.pptx', NULL, 'belum selesai'),
-('353', NULL, '33333', 'developer', '121198', 'developer', 'aplikasi jodoh', 'perbaiki bug pada aplikasi ............. dengan pelanggan .............', 'support', '2020-06-13 00:00:00', '2020-06-15', '', NULL, 'belum selesai'),
-('454', '111', '33333', 'developer', '1111111', 'Customer Service', 'perbarui hosting', 'perbarui hosting dengan pelanggan ....... dengan durasi 6 bulan dan layanan seperti sebelumnya', 'support', '2020-06-13 00:00:00', '2020-06-15', NULL, NULL, 'belum selesai'),
-('757', '111', '120698', 'finance', '121198', 'developer', 'data pelanggan', 'butuh data pelanggan dengan nama pelanggan itera dan layanan DIM itera,mhon segera dibuatkan dan dikjajajajjajajabutuh data pelanggan dengan nama pelanggan itera dan layanan DIM itera,mhon segera dibuatkan dan dikjajajajjajajabutuh data pelanggan dengan nama pelanggan itera dan layanan DIM itera,mhon segera dibuatkan dan dikjajajajjajajabutuh data pelanggan dengan nama pelanggan itera dan layanan DIM itera,mhon segera dibuatkan dan dikjajajajjajajabutuh data pelanggan dengan nama pelanggan itera dan layanan DIM itera,mhon segera dibuatkan dan dikjajajajjajaja', 'billing', '2020-06-13 00:00:00', '2020-06-14', NULL, NULL, 'belum selesai'),
-('765', '111', '33333', 'developer', '1111111', 'Customer Service', 'Protes', 'Kenapa websitenya jelek!!!!!!!!!!!!!!!!!!!!!!!!!!! Kenapa websitenya jelek!!!!!!!!!!!!!!!!!!!!!!!!!!!', 'support', '2020-06-18 00:00:00', '2020-06-30', NULL, '2020-06-20 09:24:49', 'selesai'),
-('787', '111', NULL, 'developer', '1111111', 'Customer Service', 'Tugas dadakan', 'Tugas dibuat dadakan Tugas dibuat dadakan Tugas dibuat dadakan Tugas dibuat dadakan Tugas dibuat dadakan Tugas dibuat dadakan Tugas dibuat dadakan Tugas dibuat dadakan Tugas dibuat dadakan', 'support', '2020-06-22 05:20:56', '2020-07-30', NULL, NULL, 'belum selesai'),
-('912', '111', NULL, 'developer', '1111111', 'Customer Service', 'Tugas Contoh', 'date_default_timezone_set(\'Asia/Bangkok\');date_default_timezone_set(\'Asia/Bangkok\');date_default_timezone_set(\'Asia/Bangkok\');date_default_timezone_set(\'Asia/Bangkok\');date_default_timezone_set(\'Asia/Bangkok\');', 'support', '2020-06-22 10:22:33', '2020-08-13', NULL, NULL, 'belum selesai');
+INSERT INTO `task` (`id_task`, `id_parent`, `id_pelanggan`, `id_employ_tujuan`, `nama_dept_tujuan`, `id_employ_kirim`, `nama_dept_kirim`, `title`, `deskripsi`, `kategori_masalah`, `date`, `dateline`, `berkas`, `waktu_selesai`, `status`) VALUES
+('212', '941', NULL, '138', 'Developer', '138', 'Developer', 'develop database', 'design ERD dan develop database', NULL, '2020-06-25 10:55:26', '2020-06-28', 'khs14117055_6.pdf', '2020-06-25 11:38:27', 'Selesai'),
+('417', '925', NULL, '151', 'Developer', '138', 'Developer', 'develop tampilan home', 'kuy', NULL, '2020-06-25 12:27:35', '2020-07-02', NULL, '2020-06-25 13:11:21', 'Selesai'),
+('48', '925', NULL, '151', 'Developer', '138', 'Developer', 'develop dashboard', 'design di A\r\n', NULL, '2020-06-25 12:26:35', '2020-07-02', NULL, NULL, 'Belum Selesai'),
+('729', '941', NULL, '151', 'Developer', '138', 'Developer', 'testing', 'testing suf', NULL, '2020-06-25 12:47:12', '2020-07-02', NULL, NULL, 'Belum Selesai'),
+('755', '941', NULL, '138', 'Developer', '138', 'Developer', 'develop tampilan login', 'design di dia', NULL, '2020-06-25 11:42:13', '2020-07-02', NULL, '2020-06-25 13:21:15', 'Selesai'),
+('768', '941', NULL, '151', 'Developer', '138', 'Developer', 'develop tampilan tiket', 'design di dia', NULL, '2020-06-25 11:43:21', '2020-07-02', NULL, '2020-06-25 13:11:16', 'Selesai'),
+('822', '941', NULL, '151', 'Developer', '138', 'Developer', 'develope dashboard (frontend)', 'develop frontend dashboard', NULL, '2020-06-25 10:49:03', '2020-07-02', NULL, '2020-06-25 13:11:10', 'Selesai'),
+('925', '', NULL, '138', 'developer', '199', 'Marketing', 'order website', 'website official bakso tomy', NULL, '2020-06-25 10:14:38', '2020-07-05', NULL, NULL, 'Belum Selesai'),
+('941', '', NULL, '138', 'developer', '199', 'Marketing', 'order app website', 'order app website inventory warung adel', NULL, '2020-06-25 10:15:15', '2020-07-31', NULL, NULL, 'Belum Selesai');
 
 -- --------------------------------------------------------
 
@@ -138,19 +172,19 @@ CREATE TABLE `user` (
   `username` varchar(30) NOT NULL,
   `password` varchar(20) DEFAULT NULL,
   `id_employ` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`username`, `password`, `id_employ`) VALUES
-('aldi12', '123456', '121198'),
-('dwiki12', '123456', '1111111'),
-('messi', '123456', '33333'),
-('muhammad12', '123456', '120698'),
-('rizki12', '123456', '121212'),
-('shanti12', '123456', '151098');
+('Lucy12', '123456', '199'),
+('Muttaqin12', '123456', '138'),
+('Pika12', '123456', '100'),
+('Rizky12', '123456', '082'),
+('Yopan12', '123456', '161'),
+('Yusuf12', '123456', '151');
 
 --
 -- Indexes for dumped tables
@@ -166,8 +200,22 @@ ALTER TABLE `departemen`
 -- Indexes for table `employe`
 --
 ALTER TABLE `employe`
-  ADD PRIMARY KEY (`id_employ`,`id_departemen`),
+  ADD PRIMARY KEY (`id_employ`),
   ADD KEY `id_departemen` (`id_departemen`);
+
+--
+-- Indexes for table `komentar`
+--
+ALTER TABLE `komentar`
+  ADD PRIMARY KEY (`id_komentar`),
+  ADD KEY `id_task` (`id_task`);
+
+--
+-- Indexes for table `layanan_pelanggan`
+--
+ALTER TABLE `layanan_pelanggan`
+  ADD PRIMARY KEY (`id_layanan`),
+  ADD KEY `id_pelanggan` (`id_pelanggan`);
 
 --
 -- Indexes for table `pelanggan`
@@ -180,9 +228,9 @@ ALTER TABLE `pelanggan`
 --
 ALTER TABLE `task`
   ADD PRIMARY KEY (`id_task`),
+  ADD KEY `id_pelanggan` (`id_pelanggan`),
   ADD KEY `id_employ_tujuan` (`id_employ_tujuan`),
-  ADD KEY `id_employ_kirim` (`id_employ_kirim`),
-  ADD KEY `id_pelanggan` (`id_pelanggan`);
+  ADD KEY `id_employ_kirim` (`id_employ_kirim`);
 
 --
 -- Indexes for table `user`
@@ -202,19 +250,30 @@ ALTER TABLE `employe`
   ADD CONSTRAINT `employe_ibfk_1` FOREIGN KEY (`id_departemen`) REFERENCES `departemen` (`id_departemen`);
 
 --
+-- Constraints for table `komentar`
+--
+ALTER TABLE `komentar`
+  ADD CONSTRAINT `komentar_ibfk_1` FOREIGN KEY (`id_task`) REFERENCES `task` (`id_task`);
+
+--
+-- Constraints for table `layanan_pelanggan`
+--
+ALTER TABLE `layanan_pelanggan`
+  ADD CONSTRAINT `layanan_pelanggan_ibfk_1` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`);
+
+--
 -- Constraints for table `task`
 --
 ALTER TABLE `task`
-  ADD CONSTRAINT `task_ibfk_1` FOREIGN KEY (`id_employ_tujuan`) REFERENCES `employe` (`id_employ`),
-  ADD CONSTRAINT `task_ibfk_2` FOREIGN KEY (`id_employ_kirim`) REFERENCES `employe` (`id_employ`),
-  ADD CONSTRAINT `task_ibfk_5` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`);
+  ADD CONSTRAINT `task_ibfk_1` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`),
+  ADD CONSTRAINT `task_ibfk_2` FOREIGN KEY (`id_employ_tujuan`) REFERENCES `employe` (`id_employ`),
+  ADD CONSTRAINT `task_ibfk_3` FOREIGN KEY (`id_employ_kirim`) REFERENCES `employe` (`id_employ`);
 
 --
 -- Constraints for table `user`
 --
 ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`id_employ`) REFERENCES `employe` (`id_employ`),
-  ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`id_employ`) REFERENCES `employe` (`id_employ`);
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`id_employ`) REFERENCES `employe` (`id_employ`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

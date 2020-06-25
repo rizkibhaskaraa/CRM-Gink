@@ -31,6 +31,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
     <link rel="stylesheet" id="css-main" href="<?php echo base_url('assets/oneui/css/oneui.min.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/home/home.css') ?>">
+    
+    <!-- Page JS Plugins CSS -->
+     <link rel="stylesheet" href="<?php echo base_url('assets/oneui/js/plugins/summernote/summernote-bs4.css') ?>">
 
 
     <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
@@ -212,7 +215,7 @@
                             <h3 class="block-title text-primary">Report Staff</h3>
                         </div>
                         <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-end" id="tgl-end" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal End">
-                        <h1 class="search"><i class="far fa-window-minimize"></i></h1>
+                        <h1 class="search"><i class="far fa-window-minimize mr-3"></i></h1>
                         <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-start" id="tgl-start" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal Start">
                         <div class="block-content block-content-full">
                             <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
@@ -655,17 +658,41 @@
                                     <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true"  >
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
                                 <textarea class="form-control required" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
                                 <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
-                            </div>
+                            </div> -->
+                           
+                            <div class="block-content block-content-full ">
+                                            <!-- Summernote Container -->
+                                            <div class="js-summernote-air" >
+                                                
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="block">
+                                        <div class="block-header">
+                                            
+                                            <div class="block-options">
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="block-content block-content-full">
+                                            <!-- Summernote Container -->
+                                            <div class="js-summernote">Hello Summernote!</div>
+                                        </div>
+                                        </div>
+                                        <!-- END Summernote -->
                             <div style="float:right;margin-bottom:3%">
                                 <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
                                 
                                 <button type="submit" class="btn btn-primary">Buat</button>
                                 
                             </div>
+
+
+                                            
                         </form>
                     </div>
                 </div>
@@ -744,6 +771,14 @@
             One.helpers(['datepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider']);
         });
     </script>
+
+
+    <!-- Page JS Plugins -->
+    <script src="<?php echo base_url('assets/oneui/js/plugins/summernote/summernote-bs4.min.js') ?>"></script>
+        <!-- Page JS Helpers (Summernote + CKEditor + SimpleMDE plugins) -->
+     <script>jQuery(function(){ One.helpers(['summernote']); });</script>
+
+
 </body>
 
 </html>

@@ -65,4 +65,26 @@ class Detail extends CI_Controller
         $user = $this->detail_model->getuser($id);
         redirect(base_url('index.php/home/index/') . $user['username']);
     }
+
+    public function addsubtiket($id_employ,$id_Task,$tabel){
+        date_default_timezone_set('Asia/Bangkok');
+        $employ = $this->detail_model->getemploy($id_employ);
+        $departemen = $this->detail_model->getdept($employ["id_departemen"]);
+
+        $data_sub_task = array(
+            "id_task" => rand(0001, 1000),
+            "nama_dept_tujuan" => $departemen["nama_departemen"],
+            "id_employ_tujuan" => $this->input->post("PJsubtask"),
+            "id_parent" => $this->input->post("id_parent"),
+            "id_employ_kirim" => $id_employ,
+            "nama_dept_kirim" => $departemen["nama_departemen"],
+            "title" => $this->input->post("title"),
+            "deskripsi" => $this->input->post("deskripsi"),
+            "date" => date("Y-m-d H-i-s"),
+            "dateline" => $this->input->post("dateline"),
+            "status" => "Belum Selesai"
+        );
+        $this->detail_model->insert_sub_task($data_sub_task);
+        redirect(base_url('index.php/detail/detailumum/') . $id_employ . "/" . $id_Task . "/" . $tabel);
+    }
 }

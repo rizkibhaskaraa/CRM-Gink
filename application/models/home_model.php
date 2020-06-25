@@ -9,17 +9,24 @@ class home_model extends CI_model
         return $this->db->get_where("employe", array("id_employ" => $id_employ))->row_array();
     }
 
-    public function getuser($id_employ){
-        return $this->db->get_where("user",array("id_employ"=>$id_employ))->row_array();
+    public function getuser($id_employ)
+    {
+        return $this->db->get_where("user", array("id_employ" => $id_employ))->row_array();
     }
 
-    public function getemploytiket($id_employ){
-        return $this->db->get_where("employe",array("id_employ"=>$id_employ))->row_array();
+    public function getemploytiket($id_employ)
+    {
+        return $this->db->get_where("employe", array("id_employ" => $id_employ))->row_array();
     }
 
     public function getpelanggan()
     {
         return $this->db->get("pelanggan")->result_array();
+    }
+
+    public function getlayanan()
+    {
+        return $this->db->get("layanan_pelanggan")->result_array();
     }
 
     public function getpelangganbyid($id)
@@ -45,8 +52,8 @@ class home_model extends CI_model
         return $this->db->get_where('task', array('id_employ_kirim' => $id_employ))->result_array();
     }
     public function gettaskdihead($nama_departemen)
-    {   
-        $departemen = array($nama_departemen,"umum");
+    {
+        $departemen = array($nama_departemen, "umum");
         $this->db->order_by('status', 'ASC');
         $this->db->order_by('dateline', 'ASC');
         $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
@@ -54,8 +61,8 @@ class home_model extends CI_model
         return $this->db->get('task')->result_array();
     }
     public function gettaskdiheadkosong($nama_departemen)
-    {   
-        $departemen = array($nama_departemen,"umum");
+    {
+        $departemen = array($nama_departemen, "umum");
         $this->db->order_by('status', 'ASC');
         $this->db->order_by('dateline', 'ASC');
         $this->db->where_in('nama_dept_tujuan', $departemen);
@@ -94,11 +101,13 @@ class home_model extends CI_model
         return $this->db->get("pelanggan")->result_array();
     }
 
-    public function insert_task($data_task){
-        return $this->db->insert("task",$data_task);
+    public function insert_task($data_task)
+    {
+        return $this->db->insert("task", $data_task);
     }
 
-    public function getreport($dept){
+    public function getreport($dept)
+    {
         $this->db->where("nama_dept_tujuan", $dept);
         $this->db->select("count(task.status),id_employ_tujuan,nama");
         $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");

@@ -72,6 +72,15 @@ class Home extends CI_Controller
         $this->load->view('home/hasil_search', $data);
     }
 
+    public function searchreport($employ_id, $dept, $tglend, $tglstart)
+    {
+        $tglend = str_replace('%20', ' ', $tglend);
+        $tglstart = str_replace('%20', ' ', $tglstart);
+        $data["report"] = $this->home_model->getsearchreport($dept, $tglend, $tglstart);
+        $data["employ_id"] = $employ_id;
+        $this->load->view('home/hasil_searchreport', $data);
+    }
+
     function get_pelanggan()
     {
         $id_pelanggan = $this->input->get('id');

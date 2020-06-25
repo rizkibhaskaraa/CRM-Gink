@@ -337,89 +337,43 @@
                                     <tr class="table-active">
                                         <td class="d-none d-sm-table-cell"></td>
                                         <td class="font-size-sm text-muted">
-                                            <a href="be_pages_generic_profile.html">Barbara Scott</a> on <em>July 1, 2019 16:15</em>
+                                            <a href="be_pages_generic_profile.html">Muttaqin</a> on <em>June 26, 2019 16:15</em>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="d-none d-sm-table-cell text-center" style="width: 140px;">
                                             <p>
                                                 <a href="be_pages_generic_profile.html">
-                                                    <img class="img-avatar" src="assets/media/avatars/avatar7.jpg" alt="">
+                                                    <img class="img-avatar" src="<?php echo base_url('assets/oneui/media/avatars/avatar7.jpg')?>" alt="">
                                                 </a>
                                             </p>
-                                            <p class="font-size-sm">110 Posts<br>Level 9</p>
+                                            <p class="font-size-sm">Muttaqin<br>Developer</p>
                                         </td>
                                         <td>
-                                            <p>Potenti elit lectus augue eget iaculis vitae etiam, ullamcorper etiam bibendum ad feugiat magna accumsan dolor, nibh molestie cras hac ac ad massa, fusce ante convallis ante urna molestie vulputate bibendum tempus ante justo arcu erat accumsan adipiscing risus, libero condimentum venenatis sit nisl nisi ultricies sed, fames aliquet consectetur consequat nostra molestie neque nullam scelerisque neque commodo turpis quisque etiam egestas vulputate massa, curabitur tellus massa venenatis congue dolor enim integer luctus, nisi suscipit gravida fames quis vulputate nisi viverra luctus id leo dictum lorem, inceptos nibh orci.</p>
-                                            <p>Potenti elit lectus augue eget iaculis vitae etiam, ullamcorper etiam bibendum ad feugiat magna accumsan dolor, nibh molestie cras hac ac ad massa, fusce ante convallis ante urna molestie vulputate bibendum tempus ante justo arcu erat accumsan adipiscing risus, libero condimentum venenatis sit nisl nisi ultricies sed, fames aliquet consectetur consequat nostra molestie neque nullam scelerisque neque commodo turpis quisque etiam egestas vulputate massa, curabitur tellus massa venenatis congue dolor enim integer luctus, nisi suscipit gravida fames quis vulputate nisi viverra luctus id leo dictum lorem, inceptos nibh orci.</p>
-                                            <hr>
-                                            <p class="font-size-sm text-muted">There is only one way to avoid criticism: do nothing, say nothing, and be nothing.</p>
+                                            <p>Ini masih ada bug di bagian backendnya, tolong di perbaiki kembali</p>
                                         </td>
                                     </tr>
+                                   
+                                    
                                     <tr class="table-active">
                                         <td class="d-none d-sm-table-cell"></td>
                                         <td class="font-size-sm text-muted">
-                                            <a href="be_pages_generic_profile.html">Jesse Fisher</a> on <em>July 10, 2019 10:09</em>
+                                            <a href="be_pages_generic_profile.html">Rizki Bhaskara</a> on <em>June 27, 2020 20:29</em>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="d-none d-sm-table-cell text-center" style="width: 140px;">
                                             <p>
                                                 <a href="be_pages_generic_profile.html">
-                                                    <img class="img-avatar" src="assets/media/avatars/avatar11.jpg" alt="">
+                                                    <img class="img-avatar" src="<?php echo base_url('assets/oneui/media/avatars/avatar8.jpg')?>" alt="">
                                                 </a>
                                             </p>
-                                            <p class="font-size-sm">432 Posts<br>Level 4</p>
+                                            <p class="font-size-sm">Rizki Bhaskara<br>Staff Developer</p>
                                         </td>
                                         <td>
-                                            <p>Felis ullamcorper curae erat nulla luctus sociosqu phasellus posuere habitasse sollicitudin, libero sit potenti leo ultricies etiam blandit id platea augue, erat habitant fermentum lorem commodo taciti tristique etiam curabitur suscipit lacinia habitasse amet mauris eu eget ipsum nec magna in, adipiscing risus aenean turpis proin duis fringilla praesent ornare lorem eros malesuada vitae nullam diam velit potenti consectetur, vehicula accumsan risus lectus tortor etiam facilisis tempus sapien tortor, mi vestibulum taciti dapibus viverra ac justo vivamus erat phasellus turpis nisi class praesent duis ligula, vel ornare faucibus potenti nibh turpis, at id semper nunc dui blandit. Enim et nec habitasse ultricies id tortor curabitur, consectetur eu inceptos ante conubia tempor platea odio, sed sem integer lacinia cras non risus euismod turpis platea erat ultrices iaculis rutrum taciti, fusce lobortis adipiscing dapibus habitant sodales gravida pulvinar, elementum mi tempus ut commodo congue ipsum justo nec dui cursus scelerisque elementum volutpat tellus nulla laoreet taciti, nibh suspendisse primis arcu integer vulputate etiam ligula lobortis nunc, interdum commodo libero aliquam suscipit phasellus sollicitudin arcu varius venenatis erat ornare tempor nullam donec vitae etiam tellus.</p>
-                                            <hr>
-                                            <p class="font-size-sm text-muted">Be yourself; everyone else is already taken.</p>
-                                        </td>
-                                    </tr>
-                                    <tr class="table-active">
-                                        <td class="d-none d-sm-table-cell"></td>
-                                        <td class="font-size-sm text-muted">
-                                            <a href="be_pages_generic_profile.html">Scott Young</a> on <em>July 15, 2019 20:17</em>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="d-none d-sm-table-cell text-center" style="width: 140px;">
-                                            <p>
-                                                <a href="be_pages_generic_profile.html">
-                                                    <img class="img-avatar" src="assets/media/avatars/avatar16.jpg" alt="">
-                                                </a>
-                                            </p>
-                                            <p class="font-size-sm">200 Posts<br>Level 10</p>
-                                        </td>
-                                        <td>
-                                            <p>Potenti elit lectus augue eget iaculis vitae etiam, ullamcorper etiam bibendum ad feugiat magna accumsan dolor, nibh molestie cras hac ac ad massa, fusce ante convallis ante urna molestie vulputate bibendum tempus ante justo arcu erat accumsan adipiscing risus, libero condimentum venenatis sit nisl nisi ultricies sed, fames aliquet consectetur consequat nostra molestie neque nullam scelerisque neque commodo turpis quisque etiam egestas vulputate massa, curabitur tellus massa venenatis congue dolor enim integer luctus, nisi suscipit gravida fames quis vulputate nisi viverra luctus id leo dictum lorem, inceptos nibh orci.</p>
-                                            <p>Potenti elit lectus augue eget iaculis vitae etiam, ullamcorper etiam bibendum ad feugiat magna accumsan dolor, nibh molestie cras hac ac ad massa, fusce ante convallis ante urna molestie vulputate bibendum tempus ante justo arcu erat accumsan adipiscing risus, libero condimentum venenatis sit nisl nisi ultricies sed, fames aliquet consectetur consequat nostra molestie neque nullam scelerisque neque commodo turpis quisque etiam egestas vulputate massa, curabitur tellus massa venenatis congue dolor enim integer luctus, nisi suscipit gravida fames quis vulputate nisi viverra luctus id leo dictum lorem, inceptos nibh orci.</p>
-                                            <p>Potenti elit lectus augue eget iaculis vitae etiam, ullamcorper etiam bibendum ad feugiat magna accumsan dolor, nibh molestie cras hac ac ad massa, fusce ante convallis ante urna molestie vulputate bibendum tempus ante justo arcu erat accumsan adipiscing risus, libero condimentum venenatis sit nisl nisi ultricies sed, fames aliquet consectetur consequat nostra molestie neque nullam scelerisque neque commodo turpis quisque etiam egestas vulputate massa, curabitur tellus massa venenatis congue dolor enim integer luctus, nisi suscipit gravida fames quis vulputate nisi viverra luctus id leo dictum lorem, inceptos nibh orci.</p>
-                                            <hr>
-                                            <p class="font-size-sm text-muted">Don't cry because it's over, smile because it happened.</p>
-                                        </td>
-                                    </tr>
-                                    <tr class="table-active">
-                                        <td class="d-none d-sm-table-cell"></td>
-                                        <td class="font-size-sm text-muted">
-                                            <a href="be_pages_generic_profile.html">Helen Jacobs</a> on <em>July 20, 2019 20:29</em>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="d-none d-sm-table-cell text-center" style="width: 140px;">
-                                            <p>
-                                                <a href="be_pages_generic_profile.html">
-                                                    <img class="img-avatar" src="assets/media/avatars/avatar8.jpg" alt="">
-                                                </a>
-                                            </p>
-                                            <p class="font-size-sm">137 Posts<br>Level 5</p>
-                                        </td>
-                                        <td>
-                                            <p>Potenti elit lectus augue eget iaculis vitae etiam, ullamcorper etiam bibendum ad feugiat magna accumsan dolor, nibh molestie cras hac ac ad massa, fusce ante convallis ante urna molestie vulputate bibendum tempus ante justo arcu erat accumsan adipiscing risus, libero condimentum venenatis sit nisl nisi ultricies sed, fames aliquet consectetur consequat nostra molestie neque nullam scelerisque neque commodo turpis quisque etiam egestas vulputate massa, curabitur tellus massa venenatis congue dolor enim integer luctus, nisi suscipit gravida fames quis vulputate nisi viverra luctus id leo dictum lorem, inceptos nibh orci.</p>
-                                            <p>Potenti elit lectus augue eget iaculis vitae etiam, ullamcorper etiam bibendum ad feugiat magna accumsan dolor, nibh molestie cras hac ac ad massa, fusce ante convallis ante urna molestie vulputate bibendum tempus ante justo arcu erat accumsan adipiscing risus, libero condimentum venenatis sit nisl nisi ultricies sed, fames aliquet consectetur consequat nostra molestie neque nullam scelerisque neque commodo turpis quisque etiam egestas vulputate massa, curabitur tellus massa venenatis congue dolor enim integer luctus, nisi suscipit gravida fames quis vulputate nisi viverra luctus id leo dictum lorem, inceptos nibh orci.</p>
-                                            <hr>
-                                            <p class="font-size-sm text-muted">Strive not to be a success, but rather to be of value.</p>
+                                        
+                                        <p>Oke akan saya cek kembali</p>
+                                        
                                         </td>
                                     </tr>
                                     <tr class="table-active" id="forum-reply-form">
@@ -563,6 +517,13 @@
             One.helpers(['datepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider']);
         });
     </script>
+
+
+ <!-- Page JS Plugins -->
+ <script src="<?php echo base_url ('assets/oneui/js/plugins/ckeditor/ckeditor.js')?>"></script>
+
+<!-- Page JS Helpers (CKEditor plugin) -->
+<script>jQuery(function(){ One.helpers(['ckeditor']); });</script>
 
 </body>
 

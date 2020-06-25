@@ -25,7 +25,14 @@ cari.addEventListener('keyup', function(){
 });
 
 button.addEventListener('click', function(){
-	window.alert(alamat_report.value+tgl_start.value+"/"+tgl_end.value);
+	
+	// if(tgl_start.value==null){
+	// 	tgl_start = "2000-01-01 00:00:00";
+	// }
+	// if(tgl_end==null){
+	// 	tgl_end = "2200-01-01 00:00:00";
+	// }
+	// window.alert(alamat_report.value+tgl_start.value+"/"+tgl_end.value);
 	//buat objeck
 	var ajaxstart = new XMLHttpRequest();
 

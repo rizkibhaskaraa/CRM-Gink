@@ -199,7 +199,7 @@
                                                         <?php } ?>
                                                 </form>
                                             </td>
-                                        <?php } else if ($cekTabel == 'TugasBelum') { ?>
+                                        <?php } else if ($cekTabel == 'TugasBelum' && $task["id_parent"]!=NULL) { ?>
                                             <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
                                             <td class="font-weight-bold">Berkas (opsional)</td>
                                             <td>
@@ -218,7 +218,7 @@
 
                                             <!-- <input type="submit" value="Selesai"> -->
                                             <?php echo form_close(); ?>
-                                        <?php } else if ($cekTabel == 'TugasSelesai') { ?>
+                                        <?php } else if ($cekTabel == 'TugasSelesai' && $task["id_parent"]!=NULL) { ?>
                                             <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
                                             <td class="font-weight-bold">Berkas (opsional)</td>
                                             <td>

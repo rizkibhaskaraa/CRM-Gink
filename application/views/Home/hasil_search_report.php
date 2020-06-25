@@ -1,3 +1,4 @@
+
 <div class="block-content block-content-full" id="report-table">
                             <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
                                 <thead class="thead-dark">

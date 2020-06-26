@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2020 at 08:43 AM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 5.6.40
+-- Generation Time: Jun 26, 2020 at 05:15 AM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -65,7 +65,8 @@ INSERT INTO `employe` (`id_employ`, `nama`, `id_departemen`, `status_employ`) VA
 ('138', 'Muttaqin', 'dev', 'kepala'),
 ('151', 'Yusuf', 'dev', 'staff'),
 ('161', 'Yopan', 'sup', 'kepala'),
-('199', 'Lucy', 'mar', 'staff');
+('199', 'Lucy', 'mar', 'staff'),
+('200', 'Messi', 'dev', 'staff');
 
 -- --------------------------------------------------------
 
@@ -75,11 +76,22 @@ INSERT INTO `employe` (`id_employ`, `nama`, `id_departemen`, `status_employ`) VA
 
 CREATE TABLE `komentar` (
   `id_komentar` varchar(30) NOT NULL,
-  `komentar` text,
+  `komentar` text DEFAULT NULL,
   `id_task` varchar(30) DEFAULT NULL,
   `nama_kirim_komen` varchar(50) DEFAULT NULL,
   `tanggal_komen` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `komentar`
+--
+
+INSERT INTO `komentar` (`id_komentar`, `komentar`, `id_task`, `nama_kirim_komen`, `tanggal_komen`) VALUES
+('1', 'Benerin', '941', 'Muttaqin', '2020-06-25 00:00:00'),
+('2', 'Komentar 2', '941', 'Muttaqin', '2020-06-29 00:00:00'),
+('3', 'Kemntar lagi', '822', 'Yusuf', '2020-06-30 00:00:00'),
+('4', 'Komentar Messi', '815', 'Messi', '2020-06-29 00:00:00'),
+('5', 'Kemntar tambahan', '925', 'Muttaqin', '2020-06-30 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -138,7 +150,7 @@ CREATE TABLE `task` (
   `id_employ_kirim` varchar(30) DEFAULT NULL,
   `nama_dept_kirim` varchar(30) DEFAULT NULL,
   `title` varchar(30) DEFAULT NULL,
-  `deskripsi` text,
+  `deskripsi` text DEFAULT NULL,
   `kategori_masalah` varchar(20) DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   `dateline` date DEFAULT NULL,
@@ -158,9 +170,11 @@ INSERT INTO `task` (`id_task`, `id_parent`, `id_pelanggan`, `id_employ_tujuan`, 
 ('729', '941', NULL, '151', 'Developer', '138', 'Developer', 'testing', 'testing suf', NULL, '2020-06-25 12:47:12', '2020-07-02', NULL, NULL, 'Belum Selesai'),
 ('755', '941', NULL, '138', 'Developer', '138', 'Developer', 'develop tampilan login', 'design di dia', NULL, '2020-06-25 11:42:13', '2020-07-02', NULL, '2020-06-25 13:21:15', 'Selesai'),
 ('768', '941', NULL, '151', 'Developer', '138', 'Developer', 'develop tampilan tiket', 'design di dia', NULL, '2020-06-25 11:43:21', '2020-07-02', NULL, '2020-06-25 13:11:16', 'Selesai'),
+('815', '941', NULL, '200', 'Developer', '138', 'Developer', 'Buat Messi', 'Tugas Messi', NULL, '2020-06-26 09:49:35', '2020-06-30', NULL, NULL, 'Belum Selesai'),
 ('822', '941', NULL, '151', 'Developer', '138', 'Developer', 'develope dashboard (frontend)', 'develop frontend dashboard', NULL, '2020-06-25 10:49:03', '2020-07-02', NULL, '2020-06-25 13:11:10', 'Selesai'),
 ('925', '', NULL, '138', 'developer', '199', 'Marketing', 'order website', 'website official bakso tomy', NULL, '2020-06-25 10:14:38', '2020-07-05', NULL, NULL, 'Belum Selesai'),
-('941', '', NULL, '138', 'developer', '199', 'Marketing', 'order app website', 'order app website inventory warung adel', NULL, '2020-06-25 10:15:15', '2020-07-31', NULL, NULL, 'Belum Selesai');
+('941', '', NULL, '138', 'developer', '199', 'Marketing', 'order app website', 'order app website inventory warung adel', NULL, '2020-06-25 10:15:15', '2020-07-31', NULL, NULL, 'Belum Selesai'),
+('962', '941', NULL, '200', 'Developer', '138', 'Developer', 'Tugas sub baru', 'Tugas tambahan', NULL, '2020-06-26 09:54:38', '2020-06-28', NULL, NULL, 'Belum Selesai');
 
 -- --------------------------------------------------------
 
@@ -180,6 +194,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`username`, `password`, `id_employ`) VALUES
 ('Lucy12', '123456', '199'),
+('Messi', '123456', '200'),
 ('Muttaqin12', '123456', '138'),
 ('Pika12', '123456', '100'),
 ('Rizky12', '123456', '082'),

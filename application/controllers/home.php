@@ -43,7 +43,7 @@ class Home extends CI_Controller
         $data["report"] = $this->home_model->getreport($departemen["nama_departemen"]);
         $data['tugas_belum'] = $this->home_model->gettugaspjbelum($departemen["nama_departemen"]);
         $data['tugas_selesai'] = $this->home_model->gettugaspjselesai($departemen["nama_departemen"]);
-        $data['employ'] = $this->home_model->getemploydept($data["employ_dept"]);
+        $data['employ_report'] = $this->home_model->getemploydept($data["employ_dept"]);
         $this->load->view('home/home', $data);
     }
 
@@ -83,6 +83,7 @@ class Home extends CI_Controller
         $data['tugas_belum'] = $this->home_model->gettugaspjbelum_periode($departemen["nama_departemen"],$data["tgl_start"],$data["tgl_end"]);
         $data['tugas_selesai'] = $this->home_model->gettugaspjselesai_periode($departemen["nama_departemen"],$data["tgl_start"],$data["tgl_end"]);
         $data["employ_id"] = $employ_id;
+        $data['employ_report'] = $this->home_model->getemploydept($employ["id_departemen"]);
         $this->load->view('home/hasil_search_report', $data);
     }
 

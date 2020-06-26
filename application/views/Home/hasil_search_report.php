@@ -8,9 +8,8 @@
                                         <th class="font-w700 text-center" style="width:15%" ;>Pending / On Progress</th>
                                     </tr>
                                 </thead>
-                                <?php echo count($report).count($employ);
-                                if(count($report)==0){
-                                    foreach ($employ as $value) { ?>
+                                <?php if(count($report)==0){
+                                    foreach ($employ_report as $value) { ?>
                                         <tbody>
                                                 <tr>
                                                     <td>

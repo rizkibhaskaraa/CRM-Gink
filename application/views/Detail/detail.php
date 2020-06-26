@@ -271,15 +271,24 @@
                                     <thead>
                                         <tr>
                                             <td colspan="6">
+                                                <?php $color = "bg-success";
+                                                $progres = count($subtaskselesai)/count($subtask)*100;
+                                                if($progres<80){
+                                                    $color = "bg-warning";
+                                                }
+                                                if($progres<30){
+                                                    $color = "bg-danger";
+                                                }
+                                                
+                                                ?>
                                                 <h4>Progres Task</h4>
                                                 <div class="progress push">
-                                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: <?php echo (count($subtaskselesai)/count($subtask))*100?>%;" aria-valuenow="<?php echo (count($subtaskselesai)/count($subtask))*100?>%" aria-valuemin="0" aria-valuemax="100">
-                                                        <span class="font-size-sm font-w600"><?php echo (count($subtaskselesai)/count($subtask))*100?>%</span>
+                                                    <div class="progress-bar <?php echo $color ?>" role="progressbar" style="width: <?php echo (count($subtaskselesai)/count($subtask))*100?>%;" aria-valuenow="<?php echo (count($subtaskselesai)/count($subtask))*100?>%" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="font-size-sm font-w600 text-muted"><?php echo (count($subtaskselesai)/count($subtask))*100?>%</span>
                                                     </div>
                                                 </div>
 
-                                                <?php $progres = count($subtaskselesai)/count($subtask)*100;
-                                                if($progres < 100){?>
+                                                <?php if($progres < 100){?>
                                                     <a class="btn btn-danger" class="bg-gander text-white text-decoration-none" href="<?php echo base_url('index.php/detail/ubahstatustask/' . $employ_id . '/' . $task['id_task']) ?>" style="float:right">
                                                         Konfirmasi Selesai
                                                     </a>

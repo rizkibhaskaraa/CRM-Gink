@@ -129,6 +129,7 @@ class detail_model extends CI_model
     public function getkomentar($task)
     {
         // $this->db->or_where("id_parent", $task);
+        $this->db->order_by('tanggal_komen', 'ASC');
         $this->db->join("task", "komentar.id_task = task.id_task");
         $this->db->where("task.id_task", $task);
         $this->db->or_where("task.id_parent", $task);
@@ -137,8 +138,13 @@ class detail_model extends CI_model
     public function getkomentarsub($task)
     {
         // $this->db->or_where("id_parent", $task);
+        $this->db->order_by('tanggal_komen', 'ASC');
         $this->db->join("task", "komentar.id_task = task.id_task");
 
         return $this->db->get("komentar")->result_array();
+    }
+    public function buatkomen($data)
+    {
+        return $this->db->insert("komentar", $data);
     }
 }

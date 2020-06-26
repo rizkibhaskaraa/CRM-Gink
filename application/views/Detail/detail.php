@@ -202,7 +202,7 @@
                                             <?php } ?>
                                     </form>
                                 </td>
-                            <?php } else if ($cekTabel == 'TugasBelum' && $task["id_parent"] != NULL || $status=="staff" || count($subtask)==0) { ?>
+                            <?php } else if ($cekTabel == 'TugasBelum' && $task["id_parent"] != NULL || $status == "staff" || count($subtask) == 0) { ?>
                                 <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
                                 <td class="font-weight-bold">Berkas (opsional)</td>
                                 <td>
@@ -399,11 +399,11 @@
                             <p class="font-size-sm"><?= $employ_nama ?><br><?= $nama_dept ?></p>
                         </td>
                         <td>
-                            <form action="be_pages_forum_discussion.html" method="POST" onsubmit="return false;">
+                            <form action="<?php echo base_url('index.php/detail/addkomen/') . $task["id_task"] . "/" . $employ_nama . "/" . $employ_id . "/" . $cekTabel ?>" method="POST">
                                 <div class="form-group">
                                     <!-- CKEditor (js-ckeditor id is initialized in Helpers.ckeditor()) -->
                                     <!-- For more info and examples you can check out http://ckeditor.com -->
-                                    <textarea id="js-ckeditor" name="ckeditor"></textarea>
+                                    <textarea id="js-ckeditor" name="komentar"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">
@@ -446,9 +446,9 @@
 
                             <div class="form-group">
                                 <label for="title">Judul Parent Task</label>
-                                <input type="text" class="form-control required" name="title" id="title" value="<?php echo $task["title"] ?>"readonly>
+                                <input type="text" class="form-control required" name="title" id="title" value="<?php echo $task["title"] ?>" readonly>
                             </div>
-                            
+
 
                             <div class="form-group">
                                 <label for="title">Judul Sub Task</label>
@@ -494,10 +494,10 @@
                                 <textarea class="form-control required" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
                             </div>
                             <div style="float:right;margin-bottom:3%">
-                            <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
-                            <button type="submit" class="btn btn-primary">Buat</button>
+                                <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
+                                <button type="submit" class="btn btn-primary">Buat</button>
                             </div>
-                            
+
                     </div>
                     </form>
                 </div>

@@ -163,14 +163,14 @@
                         </tr>
                         <tr>
                             <?php if ($cekTabel == 'Request') { ?>
-                                <td class="font-weight-bold">Penanggung Jawab</td>
+                                <td class="font-weight-bold ">Penanggung Jawab</td>
                                 <td>
                                     <form method="post" action="<?php echo base_url('index.php/detail/ubahPJ/' . $employ_id . '/' . $task['id_task']) ?>">
                                         : <?php $isi = $PJ_task['id_employ_tujuan'] ?>
                                         <?php if ($isi != null) {
                                             echo $namaPJ . "(" . $dept_PJtask . ")";
                                         } else { ?>
-                                            <select name="PJbaru" id="PJbaru">
+                                            <select name="PJbaru" id="PJbaru" class="btn btn-light dropdown-toggle">
                                                 <option disabled selected> Belum ada </option>
                                                 <?php
                                                 $employe = [];
@@ -194,14 +194,14 @@
                                             </select>
                                             </br>
                                             </br>
-                                            <div class="row items-push text-center text-sm-left mb-4">
-                                                <div class="col-sm-6 col-xl-4">
+                                            <div class="row items-push text-center text-sm-left mb-4 mr-10 mt-2" style="float:right;margin-bottom:3%">
+                                                <div class="col-sm-6 col-xl-4 ">
                                                     <input type="submit" value="Simpan" class="btn btn-primary" data-toggle="click-ripple"></input>
                                                 </div>
                                             <?php } ?>
                                     </form>
                                 </td>
-                            <?php } else if ($cekTabel == 'TugasBelum' && $task["id_parent"] != NULL) { ?>
+                            <?php } else if ($cekTabel == 'TugasBelum' && $task["id_parent"] != NULL || $status == "staff" || count($subtask) == 0) { ?>
                                 <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
                                 <td class="font-weight-bold">Berkas (opsional)</td>
                                 <td>
@@ -264,10 +264,33 @@
                                 </td>
                             </tr>
                         <?php } ?>
-                        <?php if ($cekTabel == "Request") { ?>
+                        <?php if ($cekTabel == "Request" && count($subtask) != 0) { ?>
                             <!-- tabel sub task -->
                             <div class="container-fluid">
                                 <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
+                                    <thead>
+                                        <tr>
+                                            <td colspan="6">
+                                                <h4>Progres Task</h4>
+                                                <div class="progress push">
+                                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: <?php echo (count($subtaskselesai)/count($subtask))*100?>%;" aria-valuenow="<?php echo (count($subtaskselesai)/count($subtask))*100?>%" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="font-size-sm font-w600"><?php echo (count($subtaskselesai)/count($subtask))*100?>%</span>
+                                                    </div>
+                                                </div>
+
+                                                <?php $progres = count($subtaskselesai)/count($subtask)*100;
+                                                if($progres < 100){?>
+                                                    <a class="btn btn-danger" class="bg-gander text-white text-decoration-none" href="<?php echo base_url('index.php/detail/ubahstatustask/' . $employ_id . '/' . $task['id_task']) ?>" style="float:right">
+                                                        Konfirmasi Selesai
+                                                    </a>
+                                                <?php }else{?>
+                                                    <a class="btn btn-success" class="bg-success text-white text-decoration-none" href="<?php echo base_url('index.php/detail/ubahstatustask/' . $employ_id . '/' . $task['id_task']) ?>" style="float:right">
+                                                        Konfirmasi Selesai
+                                                    </a>
+                                                <?php }?>
+                                            </td>
+                                        </tr>
+                                    </thead>
                                     <thead class="thead-dark">
                                         <tr class="text-uppercase">
                                             <th class="font-w700 text-center" style="width: 10%;"># ID Sub Task</th>
@@ -309,6 +332,7 @@
                                         </tbody>
                                     <?php } ?>
                                 </table>
+                                
                             </div>
                             <!-- END tabel sub task -->
                         <?php } ?>
@@ -398,11 +422,11 @@
                             <p class="font-size-sm"><?= $employ_nama ?><br><?= $nama_dept ?></p>
                         </td>
                         <td>
-                            <form action="be_pages_forum_discussion.html" method="POST" onsubmit="return false;">
+                            <form action="<?php echo base_url('index.php/detail/addkomen/') . $task["id_task"] . "/" . $employ_nama . "/" . $employ_id . "/" . $cekTabel ?>" method="POST">
                                 <div class="form-group">
                                     <!-- CKEditor (js-ckeditor id is initialized in Helpers.ckeditor()) -->
                                     <!-- For more info and examples you can check out http://ckeditor.com -->
-                                    <textarea id="js-ckeditor" name="ckeditor"></textarea>
+                                    <textarea id="js-ckeditor" name="komentar"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">
@@ -442,13 +466,21 @@
                         <h4>Isi Data Dibawah Ini dengan Lengkap untuk Membuat Sub Tiket</h4>
                         <form action="<?php echo base_url('index.php/detail/addsubtiket/') . $employ_id . "/" . $task["id_task"] . "/" . $cekTabel ?>" method="POST" id="form-staff">
                             <input type="text" name="id_parent" value="<?php echo $task["id_task"] ?>" hidden>
+
+                            <div class="form-group">
+                                <label for="title">Judul Parent Task</label>
+                                <input type="text" class="form-control required" name="title" id="title" value="<?php echo $task["title"] ?>" readonly>
+                            </div>
+
+
                             <div class="form-group">
                                 <label for="title">Judul Sub Task</label>
                                 <input type="text" class="form-control required" name="title" id="title" placeholder="Judul/Subject">
                             </div>
+
                             <div class="form-group">
                                 <label for="PJsubtask">Penanggung Jawab Sub Task</label></br>
-                                <select name="PJsubtask" id="PJsubtask">
+                                <select name="PJsubtask" id="PJsubtask" class="btn btn-secondary dropdown-toggle">
                                     <option disabled selected> Belum ada </option>
                                     <?php
                                     $employe = [];
@@ -484,8 +516,11 @@
                                 <label for="deskripsi">Deskripsi</label>
                                 <textarea class="form-control required" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
                             </div>
-                            <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
-                            <button type="submit" class="btn btn-primary">Buat</button>
+                            <div style="float:right;margin-bottom:3%">
+                                <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
+                                <button type="submit" class="btn btn-primary">Buat</button>
+                            </div>
+
                     </div>
                     </form>
                 </div>

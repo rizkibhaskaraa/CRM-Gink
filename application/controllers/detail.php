@@ -40,6 +40,7 @@ class Detail extends CI_Controller
         $data['tugas_employ'] = $this->detail_model->gettugaspj($data["nama_dept"]); //data tugas milik calon PJ
         $data["semua_employ"] = $this->detail_model->getsemuaemploy($data["employ_dept"]);
         $data["subtask"] = $this->detail_model->getsubtask($task);
+        $data["subtaskselesai"] = $this->detail_model->getsubtaskselesai($task);
         $this->load->view('detail/detail', $data);
     }
     public function ubahPJ($id, $task)
@@ -47,6 +48,11 @@ class Detail extends CI_Controller
         $ubah = $this->detail_model->ubahPJ($this->input->post("PJbaru"), $task);
         $user = $this->detail_model->getuser($id);
         redirect(base_url('index.php/home/index/') . $user['username']);
+    }
+    public function ubahstatustask($id, $task)
+    {
+        $ubah = $this->detail_model->ubahstatustask($task);
+        redirect(base_url('index.php/home/detail/') . $id . "/" . $task . "/Request");
     }
     public function insertLaporan($id, $task)
     {
@@ -89,5 +95,18 @@ class Detail extends CI_Controller
         );
         $this->detail_model->insert_sub_task($data_sub_task, $id_employ, $id_Task);
         redirect(base_url('index.php/detail/detailumum/') . $id_employ . "/" . $id_Task . "/" . $tabel);
+    }
+    public function addkomen($idtask, $nama, $id_employ, $tabel)
+    {
+        date_default_timezone_set('Asia/Bangkok');
+        $data = array(
+            "id_komentar" => rand(0001, 1000),
+            "komentar" => $this->input->post("komentar"),
+            "id_task" => $idtask,
+            "nama_kirim_komen" => $nama,
+            "tanggal_komen" => date("Y-m-d H-i-s")
+        );
+        $this->detail_model->buatkomen($data);
+        redirect(base_url('index.php/detail/detailumum/') . $id_employ . "/" . $idtask . "/" . $tabel);
     }
 }

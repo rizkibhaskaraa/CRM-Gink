@@ -22,6 +22,11 @@ class detail_model extends CI_model
         $this->db->where('id_parent', $id_parent);
         return $this->db->get('task')->result_array();
     }
+    public function getsubtaskselesai($id_parent)
+    {
+        return $this->db->get_where('task',array('id_parent' => $id_parent,'status'=>"Selesai"))->result_array();
+    }
+
     public function getsemuaPJ($id_departemen)
     {
         return $this->db->get_where('employe', array('id_departemen' => $id_departemen))->result();
@@ -62,6 +67,16 @@ class detail_model extends CI_model
         $id_dept = $data_pj['id_departemen'];
         $nama_Dept = $this->db->get_where('departemen', array('id_departemen' => $id_dept))->row_array();
         return $nama_Dept["nama_departemen"];
+    }
+    public function ubahstatustask($id)
+    {
+        //update
+        $this->db->set('status', "Selesai");
+        $this->db->where('id_task', $id);
+        $this->db->update('task');
+        //data user
+
+        return $id;
     }
     public function ubahPJ($id_tujuan, $id)
     {
@@ -129,6 +144,7 @@ class detail_model extends CI_model
     public function getkomentar($task)
     {
         // $this->db->or_where("id_parent", $task);
+        $this->db->order_by('tanggal_komen', 'ASC');
         $this->db->join("task", "komentar.id_task = task.id_task");
         $this->db->where("task.id_task", $task);
         $this->db->or_where("task.id_parent", $task);
@@ -137,8 +153,23 @@ class detail_model extends CI_model
     public function getkomentarsub($task)
     {
         // $this->db->or_where("id_parent", $task);
-        $this->db->join("task", "komentar.id_task = task.id_task");
+        $parent = $this->db->get_where("task", array("id_task" => $task))->row_array();
+        $parent1 = $parent["id_parent"];
+        $subtask = $this->db->get_where("task", array("id_parent" => $parent1))->result_array();
+        $idsubtask = [];
+        foreach ($subtask as $value) {
+            array_push($idsubtask, $value["id_task"]);
+        }
 
+        $this->db->order_by('tanggal_komen', 'ASC');
+
+        $this->db->where("komentar.id_task", $parent1);
+        $this->db->or_where_in("komentar.id_task", $idsubtask);
+        $this->db->join("task", "komentar.id_task = task.id_task");
         return $this->db->get("komentar")->result_array();
+    }
+    public function buatkomen($data)
+    {
+        return $this->db->insert("komentar", $data);
     }
 }

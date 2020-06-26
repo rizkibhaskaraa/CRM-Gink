@@ -97,21 +97,14 @@ class home_model extends CI_model
         $user = $this->db->get_where("user", array("id_employ" => $employ["id_employ"]))->row_array();
         return $user["username"];
     }
-    public function getsearch($layanan, $status, $search)
+    public function getsearch($status, $search)
     {
-        if ($layanan == "semua") {
             if ($status == "semua") {
+                
             } else {
                 $this->db->where("status", $status);
             }
-        } else {
-            if ($status == "semua") {
-                $this->db->where("layanan", $layanan);
-            } else {
-                $this->db->where("layanan", $layanan);
-                $this->db->where("status", $status);
-            }
-        }
+        
         $this->db->like('customer', $search);
         return $this->db->get("pelanggan")->result_array();
     }
@@ -129,6 +122,7 @@ class home_model extends CI_model
         return $this->db->insert("task", $data_task);
     }
 
+    // report tanpa periode
     public function getreport($dept)
     {
         $this->db->where("nama_dept_tujuan", $dept);
@@ -159,4 +153,45 @@ class home_model extends CI_model
         $this->db->group_by("id_employ_tujuan");
         return $this->db->get("task")->result_array();
     }
+    // end report tanpa periode
+
+    // report dengan periode
+    public function getreport_periode($dept,$tgl_start,$tgl_end)
+    {
+        
+        $this->db->where("nama_dept_tujuan", $dept);
+        $this->db->where('date >=', $tgl_start);
+        $this->db->where('date <=', $tgl_end);
+        $this->db->select("count(task.status),id_employ_tujuan,nama");
+        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
+        $this->db->group_by("id_employ_tujuan");
+        return $this->db->get("task")->result_array();
+    }
+    
+    public function gettugaspjselesai_periode($dept,$tgl_start,$tgl_end)
+    {
+        $this->db->where("nama_dept_tujuan", $dept);
+        $this->db->where("task.status", "Selesai");
+        $this->db->where('date >=', $tgl_start);
+        $this->db->where('date <=', $tgl_end);
+        $this->db->where_not_in("id_employ_tujuan", "");
+        $this->db->select("count(task.status),id_employ_tujuan,nama");
+        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
+        $this->db->group_by("id_employ_tujuan");
+        return $this->db->get("task")->result_array();
+    }
+    
+    public function gettugaspjbelum_periode($dept,$tgl_start,$tgl_end)
+    {
+        $this->db->where("nama_dept_tujuan", $dept);
+        $this->db->where("task.status", "Belum Selesai");
+        $this->db->where('date >=', $tgl_start);
+        $this->db->where('date <=', $tgl_end);
+        $this->db->where_not_in("id_employ_tujuan", "");
+        $this->db->select("count(task.status),id_employ_tujuan,nama");
+        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
+        $this->db->group_by("id_employ_tujuan");
+        return $this->db->get("task")->result_array();
+    }
+    // end report dengan periode
 }

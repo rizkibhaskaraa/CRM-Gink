@@ -1,10 +1,14 @@
 console.log('ok');
 //ambil elemen
 var cari = document.getElementById('search');
-var layanan = document.getElementById("layanan");
 var status_pelanggan = document.getElementById("status-pelanggan");
 var konten = document.getElementById('tabel-pelanggan');
 var alamat = document.getElementById('link');
+var alamat_report = document.getElementById('alamat-report');
+var tgl_start = document.getElementById('tgl-start');
+var tgl_end = document.getElementById('tgl-end');
+var button = document.getElementById('button-report');
+var kontenreport = document.getElementById('report-table');
 
 cari.addEventListener('keyup', function(){
 	//buat objeck
@@ -15,22 +19,30 @@ cari.addEventListener('keyup', function(){
 			konten.innerHTML = ajaxCari.responseText;
 		}
 	}
-	ajaxCari.open('GET', alamat.value+layanan.value+"/"+status_pelanggan.value+"/"+cari.value , true);
+	ajaxCari.open('GET', alamat.value+status_pelanggan.value+"/"+cari.value , true);
 	ajaxCari.send();
 
 });
 
-layanan.addEventListener('change', function(){
+button.addEventListener('click', function(){
+	
+	// if(tgl_start.value==null){
+	// 	tgl_start = "2000-01-01 00:00:00";
+	// }
+	// if(tgl_end==null){
+	// 	tgl_end = "2200-01-01 00:00:00";
+	// }
+	// window.alert(alamat_report.value+tgl_start.value+"/"+tgl_end.value);
 	//buat objeck
-	var ajaxLayanan = new XMLHttpRequest();
+	var ajaxstart = new XMLHttpRequest();
 
-	ajaxLayanan.onreadystatechange = function(){
-		if(ajaxLayanan.readyState == 4 && ajaxLayanan.status == 200){
-			konten.innerHTML = ajaxLayanan.responseText;
+	ajaxstart.onreadystatechange = function(){
+		if(ajaxstart.readyState == 4 && ajaxstart.status == 200){
+			kontenreport.innerHTML = ajaxstart.responseText;
 		}
 	}
-	ajaxLayanan.open('GET', alamat.value+layanan.value+"/"+status_pelanggan.value+"/"+cari.value , true);
-	ajaxLayanan.send();
+	ajaxstart.open('GET', alamat_report.value+tgl_start.value+"/"+tgl_end.value , true);
+	ajaxstart.send();
 
 });
 
@@ -43,7 +55,7 @@ status_pelanggan.addEventListener('change', function(){
 			konten.innerHTML = ajaxstatus.responseText;
 		}
 	}
-	ajaxstatus.open('GET', alamat.value+layanan.value+"/"+status_pelanggan.value+"/"+cari.value , true);
+	ajaxstatus.open('GET', alamat.value+status_pelanggan.value+"/"+cari.value , true);
 	ajaxstatus.send();
 
 });

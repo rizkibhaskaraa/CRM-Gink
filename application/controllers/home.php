@@ -62,23 +62,27 @@ class Home extends CI_Controller
         redirect(base_url('index.php/detail/detailumum/') . $id . "/" . $task . "/" . $cekTabel);
     }
 
-    public function search($employ_id, $layanan, $status, $search)
+    public function search($employ_id, $status, $search)
     {
         $search_pelanggan = str_replace('%20', ' ', $search);
-        $layanan_pelanggan = str_replace('%20', ' ', $layanan);
         $status_pelanggan = str_replace('%20', ' ', $status);
-        $data["pelanggan"] = $this->home_model->getsearch($layanan_pelanggan, $status_pelanggan, $search_pelanggan);
+        $data["pelanggan"] = $this->home_model->getsearch( $status_pelanggan, $search_pelanggan);
         $data["employ_id"] = $employ_id;
+        $data["layanan"] = $layanan = $this->home_model->getlayanan();
         $this->load->view('home/hasil_search', $data);
     }
 
-    public function searchreport($employ_id, $dept, $tglend, $tglstart)
+    public function searchreport($employ_id, $tgl_start, $tgl_end)
     {
-        $tglend = str_replace('%20', ' ', $tglend);
-        $tglstart = str_replace('%20', ' ', $tglstart);
-        $data["report"] = $this->home_model->getsearchreport($dept, $tglend, $tglstart);
+        $employ = $this->home_model->getemploytiket($employ_id);
+        $departemen = $this->home_model->getdepartemen($employ["id_departemen"]);
+        $data["tgl_start"] = $tgl_start." 00:00:00";
+        $data["tgl_end"] = $tgl_end." 00:00:00";
+        $data["report"] = $this->home_model->getreport_periode($departemen["nama_departemen"],$data["tgl_start"],$data["tgl_end"]);
+        $data['tugas_belum'] = $this->home_model->gettugaspjbelum_periode($departemen["nama_departemen"],$data["tgl_start"],$data["tgl_end"]);
+        $data['tugas_selesai'] = $this->home_model->gettugaspjselesai_periode($departemen["nama_departemen"],$data["tgl_start"],$data["tgl_end"]);
         $data["employ_id"] = $employ_id;
-        $this->load->view('home/hasil_searchreport', $data);
+        $this->load->view('home/hasil_search_report', $data);
     }
 
     function get_pelanggan()

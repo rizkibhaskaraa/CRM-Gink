@@ -199,7 +199,7 @@
                                                         <?php } ?>
                                                 </form>
                                             </td>
-                                        <?php } else if ($cekTabel == 'TugasBelum') { ?>
+                                        <?php } else if ($cekTabel == 'TugasBelum' && $task["id_parent"]!=NULL) { ?>
                                             <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
                                             <td class="font-weight-bold">Berkas (opsional)</td>
                                             <td>
@@ -209,9 +209,16 @@
                                                 <input type="submit" class="btn btn-sm btn-primary" value="Selesai">
                                             </div>
                                             </td>
+
+                                            <!-- komentar -->
+
+                     
+                        
+
+
                                             <!-- <input type="submit" value="Selesai"> -->
                                             <?php echo form_close(); ?>
-                                        <?php } else if ($cekTabel == 'TugasSelesai') { ?>
+                                        <?php } else if ($cekTabel == 'TugasSelesai' && $task["id_parent"]!=NULL) { ?>
                                             <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
                                             <td class="font-weight-bold">Berkas (opsional)</td>
                                             <td>
@@ -310,6 +317,107 @@
                     <!-- END Discussion -->
                 </div>
                 <!-- END Page Content -->
+                <div class="block">
+                <div class="block-header block-header-default bg-dark ">
+                            <h3 class="block-title text-gray-lighter ml-3 pt-2 pb-2">Komentar/Catatan</h3>
+                            <div class="block-options">
+                                <a class="btn-block-option mr-2 text-gray-lighter" href="#forum-reply-form " data-toggle="scroll-to">
+                                    <i class="fa fa-reply mr-1  "> </i> Reply
+                                    
+                                </a>
+                                
+                                <button type="button" class="btn-block-option text-gray-lighter" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
+                                    <i class="si si-refresh mr-3"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="block-content">
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <tr class="table-active">
+                                        <td class="d-none d-sm-table-cell"></td>
+                                        <td class="font-size-sm text-muted">
+                                            <a href="be_pages_generic_profile.html">Muttaqin</a> on <em>June 26, 2019 16:15</em>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="d-none d-sm-table-cell text-center" style="width: 140px;">
+                                            <p>
+                                                <a href="be_pages_generic_profile.html">
+                                                    <img class="img-avatar" src="<?php echo base_url('assets/oneui/media/avatars/avatar7.jpg')?>" alt="">
+                                                </a>
+                                            </p>
+                                            <p class="font-size-sm">Muttaqin<br>Developer</p>
+                                        </td>
+                                        <td>
+                                            <p>Ini masih ada bug di bagian backendnya, tolong di perbaiki kembali</p>
+                                        </td>
+                                    </tr>
+                                   
+                                    
+                                    <tr class="table-active">
+                                        <td class="d-none d-sm-table-cell"></td>
+                                        <td class="font-size-sm text-muted">
+                                            <a href="be_pages_generic_profile.html">Rizki Bhaskara</a> on <em>June 27, 2020 20:29</em>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="d-none d-sm-table-cell text-center" style="width: 140px;">
+                                            <p>
+                                                <a href="be_pages_generic_profile.html">
+                                                    <img class="img-avatar" src="<?php echo base_url('assets/oneui/media/avatars/avatar8.jpg')?>" alt="">
+                                                </a>
+                                            </p>
+                                            <p class="font-size-sm">Rizki Bhaskara<br>Staff Developer</p>
+                                        </td>
+                                        <td>
+                                        
+                                        <p>Oke akan saya cek kembali</p>
+                                        
+                                        </td>
+                                    </tr>
+                                    <tr class="table-active" id="forum-reply-form">
+                                        <td class="d-none d-sm-table-cell"></td>
+                                        <td class="font-size-sm text-muted">
+                                            <a href="be_pages_generic_profile.html">Jose Parker</a> Just now
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="d-none d-sm-table-cell text-center">
+                                            <p>
+                                                <a href="be_pages_generic_profile.html">
+                                                    <img class="img-avatar" src="assets/media/avatars/avatar10.jpg" alt="">
+                                                </a>
+                                            </p>
+                                            <p class="font-size-sm">218 Posts<br>Level 10</p>
+                                        </td>
+                                        <td>
+                                            <form action="be_pages_forum_discussion.html" method="POST" onsubmit="return false;">
+                                                <div class="form-group">
+                                                    <!-- CKEditor (js-ckeditor id is initialized in Helpers.ckeditor()) -->
+                                                    <!-- For more info and examples you can check out http://ckeditor.com -->
+                                                    <textarea id="js-ckeditor" name="ckeditor"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-primary">
+                                                        <i class="fa fa-reply mr-1"></i> Reply
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- END Discussion -->
+                </div>
+                <!-- END Page Content -->
+
+            </main>
+            <!-- END Main Container -->
+
+
 
     <!-- pop up tiket staff -->
     <div class="modal fade" id="modal-block-large-sub-tiket" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
@@ -409,6 +517,13 @@
             One.helpers(['datepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider']);
         });
     </script>
+
+
+ <!-- Page JS Plugins -->
+ <script src="<?php echo base_url ('assets/oneui/js/plugins/ckeditor/ckeditor.js')?>"></script>
+
+<!-- Page JS Helpers (CKEditor plugin) -->
+<script>jQuery(function(){ One.helpers(['ckeditor']); });</script>
 
 </body>
 

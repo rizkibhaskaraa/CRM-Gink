@@ -99,6 +99,12 @@ class Home extends CI_Controller
         $data = $this->home_model->getpelangganbyid($id_pelanggan);
         echo json_encode($data);
     }
+    function get_layanan()
+    {
+        $id_pelanggan = $this->input->get('id');
+        $data = $this->home_model->getlayananbyid($id_pelanggan);
+        echo json_encode($data);
+    }
 
     public function addtiket($id_employ)
     {

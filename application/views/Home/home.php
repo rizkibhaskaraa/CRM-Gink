@@ -669,6 +669,7 @@
 
         </div>
     </div>
+    
     <!-- END request task,pelanggan,tugas selesai,tugas Belum Selesai,tiket selesai,tiket Belum Selesai -->
     <!-- END Page Content -->
     <!-- POP UP BUAT TIKET -->
@@ -684,8 +685,22 @@
                 },
                 success: function(data) {
                     $('input[name="customer"]').val(data["customer"]);
-                    $("#layanan_pelanggan").val(data["layanan"]);
                     $('input[name="id_pelanggan"]').val(id_pelanggan);
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "<?php echo base_url('index.php/home/get_layanan') ?>",
+                dataType: "JSON",
+                data: {
+                    id: id_pelanggan
+                },
+                success: function(data) {
+                    $("#layanan-pelanggan").empty();
+                    for(i=0;i<data.length;i++){
+                        $('#layanan-pelanggan').append(new Option(data[i]["nama_layanan"], data[i]["nama_layanan"])); 
+                    }
+                    $("#layanan_pelanggan").val(data.length);
                 }
             });
         }
@@ -712,8 +727,10 @@
                                 <input type="text" class="form-control" name="customer" id="customer" value="<?php echo $customer ?>" placeholder="<?php echo $customer ?>" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="title">Layanan</label>
-                                <input type="text" class="form-control" name="layanan" id="layanan_pelanggan" value="<?php echo $layanan ?>" placeholder="<?php echo $layanan ?>" readonly>
+                                <label for="layanan">Layanan</label>
+                                <select name="layanan" id="layanan-pelanggan" class="form-control">
+
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="masalah">Jenis Masalah</label>

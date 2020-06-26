@@ -418,19 +418,19 @@
                             <tbody>
                                 <?php foreach ($taskparent as $valueparent) {
                                     $i = 1;
-                                    $row = 1;
+                                    $row_taskbelum = 1;
                                     foreach ($taskbelum as $value) {
                                         if ($valueparent["id_task"] == $value["id_parent"]) {
-                                            $row += 1;
+                                            $row_taskbelum += 1;
                                         }
                                     }
                                 ?>
                                     <tr>
-                                        <?php if ($row != 1) { ?>
-                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                        <?php if ($row_taskbelum != 1) { ?>
+                                            <td style="width: 10%;" rowspan="<?= $row_taskbelum ?>">
                                                 <span class="font-w600">#<?php echo $valueparent["id_task"] ?></span>
                                             </td>
-                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                            <td style="width: 10%;" rowspan="<?= $row_taskbelum ?>">
                                                 <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
                                             </td>
                                         <?php } ?>
@@ -485,10 +485,10 @@
                                 <?php foreach ($tasksaya as $valueparent) {
                                     if ($valueparent["status"] == "Selesai") { ?>
                                         <tr>
-                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                            <td style="width: 10%;" `>
                                                 <span class="font-w600">#<?php echo $valueparent["id_task"] ?></span>
                                             </td>
-                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                            <td style="width: 10%;" `>
                                                 <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
                                             </td>
                                             <td style="width: 10%;">
@@ -509,19 +509,19 @@
                             <tbody>
                                 <?php foreach ($taskparent as $valueparent) {
                                     $i = 1;
-                                    $row = 1;
+                                    $row_taskselesai = 1;
                                     foreach ($taskselesai as $value) {
                                         if ($valueparent["id_task"] == $value["id_parent"]) {
-                                            $row += 1;
+                                            $row_taskselesai += 1;
                                         }
                                     }
                                 ?>
                                     <tr>
-                                        <?php if ($row != 1) { ?>
-                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                        <?php if ($row_taskselesai != 1) { ?>
+                                            <td style="width: 10%;" rowspan="<?= $row_taskselesai ?>">
                                                 <span class="font-w600">#<?php echo $valueparent["id_task"] ?></span>
                                             </td>
-                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                            <td style="width: 10%;" rowspan="<?= $row_taskselesai ?>">
                                                 <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
                                             </td>
                                         <?php } ?>
@@ -577,12 +577,12 @@
                             </thead>
                             <tbody>
                                 <?php foreach ($tiket as $value) {
-                                    if ($value["status"] == "Belum Selesai") { ?>
+                                    if ($value["status"] == "Belum Selesai" && $value["id_parent"]=="") { ?>
                                         <tr>
-                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                            <td style="width: 10%;" >
                                                 <span class="font-w600">#<?php echo $value["id_task"] ?></span>
                                             </td>
-                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                            <td style="width: 10%;" >
                                                 <span class="font-w600"><?php echo $value["nama"] ?></span>
                                             </td>
                                             <td style="width: 10%;">
@@ -604,19 +604,19 @@
                             <tbody>
                                 <?php foreach ($taskparent as $valueparent) {
                                     $i = 1;
-                                    $row = 1;
+                                    $row_tiketbelum = 1;
                                     foreach ($tiket as $value) {
                                         if ($valueparent["id_task"] == $value["id_parent"] && $value["status"] == "Belum Selesai") {
-                                            $row += 1;
+                                            $row_tiketbelum += 1;
                                         }
                                     }
                                 ?>
                                     <tr>
-                                        <?php if ($row != 1) { ?>
-                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                        <?php if ($row_tiketbelum != 1) { ?>
+                                            <td style="width: 10%;" rowspan="<?= $row_tiketbelum ?>">
                                                 <span class="font-w600">#<?php echo $valueparent["id_task"] ?></span>
                                             </td>
-                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                            <td style="width: 10%;" rowspan="<?= $row_tiketbelum ?>">
                                                 <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
                                             </td>
                                         <?php } ?>
@@ -667,13 +667,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($tiket as $value) {
-                                    if ($value["status"] == "Selesai") { ?>
+                                <?php foreach ($tiket as $value) { 
+                                    if ($value["status"] == "Selesai" && $value["id_parent"]=="") { ?>
                                         <tr>
-                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                            <td style="width: 10%;">
                                                 <span class="font-w600">#<?php echo $value["id_task"] ?></span>
                                             </td>
-                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                            <td style="width: 10%;">
                                                 <span class="font-w600"><?php echo $value["nama"] ?></span>
                                             </td>
                                             <td style="width: 10%;">

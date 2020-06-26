@@ -59,6 +59,7 @@ class home_model extends CI_model
     }
     public function gettiket($id_employ)
     {
+        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
         return $this->db->get_where('task', array('id_employ_kirim' => $id_employ))->result_array();
     }
     public function gettaskdihead($nama_departemen)

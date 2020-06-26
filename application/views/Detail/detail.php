@@ -118,6 +118,7 @@
 
     <!-- Page Content -->
     <div class="content">
+
         <!-- Discussion -->
         <div class="block">
             <div class="block-header block-header-default ">
@@ -201,7 +202,7 @@
                                             <?php } ?>
                                     </form>
                                 </td>
-                            <?php } else if ($cekTabel == 'TugasBelum' && $task["id_parent"] != NULL) { ?>
+                            <?php } else if ($cekTabel == 'TugasBelum' && $task["id_parent"] != NULL || $status=="staff" || count($subtask)==0) { ?>
                                 <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
                                 <td class="font-weight-bold">Berkas (opsional)</td>
                                 <td>

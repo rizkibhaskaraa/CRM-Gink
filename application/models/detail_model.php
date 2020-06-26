@@ -138,9 +138,12 @@ class detail_model extends CI_model
     public function getkomentarsub($task)
     {
         // $this->db->or_where("id_parent", $task);
+        $parent = $this->db->get_where("task", array("id_task" => $task))->row_array();
+        $parent1 = $parent["id_parent"];
+
         $this->db->order_by('tanggal_komen', 'ASC');
         $this->db->join("task", "komentar.id_task = task.id_task");
-
+        $this->db->where("task.id_task", $parent1);
         return $this->db->get("komentar")->result_array();
     }
     public function buatkomen($data)

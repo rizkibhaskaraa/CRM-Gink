@@ -140,10 +140,17 @@ class detail_model extends CI_model
         // $this->db->or_where("id_parent", $task);
         $parent = $this->db->get_where("task", array("id_task" => $task))->row_array();
         $parent1 = $parent["id_parent"];
+        $subtask = $this->db->get_where("task", array("id_parent" => $parent1))->result_array();
+        $idsubtask = [];
+        foreach ($subtask as $value) {
+            array_push($idsubtask, $value["id_task"]);
+        }
 
         $this->db->order_by('tanggal_komen', 'ASC');
+
+        $this->db->where("komentar.id_task", $parent1);
+        $this->db->or_where_in("komentar.id_task", $idsubtask);
         $this->db->join("task", "komentar.id_task = task.id_task");
-        $this->db->where("task.id_task", $parent1);
         return $this->db->get("komentar")->result_array();
     }
     public function buatkomen($data)

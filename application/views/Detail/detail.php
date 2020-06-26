@@ -118,7 +118,6 @@
 
     <!-- Page Content -->
     <div class="content">
-
         <!-- Discussion -->
         <div class="block">
             <div class="block-header block-header-default ">
@@ -265,10 +264,33 @@
                                 </td>
                             </tr>
                         <?php } ?>
-                        <?php if ($cekTabel == "Request") { ?>
+                        <?php if ($cekTabel == "Request" && count($subtask) != 0) { ?>
                             <!-- tabel sub task -->
                             <div class="container-fluid">
                                 <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
+                                    <thead>
+                                        <tr>
+                                            <td colspan="6">
+                                                <h4>Progres Task</h4>
+                                                <div class="progress push">
+                                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: <?php echo (count($subtaskselesai)/count($subtask))*100?>%;" aria-valuenow="<?php echo (count($subtaskselesai)/count($subtask))*100?>%" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="font-size-sm font-w600"><?php echo (count($subtaskselesai)/count($subtask))*100?>%</span>
+                                                    </div>
+                                                </div>
+
+                                                <?php $progres = count($subtaskselesai)/count($subtask)*100;
+                                                if($progres < 100){?>
+                                                    <a class="btn btn-danger" class="bg-gander text-white text-decoration-none" href="<?php echo base_url('index.php/detail/ubahstatustask/' . $employ_id . '/' . $task['id_task']) ?>" style="float:right">
+                                                        Konfirmasi Selesai
+                                                    </a>
+                                                <?php }else{?>
+                                                    <a class="btn btn-success" class="bg-success text-white text-decoration-none" href="<?php echo base_url('index.php/detail/ubahstatustask/' . $employ_id . '/' . $task['id_task']) ?>" style="float:right">
+                                                        Konfirmasi Selesai
+                                                    </a>
+                                                <?php }?>
+                                            </td>
+                                        </tr>
+                                    </thead>
                                     <thead class="thead-dark">
                                         <tr class="text-uppercase">
                                             <th class="font-w700 text-center" style="width: 10%;"># ID Sub Task</th>
@@ -310,6 +332,7 @@
                                         </tbody>
                                     <?php } ?>
                                 </table>
+                                
                             </div>
                             <!-- END tabel sub task -->
                         <?php } ?>

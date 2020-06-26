@@ -113,7 +113,15 @@ class home_model extends CI_model
         $this->db->like('customer', $search);
         return $this->db->get("pelanggan")->result_array();
     }
-
+    public function getsearchreport($dept, $tglend, $tglstart)
+    {
+        $this->db->where("nama_dept_tujuan", $dept);
+        $this->db->where("dateline", $tglend);
+        $this->db->select("count(task.status),id_employ_tujuan,nama");
+        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
+        $this->db->group_by("id_employ_tujuan");
+        return $this->db->get("task")->result_array();
+    }
     public function insert_task($data_task)
     {
         return $this->db->insert("task", $data_task);

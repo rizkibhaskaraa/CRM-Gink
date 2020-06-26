@@ -19,6 +19,11 @@ class home_model extends CI_model
         return $this->db->get_where("employe", array("id_employ" => $id_employ))->row_array();
     }
 
+    public function getemploydept($id_dept)
+    {
+        return $this->db->get_where("employe", array("id_departemen" => $id_dept))->result_array();
+    }
+
     public function getpelanggan()
     {
         return $this->db->get("pelanggan")->result_array();

@@ -32,7 +32,7 @@
     <!-- Fonts and OneUI framework -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
     <link rel="stylesheet" id="css-main" href="<?php echo base_url('assets/oneui/css/oneui.min.css') ?>">
-    
+
 
 
     <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
@@ -118,304 +118,310 @@
 
     <!-- Page Content -->
     <div class="content">
-                    <!-- Discussion -->
-                    <div class="block">
-                        <div class="block-header block-header-default ">
-                           <h3 class="block-title dark ">Hallo <?php echo $employ_nama ?> , berikut isi Detail Tasknya</h3>
-                        </div>
-                        <div class="block-content">
-                            <table class="table table-borderless">
-                                <tbody>
-                                    <tr>
-                                        <td class="d-none d-sm-table-cell text-center" rowspan="11"  style="width: 15%;">
-                                            <p>
-                                                <a href="be_pages_generic_profile.html">
-                                                    <img class="img-avatar " src="<?php echo base_url('assets/oneui/media/avatars/avatar7.jpg')?>" alt="">
-                                             
-                                                </a>
-                                            </p>
-                                            <p class="font-size-sm "><?php echo $nama_kirim . " (" . $task["nama_dept_kirim"] . ")" ?></p>
-                                        </td>
-                                        <td class="font-weight-bold mt-2" width="15%">Title</td>
-                                        <td width="70%">: <?php echo $task["title"] ?> </td>
-                                    </tr>
-                                    <tr >
-                                        <td class="font-weight-bold  ">Deskripsi Task</td>
-                                        <td><p >: <?php echo $task["deskripsi"] ?></p></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="font-weight-bold">Nama Pengirim</td>
-                                        <td>: <?php echo $nama_kirim . " (" . $task["nama_dept_kirim"] . ")" ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="font-weight-bold">Departemen Tujuan</td>
-                                        <td>: <?php echo $task["nama_dept_tujuan"] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="font-weight-bold">Deadline</td>
-                                        <td>: <?php echo $task["dateline"] ?></td>
-                                    </tr>
-                                    <tr>    
-                                        <td class="font-weight-bold">Status Task</td>
-                                        <td>: <?php echo $task["status"] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <?php if ($cekTabel == 'Request') { ?>   
-                                            <td class="font-weight-bold">Penanggung Jawab</td>
-                                            <td>
-                                                <form method="post" action="<?php echo base_url('index.php/detail/ubahPJ/' . $employ_id . '/' . $task['id_task']) ?>">
-                                                    : <?php $isi = $PJ_task['id_employ_tujuan'] ?>
-                                                    <?php if ($isi != null) {
-                                                        echo $namaPJ . "(" . $dept_PJtask . ")";
-                                                    } else { ?>
-                                                        <select name="PJbaru" id="PJbaru">
-                                                            <option disabled selected> Belum ada </option>
-                                                            <?php
-                                                            $employe = [];
-                                                            foreach ($tugas_employ as $value) {
-                                                                foreach ($semua_employ as $value2) {
-                                                                    if ($value2["nama"] == $value["nama"]) {
-                                                                        if (!in_array($value["nama"], $employe)) {
-                                                                            array_push($employe, $value["nama"]);
-                                                                        }
-                                                            ?>
-                                                                        <option value="<?= $value["id_employ_tujuan"] ?>"><?php echo $value["nama"] . " | " . $value["count(task.status)"] ?></option>
-                                                                    <?php }
-                                                                }
+        <!-- Discussion -->
+        <div class="block">
+            <div class="block-header block-header-default ">
+                <h3 class="block-title dark ">Hallo <?php echo $employ_nama ?> , berikut isi Detail Tasknya</h3>
+            </div>
+            <div class="block-content">
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <td class="d-none d-sm-table-cell text-center" rowspan="11" style="width: 15%;">
+                                <p>
+                                    <a href="be_pages_generic_profile.html">
+                                        <img class="img-avatar " src="<?php echo base_url('assets/oneui/media/avatars/avatar7.jpg') ?>" alt="">
+
+                                    </a>
+                                </p>
+                                <p class="font-size-sm "><?php echo $nama_kirim . " (" . $task["nama_dept_kirim"] . ")" ?></p>
+                            </td>
+                            <td class="font-weight-bold mt-2" width="15%">Title</td>
+                            <td width="70%">: <?php echo $task["title"] ?> </td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold  ">Deskripsi Task</td>
+                            <td>
+                                <p>: <?php echo $task["deskripsi"] ?></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold">Nama Pengirim</td>
+                            <td>: <?php echo $nama_kirim . " (" . $task["nama_dept_kirim"] . ")" ?></td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold">Departemen Tujuan</td>
+                            <td>: <?php echo $task["nama_dept_tujuan"] ?></td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold">Deadline</td>
+                            <td>: <?php echo $task["dateline"] ?></td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold">Status Task</td>
+                            <td>: <?php echo $task["status"] ?></td>
+                        </tr>
+                        <tr>
+                            <?php if ($cekTabel == 'Request') { ?>
+                                <td class="font-weight-bold">Penanggung Jawab</td>
+                                <td>
+                                    <form method="post" action="<?php echo base_url('index.php/detail/ubahPJ/' . $employ_id . '/' . $task['id_task']) ?>">
+                                        : <?php $isi = $PJ_task['id_employ_tujuan'] ?>
+                                        <?php if ($isi != null) {
+                                            echo $namaPJ . "(" . $dept_PJtask . ")";
+                                        } else { ?>
+                                            <select name="PJbaru" id="PJbaru">
+                                                <option disabled selected> Belum ada </option>
+                                                <?php
+                                                $employe = [];
+                                                foreach ($tugas_employ as $value) {
+                                                    foreach ($semua_employ as $value2) {
+                                                        if ($value2["nama"] == $value["nama"]) {
+                                                            if (!in_array($value["nama"], $employe)) {
+                                                                array_push($employe, $value["nama"]);
                                                             }
-                                                            foreach ($semua_employ as $value2) {
-                                                                if (!in_array($value2["nama"], $employe)) { ?>
-                                                                    <option value="<?= $value2["id_employ"] ?>"><?php echo $value2["nama"] . " | 0" ?></option>
-                                                            <?php }
-                                                            }
-                                                            ?>
-                                                        </select>
-                                                        </br>
-                                                        </br>
-                                                        <div class="row items-push text-center text-sm-left mb-4">
-                                                            <div class="col-sm-6 col-xl-4">
-                                                                <input type="submit" value="Simpan" class="btn btn-primary" data-toggle="click-ripple"></input>
-                                                            </div>
-                                                        <?php } ?>
-                                                </form>
-                                            </td>
-                                        <?php } else if ($cekTabel == 'TugasBelum' && $task["id_parent"]!=NULL) { ?>
-                                            <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
-                                            <td class="font-weight-bold">Berkas (opsional)</td>
-                                            <td>
-                                                : <input type="file" name="file">
-                                                <div class="block-content block-content-full text-right border-top mt-5">
-                                                <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
-                                                <input type="submit" class="btn btn-sm btn-primary" value="Selesai">
-                                            </div>
-                                            </td>
+                                                ?>
+                                                            <option value="<?= $value["id_employ_tujuan"] ?>"><?php echo $value["nama"] . " | " . $value["count(task.status)"] ?></option>
+                                                        <?php }
+                                                    }
+                                                }
+                                                foreach ($semua_employ as $value2) {
+                                                    if (!in_array($value2["nama"], $employe)) { ?>
+                                                        <option value="<?= $value2["id_employ"] ?>"><?php echo $value2["nama"] . " | 0" ?></option>
+                                                <?php }
+                                                }
+                                                ?>
+                                            </select>
+                                            </br>
+                                            </br>
+                                            <div class="row items-push text-center text-sm-left mb-4">
+                                                <div class="col-sm-6 col-xl-4">
+                                                    <input type="submit" value="Simpan" class="btn btn-primary" data-toggle="click-ripple"></input>
+                                                </div>
+                                            <?php } ?>
+                                    </form>
+                                </td>
+                            <?php } else if ($cekTabel == 'TugasBelum' && $task["id_parent"] != NULL) { ?>
+                                <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
+                                <td class="font-weight-bold">Berkas (opsional)</td>
+                                <td>
+                                    : <input type="file" name="file">
+                                    <div class="block-content block-content-full text-right border-top mt-5">
+                                        <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
+                                        <input type="submit" class="btn btn-sm btn-primary" value="Selesai">
+                                    </div>
+                                </td>
 
-                                            <!-- komentar -->
-
-                     
-                        
+                                <!-- komentar -->
 
 
-                                            <!-- <input type="submit" value="Selesai"> -->
-                                            <?php echo form_close(); ?>
-                                        <?php } else if ($cekTabel == 'TugasSelesai' && $task["id_parent"]!=NULL) { ?>
-                                            <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
-                                            <td class="font-weight-bold">Berkas (opsional)</td>
-                                            <td>
-                                                :
-                                                <?php if ($task['berkas'] != null) { ?>
-                                                    <a href="<?= base_url('upload/') . $task['berkas'] ?>"><?= $task['berkas'] ?></a>
-                                                    </br>
-                                                <?php } ?>
-                                                <input type="file" name="file">
-                                                </br>
-                                                <input type="submit" value="Simpan">
-                                            </td>
-                                            <?php echo form_close(); ?>
-                                        <?php } ?>
-                                    </tr>
-                                    <?php if ($cekTabel == 'Tiket') { ?>
-                                        <tr>
-                                            <td class="font-weight-bold">Penanggung Jawab</td>
-                                            <td>
-                                                : <?= $namaPJ . " (" . $dept_PJtask . ")" ?>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="font-weight-bold">Waktu Selesai</td>
-                                            <td>
-                                                :
-                                                <?php if ($task['status'] == 'belum selesai') {
-                                                    echo '-';
-                                                } ?>
-                                                <?= $task['waktu_selesai'] ?>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="font-weight-bold  ">Berkas</td>
-                                            <td>
-                                                :
-                                                <?php if ($task['berkas'] == null) {
-                                                    echo '-';
-                                                } ?>
-                                                <a href="<?= base_url('upload/') . $task['berkas'] ?>"><?= $task['berkas'] ?></a>
-                                            </td>
-                                        </tr>
+
+
+
+                                <!-- <input type="submit" value="Selesai"> -->
+                                <?php echo form_close(); ?>
+                            <?php } else if ($cekTabel == 'TugasSelesai' && $task["id_parent"] != NULL) { ?>
+                                <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
+                                <td class="font-weight-bold">Berkas (opsional)</td>
+                                <td>
+                                    :
+                                    <?php if ($task['berkas'] != null) { ?>
+                                        <a href="<?= base_url('upload/') . $task['berkas'] ?>"><?= $task['berkas'] ?></a>
+                                        </br>
                                     <?php } ?>
-                                    <?php if($cekTabel == "Request") {?>
-                                        <!-- tabel sub task -->
-                                        <div class="container-fluid">
-                                            <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
-                                                <thead class="thead-dark">
-                                                    <tr class="text-uppercase">
-                                                    <th class="font-w700 text-center" style="width: 10%;"># ID Sub Task</th>
-                                                        <th class="font-w700 text-center" style="width: 25%;">Title Sub Task</th>
-                                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Penanggung Jawab</th>
-                                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Deadline</th>
-                                                        <th class="font-w700 text-center" style="width: 15%;">Status</th>
-                                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 10%;">Aksi</th>
-                                                    </tr>
-                                                </thead>
-                                                <?php foreach ($subtask as $value) { ?>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td style="width: 10%;">
-                                                                <span class="font-w600">#<?php echo $value["id_task"] ?></span>
-                                                            </td>
-                                                            <td style="width: 25%;">
-                                                                <span class="font-w600"><?php echo $value["title"] ?></span>
-                                                            </td>
-                                                            <td style="width: 20%;">
-                                                                <span class="font-w600"><?php echo $value["nama"] ?></span>
-                                                            </td>
-                                                            <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
-                                                                <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
-                                                            </td>
-                                                            <?php if ($value["status"] == "Belum Selesai") { ?>
-                                                                <td class="text-danger text-center" style="width: 15%;">
-                                                                    <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
-                                                                </td>
-                                                            <?php } else { ?>
-                                                                <td class="text-danger text-center" style="width: 15%;">
-                                                                    <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span>
-                                                                </td>
-                                                            <?php } ?>
-                                                            <td class="d-none d-sm-table-cell text-center" style="width: 10%;">
-                                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
+                                    <input type="file" name="file">
+                                    </br>
+                                    <input type="submit" value="Simpan">
+                                </td>
+                                <?php echo form_close(); ?>
+                            <?php } ?>
+                        </tr>
+                        <?php if ($cekTabel == 'Tiket') { ?>
+                            <tr>
+                                <td class="font-weight-bold">Penanggung Jawab</td>
+                                <td>
+                                    : <?= $namaPJ . " (" . $dept_PJtask . ")" ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold">Waktu Selesai</td>
+                                <td>
+                                    :
+                                    <?php if ($task['status'] == 'belum selesai') {
+                                        echo '-';
+                                    } ?>
+                                    <?= $task['waktu_selesai'] ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold  ">Berkas</td>
+                                <td>
+                                    :
+                                    <?php if ($task['berkas'] == null) {
+                                        echo '-';
+                                    } ?>
+                                    <a href="<?= base_url('upload/') . $task['berkas'] ?>"><?= $task['berkas'] ?></a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                        <?php if ($cekTabel == "Request") { ?>
+                            <!-- tabel sub task -->
+                            <div class="container-fluid">
+                                <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
+                                    <thead class="thead-dark">
+                                        <tr class="text-uppercase">
+                                            <th class="font-w700 text-center" style="width: 10%;"># ID Sub Task</th>
+                                            <th class="font-w700 text-center" style="width: 25%;">Title Sub Task</th>
+                                            <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Penanggung Jawab</th>
+                                            <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Deadline</th>
+                                            <th class="font-w700 text-center" style="width: 15%;">Status</th>
+                                            <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 10%;">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <?php foreach ($subtask as $value) { ?>
+                                        <tbody>
+                                            <tr>
+                                                <td style="width: 10%;">
+                                                    <span class="font-w600">#<?php echo $value["id_task"] ?></span>
+                                                </td>
+                                                <td style="width: 25%;">
+                                                    <span class="font-w600"><?php echo $value["title"] ?></span>
+                                                </td>
+                                                <td style="width: 20%;">
+                                                    <span class="font-w600"><?php echo $value["nama"] ?></span>
+                                                </td>
+                                                <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
+                                                    <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
+                                                </td>
+                                                <?php if ($value["status"] == "Belum Selesai") { ?>
+                                                    <td class="text-danger text-center" style="width: 15%;">
+                                                        <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
+                                                    </td>
+                                                <?php } else { ?>
+                                                    <td class="text-danger text-center" style="width: 15%;">
+                                                        <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span>
+                                                    </td>
                                                 <?php } ?>
-                                            </table>
-                                        </div>
-                                        <!-- END tabel sub task -->
-                                                <?php }?>
-                                </tbody>    
-                            </table>
-                        </div> 
-                    </div>
-                    <!-- END Discussion -->
-                </div>
-                <!-- END Page Content -->
-                <div class="block">
-                <div class="block-header block-header-default bg-dark ">
-                            <h3 class="block-title text-gray-lighter ml-3 pt-2 pb-2">Komentar/Catatan</h3>
-                            <div class="block-options">
-                                <a class="btn-block-option mr-2 text-gray-lighter" href="#forum-reply-form " data-toggle="scroll-to">
-                                    <i class="fa fa-reply mr-1  "> </i> Reply
-                                    
-                                </a>
-                                
-                                <button type="button" class="btn-block-option text-gray-lighter" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
-                                    <i class="si si-refresh mr-3"></i>
-                                </button>
+                                                <td class="d-none d-sm-table-cell text-center" style="width: 10%;">
+                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    <?php } ?>
+                                </table>
                             </div>
-                        </div>
-                        <div class="block-content">
-                            <table class="table table-borderless">
-                                <tbody>
-                                    <tr class="table-active">
-                                        <td class="d-none d-sm-table-cell"></td>
-                                        <td class="font-size-sm text-muted">
-                                            <a href="be_pages_generic_profile.html">Muttaqin</a> on <em>June 26, 2019 16:15</em>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="d-none d-sm-table-cell text-center" style="width: 140px;">
-                                            <p>
-                                                <a href="be_pages_generic_profile.html">
-                                                    <img class="img-avatar" src="<?php echo base_url('assets/oneui/media/avatars/avatar7.jpg')?>" alt="">
-                                                </a>
-                                            </p>
-                                            <p class="font-size-sm">Muttaqin<br>Developer</p>
-                                        </td>
-                                        <td>
-                                            <p>Ini masih ada bug di bagian backendnya, tolong di perbaiki kembali</p>
-                                        </td>
-                                    </tr>
-                                   
-                                    
-                                    <tr class="table-active">
-                                        <td class="d-none d-sm-table-cell"></td>
-                                        <td class="font-size-sm text-muted">
-                                            <a href="be_pages_generic_profile.html">Rizki Bhaskara</a> on <em>June 27, 2020 20:29</em>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="d-none d-sm-table-cell text-center" style="width: 140px;">
-                                            <p>
-                                                <a href="be_pages_generic_profile.html">
-                                                    <img class="img-avatar" src="<?php echo base_url('assets/oneui/media/avatars/avatar8.jpg')?>" alt="">
-                                                </a>
-                                            </p>
-                                            <p class="font-size-sm">Rizki Bhaskara<br>Staff Developer</p>
-                                        </td>
-                                        <td>
-                                        
-                                        <p>Oke akan saya cek kembali</p>
-                                        
-                                        </td>
-                                    </tr>
-                                    <tr class="table-active" id="forum-reply-form">
-                                        <td class="d-none d-sm-table-cell"></td>
-                                        <td class="font-size-sm text-muted">
-                                            <a href="be_pages_generic_profile.html">Jose Parker</a> Just now
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="d-none d-sm-table-cell text-center">
-                                            <p>
-                                                <a href="be_pages_generic_profile.html">
-                                                    <img class="img-avatar" src="assets/media/avatars/avatar10.jpg" alt="">
-                                                </a>
-                                            </p>
-                                            <p class="font-size-sm">218 Posts<br>Level 10</p>
-                                        </td>
-                                        <td>
-                                            <form action="be_pages_forum_discussion.html" method="POST" onsubmit="return false;">
-                                                <div class="form-group">
-                                                    <!-- CKEditor (js-ckeditor id is initialized in Helpers.ckeditor()) -->
-                                                    <!-- For more info and examples you can check out http://ckeditor.com -->
-                                                    <textarea id="js-ckeditor" name="ckeditor"></textarea>
-                                                </div>
-                                                <div class="form-group">
-                                                    <button type="submit" class="btn btn-primary">
-                                                        <i class="fa fa-reply mr-1"></i> Reply
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <!-- END Discussion -->
-                </div>
-                <!-- END Page Content -->
+                            <!-- END tabel sub task -->
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- END Discussion -->
+    </div>
+    <!-- END Page Content -->
+    <div class="block">
+        <div class="block-header block-header-default bg-dark ">
+            <h3 class="block-title text-gray-lighter ml-3 pt-2 pb-2">Komentar/Catatan</h3>
+            <div class="block-options">
+                <a class="btn-block-option mr-2 text-gray-lighter" href="#forum-reply-form " data-toggle="scroll-to">
+                    <i class="fa fa-reply mr-1  "> </i> Reply
 
-            </main>
-            <!-- END Main Container -->
+                </a>
+
+                <button type="button" class="btn-block-option text-gray-lighter" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
+                    <i class="si si-refresh mr-3"></i>
+                </button>
+            </div>
+        </div>
+        <div class="block-content">
+            <table class="table table-borderless">
+                <tbody>
+                    <?php if ($task["id_parent"] == null) { ?>
+                        <?php foreach ($komentar as $value) { ?>
+                            <tr class="table-active">
+                                <td class="d-none d-sm-table-cell"></td>
+                                <td class="font-size-sm text-muted">
+                                    <a href="be_pages_generic_profile.html"><?= $value["nama_kirim_komen"] ?></a> on <em><?= $value["tanggal_komen"] ?></em>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="d-none d-sm-table-cell text-center" style="width: 140px;">
+                                    <p>
+                                        <a href="be_pages_generic_profile.html">
+                                            <img class="img-avatar" src="<?php echo base_url('assets/oneui/media/avatars/avatar7.jpg') ?>" alt="">
+                                        </a>
+                                    </p>
+                                    <p class="font-size-sm"><?= $value["nama_kirim_komen"] ?><br><?= $task["nama_dept_tujuan"] ?></p>
+                                </td>
+                                <td>
+                                    <p><?= $value["komentar"] ?></p>
+                                </td>
+                            </tr>
+                        <?php }
+                    } else { ?>
+                        <?php foreach ($komentarsub as $value) { ?>
+                            <tr class="table-active">
+                                <td class="d-none d-sm-table-cell"></td>
+                                <td class="font-size-sm text-muted">
+                                    <a href="be_pages_generic_profile.html"><?= $value["nama_kirim_komen"] ?></a> on <em><?= $value["tanggal_komen"] ?></em>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="d-none d-sm-table-cell text-center" style="width: 140px;">
+                                    <p>
+                                        <a href="be_pages_generic_profile.html">
+                                            <img class="img-avatar" src="<?php echo base_url('assets/oneui/media/avatars/avatar7.jpg') ?>" alt="">
+                                        </a>
+                                    </p>
+                                    <p class="font-size-sm"><?= $value["nama_kirim_komen"] ?><br><?= $task["nama_dept_tujuan"] ?></p>
+                                </td>
+                                <td>
+                                    <p><?= $value["komentar"] ?></p>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    <?php } ?>
+
+                    <tr class="table-active" id="forum-reply-form">
+                        <td class="d-none d-sm-table-cell"></td>
+                        <td class="font-size-sm text-muted">
+                            <a href="be_pages_generic_profile.html"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="d-none d-sm-table-cell text-center">
+                            <p>
+                                <a href="be_pages_generic_profile.html">
+                                    <img class="img-avatar" src="assets/media/avatars/avatar10.jpg" alt="">
+                                </a>
+                            </p>
+                            <p class="font-size-sm"><?= $employ_nama ?><br><?= $nama_dept ?></p>
+                        </td>
+                        <td>
+                            <form action="be_pages_forum_discussion.html" method="POST" onsubmit="return false;">
+                                <div class="form-group">
+                                    <!-- CKEditor (js-ckeditor id is initialized in Helpers.ckeditor()) -->
+                                    <!-- For more info and examples you can check out http://ckeditor.com -->
+                                    <textarea id="js-ckeditor" name="ckeditor"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa fa-reply mr-1"></i> Reply
+                                    </button>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- END Discussion -->
+    </div>
+    <!-- END Page Content -->
+
+    </main>
+    <!-- END Main Container -->
 
 
 
@@ -434,7 +440,7 @@
                     </div>
                     <div class="block-content font-size-sm mt-3 text-justify ">
                         <h4>Isi Data Dibawah Ini dengan Lengkap untuk Membuat Sub Tiket</h4>
-                        <form action="<?php echo base_url('index.php/detail/addsubtiket/') . $employ_id ."/".$task["id_task"]."/".$cekTabel?>" method="POST" id="form-staff">
+                        <form action="<?php echo base_url('index.php/detail/addsubtiket/') . $employ_id . "/" . $task["id_task"] . "/" . $cekTabel ?>" method="POST" id="form-staff">
                             <input type="text" name="id_parent" value="<?php echo $task["id_task"] ?>" hidden>
                             <div class="form-group">
                                 <label for="title">Judul Sub Task</label>
@@ -453,12 +459,12 @@
                                                     array_push($employe, $value["nama"]);
                                                 }
                                     ?>
-                                    <option value="<?= $value["id_employ_tujuan"] ?>"><?php echo $value["nama"] . " | " . $value["count(task.status)"] ?></option>
-                                    <?php }
+                                                <option value="<?= $value["id_employ_tujuan"] ?>"><?php echo $value["nama"] . " | " . $value["count(task.status)"] ?></option>
+                                            <?php }
                                         }
                                     }
                                     foreach ($semua_employ as $value2) {
-                                    if (!in_array($value2["nama"], $employe)) { ?>
+                                        if (!in_array($value2["nama"], $employe)) { ?>
                                             <option value="<?= $value2["id_employ"] ?>"><?php echo $value2["nama"] . " | 0" ?></option>
                                     <?php }
                                     }
@@ -471,46 +477,46 @@
                                     <span class="input-group-text input-group-text-alt">
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
-                                    <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true"  >
+                                    <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
                                 <textarea class="form-control required" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
                             </div>
-                                <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
-                                <button type="submit" class="btn btn-primary">Buat</button>
-                            </div>       
-                        </form>
+                            <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
+                            <button type="submit" class="btn btn-primary">Buat</button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <!-- akhir pop up tiket staff -->
 
 
 
 
-                                      
-        <script src="<?php echo base_url('assets/oneui/js/oneui.core.min.js') ?>"></script>
+
+    <script src="<?php echo base_url('assets/oneui/js/oneui.core.min.js') ?>"></script>
 
 
-        <!--
+    <!--
             OneUI JS
 
             Custom functionality including Blocks/Layout API as well as other vital and optional helpers
             webpack is putting everything together at assets/_es6/main/app.js
         -->
-        <script src="<?php echo base_url('assets/oneui/js/oneui.app.min.js') ?>"></script>
+    <script src="<?php echo base_url('assets/oneui/js/oneui.app.min.js') ?>"></script>
 
-        <!-- Page JS Plugins -->
-        <script src="<?php echo base_url('assets/oneui/js/plugins/es6-promise/es6-promise.auto.min.js') ?>"></script>
-        <script src="<?php echo base_url('assets/oneui/js/plugins/sweetalert2/sweetalert2.min.js') ?>"></script>
+    <!-- Page JS Plugins -->
+    <script src="<?php echo base_url('assets/oneui/js/plugins/es6-promise/es6-promise.auto.min.js') ?>"></script>
+    <script src="<?php echo base_url('assets/oneui/js/plugins/sweetalert2/sweetalert2.min.js') ?>"></script>
 
-        <!-- Page JS Code -->
-        <script src="<?php echo base_url('assets/oneui/js/pages/be_comp_dialogs.min.js') ?>"></script>
-        <script src="<?php echo base_url('assets/oneui/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') ?>"></script>
+    <!-- Page JS Code -->
+    <script src="<?php echo base_url('assets/oneui/js/pages/be_comp_dialogs.min.js') ?>"></script>
+    <script src="<?php echo base_url('assets/oneui/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') ?>"></script>
     <!-- Page JS Helpers (BS Datepicker + BS Colorpicker + BS Maxlength + Select2 + Masked Inputs + Ion Range Slider plugins) -->
     <script>
         jQuery(function() {
@@ -519,11 +525,15 @@
     </script>
 
 
- <!-- Page JS Plugins -->
- <script src="<?php echo base_url ('assets/oneui/js/plugins/ckeditor/ckeditor.js')?>"></script>
+    <!-- Page JS Plugins -->
+    <script src="<?php echo base_url('assets/oneui/js/plugins/ckeditor/ckeditor.js') ?>"></script>
 
-<!-- Page JS Helpers (CKEditor plugin) -->
-<script>jQuery(function(){ One.helpers(['ckeditor']); });</script>
+    <!-- Page JS Helpers (CKEditor plugin) -->
+    <script>
+        jQuery(function() {
+            One.helpers(['ckeditor']);
+        });
+    </script>
 
 </body>
 

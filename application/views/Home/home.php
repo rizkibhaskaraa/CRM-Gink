@@ -293,6 +293,26 @@
                                         <th class="font-w700 text-center" style="width:15%" ;>Pending / On Progress</th>
                                     </tr>
                                 </thead>
+                                <?php if(count($report)==0){
+                                    foreach ($employ_report as $value) { ?>
+                                        <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <span class="font-w600"><?php echo $value["nama"] ?></span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="font-w600">0 Tugas</span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="font-w600 text-success">0 Tugas</span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="font-w600 text-danger">0 Tugas</span>
+                                                    </td>
+                                                </tr>
+                                        </tbody>
+                                    <?php } ?>
+                                <?php }?>
                                 <?php $employe = [];
                                 foreach ($report as $value) { ?>
                                     <tbody>

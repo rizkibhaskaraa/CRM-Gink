@@ -576,6 +576,32 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php foreach ($tiket as $value) {
+                                    if ($value["status"] == "Belum Selesai") { ?>
+                                        <tr>
+                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                                <span class="font-w600">#<?php echo $value["id_task"] ?></span>
+                                            </td>
+                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                                <span class="font-w600"><?php echo $value["nama"] ?></span>
+                                            </td>
+                                            <td style="width: 10%;">
+                                                <span class="font-w600"><?php echo $value["title"] ?></span>
+                                            </td>
+                                            <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
+                                                <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
+                                            </td>
+                                            <td class="text-danger text-center" style="width: 15%;">
+                                                <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
+                                            </td>
+                                            <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
+                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/TugasBelum" ?>" class="text-decoration-none">Buka</a>
+                                            </td>
+                                        </tr>
+                                <?php }
+                                } ?>
+                            <tbody>
+                            <tbody>
                                 <?php foreach ($taskparent as $valueparent) {
                                     $i = 1;
                                     $row = 1;
@@ -640,6 +666,32 @@
                                     <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 15%;">Aksi</th>
                                 </tr>
                             </thead>
+                            <tbody>
+                                <?php foreach ($tiket as $value) {
+                                    if ($value["status"] == "Selesai") { ?>
+                                        <tr>
+                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                                <span class="font-w600">#<?php echo $value["id_task"] ?></span>
+                                            </td>
+                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                                <span class="font-w600"><?php echo $value["nama"] ?></span>
+                                            </td>
+                                            <td style="width: 10%;">
+                                                <span class="font-w600"><?php echo $value["title"] ?></span>
+                                            </td>
+                                            <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
+                                                <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
+                                            </td>
+                                            <td class="text-danger text-center" style="width: 15%;">
+                                                <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span>
+                                            </td>
+                                            <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
+                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/TugasBelum" ?>" class="text-decoration-none">Buka</a>
+                                            </td>
+                                        </tr>
+                                <?php }
+                                } ?>
+                            <tbody>
                             <tbody>
                                 <?php foreach ($taskparent as $valueparent) {
                                     $i = 1;

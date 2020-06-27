@@ -23,11 +23,13 @@ class home_model extends CI_model
     {
         if($id_dept != "ceo"){
             $this->db->order_by('nama_departemen', 'ASC');
+            $this->db->order_by('status_employ', 'ASC');
             $this->db->join("departemen", "employe.id_departemen = departemen.id_departemen");
             return $this->db->get_where("employe", array("employe.id_departemen" => $id_dept))->result_array();    
         }else{
             $this->db->order_by('nama_departemen', 'ASC');
-            $this->db->join("departemen", "employ.id_departemen = departemen.id_departemen");
+            $this->db->order_by('status_employ', 'ASC');
+            $this->db->join("departemen", "employe.id_departemen = departemen.id_departemen");
             return $this->db->get_where("employe")->result_array();
         }
         

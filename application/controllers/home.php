@@ -61,6 +61,7 @@ class Home extends CI_Controller
         $data["pelanggan"] = $pelanggan = $this->home_model->getpelanggan();
         $departemen = $this->home_model->getdepartemen($employ["id_departemen"]);
         $data["nama_departemen"] = $departemen["nama_departemen"];
+        
         $data["report"] = $this->home_model->getreport($departemen["nama_departemen"]);
         $data['tugas_belum'] = $this->home_model->gettugaspjbelum($departemen["nama_departemen"]);
         $data['tugas_selesai'] = $this->home_model->gettugaspjselesai($departemen["nama_departemen"]);

@@ -26,6 +26,7 @@ class Login extends CI_Controller {
 		$email = $this->input->post('username');
 		$password = $this->input->post('password');
 		$user = $this->login_model->getuser($email);
+		$employ = $this->login_model->getemploy($user["id_employ"]);
 		$data["user"] = $user;
 		if ($user) { //jika hasil ada
 			$saved_password = password_hash($user['password'], PASSWORD_DEFAULT);
@@ -33,7 +34,11 @@ class Login extends CI_Controller {
 				$_SESSION["login"] = true;
 				$_SESSION["staff_user"] = $email;
 				$_SESSION["staff_id"] = $user["id_employ"];
-				redirect(base_url('index.php/home/index/').$email);
+				if($employ["id_departemen"] == "ceo"){
+					redirect(base_url('index.php/home/ceo/').$email);
+				}else{
+					redirect(base_url('index.php/home/index/').$email);
+				}
 			} else {
 				redirect(base_url());
 			}

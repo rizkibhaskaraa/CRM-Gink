@@ -159,7 +159,11 @@
                         </tr>
                         <tr>
                             <td class="font-weight-bold">Status Task</td>
-                            <td>: <?php echo $task["status"] ?></td>
+                            <?php if ($task["status"] == "Belum Selesai") { ?>
+                                <td ><span class=" font-w600 btn-sm btn-block btn-danger col-3"><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $task["status"] ?></span></td>
+                            <?php } else { ?>
+                                <td ><span class="font-w600 btn-sm btn-block btn-success col-3"><i class="fa fa-fw fa-check"></i> <?php echo $task["status"] ?></span></td>
+                            <?php } ?>
                         </tr>
                         <tr>
                             <?php if ($cekTabel == 'Request') { ?>
@@ -201,26 +205,18 @@
                                             <?php } ?>
                                     </form>
                                 </td>
-                            <?php } else if ($cekTabel == 'TugasBelum' && $task["id_parent"] != NULL || $status == "staff" || count($subtask) == 0) { ?>
+                            <?php } else if (($cekTabel == 'TugasBelum' || $status == "staff" || $task["id_parent"] != NULL ) && (count($subtask) == 0) && $cekTabel != 'Tiket' && $cekTabel != 'TugasSelesai') { ?>
                                 <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
                                 <td class="font-weight-bold">Berkas (opsional)</td>
-                                <td>
-                                    : <input type="file" name="file">
-                                    <div class="block-content block-content-full text-right border-top mt-5">
-                                        <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
-                                        <input type="submit" class="btn btn-sm btn-primary" value="Selesai">
-                                    </div>
-                                </td>
-
-                                <!-- komentar -->
-
-
-
-
-
-                                <!-- <input type="submit" value="Selesai"> -->
+                                    <td>
+                                        : <input type="file" name="file">
+                                        <div class="block-content block-content-full text-right border-top mt-5">
+                                            <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
+                                            <input type="submit" class="btn btn-sm btn-primary" value="Selesai">
+                                        </div>
+                                    </td>
                                 <?php echo form_close(); ?>
-                            <?php } else if ($cekTabel == 'TugasSelesai' && $task["id_parent"] != NULL) { ?>
+                            <?php } else if ($cekTabel == 'TugasSelesai' && $task["id_parent"] != NULL && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum') { ?>
                                 <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
                                 <td class="font-weight-bold">Berkas (opsional)</td>
                                 <td>
@@ -271,21 +267,30 @@
                                     <thead>
                                         <tr>
                                             <td colspan="6">
+                                                <?php $color = "bg-success";
+                                                $progres = count($subtaskselesai)/count($subtask)*100;
+                                                if($progres<80){
+                                                    $color = "bg-warning";
+                                                }
+                                                if($progres<30){
+                                                    $color = "bg-danger";
+                                                }
+                                                
+                                                ?>
                                                 <h4>Progres Task</h4>
                                                 <div class="progress push">
-                                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: <?php echo (count($subtaskselesai)/count($subtask))*100?>%;" aria-valuenow="<?php echo (count($subtaskselesai)/count($subtask))*100?>%" aria-valuemin="0" aria-valuemax="100">
-                                                        <span class="font-size-sm font-w600"><?php echo (count($subtaskselesai)/count($subtask))*100?>%</span>
+                                                    <div class="progress-bar <?php echo $color ?>" role="progressbar" style="width: <?php echo (count($subtaskselesai)/count($subtask))*100?>%;" aria-valuenow="<?php echo (count($subtaskselesai)/count($subtask))*100?>%" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="font-size-sm font-w600 text-muted"><?php echo (count($subtaskselesai)/count($subtask))*100?>%</span>
                                                     </div>
                                                 </div>
 
-                                                <?php $progres = count($subtaskselesai)/count($subtask)*100;
-                                                if($progres < 100){?>
+                                                <?php if($progres < 100){?>
                                                     <a class="btn btn-danger" class="bg-gander text-white text-decoration-none" href="<?php echo base_url('index.php/detail/ubahstatustask/' . $employ_id . '/' . $task['id_task']) ?>" style="float:right">
-                                                        Konfirmasi Selesai
+                                                        <i class="fa fa-fw fa-exclamation-circle"></i> Konfirmasi Selesai
                                                     </a>
                                                 <?php }else{?>
                                                     <a class="btn btn-success" class="bg-success text-white text-decoration-none" href="<?php echo base_url('index.php/detail/ubahstatustask/' . $employ_id . '/' . $task['id_task']) ?>" style="float:right">
-                                                        Konfirmasi Selesai
+                                                    <i class="fa fa-fw fa-check"></i> Konfirmasi Selesai
                                                     </a>
                                                 <?php }?>
                                             </td>

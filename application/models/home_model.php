@@ -21,7 +21,16 @@ class home_model extends CI_model
 
     public function getemploydept($id_dept)
     {
-        return $this->db->get_where("employe", array("id_departemen" => $id_dept))->result_array();
+        if($id_dept != "ceo"){
+            $this->db->order_by('nama_departemen', 'ASC');
+            $this->db->join("departemen", "employe.id_departemen = departemen.id_departemen");
+            return $this->db->get_where("employe", array("id_departemen" => $id_dept))->result_array();    
+        }else{
+            $this->db->order_by('nama_departemen', 'ASC');
+            $this->db->join("departemen", "employe.id_departemen = departemen.id_departemen");
+            return $this->db->get_where("employe")->result_array();
+        }
+        
     }
 
     public function getpelanggan()
@@ -61,6 +70,10 @@ class home_model extends CI_model
     {
         $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
         return $this->db->get_where('task', array('id_employ_kirim' => $id_employ))->result_array();
+    }
+    public function gettiketsaya($id_employ)
+    {
+        return $this->db->get_where('task', array('id_employ_kirim' => $id_employ,'id_employ_kirim' => ""))->result_array();
     }
     public function gettaskdihead($nama_departemen)
     {
@@ -123,7 +136,7 @@ class home_model extends CI_model
     {
         $this->db->where("nama_dept_tujuan", $dept);
         $this->db->where("dateline", $tglend);
-        $this->db->select("count(task.status),id_employ_tujuan,nama");
+        $this->db->select("count(task.status),id_employ_tujuan,nama,status_employ");
         $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
         $this->db->group_by("id_employ_tujuan");
         return $this->db->get("task")->result_array();
@@ -135,9 +148,13 @@ class home_model extends CI_model
 
     // report tanpa periode
     public function getreport($dept)
-    {
-        $this->db->where("nama_dept_tujuan", $dept);
-        $this->db->select("count(task.status),id_employ_tujuan,nama");
+    {   
+        $this->db->order_by('nama_dept_tujuan', 'ASC');
+        $this->db->order_by('status_employ', 'ASC');
+        if($dept != "Chief Executive Officer "){
+            $this->db->where("nama_dept_tujuan", $dept);
+        }
+        $this->db->select("count(task.status),id_employ_tujuan,nama,status_employ,id_departemen,nama_dept_tujuan");
         $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
         $this->db->group_by("id_employ_tujuan");
         return $this->db->get("task")->result_array();
@@ -145,10 +162,12 @@ class home_model extends CI_model
 
     public function gettugaspjselesai($dept)
     {
-        $this->db->where("nama_dept_tujuan", $dept);
+        if($dept != "Chief Executive Officer "){
+            $this->db->where("nama_dept_tujuan", $dept);
+        }
         $this->db->where("task.status", "Selesai");
         $this->db->where_not_in("id_employ_tujuan", "");
-        $this->db->select("count(task.status),id_employ_tujuan,nama");
+        $this->db->select("count(task.status),id_employ_tujuan,nama,status_employ,id_departemen");
         $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
         $this->db->group_by("id_employ_tujuan");
         return $this->db->get("task")->result_array();
@@ -156,10 +175,12 @@ class home_model extends CI_model
 
     public function gettugaspjbelum($dept)
     {
-        $this->db->where("nama_dept_tujuan", $dept);
+        if($dept != "Chief Executive Officer "){
+            $this->db->where("nama_dept_tujuan", $dept);
+        }
         $this->db->where("task.status", "Belum Selesai");
         $this->db->where_not_in("id_employ_tujuan", "");
-        $this->db->select("count(task.status),id_employ_tujuan,nama");
+        $this->db->select("count(task.status),id_employ_tujuan,nama,status_employ,id_departemen");
         $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
         $this->db->group_by("id_employ_tujuan");
         return $this->db->get("task")->result_array();
@@ -169,11 +190,14 @@ class home_model extends CI_model
     // report dengan periode
     public function getreport_periode($dept,$tgl_start,$tgl_end)
     {
-        
-        $this->db->where("nama_dept_tujuan", $dept);
+        $this->db->order_by('nama_dept_tujuan', 'ASC');
+        $this->db->order_by('status_employ', 'ASC');
+        if($dept != "Chief Executive Officer "){
+            $this->db->where("nama_dept_tujuan", $dept);
+        }
         $this->db->where('date >=', $tgl_start);
         $this->db->where('date <=', $tgl_end);
-        $this->db->select("count(task.status),id_employ_tujuan,nama");
+        $this->db->select("count(task.status),id_employ_tujuan,nama,status_employ,id_departemen");
         $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
         $this->db->group_by("id_employ_tujuan");
         return $this->db->get("task")->result_array();
@@ -181,12 +205,14 @@ class home_model extends CI_model
     
     public function gettugaspjselesai_periode($dept,$tgl_start,$tgl_end)
     {
-        $this->db->where("nama_dept_tujuan", $dept);
+        if($dept != "Chief Executive Officer "){
+            $this->db->where("nama_dept_tujuan", $dept);
+        }
         $this->db->where("task.status", "Selesai");
         $this->db->where('date >=', $tgl_start);
         $this->db->where('date <=', $tgl_end);
         $this->db->where_not_in("id_employ_tujuan", "");
-        $this->db->select("count(task.status),id_employ_tujuan,nama");
+        $this->db->select("count(task.status),id_employ_tujuan,nama,status_employ,id_departemen");
         $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
         $this->db->group_by("id_employ_tujuan");
         return $this->db->get("task")->result_array();
@@ -194,12 +220,14 @@ class home_model extends CI_model
     
     public function gettugaspjbelum_periode($dept,$tgl_start,$tgl_end)
     {
-        $this->db->where("nama_dept_tujuan", $dept);
+        if($dept != "Chief Executive Officer "){
+            $this->db->where("nama_dept_tujuan", $dept);
+        }
         $this->db->where("task.status", "Belum Selesai");
         $this->db->where('date >=', $tgl_start);
         $this->db->where('date <=', $tgl_end);
         $this->db->where_not_in("id_employ_tujuan", "");
-        $this->db->select("count(task.status),id_employ_tujuan,nama");
+        $this->db->select("count(task.status),id_employ_tujuan,nama,status_employ,id_departemen");
         $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
         $this->db->group_by("id_employ_tujuan");
         return $this->db->get("task")->result_array();

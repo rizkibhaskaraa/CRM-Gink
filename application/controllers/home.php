@@ -46,6 +46,36 @@ class Home extends CI_Controller
         $data['employ_report'] = $this->home_model->getemploydept($data["employ_dept"]);
         $this->load->view('home/home', $data);
     }
+    public function ceo($user)
+    {
+        if (!isset($_SESSION["login"])) {
+            redirect(base_url());
+        } else {
+            $user = $_SESSION["staff_user"];
+        }
+        $employ = $this->home_model->getemploy($user);
+        $data["employ_nama"] = $employ["nama"];
+        $data["employ_id"] = $employ["id_employ"];
+        $data["employ_dept"] = $employ["id_departemen"];
+        $data["status"] = $employ["status_employ"];
+        $data["pelanggan"] = $pelanggan = $this->home_model->getpelanggan();
+        $departemen = $this->home_model->getdepartemen($employ["id_departemen"]);
+        $data["nama_departemen"] = $departemen["nama_departemen"];
+        
+        $data["report"] = $this->home_model->getreport($departemen["nama_departemen"]);
+        $data['tugas_belum'] = $this->home_model->gettugaspjbelum($departemen["nama_departemen"]);
+        $data['tugas_selesai'] = $this->home_model->gettugaspjselesai($departemen["nama_departemen"]);
+        $data['employ_report'] = $this->home_model->getemploydept($data["employ_dept"]);
+
+        $data["pelanggan"] = $pelanggan = $this->home_model->getpelanggan();
+        $data["layanan"] = $layanan = $this->home_model->getlayanan();
+
+        $data["taskparent"] = $this->home_model->gettaskparent($departemen["nama_departemen"]);
+        $data["tiket"] = $this->home_model->gettiket($employ["id_employ"]);
+        $data["tiketsaya"] = $this->home_model->gettiketsaya($employ["id_employ"]);
+
+        $this->load->view('home/home_ceo', $data);
+    }
 
     public function status($id)
     {
@@ -167,7 +197,12 @@ class Home extends CI_Controller
             }
             //akhir menentukan departemen tujuan
             $this->home_model->insert_task($data_task);
-            redirect(base_url('index.php/home/index/') . $user["username"]);
+            if($departemen["id_departemen"] == "ceo"){
+                redirect(base_url('index.php/home/ceo/') . $user["username"]);
+            }else{
+                redirect(base_url('index.php/home/index/') . $user["username"]);
+            }
+            
         }
     }
 

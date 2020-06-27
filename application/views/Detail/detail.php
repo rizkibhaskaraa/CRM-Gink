@@ -201,26 +201,18 @@
                                             <?php } ?>
                                     </form>
                                 </td>
-                            <?php } else if ($cekTabel == 'TugasBelum' && $task["id_parent"] != NULL || $status == "staff" || count($subtask) == 0) { ?>
+                            <?php } else if (($cekTabel == 'TugasBelum' || $status == "staff" || $task["id_parent"] != NULL ) && (count($subtask) == 0) && $cekTabel != 'Tiket' && $cekTabel != 'TugasSelesai') { ?>
                                 <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
                                 <td class="font-weight-bold">Berkas (opsional)</td>
-                                <td>
-                                    : <input type="file" name="file">
-                                    <div class="block-content block-content-full text-right border-top mt-5">
-                                        <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
-                                        <input type="submit" class="btn btn-sm btn-primary" value="Selesai">
-                                    </div>
-                                </td>
-
-                                <!-- komentar -->
-
-
-
-
-
-                                <!-- <input type="submit" value="Selesai"> -->
+                                    <td>
+                                        : <input type="file" name="file">
+                                        <div class="block-content block-content-full text-right border-top mt-5">
+                                            <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
+                                            <input type="submit" class="btn btn-sm btn-primary" value="Selesai">
+                                        </div>
+                                    </td>
                                 <?php echo form_close(); ?>
-                            <?php } else if ($cekTabel == 'TugasSelesai' && $task["id_parent"] != NULL) { ?>
+                            <?php } else if ($cekTabel == 'TugasSelesai' && $task["id_parent"] != NULL && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum') { ?>
                                 <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
                                 <td class="font-weight-bold">Berkas (opsional)</td>
                                 <td>

@@ -159,7 +159,11 @@
                         </tr>
                         <tr>
                             <td class="font-weight-bold">Status Task</td>
-                            <td>: <?php echo $task["status"] ?></td>
+                            <?php if ($task["status"] == "Belum Selesai") { ?>
+                                <td ><span class=" font-w600 btn-sm btn-block btn-danger col-3"><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $task["status"] ?></span></td>
+                            <?php } else { ?>
+                                <td ><span class="font-w600 btn-sm btn-block btn-success col-3"><i class="fa fa-fw fa-check"></i> <?php echo $task["status"] ?></span></td>
+                            <?php } ?>
                         </tr>
                         <tr>
                             <?php if ($cekTabel == 'Request') { ?>
@@ -282,11 +286,11 @@
 
                                                 <?php if($progres < 100){?>
                                                     <a class="btn btn-danger" class="bg-gander text-white text-decoration-none" href="<?php echo base_url('index.php/detail/ubahstatustask/' . $employ_id . '/' . $task['id_task']) ?>" style="float:right">
-                                                        Konfirmasi Selesai
+                                                        <i class="fa fa-fw fa-exclamation-circle"></i> Konfirmasi Selesai
                                                     </a>
                                                 <?php }else{?>
                                                     <a class="btn btn-success" class="bg-success text-white text-decoration-none" href="<?php echo base_url('index.php/detail/ubahstatustask/' . $employ_id . '/' . $task['id_task']) ?>" style="float:right">
-                                                        Konfirmasi Selesai
+                                                    <i class="fa fa-fw fa-check"></i> Konfirmasi Selesai
                                                     </a>
                                                 <?php }?>
                                             </td>

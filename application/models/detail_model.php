@@ -134,6 +134,15 @@ class detail_model extends CI_model
 
     public function insert_sub_task($data_sub_task, $id_employ, $task)
     {
+        //update status
+        $parent_task = $this->db->get_where('task', array('id_task' => $task))->row_array();
+        if($parent_task["status"]=="Selesai"){
+            $this->db->set('status', "Belum Selesai");
+            $this->db->where('id_task', $task);
+            $this->db->update('task');    
+        }
+        //akhir update status
+
         //update
         $this->db->set('id_employ_tujuan', $id_employ);
         $this->db->where('id_task', $task);

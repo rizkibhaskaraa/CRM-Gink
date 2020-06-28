@@ -101,6 +101,7 @@
 
     <!-- Page Content -->
     <!-- request task,pelanggan,tugas selesai,tugas Belum Selesai,tiket selesai,tiket Belum Selesai -->
+    
     <!-- navigasi bar pilih tabel -->
     <ul class="nav nav-tabs nav-tabs-block ml-3 px-3 mt-3" data-toggle="tabs" role="tablist">
         <li style="background-color:lavender" class="nav-item">
@@ -122,7 +123,9 @@
         </li>
     </ul>
     <!-- akhir navigasi bar pilih tabel -->
+
     <div class="block-content tab-content overflow-hidden">
+
         <!-- pelanggan -->
         <div class="tab-pane fade fade-up show active" id="pelanggan" role="tabpanel">
             <div class="container-fluid">
@@ -184,8 +187,8 @@
                 </div>
             </div>
         </div>
-
         <!-- END pelanggan -->
+
         <!-- Request Task dan report -->
         <?php if ($status == "kepala") { ?>
             <div class="tab-pane fade fade-up" id="request" role="tabpanel">
@@ -415,13 +418,13 @@
                                     if ($valueparent["status"] == "Belum Selesai") { ?>
                                         <tr>
                                             <td style="width: 10%;" rowspan="<?= $row ?>">
-                                                <span class="font-w600">#<?php echo $valueparent["id_task"] ?></span>
+                                                <span class="font-w600">#<?php echo $valueparent["id_task"]." ".$valueparent["title"] ?></span>
                                             </td>
                                             <td style="width: 10%;" rowspan="<?= $row ?>">
                                                 <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
                                             </td>
-                                            <td style="width: 10%;">
-                                                <span class="font-w600"><?php echo $valueparent["title"] ?></span>
+                                            <td style="width: 10%;" class="text-center">
+                                                <span class="font-w600">-</span>
                                             </td>
                                             <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
                                                 <span class="font-size-sm  "><?php echo $valueparent["dateline"] ?></span>
@@ -449,7 +452,7 @@
                                     <tr>
                                         <?php if ($row_taskbelum != 1) { ?>
                                             <td style="width: 10%;" rowspan="<?= $row_taskbelum ?>">
-                                                <span class="font-w600">#<?php echo $valueparent["id_task"] ?></span>
+                                                <span class="font-w600">#<?php echo $valueparent["id_task"]." ".$valueparent["title"] ?></span>
                                             </td>
                                             <td style="width: 10%;" rowspan="<?= $row_taskbelum ?>">
                                                 <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
@@ -483,7 +486,6 @@
                 </div>
             </div>
             <!-- END Belum Selesai -->
-
             <!--  Selesai -->
             <div class="container-fluid">
                 <div class="block block-mode-loading-oneui">
@@ -507,13 +509,13 @@
                                     if ($valueparent["status"] == "Selesai") { ?>
                                         <tr>
                                             <td style="width: 10%;" `>
-                                                <span class="font-w600">#<?php echo $valueparent["id_task"] ?></span>
+                                                <span class="font-w600">#<?php echo $valueparent["id_task"]." ".$valueparent["title"] ?></span>
                                             </td>
                                             <td style="width: 10%;" `>
                                                 <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
                                             </td>
-                                            <td style="width: 10%;">
-                                                <span class="font-w600"><?php echo $valueparent["title"] ?></span>
+                                            <td style="width: 10%;" class="text-center">
+                                                <span class="font-w600">-</span>
                                             </td>
                                             <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
                                                 <span class="font-size-sm  "><?php echo $valueparent["dateline"] ?></span>
@@ -540,7 +542,7 @@
                                     <tr>
                                         <?php if ($row_taskselesai != 1) { ?>
                                             <td style="width: 10%;" rowspan="<?= $row_taskselesai ?>">
-                                                <span class="font-w600">#<?php echo $valueparent["id_task"] ?></span>
+                                                <span class="font-w600">#<?php echo $valueparent["id_task"]." ".$valueparent["title"] ?></span>
                                             </td>
                                             <td style="width: 10%;" rowspan="<?= $row_taskselesai ?>">
                                                 <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
@@ -573,11 +575,9 @@
                 </div>
             </div>
             <!-- END  Selesai -->
-
         </div>
+
         <div class="tab-pane fade fade-up" id="tiket" role="tabpanel">
-
-
             <!--  Tiket Belum Selesai -->
             <div class="container-fluid">
                 <div class="block block-mode-loading-oneui">
@@ -601,13 +601,13 @@
                                     if ($value["status"] == "Belum Selesai" && $value["id_parent"]=="") { ?>
                                         <tr>
                                             <td style="width: 10%;" >
-                                                <span class="font-w600">#<?php echo $value["id_task"] ?></span>
+                                                <span class="font-w600">#<?php echo $value["id_task"]." ".$value["title"] ?></span>
                                             </td>
                                             <td style="width: 10%;" >
                                                 <span class="font-w600"><?php echo $value["nama"] ?></span>
                                             </td>
-                                            <td style="width: 10%;">
-                                                <span class="font-w600"><?php echo $value["title"] ?></span>
+                                            <td style="width: 10%;" class="text-center">
+                                                <span class="font-w600">-</span>
                                             </td>
                                             <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
                                                 <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
@@ -635,7 +635,7 @@
                                     <tr>
                                         <?php if ($row_tiketbelum != 1) { ?>
                                             <td style="width: 10%;" rowspan="<?= $row_tiketbelum ?>">
-                                                <span class="font-w600">#<?php echo $valueparent["id_task"] ?></span>
+                                                <span class="font-w600">#<?php echo $valueparent["id_task"]." ".$valueparent["title"] ?></span>
                                             </td>
                                             <td style="width: 10%;" rowspan="<?= $row_tiketbelum ?>">
                                                 <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
@@ -668,7 +668,6 @@
                 </div>
             </div>
             <!-- END  Tiket Belum Selesai -->
-
             <!--  Tiket Selesai -->
             <div class="container-fluid">
                 <div class="block block-mode-loading-oneui">
@@ -692,13 +691,13 @@
                                     if ($value["status"] == "Selesai" && $value["id_parent"]=="") { ?>
                                         <tr>
                                             <td style="width: 10%;">
-                                                <span class="font-w600">#<?php echo $value["id_task"] ?></span>
+                                                <span class="font-w600">#<?php echo $value["id_task"]." ".$value["title"] ?></span>
                                             </td>
                                             <td style="width: 10%;">
                                                 <span class="font-w600"><?php echo $value["nama"] ?></span>
                                             </td>
-                                            <td style="width: 10%;">
-                                                <span class="font-w600"><?php echo $value["title"] ?></span>
+                                            <td style="width: 10%;" class="text-center">
+                                                <span class="font-w600">-</span>
                                             </td>
                                             <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
                                                 <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
@@ -726,7 +725,7 @@
                                     <tr>
                                         <?php if ($row != 1) { ?>
                                             <td style="width: 10%;" rowspan="<?= $row ?>">
-                                                <span class="font-w600">#<?php echo $valueparent["id_task"] ?></span>
+                                                <span class="font-w600">#<?php echo $valueparent["id_task"]." ".$valueparent["title"] ?></span>
                                             </td>
                                             <td style="width: 10%;" rowspan="<?= $row ?>">
                                                 <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
@@ -759,8 +758,8 @@
                 </div>
             </div>
             <!-- END  Tiket Selesai -->
-
         </div>
+
     </div>
     
     <!-- END request task,pelanggan,tugas selesai,tugas Belum Selesai,tiket selesai,tiket Belum Selesai -->

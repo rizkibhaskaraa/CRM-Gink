@@ -60,13 +60,22 @@ class home_model extends CI_model
         return $this->db->get_where("departemen", array("id_departemen" => $id_departemen))->row_array();
     }
 
-    public function gettaskselesai($id_employ)
+    public function gettaskselesai($id_employ,$dept)
     {
-        return $this->db->get_where('task', array('id_employ_tujuan' => $id_employ, "status" => "Selesai"))->result_array();
+        if($dept == "Chief Executive Officer "){
+            return $this->db->get_where('task', array("status" => "Selesai"))->result_array();
+        }else{
+            return $this->db->get_where('task', array('id_employ_tujuan' => $id_employ, "status" => "Selesai"))->result_array();
+        }
+        
     }
-    public function gettaskbelum($id_employ)
+    public function gettaskbelum($id_employ,$dept)
     {
-        return $this->db->get_where('task', array('id_employ_tujuan' => $id_employ, 'status' => "Belum Selesai"))->result_array();
+        if($dept == "Chief Executive Officer "){
+            return $this->db->get_where('task', array('status' => "Belum Selesai"))->result_array();
+        }else{
+            return $this->db->get_where('task', array('id_employ_tujuan' => $id_employ, 'status' => "Belum Selesai"))->result_array();
+        }
     }
     public function gettiket($id_employ)
     {
@@ -90,15 +99,19 @@ class home_model extends CI_model
     {
         $departemen = array($nama_departemen, "umum");
         $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
-        $this->db->where_in('nama_dept_tujuan', $departemen);
+        if($nama_departemen != "Chief Executive Officer "){
+            $this->db->where_in('nama_dept_tujuan', $departemen);
+        }
         $this->db->where('id_parent', "");
         return $this->db->get('task')->result_array();
     }
-    public function gettasksaya($id_employ)
+    public function gettasksaya($id_employ,$dept)
     {
         $this->db->where('id_parent', "");
         $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
-        $this->db->where('id_employ_tujuan', $id_employ);
+        if($dept != "Chief Executive Officer "){
+            $this->db->where('id_employ_tujuan', $id_employ);
+        }
         return $this->db->get('task')->result_array();
     }
     public function gettaskdiheadkosong($nama_departemen)

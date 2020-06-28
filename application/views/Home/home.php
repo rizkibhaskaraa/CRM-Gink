@@ -597,6 +597,32 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php foreach ($tiketsaya as $value) {
+                                    if ($value["status"] == "Belum Selesai" && $value["id_parent"]=="") { ?>
+                                        <tr>
+                                            <td style="width: 10%;" >
+                                                <span class="font-w600">#<?php echo $value["id_task"] ?></span>
+                                            </td>
+                                            <td style="width: 10%;" class="text-center">
+                                                <span class="font-w600">-</span>
+                                            </td>
+                                            <td style="width: 10%;">
+                                                <span class="font-w600"><?php echo $value["title"] ?></span>
+                                            </td>
+                                            <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
+                                                <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
+                                            </td>
+                                            <td class="text-danger text-center" style="width: 15%;">
+                                                <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
+                                            </td>
+                                            <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
+                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
+                                            </td>
+                                        </tr>
+                                <?php }
+                                } ?>
+                            <tbody>
+                            <tbody>
                                 <?php foreach ($tiket as $value) {
                                     if ($value["status"] == "Belum Selesai" && $value["id_parent"]=="") { ?>
                                         <tr>
@@ -886,8 +912,9 @@
                             <div class="form-group">
                                 <label for="departemen">Departemen tujuan</label>
                                 <select name="departemen" id="departemen" class="form-control">
-                                    <option value="developer">Developer</option>
-                                    <option value="finance">Finance</option>
+                                    <option value="Developer">Developer</option>
+                                    <option value="Marketing">Marketing</option>
+                                    <option value="Support">Support</option>
                                 </select>
                             </div>
                             <div class="form-group">

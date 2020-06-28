@@ -84,7 +84,7 @@ class home_model extends CI_model
     }
     public function gettiketsaya($id_employ)
     {
-        return $this->db->get_where('task', array('id_employ_kirim' => $id_employ,'id_employ_kirim' => ""))->result_array();
+        return $this->db->get_where('task', array('id_employ_kirim' => $id_employ,'id_employ_tujuan' => NULL))->result_array();
     }
     public function gettaskdihead($nama_departemen)
     {

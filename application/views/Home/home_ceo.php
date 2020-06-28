@@ -307,7 +307,7 @@
             <div class="container-fluid">
                 <div class="block block-mode-loading-oneui">
                     <div class="block-header border-bottom">
-                        <h3 class="block-title text-danger">Tugas Saya | Belum Selesai</h3>
+                        <h3 class="block-title text-danger">Tugas staff | Belum Selesai</h3>
                     </div>
                     <div class="block-content block-content-full">
                         <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
@@ -397,7 +397,7 @@
             <div class="container-fluid">
                 <div class="block block-mode-loading-oneui">
                     <div class="block-header border-bottom">
-                        <h3 class="block-title text-success">Tugas Saya | Selesai</h3>
+                        <h3 class="block-title text-success">Tugas Staff | Selesai</h3>
                     </div>
                     <div class="block-content block-content-full">
                         <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
@@ -510,8 +510,8 @@
                                             <td style="width: 10%;" >
                                                 <span class="font-w600">#<?php echo $value["id_task"] ?></span>
                                             </td>
-                                            <td style="width: 10%;" >
-                                                <span class="font-w600"><?php echo $value["nama"] ?></span>
+                                            <td style="width: 10%;" class="text-center">
+                                                <span class="font-w600">-</span>
                                             </td>
                                             <td style="width: 10%;">
                                                 <span class="font-w600"><?php echo $value["title"] ?></span>

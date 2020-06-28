@@ -40,6 +40,7 @@ class Home extends CI_Controller
         $data["taskdiheadkosong"] = $this->home_model->gettaskdiheadkosong($departemen["nama_departemen"]);
         $data["taskparent"] = $this->home_model->gettaskparent($departemen["nama_departemen"]);
         $data["tiket"] = $this->home_model->gettiket($employ["id_employ"]);
+        $data["tiketsaya"] = $this->home_model->gettiketsaya($employ["id_employ"]);
         $data["report"] = $this->home_model->getreport($departemen["nama_departemen"]);
         $data['tugas_belum'] = $this->home_model->gettugaspjbelum($departemen["nama_departemen"]);
         $data['tugas_selesai'] = $this->home_model->gettugaspjselesai($departemen["nama_departemen"]);

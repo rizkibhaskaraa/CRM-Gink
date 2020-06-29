@@ -355,13 +355,13 @@
                             <tr class="table-active">
                                 <td class="d-none d-sm-table-cell"></td>
                                 <td class="font-size-sm text-muted">
-                                    <a href="be_pages_generic_profile.html"><?= $value["nama_kirim_komen"] ?></a> on <em><?= $value["tanggal_komen"] ?></em>
+                                    <a href=""><?= $value["nama_kirim_komen"] ?></a> on <em><?= $value["tanggal_komen"] ?></em>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="d-none d-sm-table-cell text-center" style="width: 140px;">
                                     <p>
-                                        <a href="be_pages_generic_profile.html">
+                                        <a href="">
                                             <img class="img-avatar" src="<?php echo base_url('assets/oneui/media/avatars/avatar7.jpg') ?>" alt="">
                                         </a>
                                     </p>
@@ -406,7 +406,7 @@
                         <td class="d-none d-sm-table-cell text-center">
                             <p>
                                 <a href="be_pages_generic_profile.html">
-                                    <img class="img-avatar" src="assets/media/avatars/avatar10.jpg" alt="">
+                                    <img class="img-avatar" src="<?php echo base_url('assets/oneui/media/avatars/avatar10.jpg')?>" alt="">
                                 </a>
                             </p>
                             <p class="font-size-sm"><?= $employ_nama ?><br><?= $nama_dept ?></p>

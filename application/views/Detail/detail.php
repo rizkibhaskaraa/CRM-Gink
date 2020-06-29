@@ -29,11 +29,13 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="<?php echo base_url('assets/js/plugins/sweetalert2/sweetalert2.min.css') ?>">
 
+    <link rel="stylesheet" href="<?php echo base_url('assets/oneui/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')?>">
+
     <!-- Fonts and OneUI framework -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
     <link rel="stylesheet" id="css-main" href="<?php echo base_url('assets/oneui/css/oneui.min.css') ?>">
 
-
+    <link rel="stylesheet" href="<?php echo base_url('assets/oneui/js/plugins/summernote/summernote-bs4.css') ?>">
 
     <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
     <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
@@ -104,7 +106,7 @@
     <!-- Page Content -->
     <div class="content">
         <!-- Discussion -->
-        <div class="block">
+        <div class="block col-10 mx-auto mb-5 mt-2">
             <div class="block-header block-header-default ">
                 <h3 class="block-title dark ">Hallo <?php echo $employ_nama ?> , berikut isi Detail Tasknya</h3>
             </div>
@@ -124,12 +126,7 @@
                             <td class="font-weight-bold mt-2" width="15%">Title</td>
                             <td width="70%">: <?php echo $task["title"] ?> </td>
                         </tr>
-                        <tr>
-                            <td class="font-weight-bold  ">Deskripsi Task</td>
-                            <td>
-                                <p>: <?php echo $task["deskripsi"] ?></p>
-                            </td>
-                        </tr>
+                        
                         <tr>
                             <td class="font-weight-bold">Nama Pengirim</td>
                             <td>: <?php echo $nama_kirim . " (" . $task["nama_dept_kirim"] . ")" ?></td>
@@ -149,6 +146,12 @@
                             <?php } else { ?>
                                 <td><span class="font-w600 btn-sm btn-block btn-success col-3"><i class="fa fa-fw fa-check"></i> <?php echo $task["status"] ?></span></td>
                             <?php } ?>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold  ">Deskripsi Task</td>
+                            <td>
+                                <p>: <?php echo $task["deskripsi"] ?></p>
+                            </td>
                         </tr>
                         <tr>
                             <?php if ($cekTabel == 'Request') { ?>
@@ -333,18 +336,13 @@
         <!-- END Discussion -->
     </div>
     <!-- END Page Content -->
-    <div class="block">
+    <div class="block col-10 mx-auto mb-5 mt-2">
         <div class="block-header block-header-default bg-dark ">
-            <h3 class="block-title text-gray-lighter ml-3 pt-2 pb-2">Komentar/Catatan</h3>
+            <h3 class="block-title text-gray-lighter ml-3 pt-2 pb-2">Komentar / Catatan</h3>
             <div class="block-options">
                 <a class="btn-block-option mr-2 text-gray-lighter" href="#forum-reply-form " data-toggle="scroll-to">
                     <i class="fa fa-reply mr-1  "> </i> Reply
-
                 </a>
-
-                <button type="button" class="btn-block-option text-gray-lighter" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
-                    <i class="si si-refresh mr-3"></i>
-                </button>
             </div>
         </div>
         <div class="block-content">
@@ -355,13 +353,13 @@
                             <tr class="table-active">
                                 <td class="d-none d-sm-table-cell"></td>
                                 <td class="font-size-sm text-muted">
-                                    <a href="be_pages_generic_profile.html"><?= $value["nama_kirim_komen"] ?></a> on <em><?= $value["tanggal_komen"] ?></em>
+                                    <a href=""><?= $value["nama_kirim_komen"] ?></a> on <em><?= $value["tanggal_komen"] ?></em>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="d-none d-sm-table-cell text-center" style="width: 140px;">
                                     <p>
-                                        <a href="be_pages_generic_profile.html">
+                                        <a href="">
                                             <img class="img-avatar" src="<?php echo base_url('assets/oneui/media/avatars/avatar7.jpg') ?>" alt="">
                                         </a>
                                     </p>
@@ -377,7 +375,7 @@
                             <tr class="table-active">
                                 <td class="d-none d-sm-table-cell"></td>
                                 <td class="font-size-sm text-muted">
-                                    <a href="be_pages_generic_profile.html"><?= $value["nama_kirim_komen"] ?></a> on <em><?= $value["tanggal_komen"] ?></em>
+                                    <a href=".html"><?= $value["nama_kirim_komen"] ?></a> on <em><?= $value["tanggal_komen"] ?></em>
                                 </td>
                             </tr>
                             <tr>
@@ -405,8 +403,8 @@
                     <tr>
                         <td class="d-none d-sm-table-cell text-center">
                             <p>
-                                <a href="be_pages_generic_profile.html">
-                                    <img class="img-avatar" src="assets/media/avatars/avatar10.jpg" alt="">
+                                <a href="">
+                                    <img class="img-avatar" src="<?php echo base_url('assets/oneui/media/avatars/avatar10.jpg')?>" alt="">
                                 </a>
                             </p>
                             <p class="font-size-sm"><?= $employ_nama ?><br><?= $nama_dept ?></p>
@@ -504,7 +502,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
-                                <textarea class="form-control required" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
+                                <textarea class="form-control required js-summernote" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
                             </div>
                             <div style="float:right;margin-bottom:3%">
                                 <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
@@ -537,7 +535,7 @@
 
     <!-- Page JS Plugins -->
     <script src="<?php echo base_url('assets/oneui/js/plugins/es6-promise/es6-promise.auto.min.js') ?>"></script>
-    <script src="<?php echo base_url('assets/oneui/js/plugins/sweetalert2/sweetalert2.min.js') ?>"></script>
+    
 
     <!-- Page JS Code -->
     <script src="<?php echo base_url('assets/oneui/js/pages/be_comp_dialogs.min.js') ?>"></script>
@@ -551,15 +549,18 @@
 
 
     <!-- Page JS Plugins -->
+    <script src="<?php echo base_url('assets/oneui/js/plugins/summernote/summernote-bs4.min.js') ?>"></script>
     <script src="<?php echo base_url('assets/oneui/js/plugins/ckeditor/ckeditor.js') ?>"></script>
 
     <!-- Page JS Helpers (CKEditor plugin) -->
     <script>
         jQuery(function() {
-            One.helpers(['ckeditor']);
+            One.helpers(['ckeditor','summernote']);
         });
     </script>
-
+    
+    <!-- Page JS Helpers (Summernote + CKEditor + SimpleMDE plugins) -->
+    
 </body>
 
 </html>

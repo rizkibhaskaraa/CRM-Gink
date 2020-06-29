@@ -282,20 +282,25 @@
                             <h3 class="block-title text-primary">Report Staff</h3>
                         </div>
                         <button class="btn btn-primary search mt-3 ml-2 mr-4" id="button-report">Terapkan</button>
-                        <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-end" id="tgl-end" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal End">
+                        
+                        <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-end" id="tgl-end" data-date-format="dd-mm-yyyy" data-week-start="1" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal End">
                         <h1 class="search "><i class="fa fa-minus mr-2"></i></h1>
-                        <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-start" id="tgl-start" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal Start">
+                       
+                        <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-start" id="tgl-start" data-date-format="dd-mm-yyyy" data-week-start="1" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal Start">
+                       
                         <input type="text" name="alamat-report" id="alamat-report" value="<?php echo base_url('index.php/home/searchreport/') . $employ_id . "/" ?>" hidden>
+                        
                         <div class="block-content block-content-full" id="report-table">
+                        
                         <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
                                 <thead class="thead-dark">
                                     <tr class="text-uppercase">
-                                        <th class="font-w700 text-center" style="width: 25%;">Nama</th>
-                                        <th class="font-w700 text-center" style="width: 25%;">Departemen</th>
-                                        <th class="font-w700 text-center" style="width: 25%;">Jabatan</th>
-                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 10%;">Request Tugas</th>
-                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 10%;">Selesai</th>
-                                        <th class="font-w700 text-center" style="width:10%" ;>On Progress</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Nama</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Departemen</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Jabatan</th>
+                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Request Tugas</th>
+                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Selesai</th>
+                                        <th class="font-w700 text-center" style="width:16%" ;>On Progress</th>
                                     </tr>
                                 </thead>
                                 <?php $data_report = [];
@@ -309,9 +314,10 @@
                                                     <td>
                                                         <span class="font-w600"><?php echo $value["nama"] ?></span>
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         <span class="font-w600"><?php echo $value["nama_departemen"] ?></span>
-                                                    </td>                                                    <td>
+                                                    </td>                                                  
+                                                    <td class="text-center">
                                                         <span class="font-w600"><?php echo $value["status_employ"] ?></span>
                                                     </td>
                                                     <td class="text-center">
@@ -337,10 +343,10 @@
                                                     <td>
                                                         <span class="font-w600"><?php echo $value["nama"] ?></span>
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         <span class="font-w600"><?php echo $value["nama_dept_tujuan"] ?></span>
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         <span class="font-w600"><?php echo $value["status_employ"] ?></span>
                                                     </td>
                                                     <td class="text-center">
@@ -367,10 +373,10 @@
                                                     <td>
                                                         <span class="font-w600"><?php echo $value["nama"] ?></span>
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         <span class="font-w600"><?php echo $value["nama_dept_tujuan"] ?></span>
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         <span class="font-w600"><?php echo $value["status_employ"] ?></span>
                                                     </td>
                                                     <td class="text-center">
@@ -872,7 +878,7 @@
                                     <span class="input-group-text input-group-text-alt">
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
-                                    <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true">
+                                    <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="dd-mm-yyyy" data-week-start="1" data-autoclose="true" data-today-highlight="true">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -930,7 +936,7 @@
                                     <span class="input-group-text input-group-text-alt">
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
-                                    <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true">
+                                    <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="dd-mm-yyyy" data-week-start="1" data-autoclose="true" data-today-highlight="true">
                                 </div>
                             </div>
                             <div class="form-group">

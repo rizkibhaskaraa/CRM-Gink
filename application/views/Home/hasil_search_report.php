@@ -1,13 +1,13 @@
-<div class="block-content block-content-full" id="report-table">
+<div class="block-content-full" id="report-table">
 <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
                                 <thead class="thead-dark">
                                     <tr class="text-uppercase">
-                                        <th class="font-w700 text-center" style="width: 25%;">Nama</th>
-                                        <th class="font-w700 text-center" style="width: 25%;">Departemen</th>
-                                        <th class="font-w700 text-center" style="width: 25%;">Jabatan</th>
-                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 10%;">Request Tugas</th>
-                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 10%;">Selesai</th>
-                                        <th class="font-w700 text-center" style="width:10%" ;>On Progress</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Nama</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Departemen</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Jabatan</th>
+                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Request Tugas</th>
+                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Selesai</th>
+                                        <th class="font-w700 text-center" style="width:16%" ;>On Progress</th>
                                     </tr>
                                 </thead>
                                 <?php $data_report = [];
@@ -21,9 +21,10 @@
                                                     <td>
                                                         <span class="font-w600"><?php echo $value["nama"] ?></span>
                                                     </td>
-                                                    <td>
+                                                    <td  class="text-center">
                                                         <span class="font-w600"><?php echo $value["nama_departemen"] ?></span>
-                                                    </td>                                                    <td>
+                                                    </td>                                                   
+                                                    <td class="text-center">
                                                         <span class="font-w600"><?php echo $value["status_employ"] ?></span>
                                                     </td>
                                                     <td class="text-center">
@@ -49,10 +50,10 @@
                                                     <td>
                                                         <span class="font-w600"><?php echo $value["nama"] ?></span>
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         <span class="font-w600"><?php echo $value["nama_dept_tujuan"] ?></span>
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         <span class="font-w600"><?php echo $value["status_employ"] ?></span>
                                                     </td>
                                                     <td class="text-center">
@@ -79,10 +80,10 @@
                                                     <td>
                                                         <span class="font-w600"><?php echo $value["nama"] ?></span>
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         <span class="font-w600"><?php echo $value["nama_dept_tujuan"] ?></span>
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         <span class="font-w600"><?php echo $value["status_employ"] ?></span>
                                                     </td>
                                                     <td class="text-center">

@@ -212,7 +212,7 @@ class home_model extends CI_model
         }
         $this->db->where('date >=', $tgl_start);
         $this->db->where('date <=', $tgl_end);
-        $this->db->select("count(task.status),id_employ_tujuan,nama,status_employ,nama_dept_tujuan");
+        $this->db->select("count(task.status),id_employ_tujuan,nama,status_employ,id_departemen");
         $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
         $this->db->group_by("id_employ_tujuan");
         return $this->db->get("task")->result_array();

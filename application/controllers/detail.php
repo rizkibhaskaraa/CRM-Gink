@@ -99,7 +99,6 @@ class Detail extends CI_Controller
     public function addkomen($idtask, $nama, $id_employ, $tabel)
     {
         date_default_timezone_set('Asia/Bangkok');
-        $nama = str_replace('%20', ' ', $nama);
         $data = array(
             "id_komentar" => rand(0001, 1000),
             "komentar" => $this->input->post("komentar"),

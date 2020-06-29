@@ -204,7 +204,7 @@
                                     </div>
                                 </td>
                                 <?php echo form_close(); ?>
-                            <?php } else if ($cekTabel == 'TugasSelesai' && $task["id_parent"] != NULL && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum' || count($subtask) == 0) { ?>
+                            <?php } else if ($cekTabel == 'TugasSelesai' && $task["id_parent"] != NULL && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum' || (count($subtask) == 0 && $task["id_parent"] == NULL)) { ?>
                                 <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
                                 <td class="font-weight-bold">Berkas (opsional)</td>
                                 <td>

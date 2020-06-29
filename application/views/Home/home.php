@@ -941,30 +941,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
-                                <textarea class="form-control required" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
+                                <textarea class="form-control required js-summernote" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
                                 <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
                             </div>
 
-                            <div class="block-content block-content-full ">
-                                <!-- Summernote Container -->
-                                <div class="js-summernote-air">
-
-                                </div>
-                            </div>
+                           
                     </div>
-                    <div class="block">
-                        <div class="block-header">
-
-                            <div class="block-options">
-
-                            </div>
-                        </div>
-                        <div class="block-content block-content-full">
-                            <!-- Summernote Container -->
-                            <div class="js-summernote">Hello Summernote!</div>
-                        </div>
-                    </div>
-                    <!-- END Summernote -->
+                    
                     <div style="float:right;margin-bottom:3%">
                         <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
 

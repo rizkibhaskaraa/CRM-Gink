@@ -601,13 +601,13 @@
                                     if ($value["status"] == "Belum Selesai" && $value["id_parent"]=="") { ?>
                                         <tr>
                                             <td style="width: 10%;" >
-                                                <span class="font-w600">#<?php echo $value["id_task"] ?></span>
+                                                <span class="font-w600">#<?php echo $value["id_task"]." ".$value["title"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
                                                 <span class="font-w600">-</span>
                                             </td>
-                                            <td style="width: 10%;">
-                                                <span class="font-w600"><?php echo $value["title"] ?></span>
+                                            <td style="width: 10%;" class="text-center">
+                                                <span class="font-w600">-</span>
                                             </td>
                                             <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
                                                 <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>

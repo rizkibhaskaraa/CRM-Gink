@@ -56,21 +56,6 @@
                 </div>
                 <div class="p-2">
                     <h5 class="dropdown-header text-uppercase">User Options</h5>
-
-                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_profile.html">
-                        <span>Profile</span>
-                        <span>
-                            <span class="badge badge-pill badge-success">1</span>
-                            <i class="si si-user ml-1"></i>
-                        </span>
-                    </a>
-                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                        <span>Settings</span>
-                        <i class="si si-settings"></i>
-                    </a>
-                    <div role="separator" class="dropdown-divider"></div>
-                    <h5 class="dropdown-header text-uppercase">Actions</h5>
-
                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?php echo base_url('index.php/home/hapussession') ?>">
                         <span>Log Out</span>
                         <i class="si si-logout ml-1"></i>
@@ -216,7 +201,7 @@
                                         </div>
                                     </td>
                                 <?php echo form_close(); ?>
-                            <?php } else if ($cekTabel == 'TugasSelesai' && $task["id_parent"] != NULL && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum') { ?>
+                            <?php } else if ($cekTabel == 'TugasSelesai' && $task["id_parent"] != NULL && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum' || count($subtask) == 0) { ?>
                                 <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
                                 <td class="font-weight-bold">Berkas (opsional)</td>
                                 <td>

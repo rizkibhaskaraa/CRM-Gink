@@ -190,9 +190,9 @@
                             <h3 class="block-title text-primary">Report Staff</h3>
                         </div>
                         <button class="btn btn-primary search mt-3 ml-2 mr-4" id="button-report">Terapkan</button>
-                        <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-end" id="tgl-end" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal End">
+                        <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-end" id="tgl-end" data-date-format="yyyy-mm-dd" data-week-start="0" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal End">
                         <h1 class="search"><i class="far fa-window-minimize mr-3"></i></h1>
-                        <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-start" id="tgl-start" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal Start">
+                        <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-start" id="tgl-start" data-date-format="yyyy-mm-dd" data-week-start="0" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal Start">
                         <input type="text" name="alamat-report" id="alamat-report" value="<?php echo base_url('index.php/home/searchreport/') . $employ_id . "/" ?>" hidden>
                         <div class="block-content block-content-full" id="report-table">
                             <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
@@ -508,13 +508,13 @@
                                     if ($value["status"] == "Belum Selesai" && $value["id_parent"]=="") { ?>
                                         <tr>
                                             <td style="width: 10%;" >
-                                                <span class="font-w600">#<?php echo $value["id_task"] ?></span>
+                                                <span class="font-w600">#<?php echo $value["id_task"]." ".$value["title"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
                                                 <span class="font-w600">-</span>
                                             </td>
-                                            <td style="width: 10%;">
-                                                <span class="font-w600"><?php echo $value["title"] ?></span>
+                                            <td style="width: 10%;" class="text-center">
+                                                <span class="font-w600">-</span>
                                             </td>
                                             <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
                                                 <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
@@ -534,13 +534,13 @@
                                     if ($value["status"] == "Belum Selesai" && $value["id_parent"]=="") { ?>
                                         <tr>
                                             <td style="width: 10%;" >
-                                                <span class="font-w600">#<?php echo $value["id_task"] ?></span>
+                                                <span class="font-w600">#<?php echo $value["id_task"]." ".$value["title"] ?></span>
                                             </td>
                                             <td style="width: 10%;" >
                                                 <span class="font-w600"><?php echo $value["nama"] ?></span>
                                             </td>
-                                            <td style="width: 10%;">
-                                                <span class="font-w600"><?php echo $value["title"] ?></span>
+                                            <td style="width: 10%;" class="text-center">
+                                                <span class="font-w600">-</span>
                                             </td>
                                             <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
                                                 <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
@@ -777,7 +777,7 @@
                                     <span class="input-group-text input-group-text-alt">
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
-                                    <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true">
+                                    <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="0" data-autoclose="true" data-today-highlight="true">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -835,7 +835,7 @@
                                     <span class="input-group-text input-group-text-alt">
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
-                                    <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true">
+                                    <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="0" data-autoclose="true" data-today-highlight="true">
                                 </div>
                             </div>
                             <div class="form-group">

@@ -33,10 +33,10 @@ class Home extends CI_Controller
         $departemen = $this->home_model->getdepartemen($employ["id_departemen"]);
         $data["nama_departemen"] = $departemen["nama_departemen"];
 
-        $data["taskselesai"] = $this->home_model->gettaskselesai($employ["id_employ"]);
-        $data["taskbelum"] = $this->home_model->gettaskbelum($employ["id_employ"]);
+        $data["taskselesai"] = $this->home_model->gettaskselesai($employ["id_employ"], $departemen["nama_departemen"]);
+        $data["taskbelum"] = $this->home_model->gettaskbelum($employ["id_employ"], $departemen["nama_departemen"]);
         $data["taskdihead"] = $this->home_model->gettaskdihead($departemen["nama_departemen"]);
-        $data["tasksaya"] = $this->home_model->gettasksaya($data["employ_id"]);
+        $data["tasksaya"] = $this->home_model->gettasksaya($data["employ_id"], $departemen["nama_departemen"]);
         $data["taskdiheadkosong"] = $this->home_model->gettaskdiheadkosong($departemen["nama_departemen"]);
         $data["taskparent"] = $this->home_model->gettaskparent($departemen["nama_departemen"]);
         $data["tiket"] = $this->home_model->gettiket($employ["id_employ"]);
@@ -63,11 +63,11 @@ class Home extends CI_Controller
         $departemen = $this->home_model->getdepartemen($employ["id_departemen"]);
         $data["nama_departemen"] = $departemen["nama_departemen"];
 
-        $data["taskselesai"] = $this->home_model->gettaskselesai($employ["id_employ"],$departemen["nama_departemen"]);
-        $data["taskbelum"] = $this->home_model->gettaskbelum($employ["id_employ"],$departemen["nama_departemen"]);
-        $data["tasksaya"] = $this->home_model->gettasksaya($data["employ_id"],$departemen["nama_departemen"]);
+        $data["taskselesai"] = $this->home_model->gettaskselesai($employ["id_employ"], $departemen["nama_departemen"]);
+        $data["taskbelum"] = $this->home_model->gettaskbelum($employ["id_employ"], $departemen["nama_departemen"]);
+        $data["tasksaya"] = $this->home_model->gettasksaya($data["employ_id"], $departemen["nama_departemen"]);
         $data["taskparent"] = $this->home_model->gettaskparent($departemen["nama_departemen"]);
-        
+
         $data["report"] = $this->home_model->getreport($departemen["nama_departemen"]);
         $data['tugas_belum'] = $this->home_model->gettugaspjbelum($departemen["nama_departemen"]);
         $data['tugas_selesai'] = $this->home_model->gettugaspjselesai($departemen["nama_departemen"]);
@@ -90,10 +90,10 @@ class Home extends CI_Controller
     }
 
     public function editpelanggan()
-    {   
+    {
         $id = $this->input->post("id_pelanggan");
         $status = $this->input->post("status_pelanggan");
-        $user = $this->home_model->updatestatuspelanggan($id,$status);
+        $user = $this->home_model->updatestatuspelanggan($id, $status);
         redirect(base_url('index.php/home/index/') . $user);
     }
 
@@ -111,7 +111,7 @@ class Home extends CI_Controller
     {
         $search_pelanggan = str_replace('%20', ' ', $search);
         $status_pelanggan = str_replace('%20', ' ', $status);
-        $data["pelanggan"] = $this->home_model->getsearch( $status_pelanggan, $search_pelanggan);
+        $data["pelanggan"] = $this->home_model->getsearch($status_pelanggan, $search_pelanggan);
         $data["employ_id"] = $employ_id;
         $data["layanan"] = $layanan = $this->home_model->getlayanan();
         $this->load->view('home/hasil_search', $data);
@@ -121,11 +121,11 @@ class Home extends CI_Controller
     {
         $employ = $this->home_model->getemploytiket($employ_id);
         $departemen = $this->home_model->getdepartemen($employ["id_departemen"]);
-        $data["tgl_start"] = $tgl_start." 00:00:00";
-        $data["tgl_end"] = $tgl_end." 00:00:00";
-        $data["report"] = $this->home_model->getreport_periode($departemen["nama_departemen"],$data["tgl_start"],$data["tgl_end"]);
-        $data['tugas_belum'] = $this->home_model->gettugaspjbelum_periode($departemen["nama_departemen"],$data["tgl_start"],$data["tgl_end"]);
-        $data['tugas_selesai'] = $this->home_model->gettugaspjselesai_periode($departemen["nama_departemen"],$data["tgl_start"],$data["tgl_end"]);
+        $data["tgl_start"] = $tgl_start . " 00:00:00";
+        $data["tgl_end"] = $tgl_end . " 00:00:00";
+        $data["report"] = $this->home_model->getreport_periode($departemen["nama_departemen"], $data["tgl_start"], $data["tgl_end"]);
+        $data['tugas_belum'] = $this->home_model->gettugaspjbelum_periode($departemen["nama_departemen"], $data["tgl_start"], $data["tgl_end"]);
+        $data['tugas_selesai'] = $this->home_model->gettugaspjselesai_periode($departemen["nama_departemen"], $data["tgl_start"], $data["tgl_end"]);
         $data["employ_id"] = $employ_id;
         $data['employ_report'] = $this->home_model->getemploydept($employ["id_departemen"]);
         $this->load->view('home/hasil_search_report', $data);
@@ -203,16 +203,16 @@ class Home extends CI_Controller
             }
             //akhir menentukan departemen tujuan
             $this->home_model->insert_task($data_task);
-            if($departemen["id_departemen"] == "ceo"){
+            if ($departemen["id_departemen"] == "ceo") {
                 redirect(base_url('index.php/home/ceo/') . $user["username"]);
-            }else{
+            } else {
                 redirect(base_url('index.php/home/index/') . $user["username"]);
             }
-            
         }
     }
 
-    public function addpelanggan(){
+    public function addpelanggan()
+    {
         $data_pelanggan = array(
             "id_pelanggan" => rand(0001, 1000),
             "customer" => $this->input->post("customer"),

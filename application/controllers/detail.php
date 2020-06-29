@@ -96,14 +96,17 @@ class Detail extends CI_Controller
         $this->detail_model->insert_sub_task($data_sub_task, $id_employ, $id_Task);
         redirect(base_url('index.php/detail/detailumum/') . $id_employ . "/" . $id_Task . "/" . $tabel);
     }
-    public function addkomen($idtask, $nama, $id_employ, $tabel)
+    public function addkomen($idtask, $nama, $id_employ, $tabel, $dept)
     {
         date_default_timezone_set('Asia/Bangkok');
+        $nama = str_replace('%20', ' ', $nama);
+        $dept = str_replace('%20', ' ', $dept);
         $data = array(
             "id_komentar" => rand(0001, 1000),
             "komentar" => $this->input->post("komentar"),
             "id_task" => $idtask,
             "nama_kirim_komen" => $nama,
+            "nama_dept_komen" => $dept,
             "tanggal_komen" => date("Y-m-d H-i-s")
         );
         $this->detail_model->buatkomen($data);

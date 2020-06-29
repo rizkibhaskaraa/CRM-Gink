@@ -145,9 +145,9 @@
                         <tr>
                             <td class="font-weight-bold">Status Task</td>
                             <?php if ($task["status"] == "Belum Selesai") { ?>
-                                <td ><span class=" font-w600 btn-sm btn-block btn-danger col-3"><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $task["status"] ?></span></td>
+                                <td><span class=" font-w600 btn-sm btn-block btn-danger col-3"><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $task["status"] ?></span></td>
                             <?php } else { ?>
-                                <td ><span class="font-w600 btn-sm btn-block btn-success col-3"><i class="fa fa-fw fa-check"></i> <?php echo $task["status"] ?></span></td>
+                                <td><span class="font-w600 btn-sm btn-block btn-success col-3"><i class="fa fa-fw fa-check"></i> <?php echo $task["status"] ?></span></td>
                             <?php } ?>
                         </tr>
                         <tr>
@@ -190,16 +190,16 @@
                                             <?php } ?>
                                     </form>
                                 </td>
-                            <?php } else if (($cekTabel == 'TugasBelum' || $status == "staff" || $task["id_parent"] != NULL ) && (count($subtask) == 0) && $cekTabel != 'Tiket' && $cekTabel != 'TugasSelesai') { ?>
+                            <?php } else if (($cekTabel == 'TugasBelum' || $status == "staff" || $task["id_parent"] != NULL) && (count($subtask) == 0) && $cekTabel != 'Tiket' && $cekTabel != 'TugasSelesai') { ?>
                                 <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
                                 <td class="font-weight-bold">Berkas (opsional)</td>
-                                    <td>
-                                        : <input type="file" name="file">
-                                        <div class="block-content block-content-full text-right border-top mt-5">
-                                            <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
-                                            <input type="submit" class="btn btn-sm btn-primary" value="Selesai">
-                                        </div>
-                                    </td>
+                                <td>
+                                    : <input type="file" name="file">
+                                    <div class="block-content block-content-full text-right border-top mt-5">
+                                        <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
+                                        <input type="submit" class="btn btn-sm btn-primary" value="Selesai">
+                                    </div>
+                                </td>
                                 <?php echo form_close(); ?>
                             <?php } else if ($cekTabel == 'TugasSelesai' && $task["id_parent"] != NULL && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum' || count($subtask) == 0) { ?>
                                 <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
@@ -253,31 +253,31 @@
                                         <tr>
                                             <td colspan="6">
                                                 <?php $color = "bg-success";
-                                                $progres = count($subtaskselesai)/count($subtask)*100;
-                                                if($progres<80){
+                                                $progres = count($subtaskselesai) / count($subtask) * 100;
+                                                if ($progres < 80) {
                                                     $color = "bg-warning";
                                                 }
-                                                if($progres<30){
+                                                if ($progres < 30) {
                                                     $color = "bg-danger";
                                                 }
-                                                
+
                                                 ?>
                                                 <h4>Progres Task</h4>
                                                 <div class="progress push">
-                                                    <div class="progress-bar <?php echo $color ?>" role="progressbar" style="width: <?php echo (count($subtaskselesai)/count($subtask))*100?>%;" aria-valuenow="<?php echo (count($subtaskselesai)/count($subtask))*100?>%" aria-valuemin="0" aria-valuemax="100">
-                                                        <span class="font-size-sm font-w600 text-muted"><?php echo (count($subtaskselesai)/count($subtask))*100?>%</span>
+                                                    <div class="progress-bar <?php echo $color ?>" role="progressbar" style="width: <?php echo (count($subtaskselesai) / count($subtask)) * 100 ?>%;" aria-valuenow="<?php echo (count($subtaskselesai) / count($subtask)) * 100 ?>%" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="font-size-sm font-w600 text-muted"><?php echo (count($subtaskselesai) / count($subtask)) * 100 ?>%</span>
                                                     </div>
                                                 </div>
 
-                                                <?php if($progres < 100){?>
+                                                <?php if ($progres < 100) { ?>
                                                     <a class="btn btn-danger" class="bg-gander text-white text-decoration-none" href="<?php echo base_url('index.php/detail/ubahstatustask/' . $employ_id . '/' . $task['id_task']) ?>" style="float:right">
                                                         <i class="fa fa-fw fa-exclamation-circle"></i> Konfirmasi Selesai
                                                     </a>
-                                                <?php }else{?>
+                                                <?php } else { ?>
                                                     <a class="btn btn-success" class="bg-success text-white text-decoration-none" href="<?php echo base_url('index.php/detail/ubahstatustask/' . $employ_id . '/' . $task['id_task']) ?>" style="float:right">
-                                                    <i class="fa fa-fw fa-check"></i> Konfirmasi Selesai
+                                                        <i class="fa fa-fw fa-check"></i> Konfirmasi Selesai
                                                     </a>
-                                                <?php }?>
+                                                <?php } ?>
                                             </td>
                                         </tr>
                                     </thead>
@@ -322,7 +322,7 @@
                                         </tbody>
                                     <?php } ?>
                                 </table>
-                                
+
                             </div>
                             <!-- END tabel sub task -->
                         <?php } ?>
@@ -365,7 +365,7 @@
                                             <img class="img-avatar" src="<?php echo base_url('assets/oneui/media/avatars/avatar7.jpg') ?>" alt="">
                                         </a>
                                     </p>
-                                    <p class="font-size-sm"><?= $value["nama_kirim_komen"] ?><br><?= $task["nama_dept_tujuan"] ?></p>
+                                    <p class="font-size-sm"><?= $value["nama_kirim_komen"] ?><br><?= $value["nama_dept_komen"] ?></p>
                                 </td>
                                 <td>
                                     <p><?= $value["komentar"] ?></p>
@@ -387,7 +387,7 @@
                                             <img class="img-avatar" src="<?php echo base_url('assets/oneui/media/avatars/avatar7.jpg') ?>" alt="">
                                         </a>
                                     </p>
-                                    <p class="font-size-sm"><?= $value["nama_kirim_komen"] ?><br><?= $task["nama_dept_tujuan"] ?></p>
+                                    <p class="font-size-sm"><?= $value["nama_kirim_komen"] ?><br><?= $task["nama_dept_komen"] ?></p>
                                 </td>
                                 <td>
                                     <p><?= $value["komentar"] ?></p>
@@ -412,7 +412,7 @@
                             <p class="font-size-sm"><?= $employ_nama ?><br><?= $nama_dept ?></p>
                         </td>
                         <td>
-                            <form action="<?php echo base_url('index.php/detail/addkomen/') . $task["id_task"] . "/" . $employ_nama . "/" . $employ_id . "/" . $cekTabel ?>" method="POST">
+                            <form action="<?php echo base_url('index.php/detail/addkomen/') . $task["id_task"] . "/" . $employ_nama . "/" . $employ_id . "/" . $cekTabel . "/" . $nama_dept ?>" method="POST">
                                 <div class="form-group">
                                     <!-- CKEditor (js-ckeditor id is initialized in Helpers.ckeditor()) -->
                                     <!-- For more info and examples you can check out http://ckeditor.com -->

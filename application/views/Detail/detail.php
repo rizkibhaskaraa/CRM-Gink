@@ -355,13 +355,13 @@
                         <?php foreach ($komentar as $value) { ?>
                             <tr class="table-active">
                                 <td class="d-none d-sm-table-cell"></td>
-                                <td class="font-size-sm text-muted">
+                                <td class="font-size-md text-muted">
                                     <!-- Menampilkan nama pengirim komentar dan tanggal kirim komentarnya -->
                                     <a href=""><?= $value["nama_kirim_komen"] ?></a> on <em><?= $value["tanggal_komen"] ?></em>
                                     <!-- Jika user == pengirim komentar, tampilkan button delete komentar -->
                                     <?php if ($employ_nama == $value["nama_kirim_komen"]) { ?>
                                         <form action="<?php echo base_url('index.php/detail/deletekomen/') . $task["id_task"] . "/" . $employ_id . "/" . $cekTabel . "/" . $value["id_komentar"] ?>" method="POST">
-                                            <button type="submit">DELETE</button>
+                                            <button class="btn btn-sm btn-danger" data-toggle="click-ripple" type="submit">Delete</button>
                                         </form>
                                     <?php } ?>
                                 </td>
@@ -385,13 +385,13 @@
                         <?php foreach ($komentarsub as $value) { ?>
                             <tr class="table-active">
                                 <td class="d-none d-sm-table-cell"></td>
-                                <td class="font-size-sm text-muted">
+                                <td class="font-size-md text-muted">
                                     <!-- Menampilkan nama pengirim komentar dan tanggal kirim komentarnya -->
                                     <a href=".html"><?= $value["nama_kirim_komen"] ?></a> on <em><?= $value["tanggal_komen"] ?></em>
                                     <?php if ($employ_nama == $value["nama_kirim_komen"]) { ?>
                                         <!-- Jika user == pengirim komentar, tampilkan button delete komentar -->
                                         <form action="<?php echo base_url('index.php/detail/deletekomen/') . $task["id_task"] . "/" . $employ_id . "/" . $cekTabel . "/" . $value["id_komentar"] ?>" method="POST">
-                                            <button type="submit">DELETE</button>
+                                            <button class="btn btn-sm btn-danger" data-toggle="click-ripple"type="submit">Delete</button>
                                         </form>
                                     <?php } ?>
                                 </td>

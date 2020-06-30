@@ -361,7 +361,7 @@
                                             <td style="width: 10%;" rowspan="<?= $row_taskbelum ?>">
                                                 <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
                                             </td>
-                                            <td style="width: 10%;" class="text-center" rowspan="<?= $row_taskbelum ?>>
+                                            <td style="width: 10%;" class="text-center" rowspan="<?= $row_taskbelum ?>">
                                                 <span class="font-w600"><?php echo $valueparent["nama_dept_tujuan"] ?></span>
                                             </td>
                                         <?php } ?>
@@ -450,7 +450,7 @@
                                             <td style="width: 10%;" rowspan="<?= $row_taskselesai ?>">
                                                 <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
                                             </td>
-                                            <td style="width: 10%;" class="text-center" rowspan="<?= $row_taskselesai ?>>
+                                            <td style="width: 10%;" class="text-center" rowspan="<?= $row_taskselesai ?>">
                                                 <span class="font-w600"><?php echo $valueparent["nama_dept_tujuan"] ?></span>
                                             </td>
                                         <?php } ?>
@@ -781,7 +781,7 @@
                                 <textarea class="form-control required" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
                                 <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
                             </div>
-                            <div style="float:right;margin-bottom:3%">
+                            <div  style="float:right;margin-bottom:3%">
                                 <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
                                 <button type="submit" class="btn btn-primary">Buat</button>
 
@@ -846,7 +846,7 @@
                     <div style="float:right;margin-bottom:3%">
                         <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
 
-                        <button type="submit" class="btn btn-primary">Buat</button>
+                        <button type="submit" class="btn btn-primary mr-4">Buat</button>
 
                     </div>
 

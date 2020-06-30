@@ -605,7 +605,7 @@
                         <h3 class="block-title text-danger">Tiket Saya | Belum Selesai</h3>
                     </div>
                     <div class="block-content block-content-full">
-                        <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
+                        <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
                                     <th class="font-w700 text-center" style="width: 10%;"># ID Task</th>
@@ -642,10 +642,8 @@
                                         </tr>
                                 <?php }
                                 } ?>
-                            </tbody>
                             <!-- akhir body jika tidak ada sub task dan belum ada PJ-->
                             <!-- body jika tidak ada sub task dan ada PJ-->
-                            <tbody>
                                 <?php foreach ($tiket as $value) {
                                     if ($value["status"] == "Belum Selesai" && $value["id_parent"]=="") { ?>
                                         <tr>
@@ -670,10 +668,8 @@
                                         </tr>
                                 <?php }
                                 } ?>
-                            <tbody>
                             <!-- akhir body jika tidak ada sub task dan ada PJ-->
                             <!-- body jika ada sub task dan ada PJ-->
-                            <tbody>
                                 <?php foreach ($taskparent as $valueparent) {
                                     $i = 1;
                                     $row_tiketbelum = 1; //untuk rowspan

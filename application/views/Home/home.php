@@ -204,8 +204,8 @@
                                 <thead class="thead-dark">
                                     <tr class="text-uppercase">
                                         <th class="font-w700 text-center" style="width: 20%;">Title</th>
-                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Penanggung Jawab</th>
-                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Deadline</th>
+                                        <th class="font-w700 text-center" style="width: 20%;">Penanggung Jawab</th>
+                                        <th class="font-w700 text-center" style="width: 20%;">Deadline</th>
                                         <th class="font-w700 text-center" style="width:15%" ;>Status</th>
                                         <th class="font-w700 text-center" style="width: 20%;">Aksi</th>
                                     </tr>
@@ -298,9 +298,9 @@
                                         <th class="font-w700 text-center" style="width: 16%;">Nama</th>
                                         <th class="font-w700 text-center" style="width: 16%;">Departemen</th>
                                         <th class="font-w700 text-center" style="width: 16%;">Jabatan</th>
-                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Request Tugas</th>
-                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Selesai</th>
-                                        <th class="font-w700 text-center" style="width:16%" ;>On Progress</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Request Tugas</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Selesai</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">On Progress</th>
                                     </tr>
                                 </thead>
                                 <?php $data_report = [];
@@ -413,12 +413,12 @@
                         <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 10%;"># ID Task</th>
-                                    <th class="font-w700 text-center" style="width: 10%;">Ketua Task</th>
-                                    <th class="font-w700 text-center" style="width: 25%;">Sub Title Task</th>
-                                    <th class="font-w700 text-center" style="width: 20%;">Deadline</th>
-                                    <th class="font-w700 text-center" style="width: 15%;">Status</th>
-                                    <th class="font-w700 text-center" style="width: 15%;">Aksi</th>
+                                    <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Deadline</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Status</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>

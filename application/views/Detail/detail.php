@@ -106,6 +106,7 @@
     <!-- Page Content -->
     <div class="content">
         <!-- Discussion -->
+        <!-- Tampilan Detail Tugas secara umum -->
         <div class="block col-10 mx-auto mb-5 mt-2">
             <div class="block-header block-header-default ">
                 <h3 class="block-title dark ">Hallo <?php echo $employ_nama ?> , berikut isi Detail Tasknya</h3>
@@ -154,12 +155,13 @@
                             </td>
                         </tr>
                         <tr>
+                            <!-- keterangan == Request, setting tampilan head departemen -->
                             <?php if ($cekTabel == 'Request') { ?>
                                 <td class="font-weight-bold ">Penanggung Jawab</td>
-                                
                                 <td>
                                     <form method="post" action="<?php echo base_url('index.php/detail/ubahPJ/' . $employ_id . '/' . $task['id_task']) ?>">
                                         : <?php $isi = $PJ_task['id_employ_tujuan'] ?>
+                                        <!-- jika PJ task == null, add selection untuk pilih PJ task -->
                                         <?php if ($isi != null) {
                                             echo $namaPJ . "(" . $dept_PJtask . ")";
                                         } else { ?>
@@ -167,6 +169,7 @@
                                                 <option disabled selected> Belum ada </option>
                                                 <?php
                                                 $employe = [];
+                                                // load data semua employ pada dept, dan jumlah task yang dipegang
                                                 foreach ($tugas_employ as $value) {
                                                     foreach ($semua_employ as $value2) {
                                                         if ($value2["nama"] == $value["nama"]) {
@@ -178,6 +181,7 @@
                                                         <?php }
                                                     }
                                                 }
+                                                // load data semua employ pada dept, jika task pada PJ==0
                                                 foreach ($semua_employ as $value2) {
                                                     if (!in_array($value2["nama"], $employe)) { ?>
                                                         <option value="<?= $value2["id_employ"] ?>"><?php echo $value2["nama"] . " | 0" ?></option>
@@ -251,12 +255,9 @@
                         <?php } ?>
                         <?php if ($cekTabel == "Request" && count($subtask) != 0) { ?>
                             <!-- tabel sub task -->
-                           
-                           
-                           
                             <div class="container-fluid">
                                 <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
-                                <thead>
+                                    <thead>
                                         <tr>
                                             <td colspan="6">
                                                 <?php $color = "bg-success";
@@ -332,8 +333,6 @@
 
                             </div>
                             <!-- END tabel sub task -->
-
-                            
                         <?php } ?>
                     </tbody>
                 </table>
@@ -451,8 +450,6 @@
     </main>
     <!-- END Main Container -->
 
-
-
     <!-- pop up tiket staff -->
     <div class="modal fade" id="modal-block-large-sub-tiket" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -475,7 +472,6 @@
                                 <label for="title">Judul Parent Task</label>
                                 <input type="text" class="form-control required" name="title" id="title" value="<?php echo $task["title"] ?>" readonly>
                             </div>
-
 
                             <div class="form-group">
                                 <label for="title">Judul Sub Task</label>

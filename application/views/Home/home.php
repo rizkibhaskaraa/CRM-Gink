@@ -45,7 +45,6 @@
 
 <body>
 
-    <!-- Right Section -->
     <div class="col-md-2 ml-auto px-4">
         <!-- User Dropdown -->
         <div class="dropdown d-inline-block ml-2">
@@ -60,17 +59,17 @@
                 </div>
                 <div class="p-2">
                     <h5 class="dropdown-header text-uppercase">User Options</h5>
+                    <!-- button untuk login -->
                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?php echo base_url('index.php/home/hapussession') ?>">
                         <span>Log Out</span>
                         <i class="si si-logout ml-1"></i>
                     </a>
+                    <!-- akhir button untuk login -->
                 </div>
             </div>
         </div>
         <!-- END User Dropdown -->
     </div>
-    <!-- END Right Section -->
-    <!-- Batas account dan main container -->
 
     <!-- Main Container -->
     <main id="main-container">
@@ -135,6 +134,7 @@
                     <div class="block-header border-bottom">
                         <h3 class="block-title text-primary">Data Pelanggan</h3>
                     </div>
+                    <!-- bagian field search dan sorting -->
                     <input type="text" id="search" class="form-control col-2 search  mt-3 ml-2 mr-4" name="search" placeholder="Cari Customer">
                     <select name="status" id="status-pelanggan" class="form-control col-2 status-pelanggan mt-3">
                         <option value="semua">Semua Status</option>
@@ -142,6 +142,7 @@
                         <option value="tidak aktif">Tidak Aktif</option>
                     </select>
                     <input type="text" id="link" name="link" value="<?php echo base_url('index.php/home/search/') . $employ_id . "/" ?>" hidden>
+                    <!-- akhir bagian field search dan sorting -->
                     <div class="block-content block-content-full">
                         <table class="table table-striped table-hover  table-vcenter font-size-sm mb-0" id="tabel-pelanggan">
                             <thead class="thead-dark">
@@ -156,12 +157,11 @@
                             <?php foreach ($pelanggan as $value) { ?>
                                 <tbody>
                                     <tr>
-
                                         <td class="text-center">
                                             <span class="font-w600 ">#<?php echo $value["id_pelanggan"] ?></span>
                                         </td>
                                         <td class="text-center">
-                                            <?php $jumlah = 0; ?>
+                                            <?php $jumlah = 0; //untuk no layanan milik pelanggan X?>
                                             <?php foreach ($layanan as $value1) { ?>
                                                 <?php if ($value["id_pelanggan"] == $value1["id_pelanggan"]) { ?>
                                                     <?php $jumlah++ ?>
@@ -173,8 +173,10 @@
                                             <span class="font-w600"><?php echo $value["customer"] ?></span>
                                         </td>
                                         <?php if ($value["status"] == "Tidak Aktif") { ?>
+                                            <!-- jika status tidak aktif -->
                                             <td class="text-center"><span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span></td>
                                         <?php } else { ?>
+                                            <!-- jika status aktif -->
                                             <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span></td>
                                         <?php } ?>
                                         <td class="text-center">
@@ -214,8 +216,9 @@
                                 <?php foreach ($taskdiheadkosong as $value) { ?>
                                     <tbody>
                                         <tr>
-                                            <?php if ($value["id_parent"] == NULL) {
-                                                if ($value["id_employ_tujuan"] == NULL) { ?>
+                                            <?php if ($value["id_parent"] == NULL) { //jika ini task parent
+                                                if ($value["id_employ_tujuan"] == NULL) { //jika belum ada PJ
+                                                ?>
                                                     <td>
                                                         <span class="font-w600"><?php echo $value["title"] ?></span>
                                                     </td>
@@ -246,7 +249,7 @@
                                 <?php foreach ($taskdihead as $value) { ?>
                                     <tbody>
                                         <tr>
-                                            <?php if ($value["id_parent"] == NULL) { ?>
+                                            <?php if ($value["id_parent"] == NULL) { //jika ini task parent dan sudah ada PJ?>
                                                 <td>
                                                     <span class="font-w600"><?php echo $value["title"] ?></span>
                                                 </td>
@@ -281,18 +284,16 @@
                         <div class="block-header border-bottom ">
                             <h3 class="block-title text-primary">Report Staff</h3>
                         </div>
+                        <!-- bagian input tanggal periode -->
                         <button class="btn btn-primary search mt-3 ml-2 mr-4" id="button-report">Terapkan</button>
-                        
                         <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-end" id="tgl-end" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal End">
                         <h1 class="search "><i class="fa fa-minus mr-2"></i></h1>
-                       
                         <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-start" id="tgl-start" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal Start">
-                       
                         <input type="text" name="alamat-report" id="alamat-report" value="<?php echo base_url('index.php/home/searchreport/') . $employ_id . "/" ?>" hidden>
-                        
+                        <!-- bagian input tanggal periode -->
+
                         <div class="block-content block-content-full" id="report-table">
-                        
-                        <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
+                            <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
                                 <thead class="thead-dark">
                                     <tr class="text-uppercase">
                                         <th class="font-w700 text-center" style="width: 16%;">Nama</th>
@@ -303,12 +304,13 @@
                                         <th class="font-w700 text-center" style="width:16%" ;>On Progress</th>
                                     </tr>
                                 </thead>
-                                <?php $data_report = [];
+                                <?php $data_report = []; //array untuk simpan data staff
                                 foreach ($report as $value){
+                                    //insert nama staff dari hasil $report ke array $data_report
                                     array_push($data_report, $value["nama"]);
                                 }
                                     foreach ($employ_report as $value) { 
-                                        if(!in_array($value["nama"], $data_report)){?>
+                                        if(!in_array($value["nama"], $data_report)){ //jika nama tidak ada di dalam array $data_report?>
                                         <tbody>
                                                 <tr>
                                                     <td>
@@ -333,11 +335,12 @@
                                         </tbody>
                                     <?php }
                                     } ?>
-                                <?php $employe = [];
+                                <?php $employe = []; //array untuk simpan data staff
                                 foreach ($report as $value) { ?>
                                     <tbody>
                                         <?php foreach ($tugas_selesai as $value2) {
                                             if ($value2["nama"] == $value["nama"]) {
+                                                //insert nama staff dari hasil $report ke array $employe
                                                 array_push($employe, $value["nama"]); ?>
                                                 <tr>
                                                     <td>
@@ -367,7 +370,7 @@
                                 <?php foreach ($report as $value) { ?>
                                     <tbody>
                                         <?php foreach ($tugas_belum as $value2) {
-                                            if ($value2["nama"] == $value["nama"] && !in_array($value["nama"], $employe)) {
+                                            if ($value2["nama"] == $value["nama"] && !in_array($value["nama"], $employe)) { //jika nama tidak ada di dalam array $employe
                                                 array_push($employe, $value["nama"]); ?>
                                                 <tr>
                                                     <td>
@@ -421,6 +424,7 @@
                                     <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 15%;">Aksi</th>
                                 </tr>
                             </thead>
+                            <!-- body jika tidak ada sub task -->
                             <tbody>
                                 <?php foreach ($tasksaya as $valueparent) {
                                     if ($valueparent["status"] == "Belum Selesai") { ?>
@@ -447,10 +451,12 @@
                                 <?php }
                                 } ?>
                             <tbody>
+                            <!-- akhir body jika tidak ada sub task -->
+                            <!-- body jika tidak sub task -->
                             <tbody>
                                 <?php foreach ($taskparent as $valueparent) {
                                     $i = 1;
-                                    $row_taskbelum = 1;
+                                    $row_taskbelum = 1; //untuk row span
                                     foreach ($taskbelum as $value) {
                                         if ($valueparent["id_task"] == $value["id_parent"]) {
                                             $row_taskbelum += 1;
@@ -458,7 +464,7 @@
                                     }
                                 ?>
                                     <tr>
-                                        <?php if ($row_taskbelum != 1) { ?>
+                                        <?php if ($row_taskbelum != 1) { //jika $row_taskbelum bukan 1?>
                                             <td style="width: 10%;" rowspan="<?= $row_taskbelum ?>">
                                                 <span class="font-w600">#<?php echo $valueparent["id_task"]." ".$valueparent["title"] ?></span>
                                             </td>
@@ -489,6 +495,7 @@
                                     }
                                 } ?>
                             </tbody>
+                            <!-- akhir body jika ada sub task -->
                         </table>
                     </div>
                 </div>
@@ -512,6 +519,7 @@
                                     <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 15%;">Aksi</th>
                                 </tr>
                             </thead>
+                            <!-- body jika tidak ada sub task -->
                             <tbody>
                                 <?php foreach ($tasksaya as $valueparent) {
                                     if ($valueparent["status"] == "Selesai") { ?>
@@ -537,10 +545,13 @@
                                         </tr>
                                 <?php }
                                 } ?>
+                            </body>
+                            <!-- akhir body jika tidak ada sub task -->
+                            <!-- body jika ada sub task -->
                             <tbody>
                                 <?php foreach ($taskparent as $valueparent) {
                                     $i = 1;
-                                    $row_taskselesai = 1;
+                                    $row_taskselesai = 1; //untuk row span
                                     foreach ($taskselesai as $value) {
                                         if ($valueparent["id_task"] == $value["id_parent"]) {
                                             $row_taskselesai += 1;
@@ -578,6 +589,7 @@
                                     }
                                 } ?>
                             </tbody>
+                            <!-- akhir body jika ada sub task -->
                         </table>
                     </div>
                 </div>
@@ -604,6 +616,7 @@
                                     <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 15%;">Aksi</th>
                                 </tr>
                             </thead>
+                            <!-- body jika tidak ada sub task dan belum ada PJ-->
                             <tbody>
                                 <?php foreach ($tiketsaya as $value) {
                                     if ($value["status"] == "Belum Selesai" && $value["id_parent"]=="") { ?>
@@ -629,7 +642,9 @@
                                         </tr>
                                 <?php }
                                 } ?>
-                            <tbody>
+                            </tbody>
+                            <!-- akhir body jika tidak ada sub task dan belum ada PJ-->
+                            <!-- body jika tidak ada sub task dan ada PJ-->
                             <tbody>
                                 <?php foreach ($tiket as $value) {
                                     if ($value["status"] == "Belum Selesai" && $value["id_parent"]=="") { ?>
@@ -656,10 +671,12 @@
                                 <?php }
                                 } ?>
                             <tbody>
+                            <!-- akhir body jika tidak ada sub task dan ada PJ-->
+                            <!-- body jika ada sub task dan ada PJ-->
                             <tbody>
                                 <?php foreach ($taskparent as $valueparent) {
                                     $i = 1;
-                                    $row_tiketbelum = 1;
+                                    $row_tiketbelum = 1; //untuk rowspan
                                     foreach ($tiket as $value) {
                                         if ($valueparent["id_task"] == $value["id_parent"] && $value["status"] == "Belum Selesai") {
                                             $row_tiketbelum += 1;
@@ -697,6 +714,7 @@
                                     }
                                 } ?>
                             </tbody>
+                            <!-- akhir body jika ada sub task dan ada PJ-->
                         </table>
                     </div>
                 </div>
@@ -720,6 +738,7 @@
                                     <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 15%;">Aksi</th>
                                 </tr>
                             </thead>
+                            <!-- body jika tidak ada sub task dan ada PJ-->
                             <tbody>
                                 <?php foreach ($tiket as $value) { 
                                     if ($value["status"] == "Selesai" && $value["id_parent"]=="") { ?>
@@ -746,6 +765,8 @@
                                 <?php }
                                 } ?>
                             <tbody>
+                            <!-- akhir body jika tidak ada sub task dan ada PJ-->
+                            <!-- body jika ada sub task dan ada PJ-->
                             <tbody>
                                 <?php foreach ($taskparent as $valueparent) {
                                     $i = 1;
@@ -787,6 +808,7 @@
                                     }
                                 } ?>
                             </tbody>
+                            <!-- akhir body jika ada sub task dan ada PJ-->
                         </table>
                     </div>
                 </div>
@@ -795,26 +817,27 @@
         </div>
 
     </div>
-    
     <!-- END request task,pelanggan,tugas selesai,tugas Belum Selesai,tiket selesai,tiket Belum Selesai -->
     <!-- END Page Content -->
+
     <!-- POP UP BUAT TIKET -->
     <script>
+        //fungsi ambil data pelanggan
         function datapelanggan(a, status) {
-            var id_pelanggan = a.id;
-            $.ajax({
+            var id_pelanggan = a.id; //set variabel
+            $.ajax({ //ajax ambil data pelanggan
                 type: "GET",
                 url: "<?php echo base_url('index.php/home/get_pelanggan') ?>",
                 dataType: "JSON",
                 data: {
                     id: id_pelanggan
                 },
-                success: function(data) {
-                    $('input[name="customer"]').val(data["customer"]);
-                    $('input[name="id_pelanggan"]').val(id_pelanggan);
+                success: function(data) { //jika ambil data sukses
+                    $('input[name="customer"]').val(data["customer"]); //set value
+                    $('input[name="id_pelanggan"]').val(id_pelanggan); //set value
                 }
             });
-            $.ajax({
+            $.ajax({ //ajax ambil data layanan
                 type: "GET",
                 url: "<?php echo base_url('index.php/home/get_layanan') ?>",
                 dataType: "JSON",
@@ -822,11 +845,12 @@
                     id: id_pelanggan
                 },
                 success: function(data) {
-                    $("#layanan-pelanggan").empty();
+                    $("#layanan-pelanggan").empty(); //reset tag select jadi kosong
+                    //set value tag options di tag select
                     for(i=0;i<data.length;i++){
                         $('#layanan-pelanggan').append(new Option(data[i]["nama_layanan"], data[i]["nama_layanan"])); 
                     }
-                    $("#layanan_pelanggan").val(data.length);
+                    $("#layanan_pelanggan").val(data.length); //set value
                 }
             });
         }
@@ -1018,12 +1042,12 @@
     <script src="<?php echo base_url('assets/oneui/js/plugins/jquery-validation/jquery.validate.js') ?>"></script>
     <script>
         $(document).ready(function() {
-            $("#form-staff").validate();
+            $("#form-staff").validate(); //validasi form
         });
     </script>
     <script>
         $(document).ready(function() {
-            $("#form-tiket").validate();
+            $("#form-tiket").validate(); //validasi form
         });
     </script>
     <!-- akhir validasi form -->

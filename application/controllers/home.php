@@ -6,137 +6,176 @@ class Home extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('home_model');
-        $this->load->model('detail_model');
+        $this->load->model('home_model'); //load model
+        $this->load->model('detail_model'); //load model
     }
 
+    //fungsi hapus session
     public function hapussession()
     {
-        session_destroy();
-        redirect(base_url());
+        session_destroy(); //menghapus sessions
+        redirect(base_url()); //menuju base url (halaman lofgin)
     }
 
+    //fungsi index
     public function index($user)
     {
-        if (!isset($_SESSION["login"])) {
+        if (!isset($_SESSION["login"])) { //jika belum login
             redirect(base_url());
-        } else {
+        } else { //jika sudah login
             $user = $_SESSION["staff_user"];
         }
-        $employ = $this->home_model->getemploy($user);
+
+        //ambil data dari tabel employ berdasarkan user yang login ($user)
+        $employ = $this->home_model->getemploy($user); //memanggil fungsi getemploy di home_model
         $data["employ_nama"] = $employ["nama"];
         $data["employ_id"] = $employ["id_employ"];
         $data["employ_dept"] = $employ["id_departemen"];
         $data["status"] = $employ["status_employ"];
-        $data["pelanggan"] = $pelanggan = $this->home_model->getpelanggan();
-        $data["layanan"] = $layanan = $this->home_model->getlayanan();
-        $departemen = $this->home_model->getdepartemen($employ["id_departemen"]);
+        //akhir ambil data dari tabel employ berdasarkan user yang login ($user)
+
+        $data["pelanggan"] = $pelanggan = $this->home_model->getpelanggan(); //memanggil fungsi getpelanggan di home_model
+        $data["layanan"] = $layanan = $this->home_model->getlayanan(); //memanggil fungsi getlayanan di home_model
+        $departemen = $this->home_model->getdepartemen($employ["id_departemen"]); //memanggil fungsi getdepartemen di home_model
         $data["nama_departemen"] = $departemen["nama_departemen"];
 
+        //ambil data tabel task untuk tugas saya
         $data["taskselesai"] = $this->home_model->gettaskselesai($employ["id_employ"], $departemen["nama_departemen"]);
         $data["taskbelum"] = $this->home_model->gettaskbelum($employ["id_employ"], $departemen["nama_departemen"]);
-        $data["taskdihead"] = $this->home_model->gettaskdihead($departemen["nama_departemen"]);
-        $data["tasksaya"] = $this->home_model->gettasksaya($data["employ_id"], $departemen["nama_departemen"]);
-        $data["taskdiheadkosong"] = $this->home_model->gettaskdiheadkosong($departemen["nama_departemen"]);
         $data["taskparent"] = $this->home_model->gettaskparent($departemen["nama_departemen"]);
+        $data["tasksaya"] = $this->home_model->gettasksaya($data["employ_id"], $departemen["nama_departemen"]);
+        //akhir ambil data tabel task untuk tugas saya
+
+        //ambil data tabel task untuk request tugas
+        $data["taskdihead"] = $this->home_model->gettaskdihead($departemen["nama_departemen"]);
+        $data["taskdiheadkosong"] = $this->home_model->gettaskdiheadkosong($departemen["nama_departemen"]);
+        //akhir ambil data tabel task untuk request tugas
+
+        //ambil data tabel task untuk tiket saya
         $data["tiket"] = $this->home_model->gettiket($employ["id_employ"]);
         $data["tiketsaya"] = $this->home_model->gettiketsaya($employ["id_employ"]);
+        //akhir ambil data tabel task untuk tiket saya
+
+        //ambil data tabel task untuk menghitung report staff
         $data["report"] = $this->home_model->getreport($departemen["nama_departemen"]);
         $data['tugas_belum'] = $this->home_model->gettugaspjbelum($departemen["nama_departemen"]);
         $data['tugas_selesai'] = $this->home_model->gettugaspjselesai($departemen["nama_departemen"]);
         $data['employ_report'] = $this->home_model->getemploydept($data["employ_dept"]);
+        //akhir ambil data tabel task untuk menghitung report staff
+
         $this->load->view('home/home', $data);
     }
+
+    //fungsi ceo untuk dashboard pada CEO
     public function ceo($user)
     {
-        if (!isset($_SESSION["login"])) {
+        if (!isset($_SESSION["login"])) { //jika belum login
             redirect(base_url());
-        } else {
+        } else { //jika sudah login
             $user = $_SESSION["staff_user"];
         }
-        $employ = $this->home_model->getemploy($user);
+
+        //ambil data dari tabel employ berdasarkan user yang login ($user)
+        $employ = $this->home_model->getemploy($user); //memanggil fungsi getemploy di home_model
         $data["employ_nama"] = $employ["nama"];
         $data["employ_id"] = $employ["id_employ"];
         $data["employ_dept"] = $employ["id_departemen"];
         $data["status"] = $employ["status_employ"];
-        $data["pelanggan"] = $pelanggan = $this->home_model->getpelanggan();
-        $departemen = $this->home_model->getdepartemen($employ["id_departemen"]);
+        //akhir ambil data dari tabel employ berdasarkan user yang login ($user)
+
+        $data["pelanggan"] = $pelanggan = $this->home_model->getpelanggan(); //memanggil fungsi getpelanggan di home_model
+        $data["layanan"] = $layanan = $this->home_model->getlayanan(); //memanggil fungsi getlayanan di home_model
+        $departemen = $this->home_model->getdepartemen($employ["id_departemen"]); //memanggil fungsi getdepartemen di home_model
         $data["nama_departemen"] = $departemen["nama_departemen"];
 
+        //ambil data tabel task untuk tugas saya
         $data["taskselesai"] = $this->home_model->gettaskselesai($employ["id_employ"], $departemen["nama_departemen"]);
         $data["taskbelum"] = $this->home_model->gettaskbelum($employ["id_employ"], $departemen["nama_departemen"]);
         $data["tasksaya"] = $this->home_model->gettasksaya($data["employ_id"], $departemen["nama_departemen"]);
         $data["taskparent"] = $this->home_model->gettaskparent($departemen["nama_departemen"]);
+        //akhir ambil data tabel task untuk tugas saya
 
+        //ambil data tabel task untuk menghitung report staff
         $data["report"] = $this->home_model->getreport($departemen["nama_departemen"]);
         $data['tugas_belum'] = $this->home_model->gettugaspjbelum($departemen["nama_departemen"]);
         $data['tugas_selesai'] = $this->home_model->gettugaspjselesai($departemen["nama_departemen"]);
         $data['employ_report'] = $this->home_model->getemploydept($data["employ_dept"]);
+        //akhir ambil data tabel task untuk menghitung report staff
 
-        $data["pelanggan"] = $pelanggan = $this->home_model->getpelanggan();
-        $data["layanan"] = $layanan = $this->home_model->getlayanan();
-
-        $data["taskparent"] = $this->home_model->gettaskparent($departemen["nama_departemen"]);
+        //ambil data tabel task untuk tiket saya
         $data["tiket"] = $this->home_model->gettiket($employ["id_employ"]);
         $data["tiketsaya"] = $this->home_model->gettiketsaya($employ["id_employ"]);
+        //akhir ambil data tabel task untuk tiket saya
 
         $this->load->view('home/home_ceo', $data);
     }
 
+    //fungsi update status task
     public function status($id)
     {
-        $user = $this->home_model->updatestatus($id);
+        $user = $this->home_model->updatestatus($id); //memanggil fungsi updatestatus di home_model
         redirect(base_url('index.php/home/index/') . $user);
     }
 
-    public function editpelanggan()
-    {
-        $id = $this->input->post("id_pelanggan");
-        $status = $this->input->post("status_pelanggan");
-        $user = $this->home_model->updatestatuspelanggan($id, $status);
-        redirect(base_url('index.php/home/index/') . $user);
-    }
+    //fungsi edit status pelanggan
+    // public function editpelanggan()
+    // {
+    //     $id = $this->input->post("id_pelanggan");
+    //     $status = $this->input->post("status_pelanggan");
+    //     $user = $this->home_model->updatestatuspelanggan($id, $status);
+    //     redirect(base_url('index.php/home/index/') . $user);
+    // }
 
+    //fungsi menuju halaman detail
     public function detail($id, $task, $cekTabel)
     {
-        if (!isset($_SESSION["login"])) {
+        if (!isset($_SESSION["login"])) { //jika belum login
             redirect(base_url());
-        } else {
+        } else { //jika sudah login
             $id = $_SESSION["staff_id"];
         }
         redirect(base_url('index.php/detail/detailumum/') . $id . "/" . $task . "/" . $cekTabel);
     }
 
+    //fungsi mencari data pelanggan dan filter data pelanggan
     public function search($employ_id, $status, $search)
     {
-        $search_pelanggan = str_replace('%20', ' ', $search);
-        $status_pelanggan = str_replace('%20', ' ', $status);
-        $data["pelanggan"] = $this->home_model->getsearch($status_pelanggan, $search_pelanggan);
+        $search_pelanggan = str_replace('%20', ' ', $search); //menggganti %20 dengan spasi
+        $status_pelanggan = str_replace('%20', ' ', $status); //menggganti %20 dengan spasi
+        $data["pelanggan"] = $this->home_model->getsearch($status_pelanggan, $search_pelanggan); //memanggil fungsi getsearch di home_model
         $data["employ_id"] = $employ_id;
-        $data["layanan"] = $layanan = $this->home_model->getlayanan();
+        $data["layanan"] = $layanan = $this->home_model->getlayanan(); //memanggil fungsi getlayanan di home_model
         $this->load->view('home/hasil_search', $data);
     }
 
+    //fungsi search report (periode report)
     public function searchreport($employ_id, $tgl_start, $tgl_end)
     {
         $employ = $this->home_model->getemploytiket($employ_id);
         $departemen = $this->home_model->getdepartemen($employ["id_departemen"]);
-        $data["tgl_start"] = $tgl_start . " 00:00:00";
-        $data["tgl_end"] = $tgl_end . " 00:00:00";
+        $data["tgl_start"] = $tgl_start . " 00:00:00"; //concat tanggal dengan jam 00:00:00
+        $data["tgl_end"] = $tgl_end . " 00:00:00"; //concat tanggal dengan jam 00:00:00
+
+        //mengambil data report staff dati tabel task
         $data["report"] = $this->home_model->getreport_periode($departemen["nama_departemen"], $data["tgl_start"], $data["tgl_end"]);
         $data['tugas_belum'] = $this->home_model->gettugaspjbelum_periode($departemen["nama_departemen"], $data["tgl_start"], $data["tgl_end"]);
         $data['tugas_selesai'] = $this->home_model->gettugaspjselesai_periode($departemen["nama_departemen"], $data["tgl_start"], $data["tgl_end"]);
+        //akhir mengambil data report staff dati tabel task
+
         $data["employ_id"] = $employ_id;
         $data['employ_report'] = $this->home_model->getemploydept($employ["id_departemen"]);
         $this->load->view('home/hasil_search_report', $data);
     }
 
+    //fungsi mendapatkan data tabel pelanggan
     function get_pelanggan()
     {
         $id_pelanggan = $this->input->get('id');
         $data = $this->home_model->getpelangganbyid($id_pelanggan);
         echo json_encode($data);
     }
+
+    //fungsi mendapatkan data tabel pelanggan
     function get_layanan()
     {
         $id_pelanggan = $this->input->get('id');
@@ -144,9 +183,10 @@ class Home extends CI_Controller
         echo json_encode($data);
     }
 
+    //fungsi untuk menambah data tiket/task
     public function addtiket($id_employ)
     {
-        date_default_timezone_set('Asia/Bangkok');
+        date_default_timezone_set('Asia/Bangkok'); //set timezone waktu
 
         $employ = $this->home_model->getemploytiket($id_employ);
         $departemen = $this->home_model->getdepartemen($employ["id_departemen"]);
@@ -170,9 +210,10 @@ class Home extends CI_Controller
                 } else if ($masalah == "support") {
                     $departemen_tujuan = "developer";
                 }
-                //jika CS yang buat tiket dari pelanggan
+
+                //jika buat tiket dari tabel pelanggan
                 $data_task = array(
-                    "id_task" => rand(0001, 1000),
+                    "id_task" => rand(0001, 1000), //angka random
                     "id_pelanggan" => $this->input->post("id_pelanggan"),
                     "nama_dept_tujuan" => $departemen_tujuan,
                     "id_employ_kirim" => $id_employ,
@@ -184,12 +225,12 @@ class Home extends CI_Controller
                     "dateline" => $this->input->post("dateline"),
                     "status" => "Belum Selesai"
                 );
-                //akhir jika CS yang buat tiket dari pelanggan
+                //akhir jika buat tiket dari tabel pelanggan
             } else {
                 $departemen_tujuan = $this->input->post("departemen");
                 //jika staff yang buat tiket untuk staff
                 $data_task = array(
-                    "id_task" => rand(0001, 1000),
+                    "id_task" => rand(0001, 1000), //angka random
                     "nama_dept_tujuan" => $departemen_tujuan,
                     "id_employ_kirim" => $id_employ,
                     "nama_dept_kirim" => $departemen["nama_departemen"],
@@ -211,15 +252,16 @@ class Home extends CI_Controller
         }
     }
 
-    public function addpelanggan()
-    {
-        $data_pelanggan = array(
-            "id_pelanggan" => rand(0001, 1000),
-            "customer" => $this->input->post("customer"),
-            "layanan" => $this->input->post("layanan"),
-            "status" => $this->input->post("status_customer")
-        );
-        $this->home_model->insert_pelanggan($data_pelanggan);
-        redirect(base_url('index.php/home/index/') . $user["username"]);
-    }
+    //fungsi tambah data pelanggan
+    // public function addpelanggan()
+    // {
+    //     $data_pelanggan = array(
+    //         "id_pelanggan" => rand(0001, 1000),
+    //         "customer" => $this->input->post("customer"),
+    //         "layanan" => $this->input->post("layanan"),
+    //         "status" => $this->input->post("status_customer")
+    //     );
+    //     $this->home_model->insert_pelanggan($data_pelanggan);
+    //     redirect(base_url('index.php/home/index/') . $user["username"]);
+    // }
 }

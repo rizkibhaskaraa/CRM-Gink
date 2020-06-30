@@ -56,8 +56,8 @@ class Detail extends CI_Controller
     //add fungsi tambah laporan
     public function insertLaporan($id, $task)
     {
-        $config['upload_path']          = './upload/'; //letak folder file yang akan diupload
-        $config['allowed_types']        = 'gif|jpg|png|img|jpeg|doc|docx|xls|xlsx|ppt|pptx|pdf'; //jenis file yang dapat diterima
+        $config['upload_path'] = './upload/'; //letak folder file yang akan diupload
+        $config['allowed_types'] = 'gif|jpg|png|img|jpeg|doc|docx|xls|xlsx|ppt|pptx|pdf'; //jenis file yang dapat diterima
 
         $this->load->library('upload', $config);
         date_default_timezone_set('Asia/Bangkok');

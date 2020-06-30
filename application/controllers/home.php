@@ -206,9 +206,9 @@ class Home extends CI_Controller
                 if ($masalah == "umum") {
                     $departemen_tujuan = "umum";
                 } else if ($masalah == "hosting" || $masalah == "billing") {
-                    $departemen_tujuan = "finance";
+                    $departemen_tujuan = "Finance";
                 } else if ($masalah == "support") {
-                    $departemen_tujuan = "developer";
+                    $departemen_tujuan = "Developer";
                 }
 
                 //jika buat tiket dari tabel pelanggan

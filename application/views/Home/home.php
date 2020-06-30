@@ -45,7 +45,22 @@
 
 <body>
 
-    <div class="col-md-2 ml-auto px-4">
+    <!-- Home button -->
+    <?php if($employ_dept=="ceo"){
+        $linkhome = base_url('index.php/home/ceo/').$username;
+    }else{
+        $linkhome = base_url('index.php/home/index/').$username;
+    }?>
+      <div class="ml-4"  style="float:left;">
+                <a class="btn btn-sm btn-dual" href="<?php echo $linkhome?>">
+                    <img class="rounded"  src="<?php echo base_url('assets/oneui/media/avatars/home.png') ?>" alt="Header Avatar" style="width: 18px;">
+                    <span class="ml-2">Home</span>
+                
+                </a>
+            </div>
+            <!-- end home button -->
+
+        <div class="col-md-2 ml-auto px-4">
         <!-- User Dropdown -->
         <div class="dropdown d-inline-block ml-2">
             <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -53,6 +68,8 @@
                 <span class="d-none d-sm-inline-block ml-1"><?php echo $employ_nama ?> </span>
                 <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
             </button>
+
+            
             <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm " aria-labelledby="page-header-user-dropdown">
                 <div class="p-3 text-center bg-primary">
                     <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?php echo base_url('assets/oneui/media/avatars/avatar10.jpg') ?>" alt="">
@@ -1001,23 +1018,6 @@
         </div>
     </footer>
     <!-- END Footer -->
-
-    <!--
-            OneUI JS Core
-
-            Vital libraries and plugins used in all pages. You can choose to not include this file if you would like
-            to handle those dependencies through webpack. Please check out assets/_es6/main/bootstrap.js for more info.
-
-            If you like, you could also include them separately directly from the assets/js/core folder in the following
-            order. That can come in handy if you would like to include a few of them (eg jQuery) from a CDN.
-
-            assets/js/core/jquery.min.js
-            assets/js/core/bootstrap.bundle.min.js
-            assets/js/core/simplebar.min.js
-            assets/js/core/jquery-scrollLock.min.js
-            assets/js/core/jquery.appear.min.js
-            assets/js/core/js.cookie.min.js
-        -->
     <script src="<?php echo base_url('assets/oneui/js/oneui.core.min.js') ?>"></script>
 
                            

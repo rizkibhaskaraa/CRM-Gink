@@ -28,6 +28,7 @@ class Home extends CI_Controller
 
         //ambil data dari tabel employ berdasarkan user yang login ($user)
         $employ = $this->home_model->getemploy($user); //memanggil fungsi getemploy di home_model
+        $data["username"] = $user;
         $data["employ_nama"] = $employ["nama"];
         $data["employ_id"] = $employ["id_employ"];
         $data["employ_dept"] = $employ["id_departemen"];

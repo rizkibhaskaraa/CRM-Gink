@@ -337,6 +337,7 @@
         <!-- END Discussion -->
     </div>
     <!-- END Page Content -->
+    <!-- ADD Komentar -->
     <div class="block col-10 mx-auto mb-5 mt-2">
         <div class="block-header block-header-default bg-dark ">
             <h3 class="block-title text-gray-lighter ml-3 pt-2 pb-2">Komentar / Catatan</h3>
@@ -349,12 +350,15 @@
         <div class="block-content">
             <table class="table table-borderless">
                 <tbody>
+                    <!-- untuk ID parent=null / tidak punya sub task -->
                     <?php if ($task["id_parent"] == null) { ?>
                         <?php foreach ($komentar as $value) { ?>
                             <tr class="table-active">
                                 <td class="d-none d-sm-table-cell"></td>
                                 <td class="font-size-sm text-muted">
+                                    <!-- Menampilkan nama pengirim komentar dan tanggal kirim komentarnya -->
                                     <a href=""><?= $value["nama_kirim_komen"] ?></a> on <em><?= $value["tanggal_komen"] ?></em>
+                                    <!-- Jika user == pengirim komentar, tampilkan button delete komentar -->
                                     <?php if ($employ_nama == $value["nama_kirim_komen"]) { ?>
                                         <form action="<?php echo base_url('index.php/detail/deletekomen/') . $task["id_task"] . "/" . $employ_id . "/" . $cekTabel . "/" . $value["id_komentar"] ?>" method="POST">
                                             <button type="submit">DELETE</button>
@@ -377,12 +381,15 @@
                             </tr>
                         <?php }
                     } else { ?>
+                        <!-- untuk ID parent!=null / memiliki sub task -->
                         <?php foreach ($komentarsub as $value) { ?>
                             <tr class="table-active">
                                 <td class="d-none d-sm-table-cell"></td>
                                 <td class="font-size-sm text-muted">
+                                    <!-- Menampilkan nama pengirim komentar dan tanggal kirim komentarnya -->
                                     <a href=".html"><?= $value["nama_kirim_komen"] ?></a> on <em><?= $value["tanggal_komen"] ?></em>
                                     <?php if ($employ_nama == $value["nama_kirim_komen"]) { ?>
+                                        <!-- Jika user == pengirim komentar, tampilkan button delete komentar -->
                                         <form action="<?php echo base_url('index.php/detail/deletekomen/') . $task["id_task"] . "/" . $employ_id . "/" . $cekTabel . "/" . $value["id_komentar"] ?>" method="POST">
                                             <button type="submit">DELETE</button>
                                         </form>
@@ -396,6 +403,7 @@
                                             <img class="img-avatar" src="<?php echo base_url('assets/oneui/media/avatars/avatar7.jpg') ?>" alt="">
                                         </a>
                                     </p>
+                                    <!-- menampilkan nama pengirim komentar dan nama departemen pengirim komentar -->
                                     <p class="font-size-sm"><?= $value["nama_kirim_komen"] ?><br><?= $task["nama_dept_komen"] ?></p>
                                 </td>
                                 <td>
@@ -447,6 +455,7 @@
     <!-- END Main Container -->
 
     <!-- pop up tiket staff -->
+    <!-- Membuat sub tiket -->
     <div class="modal fade" id="modal-block-large-sub-tiket" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -461,6 +470,7 @@
                     </div>
                     <div class="block-content font-size-sm mt-3 text-justify ">
                         <h4>Isi Data Dibawah Ini dengan Lengkap untuk Membuat Sub Tiket</h4>
+                        <!-- FORM add subtiket dengan parameter id employ, id task, status tabel -->
                         <form action="<?php echo base_url('index.php/detail/addsubtiket/') . $employ_id . "/" . $task["id_task"] . "/" . $cekTabel ?>" method="POST" id="form-staff">
                             <input type="text" name="id_parent" value="<?php echo $task["id_task"] ?>" hidden>
 
@@ -473,13 +483,14 @@
                                 <label for="title">Judul Sub Task</label>
                                 <input type="text" class="form-control required" name="title" id="title" placeholder="Judul/Subject">
                             </div>
-
+                            <!-- Add pj sub task -->
                             <div class="form-group">
                                 <label for="PJsubtask">Penanggung Jawab Sub Task</label></br>
                                 <select name="PJsubtask" id="PJsubtask" class="btn btn-secondary dropdown-toggle">
                                     <option disabled selected> Belum ada </option>
                                     <?php
                                     $employe = [];
+                                    //load data employ dengan jumlah task yang dipegang > 0
                                     foreach ($tugas_employ as $value) {
                                         foreach ($semua_employ as $value2) {
                                             if ($value2["nama"] == $value["nama"]) {
@@ -491,6 +502,7 @@
                                             <?php }
                                         }
                                     }
+                                    //load data employ dengan jumlah task yang dipegang == 0
                                     foreach ($semua_employ as $value2) {
                                         if (!in_array($value2["nama"], $employe)) { ?>
                                             <option value="<?= $value2["id_employ"] ?>"><?php echo $value2["nama"] . " | 0" ?></option>
@@ -499,6 +511,7 @@
                                     ?>
                                 </select>
                             </div>
+                            <!-- atur deadline menggunakan datepicker -->
                             <div class="form-group">
                                 <label for="dateline">Deadline</label>
                                 <div class="input-group">
@@ -526,13 +539,7 @@
     </div>
     <!-- akhir pop up tiket staff -->
 
-
-
-
-
     <script src="<?php echo base_url('assets/oneui/js/oneui.core.min.js') ?>"></script>
-
-
     <!--
             OneUI JS
 

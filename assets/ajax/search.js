@@ -8,6 +8,7 @@ var alamat_report = document.getElementById('alamat-report');
 var tgl_start = document.getElementById('tgl-start');
 var tgl_end = document.getElementById('tgl-end');
 var button = document.getElementById('button-report');
+var button_reset = document.getElementById('button-reset');
 var kontenreport = document.getElementById('report-table');
 
 cari.addEventListener('keyup', function(){
@@ -26,13 +27,12 @@ cari.addEventListener('keyup', function(){
 
 button.addEventListener('click', function(){
 	
-	// if(tgl_start.value==null){
-	// 	tgl_start = "2000-01-01 00:00:00";
-	// }
-	// if(tgl_end==null){
-	// 	tgl_end = "2200-01-01 00:00:00";
-	// }
-	// window.alert(alamat_report.value+tgl_start.value+"/"+tgl_end.value);
+	if(tgl_start.value==""){
+		tgl_start.value = "2000-01-01";
+	}
+	if(tgl_end.value==""){
+		tgl_end.value = "2200-01-01";
+	}
 	//buat objeck
 	var ajaxstart = new XMLHttpRequest();
 
@@ -43,19 +43,27 @@ button.addEventListener('click', function(){
 	}
 	ajaxstart.open('GET', alamat_report.value+tgl_start.value+"/"+tgl_end.value , true);
 	ajaxstart.send();
+	if(tgl_end.value == "2200-01-01"){
+		tgl_end.value = "";
+	}
+	if(tgl_start.value == "2000-01-01"){
+		tgl_start.value = "";
+	}
+	
 
 });
 
-status_pelanggan.addEventListener('change', function(){
-	//buat objeck
-	var ajaxstatus = new XMLHttpRequest();
+button_reset.addEventListener('click', function(){
 
-	ajaxstatus.onreadystatechange = function(){
-		if(ajaxstatus.readyState == 4 && ajaxstatus.status == 200){
-			konten.innerHTML = ajaxstatus.responseText;
+	tgl_end.value = tgl_start.value = "";
+	var ajaxreset = new XMLHttpRequest();
+
+	ajaxreset.onreadystatechange = function(){
+		if(ajaxreset.readyState == 4 && ajaxreset.status == 200){
+			kontenreport.innerHTML = ajaxreset.responseText;
 		}
 	}
-	ajaxstatus.open('GET', alamat.value+status_pelanggan.value+"/"+cari.value , true);
-	ajaxstatus.send();
+	ajaxreset.open('GET', alamat_report.value+"2000-01-01/2200-01-01" , true);
+	ajaxreset.send();
 
 });

@@ -277,11 +277,7 @@
                                                     </div>
                                                 </div>
 
-                                                <?php if ($progres < 100) { ?>
-                                                    <a class="btn btn-danger" class="bg-gander text-white text-decoration-none" href="<?php echo base_url('index.php/detail/ubahstatustask/' . $employ_id . '/' . $task['id_task']) ?>" style="float:right">
-                                                        <i class="fa fa-fw fa-exclamation-circle"></i> Konfirmasi Selesai
-                                                    </a>
-                                                <?php } else { ?>
+                                                <?php if ($progres == 100) { ?>
                                                     <a class="btn btn-success" class="bg-success text-white text-decoration-none" href="<?php echo base_url('index.php/detail/ubahstatustask/' . $employ_id . '/' . $task['id_task']) ?>" style="float:right">
                                                         <i class="fa fa-fw fa-check"></i> Konfirmasi Selesai
                                                     </a>

@@ -144,13 +144,13 @@
                     <input type="text" id="link" name="link" value="<?php echo base_url('index.php/home/search/') . $employ_id . "/" ?>" hidden>
                     <!-- akhir bagian field search dan sorting -->
                     <div class="block-content block-content-full">
-                        <table class="table table-striped table-hover table-vcenter font-size-sm mb-0" id="tabel-pelanggan">
+                        <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0" id="tabel-pelanggan">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
                                     <th class="font-w700 text-center" style="width: 10%;">#ID</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Layanan</th>
+                                    <th class="font-w700 text-center" style="width: 20%;">Layanan</th>
                                     <th class="font-w700 text-center" style="width: 40%;">Customer</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 15%;">Status</th>
+                                    <th class="font-w700 text-center" style="width: 15%;">Status</th>
                                     <th class="font-w700 text-center" style="width: 15%;">+Tiket</th>
                                 </tr>
                             </thead>
@@ -202,7 +202,7 @@
                             <h3 class="block-title text-primary">Request Tugas</h3>
                         </div>
                         <div class="block-content block-content-full">
-                            <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
+                            <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                                 <thead class="thead-dark">
                                     <tr class="text-uppercase">
                                         <th class="font-w700 text-center" style="width: 20%;">Title</th>
@@ -293,7 +293,7 @@
                         <!-- bagian input tanggal periode -->
 
                         <div class="block-content block-content-full" id="report-table">
-                            <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
+                            <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                                 <thead class="thead-dark">
                                     <tr class="text-uppercase">
                                         <th class="font-w700 text-center" style="width: 16%;">Nama</th>
@@ -413,7 +413,7 @@
                         <h3 class="block-title text-danger">Tugas Saya | Belum Selesai</h3>
                     </div>
                     <div class="block-content block-content-full">
-                        <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
+                        <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
                                     <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
@@ -432,7 +432,7 @@
                                             <td style="width: 10%;" rowspan="<?= $row ?>">
                                                 <span class="font-w600">#<?php echo $valueparent["id_task"]." ".$valueparent["title"] ?></span>
                                             </td>
-                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                            <td class="text-center" style="width: 10%;" rowspan="<?= $row ?>">
                                                 <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
@@ -468,7 +468,7 @@
                                             <td style="width: 10%;" rowspan="<?= $row_taskbelum ?>">
                                                 <span class="font-w600">#<?php echo $valueparent["id_task"]." ".$valueparent["title"] ?></span>
                                             </td>
-                                            <td style="width: 10%;" rowspan="<?= $row_taskbelum ?>">
+                                            <td class="text-center" style="width: 10%;" rowspan="<?= $row_taskbelum ?>">
                                                 <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
                                             </td>
                                         <?php } ?>
@@ -508,15 +508,15 @@
                         <h3 class="block-title text-success">Tugas Saya | Selesai</h3>
                     </div>
                     <div class="block-content block-content-full">
-                        <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
+                        <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 10%;"># ID Task</th>
-                                    <th class="font-w700 text-center" style="width: 10%;">Ketua Task</th>
-                                    <th class="font-w700 text-center" style="width: 25%;">Sub Title Task</th>
-                                    <th class="font-w700 text-center" style="width: 20%;">Deadline</th>
-                                    <th class="font-w700 text-center" style="width: 15%;">Status</th>
-                                    <th class="font-w700 text-center" style="width: 15%;">Aksi</th>
+                                    <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Deadline</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Status</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Aksi</th>
                                 </tr>
                             </thead>
                             <!-- body jika tidak ada sub task -->
@@ -527,19 +527,19 @@
                                             <td style="width: 10%;" `>
                                                 <span class="font-w600">#<?php echo $valueparent["id_task"]." ".$valueparent["title"] ?></span>
                                             </td>
-                                            <td style="width: 10%;" `>
+                                            <td class="text-center" style="width: 10%;" `>
                                                 <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
                                                 <span class="font-w600">-</span>
                                             </td>
-                                            <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
+                                            <td class="text-center font-w700" style="width: 20%;">
                                                 <span class="font-size-sm  "><?php echo $valueparent["dateline"] ?></span>
                                             </td>
                                             <td class="text-danger text-center" style="width: 15%;">
                                                 <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $valueparent["status"] ?></span>
                                             </td>
-                                            <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
+                                            <td class="text-center" style="width: 15%;">
                                                 <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $valueparent['id_task'] . "/TugasSelesai" ?>" class="text-decoration-none">Buka</a>
                                             </td>
                                         </tr>
@@ -563,7 +563,7 @@
                                             <td style="width: 10%;" rowspan="<?= $row_taskselesai ?>">
                                                 <span class="font-w600">#<?php echo $valueparent["id_task"]." ".$valueparent["title"] ?></span>
                                             </td>
-                                            <td style="width: 10%;" rowspan="<?= $row_taskselesai ?>">
+                                            <td class="text-center" style="width: 10%;" rowspan="<?= $row_taskselesai ?>">
                                                 <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
                                             </td>
                                         <?php } ?>
@@ -574,13 +574,13 @@
                                                 <td style="width: 10%;">
                                                     <span class="font-w600"><?php echo $i . "." . $value["title"] ?></span>
                                                 </td>
-                                                <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
+                                                <td class="text-center font-w700" style="width: 20%;">
                                                     <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
                                                 </td>
                                                 <td class="text-danger text-center" style="width: 15%;">
                                                     <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span>
                                                 </td>
-                                                <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
+                                                <td class="text-center" style="width: 15%;">
                                                     <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/TugasSelesai" ?>" class="text-decoration-none">Buka</a>
                                                 </td>
                                             </tr>
@@ -608,12 +608,12 @@
                         <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 10%;"># ID Task</th>
-                                    <th class="font-w700 text-center" style="width: 10%;">Ketua Task</th>
-                                    <th class="font-w700 text-center" style="width: 25%;">Sub Title Task</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Deadline</th>
-                                    <th class="font-w700 text-center" style="width: 15%;">Status</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 15%;">Aksi</th>
+                                    <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Deadline</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Status</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Aksi</th>
                                 </tr>
                             </thead>
                             <!-- body jika tidak ada sub task dan belum ada PJ-->
@@ -630,13 +630,13 @@
                                             <td style="width: 10%;" class="text-center">
                                                 <span class="font-w600">-</span>
                                             </td>
-                                            <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
+                                            <td class="text-center font-w700" style="width: 20%;">
                                                 <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
                                             </td>
                                             <td class="text-danger text-center" style="width: 15%;">
                                                 <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
                                             </td>
-                                            <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
+                                            <td class="text-center" style="width: 15%;">
                                                 <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
                                             </td>
                                         </tr>
@@ -650,19 +650,19 @@
                                             <td style="width: 10%;" >
                                                 <span class="font-w600">#<?php echo $value["id_task"]." ".$value["title"] ?></span>
                                             </td>
-                                            <td style="width: 10%;" >
+                                            <td  class="text-center" style="width: 10%;" >
                                                 <span class="font-w600"><?php echo $value["nama"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
                                                 <span class="font-w600">-</span>
                                             </td>
-                                            <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
+                                            <td class="text-center font-w700" style="width: 20%;">
                                                 <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
                                             </td>
                                             <td class="text-danger text-center" style="width: 15%;">
                                                 <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
                                             </td>
-                                            <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
+                                            <td class="text-center" style="width: 15%;">
                                                 <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
                                             </td>
                                         </tr>
@@ -684,7 +684,7 @@
                                             <td style="width: 10%;" rowspan="<?= $row_tiketbelum ?>">
                                                 <span class="font-w600">#<?php echo $valueparent["id_task"]." ".$valueparent["title"] ?></span>
                                             </td>
-                                            <td style="width: 10%;" rowspan="<?= $row_tiketbelum ?>">
+                                            <td class="text-center" style="width: 10%;" rowspan="<?= $row_tiketbelum ?>">
                                                 <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
                                             </td>
                                         <?php } ?>
@@ -695,13 +695,13 @@
                                                 <td style="width: 10%;">
                                                     <span class="font-w600"><?php echo $i . "." . $value["title"] ?></span>
                                                 </td>
-                                                <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
+                                                <td class="text-center font-w700" style="width: 20%;">
                                                     <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
                                                 </td>
                                                 <td class="text-danger text-center" style="width: 15%;">
                                                     <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
                                                 </td>
-                                                <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
+                                                <td class="text-center" style="width: 15%;">
                                                     <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
                                                 </td>
                                             </tr>
@@ -723,15 +723,15 @@
                         <h3 class="block-title text-success">Tiket Saya | Selesai</h3>
                     </div>
                     <div class="block-content block-content-full">
-                        <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
+                        <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 10%;"># ID Task</th>
-                                    <th class="font-w700 text-center" style="width: 10%;">Ketua Task</th>
-                                    <th class="font-w700 text-center" style="width: 25%;">Sub Title Task</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Deadline</th>
-                                    <th class="font-w700 text-center" style="width: 15%;">Status</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 15%;">Aksi</th>
+                                    <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Deadline</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Status</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Aksi</th>
                                 </tr>
                             </thead>
                             <!-- body jika tidak ada sub task dan ada PJ-->
@@ -742,25 +742,25 @@
                                             <td style="width: 10%;">
                                                 <span class="font-w600">#<?php echo $value["id_task"]." ".$value["title"] ?></span>
                                             </td>
-                                            <td style="width: 10%;">
+                                            <td class="text-center" style="width: 10%;">
                                                 <span class="font-w600"><?php echo $value["nama"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
                                                 <span class="font-w600">-</span>
                                             </td>
-                                            <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
+                                            <td class="text-center font-w700" style="width: 20%;">
                                                 <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
                                             </td>
                                             <td class="text-danger text-center" style="width: 15%;">
                                                 <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span>
                                             </td>
-                                            <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
+                                            <td class="text-center" style="width: 15%;">
                                                 <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
                                             </td>
                                         </tr>
                                 <?php }
                                 } ?>
-                            <tbody>
+
                             <!-- akhir body jika tidak ada sub task dan ada PJ-->
                             <!-- body jika ada sub task dan ada PJ-->
                             <tbody>
@@ -778,7 +778,7 @@
                                             <td style="width: 10%;" rowspan="<?= $row ?>">
                                                 <span class="font-w600">#<?php echo $valueparent["id_task"]." ".$valueparent["title"] ?></span>
                                             </td>
-                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                            <td  class="text-center" style="width: 10%;" rowspan="<?= $row ?>">
                                                 <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
                                             </td>
                                         <?php } ?>
@@ -789,13 +789,13 @@
                                                 <td style="width: 10%;">
                                                     <span class="font-w600"><?php echo $i . "." . $value["title"] ?></span>
                                                 </td>
-                                                <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
+                                                <td class="text-center font-w700" style="width: 20%;">
                                                     <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
                                                 </td>
                                                 <td class="text-danger text-center" style="width: 15%;">
                                                     <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span>
                                                 </td>
-                                                <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
+                                                <td class="text-center" style="width: 15%;">
                                                     <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
                                                 </td>
                                             </tr>

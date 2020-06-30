@@ -156,6 +156,7 @@
                         <tr>
                             <?php if ($cekTabel == 'Request') { ?>
                                 <td class="font-weight-bold ">Penanggung Jawab</td>
+                                
                                 <td>
                                     <form method="post" action="<?php echo base_url('index.php/detail/ubahPJ/' . $employ_id . '/' . $task['id_task']) ?>">
                                         : <?php $isi = $PJ_task['id_employ_tujuan'] ?>
@@ -250,9 +251,12 @@
                         <?php } ?>
                         <?php if ($cekTabel == "Request" && count($subtask) != 0) { ?>
                             <!-- tabel sub task -->
+                           
+                           
+                           
                             <div class="container-fluid">
-                                <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
-                                    <thead>
+                                <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
+                                <thead>
                                         <tr>
                                             <td colspan="6">
                                                 <?php $color = "bg-success";
@@ -265,10 +269,10 @@
                                                 }
 
                                                 ?>
-                                                <h4>Progres Task</h4>
+                                                <h4>Progress Task</h4>
                                                 <div class="progress push">
                                                     <div class="progress-bar <?php echo $color ?>" role="progressbar" style="width: <?php echo (count($subtaskselesai) / count($subtask)) * 100 ?>%;" aria-valuenow="<?php echo (count($subtaskselesai) / count($subtask)) * 100 ?>%" aria-valuemin="0" aria-valuemax="100">
-                                                        <span class="font-size-sm font-w600 text-muted"><?php echo (count($subtaskselesai) / count($subtask)) * 100 ?>%</span>
+                                                        <span class="font-size-sm font-w600"><?php echo (count($subtaskselesai) / count($subtask)) * 100 ?>%</span>
                                                     </div>
                                                 </div>
 
@@ -286,18 +290,18 @@
                                     </thead>
                                     <thead class="thead-dark">
                                         <tr class="text-uppercase">
-                                            <th class="font-w700 text-center" style="width: 10%;"># ID Sub Task</th>
-                                            <th class="font-w700 text-center" style="width: 25%;">Title Sub Task</th>
-                                            <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Penanggung Jawab</th>
-                                            <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Deadline</th>
-                                            <th class="font-w700 text-center" style="width: 15%;">Status</th>
-                                            <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 10%;">Aksi</th>
+                                            <th class="font-w700 text-center" style="width: 12%;"># ID Sub Task</th>
+                                            <th class="font-w700 text-center" style="width: 16%;">Title Sub Task</th>
+                                            <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 10%;">Penanggung Jawab</th>
+                                            <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Deadline</th>
+                                            <th class="font-w700 text-center" style="width: 16%;">Status</th>
+                                            <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Aksi</th>
                                         </tr>
                                     </thead>
                                     <?php foreach ($subtask as $value) { ?>
                                         <tbody>
                                             <tr>
-                                                <td style="width: 10%;">
+                                                <td class="text-center" style="width: 10%;">
                                                     <span class="font-w600">#<?php echo $value["id_task"] ?></span>
                                                 </td>
                                                 <td style="width: 25%;">
@@ -306,7 +310,7 @@
                                                 <td style="width: 20%;">
                                                     <span class="font-w600"><?php echo $value["nama"] ?></span>
                                                 </td>
-                                                <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
+                                                <td class="text-center font-w700" style="width: 20%;">
                                                     <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
                                                 </td>
                                                 <?php if ($value["status"] == "Belum Selesai") { ?>
@@ -328,6 +332,8 @@
 
                             </div>
                             <!-- END tabel sub task -->
+
+                            
                         <?php } ?>
                     </tbody>
                 </table>

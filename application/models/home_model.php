@@ -193,10 +193,11 @@ class home_model extends CI_model
     //     $this->db->group_by("id_employ_tujuan");
     //     return $this->db->get("task")->result_array();
     // }
-    // public function insert_task($data_task)
-    // {
-    //     return $this->db->insert("task", $data_task);
-    // }
+
+    public function insert_task($data_task)
+    {
+        return $this->db->insert("task", $data_task);
+    }
 
     // report tanpa periode
     //fungsi get report (untuk kolom request tugas)

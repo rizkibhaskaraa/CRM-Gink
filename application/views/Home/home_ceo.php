@@ -7,19 +7,7 @@
 
     <title>Dashboard </title>
 
-    <meta name="description" content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
-    <meta name="author" content="pixelcave">
-    <meta name="robots" content="noindex, nofollow">
-
-    <!-- Open Graph Meta -->
-    <meta property="og:title" content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework">
-    <meta property="og:site_name" content="OneUI">
-    <meta property="og:description" content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="">
-    <meta property="og:image" content="">
-
-    <!-- Icons -->
+        <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
     <link rel="shortcut icon" href="<?php echo base_url('assets/oneui/media/favicons/favicon.png') ?>">
     <link rel="icon" type="image/png" sizes="192x192" href="<?php echo base_url('assets/oneui/media/favicons/favicon-192x192.png') ?>">
@@ -34,6 +22,7 @@
 
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="<?php echo base_url('assets/oneui/js/plugins/summernote/summernote-bs4.css') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/oneui/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')?>">
 
 
     <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
@@ -134,7 +123,7 @@
                     </select>
                     <input type="text" id="link" name="link" value="<?php echo base_url('index.php/home/search/') . $employ_id . "/" ?>" hidden>
                     <div class="block-content block-content-full">
-                        <table class="table table-striped table-hover  table-vcenter font-size-sm mb-0" id="tabel-pelanggan">
+                        <table class="table table-bordered table-hover  table-vcenter font-size-sm mb-0" id="tabel-pelanggan">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
                                     <th class="font-w700 text-center" style="width: 10%;">#ID</th>
@@ -189,22 +178,27 @@
                         <div class="block-header border-bottom ">
                             <h3 class="block-title text-primary">Report Staff</h3>
                         </div>
-                        <button class="btn btn-primary search mt-3 ml-2 mr-4" id="button-reset">Reset</button>
-                        <button class="btn btn-primary search mt-3 ml-2 mr-4" id="button-report">Terapkan</button>
+                        <button class="btn btn-primary search mt-3 ml-2 mr-4" data-toggle="click-ripple" id="button-report">Terapkan</button>
+                        <button class="btn btn-outline-danger search mt-3 ml-1 mr-2" data-toggle="click-ripple" id="button-reset">Reset</button>
+                        
                         <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-end" id="tgl-end" data-date-format="yyyy-mm-dd" data-week-start="0" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal End">
-                        <h1 class="search"><i class="far fa-window-minimize mr-3"></i></h1>
+                        
+                        <h1 class="search"><i class="fa fa-minus mr-2"></i></h1>
+                        
                         <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-start" id="tgl-start" data-date-format="yyyy-mm-dd" data-week-start="0" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal Start">
+                        
                         <input type="text" name="alamat-report" id="alamat-report" value="<?php echo base_url('index.php/home/searchreport/') . $employ_id . "/" ?>" hidden>
+                        
                         <div class="block-content block-content-full" id="report-table">
-                            <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
+                            <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                                 <thead class="thead-dark">
                                     <tr class="text-uppercase">
-                                        <th class="font-w700 text-center" style="width: 25%;">Nama</th>
-                                        <th class="font-w700 text-center" style="width: 25%;">Departemen</th>
-                                        <th class="font-w700 text-center" style="width: 25%;">Jabatan</th>
-                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 10%;">Request Tugas</th>
-                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 10%;">Selesai</th>
-                                        <th class="font-w700 text-center" style="width:10%" ;>On Progress</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Nama</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Departemen</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Jabatan</th>
+                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Request Tugas</th>
+                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Selesai</th>
+                                        <th class="font-w700 text-center" style="width:16%" ;>On Progress</th>
                                     </tr>
                                 </thead>
                                 <?php $data_report = [];
@@ -218,9 +212,10 @@
                                                     <td>
                                                         <span class="font-w600"><?php echo $value["nama"] ?></span>
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center" >
                                                         <span class="font-w600"><?php echo $value["nama_departemen"] ?></span>
-                                                    </td>                                                    <td>
+                                                    </td>                                                    
+                                                    <td class="text-center" >
                                                         <span class="font-w600"><?php echo $value["status_employ"] ?></span>
                                                     </td>
                                                     <td class="text-center">
@@ -246,10 +241,10 @@
                                                     <td>
                                                         <span class="font-w600"><?php echo $value["nama"] ?></span>
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         <span class="font-w600"><?php echo $value["nama_dept_tujuan"] ?></span>
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         <span class="font-w600"><?php echo $value["status_employ"] ?></span>
                                                     </td>
                                                     <td class="text-center">
@@ -276,10 +271,10 @@
                                                     <td>
                                                         <span class="font-w600"><?php echo $value["nama"] ?></span>
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         <span class="font-w600"><?php echo $value["nama_dept_tujuan"] ?></span>
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         <span class="font-w600"><?php echo $value["status_employ"] ?></span>
                                                     </td>
                                                     <td class="text-center">
@@ -311,15 +306,15 @@
                         <h3 class="block-title text-danger">Tugas staff | Belum Selesai</h3>
                     </div>
                     <div class="block-content block-content-full">
-                        <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
+                        <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 10%;"># ID Task</th>
-                                    <th class="font-w700 text-center" style="width: 10%;">Ketua Task</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 15%;">Departemen PJ</th>
-                                    <th class="font-w700 text-center" style="width: 25%;">Sub Title Task</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Deadline</th>
-                                    <th class="font-w700 text-center" style="width: 15%;">Status</th>
+                                    <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
+                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Departemen PJ</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
+                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Deadline</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -401,15 +396,15 @@
                         <h3 class="block-title text-success">Tugas Staff | Selesai</h3>
                     </div>
                     <div class="block-content block-content-full">
-                        <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
+                        <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 10%;"># ID Task</th>
-                                    <th class="font-w700 text-center" style="width: 10%;">Ketua Task</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 15%;">Departemen PJ</th>
-                                    <th class="font-w700 text-center" style="width: 25%;">Sub Title Task</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Deadline</th>
-                                    <th class="font-w700 text-center" style="width: 15%;">Status</th>
+                                    <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
+                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Departemen PJ</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
+                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Deadline</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -493,15 +488,15 @@
                         <h3 class="block-title text-danger">Tiket Saya | Belum Selesai</h3>
                     </div>
                     <div class="block-content block-content-full">
-                        <table class="table table-striped table-hover  table-vcenter font-size-sm mb-0">
+                        <table class="table table-bordered table-hover  table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 10%;"># ID Task</th>
-                                    <th class="font-w700 text-center" style="width: 10%;">Ketua Task</th>
-                                    <th class="font-w700 text-center" style="width: 25%;">Sub Title Task</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Deadline</th>
-                                    <th class="font-w700 text-center" style="width: 15%;">Status</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 15%;">Aksi</th>
+                                    <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
+                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Deadline</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Status</th>
+                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -609,15 +604,15 @@
                         <h3 class="block-title text-success">Tiket Saya | Selesai</h3>
                     </div>
                     <div class="block-content block-content-full">
-                        <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
+                        <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 10%;"># ID Task</th>
-                                    <th class="font-w700 text-center" style="width: 10%;">Ketua Task</th>
-                                    <th class="font-w700 text-center" style="width: 25%;">Sub Title Task</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Deadline</th>
-                                    <th class="font-w700 text-center" style="width: 15%;">Status</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 15%;">Aksi</th>
+                                    <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
+                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Deadline</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Status</th>
+                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -841,30 +836,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
-                                <textarea class="form-control required" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
+                                <textarea class="form-control required js-summernote" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
                                 <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
                             </div>
 
-                            <div class="block-content block-content-full ">
-                                <!-- Summernote Container -->
-                                <div class="js-summernote-air">
-
-                                </div>
-                            </div>
+                            
                     </div>
-                    <div class="block">
-                        <div class="block-header">
-
-                            <div class="block-options">
-
-                            </div>
-                        </div>
-                        <div class="block-content block-content-full">
-                            <!-- Summernote Container -->
-                            <div class="js-summernote">Hello Summernote!</div>
-                        </div>
-                    </div>
-                    <!-- END Summernote -->
+                    
                     <div style="float:right;margin-bottom:3%">
                         <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
 
@@ -963,6 +941,15 @@
         });
     </script>
 
+<!-- 
+                            script atur summernote height di buat tiket pelanggan -->
+                            <script type='text/javascript'>//<![CDATA[ 
+                            $(function(){
+                            $('#deskripsi').summernote({height: 200});
+                                          
+                            });//]]>  
+                            </script>
+                            <!-- akhir -->
 
 </body>
 

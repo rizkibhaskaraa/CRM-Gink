@@ -112,4 +112,9 @@ class Detail extends CI_Controller
         $this->detail_model->buatkomen($data);
         redirect(base_url('index.php/detail/detailumum/') . $id_employ . "/" . $idtask . "/" . $tabel);
     }
+    public function deletekomen($idtask, $id_employ, $tabel, $idkomen)
+    {
+        $this->detail_model->deletekomen($idkomen);
+        redirect(base_url('index.php/detail/detailumum/') . $id_employ . "/" . $idtask . "/" . $tabel);
+    }
 }

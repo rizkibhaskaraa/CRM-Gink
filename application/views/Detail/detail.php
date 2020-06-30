@@ -29,7 +29,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="<?php echo base_url('assets/js/plugins/sweetalert2/sweetalert2.min.css') ?>">
 
-    <link rel="stylesheet" href="<?php echo base_url('assets/oneui/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/oneui/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') ?>">
 
     <!-- Fonts and OneUI framework -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
@@ -126,7 +126,7 @@
                             <td class="font-weight-bold mt-2" width="15%">Title</td>
                             <td width="70%">: <?php echo $task["title"] ?> </td>
                         </tr>
-                        
+
                         <tr>
                             <td class="font-weight-bold">Nama Pengirim</td>
                             <td>: <?php echo $nama_kirim . " (" . $task["nama_dept_kirim"] . ")" ?></td>
@@ -354,6 +354,11 @@
                                 <td class="d-none d-sm-table-cell"></td>
                                 <td class="font-size-sm text-muted">
                                     <a href=""><?= $value["nama_kirim_komen"] ?></a> on <em><?= $value["tanggal_komen"] ?></em>
+                                    <?php if ($employ_nama == $value["nama_kirim_komen"]) { ?>
+                                        <form action="<?php echo base_url('index.php/detail/deletekomen/') . $task["id_task"] . "/" . $employ_id . "/" . $cekTabel . "/" . $value["id_komentar"] ?>" method="POST">
+                                            <button type="submit">DELETE</button>
+                                        </form>
+                                    <?php } ?>
                                 </td>
                             </tr>
                             <tr>
@@ -376,6 +381,11 @@
                                 <td class="d-none d-sm-table-cell"></td>
                                 <td class="font-size-sm text-muted">
                                     <a href=".html"><?= $value["nama_kirim_komen"] ?></a> on <em><?= $value["tanggal_komen"] ?></em>
+                                    <?php if ($employ_nama == $value["nama_kirim_komen"]) { ?>
+                                        <form action="<?php echo base_url('index.php/detail/deletekomen/') . $task["id_task"] . "/" . $employ_id . "/" . $cekTabel . "/" . $value["id_komentar"] ?>" method="POST">
+                                            <button type="submit">DELETE</button>
+                                        </form>
+                                    <?php } ?>
                                 </td>
                             </tr>
                             <tr>
@@ -404,7 +414,7 @@
                         <td class="d-none d-sm-table-cell text-center">
                             <p>
                                 <a href="">
-                                    <img class="img-avatar" src="<?php echo base_url('assets/oneui/media/avatars/avatar10.jpg')?>" alt="">
+                                    <img class="img-avatar" src="<?php echo base_url('assets/oneui/media/avatars/avatar10.jpg') ?>" alt="">
                                 </a>
                             </p>
                             <p class="font-size-sm"><?= $employ_nama ?><br><?= $nama_dept ?></p>
@@ -535,7 +545,7 @@
 
     <!-- Page JS Plugins -->
     <script src="<?php echo base_url('assets/oneui/js/plugins/es6-promise/es6-promise.auto.min.js') ?>"></script>
-    
+
 
     <!-- Page JS Code -->
     <script src="<?php echo base_url('assets/oneui/js/pages/be_comp_dialogs.min.js') ?>"></script>
@@ -555,12 +565,12 @@
     <!-- Page JS Helpers (CKEditor plugin) -->
     <script>
         jQuery(function() {
-            One.helpers(['ckeditor','summernote']);
+            One.helpers(['ckeditor', 'summernote']);
         });
     </script>
-    
+
     <!-- Page JS Helpers (Summernote + CKEditor + SimpleMDE plugins) -->
-    
+
 </body>
 
 </html>

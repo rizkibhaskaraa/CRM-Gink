@@ -144,7 +144,7 @@
                     <input type="text" id="link" name="link" value="<?php echo base_url('index.php/home/search/') . $employ_id . "/" ?>" hidden>
                     <!-- akhir bagian field search dan sorting -->
                     <div class="block-content block-content-full">
-                        <table class="table table-striped table-hover  table-vcenter font-size-sm mb-0" id="tabel-pelanggan">
+                        <table class="table table-striped table-hover table-vcenter font-size-sm mb-0" id="tabel-pelanggan">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
                                     <th class="font-w700 text-center" style="width: 10%;">#ID</th>
@@ -206,8 +206,8 @@
                                 <thead class="thead-dark">
                                     <tr class="text-uppercase">
                                         <th class="font-w700 text-center" style="width: 20%;">Title</th>
-                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Penanggung Jawab</th>
-                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Deadline</th>
+                                        <th class="font-w700 text-center" style="width: 20%;">Penanggung Jawab</th>
+                                        <th class="font-w700 text-center" style="width: 20%;">Deadline</th>
                                         <th class="font-w700 text-center" style="width:15%" ;>Status</th>
                                         <th class="font-w700 text-center" style="width: 20%;">Aksi</th>
                                     </tr>
@@ -299,9 +299,9 @@
                                         <th class="font-w700 text-center" style="width: 16%;">Nama</th>
                                         <th class="font-w700 text-center" style="width: 16%;">Departemen</th>
                                         <th class="font-w700 text-center" style="width: 16%;">Jabatan</th>
-                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Request Tugas</th>
-                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Selesai</th>
-                                        <th class="font-w700 text-center" style="width:16%" ;>On Progress</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Request Tugas</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Selesai</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">On Progress</th>
                                     </tr>
                                 </thead>
                                 <?php $data_report = []; //array untuk simpan data staff
@@ -416,12 +416,12 @@
                         <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 10%;"># ID Task</th>
-                                    <th class="font-w700 text-center" style="width: 10%;">Ketua Task</th>
-                                    <th class="font-w700 text-center" style="width: 25%;">Sub Title Task</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Deadline</th>
-                                    <th class="font-w700 text-center" style="width: 15%;">Status</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 15%;">Aksi</th>
+                                    <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Deadline</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Status</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Aksi</th>
                                 </tr>
                             </thead>
                             <!-- body jika tidak ada sub task -->
@@ -438,13 +438,13 @@
                                             <td style="width: 10%;" class="text-center">
                                                 <span class="font-w600">-</span>
                                             </td>
-                                            <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
+                                            <td class="text-center font-w700" style="width: 20%;">
                                                 <span class="font-size-sm  "><?php echo $valueparent["dateline"] ?></span>
                                             </td>
                                             <td class="text-danger text-center" style="width: 15%;">
                                                 <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $valueparent["status"] ?></span>
                                             </td>
-                                            <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
+                                            <td class="text-center" style="width: 15%;">
                                                 <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $valueparent['id_task'] . "/TugasBelum" ?>" class="text-decoration-none">Buka</a>
                                             </td>
                                         </tr>
@@ -479,13 +479,13 @@
                                                 <td style="width: 10%;">
                                                     <span class="font-w600"><?php echo $i . "." . $value["title"] ?></span>
                                                 </td>
-                                                <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
+                                                <td class="text-center font-w700" style="width: 20%;">
                                                     <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
                                                 </td>
                                                 <td class="text-danger text-center" style="width: 15%;">
                                                     <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
                                                 </td>
-                                                <td class="d-none d-sm-table-cell text-center" style="width: 15%;">
+                                                <td class="text-center" style="width: 15%;">
                                                     <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/TugasBelum" ?>" class="text-decoration-none">Buka | </a>
                                                     <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/status/') . $value["id_task"] ?>" class="text-decoration-none">Selesai</a>
                                                 </td>
@@ -514,9 +514,9 @@
                                     <th class="font-w700 text-center" style="width: 10%;"># ID Task</th>
                                     <th class="font-w700 text-center" style="width: 10%;">Ketua Task</th>
                                     <th class="font-w700 text-center" style="width: 25%;">Sub Title Task</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Deadline</th>
+                                    <th class="font-w700 text-center" style="width: 20%;">Deadline</th>
                                     <th class="font-w700 text-center" style="width: 15%;">Status</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 15%;">Aksi</th>
+                                    <th class="font-w700 text-center" style="width: 15%;">Aksi</th>
                                 </tr>
                             </thead>
                             <!-- body jika tidak ada sub task -->
@@ -605,7 +605,7 @@
                         <h3 class="block-title text-danger">Tiket Saya | Belum Selesai</h3>
                     </div>
                     <div class="block-content block-content-full">
-                        <table class="table table-striped table-hover  table-vcenter font-size-sm mb-0">
+                        <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
                                     <th class="font-w700 text-center" style="width: 10%;"># ID Task</th>

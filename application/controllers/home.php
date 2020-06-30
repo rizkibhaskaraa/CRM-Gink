@@ -213,7 +213,6 @@ class Home extends CI_Controller
 
                 //jika buat tiket dari tabel pelanggan
                 $data_task = array(
-                    "id_task" => rand(0001, 1000), //angka random
                     "id_pelanggan" => $this->input->post("id_pelanggan"),
                     "nama_dept_tujuan" => $departemen_tujuan,
                     "id_employ_kirim" => $id_employ,
@@ -230,7 +229,6 @@ class Home extends CI_Controller
                 $departemen_tujuan = $this->input->post("departemen");
                 //jika staff yang buat tiket untuk staff
                 $data_task = array(
-                    "id_task" => rand(0001, 1000), //angka random
                     "nama_dept_tujuan" => $departemen_tujuan,
                     "id_employ_kirim" => $id_employ,
                     "nama_dept_kirim" => $departemen["nama_departemen"],

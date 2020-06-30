@@ -24,7 +24,7 @@ class detail_model extends CI_model
     }
     public function getsubtaskselesai($id_parent)
     {
-        return $this->db->get_where('task',array('id_parent' => $id_parent,'status'=>"Selesai"))->result_array();
+        return $this->db->get_where('task', array('id_parent' => $id_parent, 'status' => "Selesai"))->result_array();
     }
 
     public function getsemuaPJ($id_departemen)
@@ -136,10 +136,10 @@ class detail_model extends CI_model
     {
         //update status
         $parent_task = $this->db->get_where('task', array('id_task' => $task))->row_array();
-        if($parent_task["status"]=="Selesai"){
+        if ($parent_task["status"] == "Selesai") {
             $this->db->set('status', "Belum Selesai");
             $this->db->where('id_task', $task);
-            $this->db->update('task');    
+            $this->db->update('task');
         }
         //akhir update status
 
@@ -180,5 +180,9 @@ class detail_model extends CI_model
     public function buatkomen($data)
     {
         return $this->db->insert("komentar", $data);
+    }
+    public function deletekomen($data)
+    {
+        return $this->db->delete('komentar', array('id_komentar' => $data));
     }
 }

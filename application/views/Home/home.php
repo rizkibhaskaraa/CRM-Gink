@@ -285,6 +285,7 @@
                             <h3 class="block-title text-primary">Report Staff</h3>
                         </div>
                         <!-- bagian input tanggal periode -->
+                        <button class="btn btn-primary search mt-3 ml-2 mr-4" id="button-reset">Reset</button>
                         <button class="btn btn-primary search mt-3 ml-2 mr-4" id="button-report">Terapkan</button>
                         <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-end" id="tgl-end" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal End">
                         <h1 class="search "><i class="fa fa-minus mr-2"></i></h1>

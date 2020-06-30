@@ -54,7 +54,7 @@ button.addEventListener('click', function(){
 });
 
 button_reset.addEventListener('click', function(){
-
+	window.alert('ad');
 	tgl_end.value = tgl_start.value = "";
 	var ajaxreset = new XMLHttpRequest();
 

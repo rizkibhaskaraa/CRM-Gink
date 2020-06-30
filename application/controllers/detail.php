@@ -81,7 +81,6 @@ class Detail extends CI_Controller
         $departemen = $this->detail_model->getdept($employ["id_departemen"]);
 
         $data_sub_task = array(
-            "id_task" => rand(0001, 1000),
             "nama_dept_tujuan" => $departemen["nama_departemen"],
             "id_employ_tujuan" => $this->input->post("PJsubtask"),
             "id_parent" => $this->input->post("id_parent"),

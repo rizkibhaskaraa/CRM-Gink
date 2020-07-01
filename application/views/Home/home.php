@@ -302,8 +302,9 @@
                             <h3 class="block-title text-primary">Report Staff</h3>
                         </div>
                         <!-- bagian input tanggal periode -->
-                        <button class="btn btn-primary search mt-3 ml-2 mr-4" id="button-reset">Reset</button>
+                        
                         <button class="btn btn-primary search mt-3 ml-2 mr-4" id="button-report">Terapkan</button>
+                        <button class="btn btn-outline-danger search mt-3 ml-1 mr-2" data-toggle="click-ripple" id="button-reset">Reset</button>
                         <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-end" id="tgl-end" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal End">
                         <h1 class="search "><i class="fa fa-minus mr-2"></i></h1>
                         <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-start" id="tgl-start" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal Start">
@@ -457,10 +458,10 @@
                                                 <span class="font-w600">-</span>
                                             </td>
                                             <td class="text-center font-w700" style="width: 20%;">
-                                                <span class="font-size-sm  "><?php echo $valueparent["dateline"] ?></span>
+                                                <span class="font-size-sm "><?php echo $valueparent["dateline"] ?></span>
                                             </td>
                                             <td class="text-danger text-center" style="width: 15%;">
-                                                <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $valueparent["status"] ?></span>
+                                                <span class="font-w600 btn-sm btn-block btn-danger"><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $valueparent["status"] ?></span>
                                             </td>
                                             <td class="text-center" style="width: 15%;">
                                                 <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $valueparent['id_task'] . "/TugasBelum" ?>" class="text-decoration-none">Buka</a>
@@ -714,10 +715,10 @@
                                                     <span class="font-w600"><?php echo $i . "." . $value["title"] ?></span>
                                                 </td>
                                                 <td class="text-center font-w700" style="width: 20%;">
-                                                    <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
+                                                    <span class="font-size-sm "><?php echo $value["dateline"] ?></span>
                                                 </td>
                                                 <td class="text-danger text-center" style="width: 15%;">
-                                                    <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
+                                                    <span class="font-w600  btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
                                                 </td>
                                                 <td class="text-center" style="width: 15%;">
                                                     <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
@@ -1012,7 +1013,7 @@
                     Crafted with <i class="fa fa-heart text-danger"></i> by <a class="font-w600" href="" target="_blank">ARMTEAM</a>
                 </div>
                 <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left">
-                    <a class="font-w600" href="https://1.envato.market/xWy" target="_blank">Gink Technology x OneUI 4.2</a> &copy; <span data-toggle="year-copy"></span>
+                    <a class="font-w600" href="https://1.envato.market/xWy" target="_blank">Gink Technology x ARMTEAM</a> &copy; <span data-toggle="year-copy"></span>
                 </div>
             </div>
         </div>
@@ -1049,12 +1050,7 @@
     </script>
     <!-- akhir validasi form -->
 
-    <!--
-            OneUI JS
-
-            Custom functionality including Blocks/Layout API as well as other vital and optional helpers
-            webpack is putting everything together at assets/_es6/main/app.js
-        -->
+ 
     <script src="<?php echo base_url('assets/oneui/js/oneui.app.min.js') ?>"></script>
 
     <!-- Page JS Plugins -->

@@ -65,7 +65,8 @@ class home_model extends CI_model
     //fungsi ambil data tabel layanan berdasarkan id layanan
     public function getlayananbyid($id)
     {
-        return $this->db->get_where("layanan_pelanggan", array("id_pelanggan" => $id))->result_array();
+        $this->db->join("pelanggan", "pelanggan.id_pelanggan = layanan_pelanggan.id_pelanggan"); //join tabel pelanggan dengan layanan
+        return $this->db->get_where("layanan_pelanggan", array("id_layanan" => $id))->row_array();
     }
 
     //fungsi ambil data tabel departemen berdasarkan id departemen

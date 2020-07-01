@@ -202,7 +202,7 @@
                                             <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value1["status"] ?></span></td>
                                         <?php } ?>
                                         <td class="text-center">
-                                            <a href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"] ?>" onclick="datapelanggan(this,'CS');"><button class="btn btn-light"><i class="fa fa-plus fa-2x"></i></button></a>
+                                            <a href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value1["id_layanan"] ?>" onclick="datapelanggan(this,'CS');"><button class="btn btn-light"><i class="fa fa-plus fa-2x"></i></button></a>
                                             <!-- <a class="text-decoration-none" href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"] ?>" onclick="datapelanggan(this,'CS');">+ tiket</a> -->
                                         </td>
                                         </tr>
@@ -857,25 +857,26 @@
                 },
                 success: function(data) { //jika ambil data sukses
                     $('input[name="customer"]').val(data["customer"]); //set value
-                    $('input[name="id_pelanggan"]').val(id_pelanggan); //set value
+                    $('input[name="id_pelanggan"]').val(data["id_pelanggan"]); //set value
+                    $('input[id="layanan-pelanggan"]').val(data["nama_layanan"]); //set value
                 }
             });
-            $.ajax({ //ajax ambil data layanan
-                type: "GET",
-                url: "<?php echo base_url('index.php/home/get_layanan') ?>",
-                dataType: "JSON",
-                data: {
-                    id: id_pelanggan
-                },
-                success: function(data) {
-                    $("#layanan-pelanggan").empty(); //reset tag select jadi kosong
-                    //set value tag options di tag select
-                    for(i=0;i<data.length;i++){
-                        $('#layanan-pelanggan').append(new Option(data[i]["nama_layanan"], data[i]["nama_layanan"])); 
-                    }
-                    $("#layanan_pelanggan").val(data.length); //set value
-                }
-            });
+            // $.ajax({ //ajax ambil data layanan
+            //     type: "GET",
+            //     url: "<?php echo base_url('index.php/home/get_layanan') ?>",
+            //     dataType: "JSON",
+            //     data: {
+            //         id: id_pelanggan
+            //     },
+            //     success: function(data) {
+            //         $("#layanan-pelanggan").empty(); //reset tag select jadi kosong
+            //         //set value tag options di tag select
+            //         for(i=0;i<data.length;i++){
+            //             $('#layanan-pelanggan').append(new Option(data[i]["nama_layanan"], data[i]["nama_layanan"])); 
+            //         }
+            //         $("#layanan_pelanggan").val(data.length); //set value
+            //     }
+            // });
         }
     </script>
     <!-- pop up tiket pelanggan -->
@@ -901,9 +902,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="layanan">Layanan</label>
-                                <select name="layanan" id="layanan-pelanggan" class="form-control">
-
-                                </select>
+                                <input type="text" class="form-control" name="layanan" id="layanan-pelanggan" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="masalah">Jenis Masalah</label>

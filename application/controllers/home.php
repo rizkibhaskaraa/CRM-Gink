@@ -168,21 +168,21 @@ class Home extends CI_Controller
         $this->load->view('home/hasil_search_report', $data);
     }
 
-    //fungsi mendapatkan data tabel pelanggan
+    //fungsi mendapatkan data tabel pelanggan join layanan
     function get_pelanggan()
     {
-        $id_pelanggan = $this->input->get('id');
-        $data = $this->home_model->getpelangganbyid($id_pelanggan);
+        $id_layanan = $this->input->get('id');
+        $data = $this->home_model->getlayananbyid($id_layanan);
         echo json_encode($data);
     }
 
     //fungsi mendapatkan data tabel pelanggan
-    function get_layanan()
-    {
-        $id_pelanggan = $this->input->get('id');
-        $data = $this->home_model->getlayananbyid($id_pelanggan);
-        echo json_encode($data);
-    }
+    // function get_layanan()
+    // {
+    //     $id_pelanggan = $this->input->get('id');
+    //     $data = $this->home_model->getlayananbyid($id_pelanggan);
+    //     echo json_encode($data);
+    // }
 
     //fungsi untuk menambah data tiket/task
     public function addtiket($id_employ)

@@ -250,7 +250,7 @@
                                 <td class="font-weight-bold">Waktu Selesai</td>
                                 <td>
                                     :
-                                    <?php if ($task['status'] == 'belum selesai') {
+                                    <?php if ($task['status'] == 'Belum Selesai') {
                                         echo '-';
                                     } ?>
                                     <?= $task['waktu_selesai'] ?>
@@ -291,7 +291,7 @@
                                                     </div>
                                                 </div>
 
-                                                <?php if ($progres == 100) { ?>
+                                                <?php if ($progres == 100 && $task['status'] == 'Belum Selesai') { ?>
                                                     <a class="btn btn-success" class="bg-success text-white text-decoration-none" href="<?php echo base_url('index.php/detail/ubahstatustask/' . $employ_id . '/' . $task['id_task']) ?>" style="float:right">
                                                         <i class="fa fa-fw fa-check"></i> Konfirmasi Selesai
                                                     </a>

@@ -66,3 +66,17 @@ button_reset.addEventListener('click', function(){
 	ajaxreset.send();
 
 });
+
+status_pelanggan.addEventListener('change', function(){
+	//buat objeck
+	var ajaxstatus = new XMLHttpRequest();
+
+	ajaxstatus.onreadystatechange = function(){
+		if(ajaxstatus.readyState == 4 && ajaxstatus.status == 200){
+			konten.innerHTML = ajaxstatus.responseText;
+		}
+	}
+	ajaxstatus.open('GET', alamat.value+status_pelanggan.value+"/"+cari.value , true);
+	ajaxstatus.send();
+
+});

@@ -101,6 +101,7 @@ INSERT INTO `komentar` (`id_komentar`, `komentar`, `id_task`, `nama_kirim_komen`
 CREATE TABLE `layanan_pelanggan` (
   `id_layanan` varchar(10) NOT NULL,
   `nama_layanan` varchar(50) DEFAULT NULL,
+  `status` varchar(30) DEFAULT NULL,
   `id_pelanggan` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -108,10 +109,10 @@ CREATE TABLE `layanan_pelanggan` (
 -- Dumping data for table `layanan_pelanggan`
 --
 
-INSERT INTO `layanan_pelanggan` (`id_layanan`, `nama_layanan`, `id_pelanggan`) VALUES
-('LYN-01', 'Website', '001'),
-('LYN-02', 'Hosting', '001'),
-('LYN-03', 'Website Toefl', '002');
+INSERT INTO `layanan_pelanggan` (`id_layanan`, `nama_layanan`, `status`, `id_pelanggan`) VALUES
+('LYN-01', 'Website', 'Aktif', '001'),
+('LYN-02', 'Hosting', 'Aktif', '001'),
+('LYN-03', 'Website Toefl', 'Aktif', '002');
 
 -- --------------------------------------------------------
 
@@ -121,18 +122,17 @@ INSERT INTO `layanan_pelanggan` (`id_layanan`, `nama_layanan`, `id_pelanggan`) V
 
 CREATE TABLE `pelanggan` (
   `id_pelanggan` varchar(30) NOT NULL,
-  `customer` varchar(50) DEFAULT NULL,
-  `status` varchar(30) DEFAULT NULL
+  `customer` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pelanggan`
 --
 
-INSERT INTO `pelanggan` (`id_pelanggan`, `customer`, `status`) VALUES
-('001', 'Jaya Bakery', 'Aktif'),
-('002', 'ITERA', 'Aktif'),
-('003', 'Jual Bakery', 'Aktif');
+INSERT INTO `pelanggan` (`id_pelanggan`, `customer`) VALUES
+('001', 'Jaya Bakery'),
+('002', 'ITERA'),
+('003', 'Jual Bakery');
 
 -- --------------------------------------------------------
 

@@ -17,6 +17,8 @@ class Detail extends CI_Controller
             $user = $_SESSION["staff_id"];
         }
         //data employ yang akses
+        $user1 = $this->detail_model->getuser($user);
+        $data["username"] = $user1["username"];
         $employ = $this->detail_model->getemploy($user);
         $data["employ_nama"] = $employ["nama"];
         $data["employ_id"] = $employ["id_employ"];

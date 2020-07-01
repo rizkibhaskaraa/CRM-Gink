@@ -1,5 +1,5 @@
 <div class="block-content-full" id="report-table">
-<table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
+<table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                                 <thead class="thead-dark">
                                     <tr class="text-uppercase">
                                         <th class="font-w700 text-center" style="width: 16%;">Nama</th>

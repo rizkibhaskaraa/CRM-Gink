@@ -33,6 +33,20 @@
 <body>
 
     <!-- Right Section -->
+    <!-- Home button -->
+    <?php if($employ_dept=="ceo"){
+        $linkhome = base_url('index.php/home/ceo/').$username;
+    }else{
+        $linkhome = base_url('index.php/home/index/').$username;
+    }?>
+    <div class="ml-4"  style="float:left;">
+                <a class="btn btn-sm btn-dual" href="<?php echo $linkhome?>">
+                    <img class="rounded"  src="<?php echo base_url('assets/oneui/media/avatars/home.png') ?>" alt="Header Avatar" style="width: 18px;">
+                    <span class="ml-2">Home</span>
+                
+                </a>
+            </div>
+            <!-- end home button -->
     <div class="col-md-2 ml-auto px-4">
         <!-- User Dropdown -->
         <div class="dropdown d-inline-block ml-2">
@@ -361,7 +375,7 @@
                                             <td style="width: 10%;" rowspan="<?= $row_taskbelum ?>">
                                                 <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
                                             </td>
-                                            <td style="width: 10%;" class="text-center" rowspan="<?= $row_taskbelum ?>>
+                                            <td style="width: 10%;" class="text-center" rowspan="<?= $row_taskbelum ?>">
                                                 <span class="font-w600"><?php echo $valueparent["nama_dept_tujuan"] ?></span>
                                             </td>
                                         <?php } ?>
@@ -450,7 +464,7 @@
                                             <td style="width: 10%;" rowspan="<?= $row_taskselesai ?>">
                                                 <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
                                             </td>
-                                            <td style="width: 10%;" class="text-center" rowspan="<?= $row_taskselesai ?>>
+                                            <td style="width: 10%;" class="text-center" rowspan="<?= $row_taskselesai ?>">
                                                 <span class="font-w600"><?php echo $valueparent["nama_dept_tujuan"] ?></span>
                                             </td>
                                         <?php } ?>
@@ -778,10 +792,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
-                                <textarea class="form-control required" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
+                                <textarea class="form-control required js-summernote" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
                                 <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
                             </div>
-                            <div style="float:right;margin-bottom:3%">
+                            <div  style="float:right;margin-bottom:3%">
                                 <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
                                 <button type="submit" class="btn btn-primary">Buat</button>
 
@@ -846,7 +860,7 @@
                     <div style="float:right;margin-bottom:3%">
                         <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
 
-                        <button type="submit" class="btn btn-primary">Buat</button>
+                        <button type="submit" class="btn btn-primary mr-4">Buat</button>
 
                     </div>
 

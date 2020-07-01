@@ -191,7 +191,7 @@
                                     <?php foreach ($layanan as $value1){ 
                                         if ($value["id_pelanggan"] == $value1["id_pelanggan"]){?>
                                         <tr>                                        
-                                        <td class="text-center">
+                                        <td >
                                             <span class="font-w600"><?php echo $i . ". " . $value1["nama_layanan"] ?></span>
                                         </td>
                                         <?php if ($value1["status"] == "Tidak Aktif") { ?>

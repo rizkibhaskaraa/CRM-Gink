@@ -179,8 +179,8 @@ class home_model extends CI_model
                 $this->db->where("status", $status);
             }
         
-        $this->db->like('customer', $search);
-        return $this->db->get("pelanggan")->result_array();
+        $this->db->like('nama_layanan', $search);
+        return $this->db->get("layanan_pelanggan")->result_array();
     }
 
     //fungsi search departemen di report

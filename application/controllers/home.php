@@ -143,9 +143,9 @@ class Home extends CI_Controller
     {
         $search_pelanggan = str_replace('%20', ' ', $search); //menggganti %20 dengan spasi
         $status_pelanggan = str_replace('%20', ' ', $status); //menggganti %20 dengan spasi
-        $data["pelanggan"] = $this->home_model->getsearch($status_pelanggan, $search_pelanggan); //memanggil fungsi getsearch di home_model
+        $data["pelanggan"] = $this->home_model->getpelanggan(); //memanggil fungsi getpelanggan di home_model
         $data["employ_id"] = $employ_id;
-        $data["layanan"] = $layanan = $this->home_model->getlayanan(); //memanggil fungsi getlayanan di home_model
+        $data["layanan"] = $layanan = $this->home_model->getsearch($status_pelanggan, $search_pelanggan); //memanggil fungsi getsearch di home_model
         $this->load->view('home/hasil_search', $data);
     }
 

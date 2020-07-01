@@ -805,7 +805,7 @@
                                 <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
                             </div>
                             <div  style="float:right;margin-bottom:3%">
-                                <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
+                                <button type="reset" class="btn btn-outline-danger mr-2">Reset</button>
                                 <button type="submit" class="btn btn-primary">Buat</button>
 
                             </div>
@@ -867,7 +867,7 @@
                     </div>
                     
                     <div style="float:right;margin-bottom:3%">
-                        <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
+                        <button type="reset" class="btn btn-outline-danger mr-2">Reset</button>
 
                         <button type="submit" class="btn btn-primary mr-4">Buat</button>
 

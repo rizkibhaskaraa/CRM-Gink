@@ -7,19 +7,7 @@
 
     <title>Dashboard </title>
 
-    <meta name="description" content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
-    <meta name="author" content="pixelcave">
-    <meta name="robots" content="noindex, nofollow">
-
-    <!-- Open Graph Meta -->
-    <meta property="og:title" content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework">
-    <meta property="og:site_name" content="OneUI">
-    <meta property="og:description" content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="">
-    <meta property="og:image" content="">
-
-    <!-- Icons -->
+        <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
     <link rel="shortcut icon" href="<?php echo base_url('assets/oneui/media/favicons/favicon.png') ?>">
     <link rel="icon" type="image/png" sizes="192x192" href="<?php echo base_url('assets/oneui/media/favicons/favicon-192x192.png') ?>">
@@ -34,6 +22,7 @@
 
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="<?php echo base_url('assets/oneui/js/plugins/summernote/summernote-bs4.css') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/oneui/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')?>">
 
 
     <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
@@ -44,6 +33,20 @@
 <body>
 
     <!-- Right Section -->
+    <!-- Home button -->
+    <?php if($employ_dept=="ceo"){
+        $linkhome = base_url('index.php/home/ceo/').$username;
+    }else{
+        $linkhome = base_url('index.php/home/index/').$username;
+    }?>
+    <div class="ml-4"  style="float:left;">
+                <a class="btn btn-sm btn-dual" href="<?php echo $linkhome?>">
+                    <img class="rounded"  src="<?php echo base_url('assets/oneui/media/avatars/home.png') ?>" alt="Header Avatar" style="width: 18px;">
+                    <span class="ml-2">Home</span>
+                
+                </a>
+            </div>
+            <!-- end home button -->
     <div class="col-md-2 ml-auto px-4">
         <!-- User Dropdown -->
         <div class="dropdown d-inline-block ml-2">
@@ -110,6 +113,9 @@
                 <a class="nav-link" href="#report">Report</a>
             </li>
             <li style="background-color:lavender" class="nav-item">
+                <a class="nav-link" href="#tugas">Tugas</a>
+            </li>
+            <li style="background-color:lavender" class="nav-item">
                 <a class="nav-link" href="#tiket">Tiket Saya</a>
             </li>
     </ul>
@@ -123,7 +129,7 @@
                     <div class="block-header border-bottom">
                         <h3 class="block-title text-primary">Data Pelanggan</h3>
                     </div>
-                    <input type="text" id="search" class="form-control col-2 search  mt-3 ml-2 mr-4" name="search" placeholder="Cari Customer">
+                    <input type="text" id="search" class="form-control col-2 search  mt-3 ml-2 mr-4" name="search" placeholder="Cari Layanan">
                     <select name="status" id="status-pelanggan" class="form-control col-2 status-pelanggan mt-3">
                         <option value="semua">Semua Status</option>
                         <option value="aktif">Aktif</option>
@@ -131,47 +137,56 @@
                     </select>
                     <input type="text" id="link" name="link" value="<?php echo base_url('index.php/home/search/') . $employ_id . "/" ?>" hidden>
                     <div class="block-content block-content-full">
-                        <table class="table table-striped table-hover  table-vcenter font-size-sm mb-0" id="tabel-pelanggan">
+                        <table class="table table-bordered table-hover  table-vcenter font-size-sm mb-0" id="tabel-pelanggan">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
                                     <th class="font-w700 text-center" style="width: 10%;">#ID</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Layanan</th>
-                                    <th class="font-w700 text-center" style="width: 40%;">Customer</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 15%;">Status</th>
+                                    <th class="font-w700 text-center" style="width: 30%;">Customer</th>
+                                    <th class="font-w700 text-center" style="width: 30%;">Layanan</th>
+                                    <th class="font-w700 text-center" style="width: 15%;">Status</th>
                                     <th class="font-w700 text-center" style="width: 15%;">+Tiket</th>
                                 </tr>
                             </thead>
-                            <?php foreach ($pelanggan as $value) { ?>
-                                <tbody>
+                            <tbody>
+                            <?php foreach ($pelanggan as $value) { 
+                                $i = 1;
+                                $row_layanan = 1; //untuk row span
+                                foreach ($layanan as $valuelayanan) {
+                                    if ($value["id_pelanggan"] == $valuelayanan["id_pelanggan"]) {
+                                        $row_layanan += 1;
+                                    }
+                                }?>
                                     <tr>
-
-                                        <td class="text-center">
+                                        <td class="text-center" rowspan="<?= $row_layanan ?>">
                                             <span class="font-w600 ">#<?php echo $value["id_pelanggan"] ?></span>
                                         </td>
-                                        <td class="text-center">
-                                            <?php $jumlah = 0; ?>
-                                            <?php foreach ($layanan as $value1) { ?>
-                                                <?php if ($value["id_pelanggan"] == $value1["id_pelanggan"]) { ?>
-                                                    <?php $jumlah++ ?>
-                                                    <span class="font-w600"><?php echo $jumlah . ". " . $value1["nama_layanan"] . '<br>' ?></span>
-                                                <?php } ?>
-                                            <?php } ?>
-                                        </td>
-                                        <td class="text-center">
+                                        <td class="text-center" rowspan="<?= $row_layanan ?>">
                                             <span class="font-w600"><?php echo $value["customer"] ?></span>
                                         </td>
-                                        <?php if ($value["status"] == "Tidak Aktif") { ?>
-                                            <td class="text-center"><span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span></td>
+                                    </tr>
+                                    <?php foreach ($layanan as $value1){ 
+                                        if ($value["id_pelanggan"] == $value1["id_pelanggan"]){?>
+                                        <tr>                                        
+                                        <td >
+                                            <span class="font-w600"><?php echo $i . ". " . $value1["nama_layanan"] ?></span>
+                                        </td>
+                                        <?php if ($value1["status"] == "Tidak Aktif") { ?>
+                                            <!-- jika status tidak aktif -->
+                                            <td class="text-center"><span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value1["status"] ?></span></td>
                                         <?php } else { ?>
-                                            <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span></td>
+                                            <!-- jika status aktif -->
+                                            <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value1["status"] ?></span></td>
                                         <?php } ?>
                                         <td class="text-center">
-                                            <a href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"] ?>" onclick="datapelanggan(this,'CS');"><button class="btn btn-light"><i class="fa fa-plus fa-2x"></i></button></a>
+                                            <a href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value1["id_layanan"] ?>" onclick="datapelanggan(this,'CS');"><button class="btn btn-light"><i class="fa fa-plus fa-2x"></i></button></a>
                                             <!-- <a class="text-decoration-none" href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"] ?>" onclick="datapelanggan(this,'CS');">+ tiket</a> -->
                                         </td>
-                                    </tr>
-                                </tbody>
-                            <?php } ?>
+                                        </tr>
+                                    <?php $i += 1; 
+                                        }
+                                    }
+                                } ?>
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -186,21 +201,27 @@
                         <div class="block-header border-bottom ">
                             <h3 class="block-title text-primary">Report Staff</h3>
                         </div>
-                        <button class="btn btn-primary search mt-3 ml-2 mr-4" id="button-report">Terapkan</button>
-                        <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-end" id="tgl-end" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal End">
-                        <h1 class="search"><i class="far fa-window-minimize mr-3"></i></h1>
-                        <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-start" id="tgl-start" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal Start">
+                        <button class="btn btn-primary search mt-3 ml-2 mr-4" data-toggle="click-ripple" id="button-report">Terapkan</button>
+                        <button class="btn btn-outline-danger search mt-3 ml-1 mr-2" data-toggle="click-ripple" id="button-reset">Reset</button>
+                        
+                        <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-end" id="tgl-end" data-date-format="yyyy-mm-dd" data-week-start="0" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal End">
+                        
+                        <h1 class="search"><i class="fa fa-minus mr-2"></i></h1>
+                        
+                        <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-start" id="tgl-start" data-date-format="yyyy-mm-dd" data-week-start="0" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal Start">
+                        
                         <input type="text" name="alamat-report" id="alamat-report" value="<?php echo base_url('index.php/home/searchreport/') . $employ_id . "/" ?>" hidden>
+                        
                         <div class="block-content block-content-full" id="report-table">
-                            <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
+                            <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                                 <thead class="thead-dark">
                                     <tr class="text-uppercase">
-                                        <th class="font-w700 text-center" style="width: 25%;">Nama</th>
-                                        <th class="font-w700 text-center" style="width: 25%;">Departemen</th>
-                                        <th class="font-w700 text-center" style="width: 25%;">Jabatan</th>
-                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 10%;">Request Tugas</th>
-                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 10%;">Selesai</th>
-                                        <th class="font-w700 text-center" style="width:10%" ;>On Progress</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Nama</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Departemen</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Jabatan</th>
+                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Request Tugas</th>
+                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Selesai</th>
+                                        <th class="font-w700 text-center" style="width:16%" ;>On Progress</th>
                                     </tr>
                                 </thead>
                                 <?php $data_report = [];
@@ -214,9 +235,10 @@
                                                     <td>
                                                         <span class="font-w600"><?php echo $value["nama"] ?></span>
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center" >
                                                         <span class="font-w600"><?php echo $value["nama_departemen"] ?></span>
-                                                    </td>                                                    <td>
+                                                    </td>                                                    
+                                                    <td class="text-center" >
                                                         <span class="font-w600"><?php echo $value["status_employ"] ?></span>
                                                     </td>
                                                     <td class="text-center">
@@ -242,10 +264,10 @@
                                                     <td>
                                                         <span class="font-w600"><?php echo $value["nama"] ?></span>
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         <span class="font-w600"><?php echo $value["nama_dept_tujuan"] ?></span>
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         <span class="font-w600"><?php echo $value["status_employ"] ?></span>
                                                     </td>
                                                     <td class="text-center">
@@ -272,10 +294,10 @@
                                                     <td>
                                                         <span class="font-w600"><?php echo $value["nama"] ?></span>
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         <span class="font-w600"><?php echo $value["nama_dept_tujuan"] ?></span>
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         <span class="font-w600"><?php echo $value["status_employ"] ?></span>
                                                     </td>
                                                     <td class="text-center">
@@ -299,6 +321,187 @@
                 </div>
             </div>
         <!-- END report-->
+        <div class="tab-pane fade fade-up" id="tugas" role="tabpanel">
+            <!-- Belum Selesai -->
+            <div class="container-fluid">
+                <div class="block block-mode-loading-oneui">
+                    <div class="block-header border-bottom">
+                        <h3 class="block-title text-danger">Tugas staff | Belum Selesai</h3>
+                    </div>
+                    <div class="block-content block-content-full">
+                        <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
+                            <thead class="thead-dark">
+                                <tr class="text-uppercase">
+                                    <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
+                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Departemen PJ</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
+                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Deadline</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($tasksaya as $valueparent) {
+                                    if ($valueparent["status"] == "Belum Selesai") { ?>
+                                        <tr>
+                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                                <span class="font-w600">#<?php echo $valueparent["id_task"] ." ".$valueparent["title"] ?></span>
+                                            </td>
+                                            <td style="width: 10%;" rowspan="<?= $row ?>">
+                                                <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
+                                            </td>
+                                            <td style="width: 10%;" class="text-center">
+                                                <span class="font-w600"><?php echo $valueparent["nama_dept_tujuan"] ?></span>
+                                            </td>
+                                            <td style="width: 10%;" class="text-center">
+                                                <span class="font-w600">-</span>
+                                            </td>
+                                            <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
+                                                <span class="font-size-sm  "><?php echo $valueparent["dateline"] ?></span>
+                                            </td>
+                                            <td class="text-danger text-center" style="width: 15%;">
+                                                <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $valueparent["status"] ?></span>
+                                            </td>
+                                        </tr>
+                                <?php }
+                                } ?>
+                            <tbody>
+                            <tbody>
+                                <?php foreach ($taskparent as $valueparent) {
+                                    $i = 1;
+                                    $row_taskbelum = 1;
+                                    foreach ($taskbelum as $value) {
+                                        if ($valueparent["id_task"] == $value["id_parent"]) {
+                                            $row_taskbelum += 1;
+                                        }
+                                    }
+                                ?>
+                                    <tr>
+                                        <?php if ($row_taskbelum != 1) { ?>
+                                            <td style="width: 10%;" rowspan="<?= $row_taskbelum ?>">
+                                                <span class="font-w600">#<?php echo $valueparent["id_task"]." ".$valueparent["title"] ?></span>
+                                            </td>
+                                            <td style="width: 10%;" rowspan="<?= $row_taskbelum ?>">
+                                                <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
+                                            </td>
+                                            <td style="width: 10%;" class="text-center" rowspan="<?= $row_taskbelum ?>">
+                                                <span class="font-w600"><?php echo $valueparent["nama_dept_tujuan"] ?></span>
+                                            </td>
+                                        <?php } ?>
+                                    </tr>
+                                    <?php foreach ($taskbelum as $value) {
+                                        if ($valueparent["id_task"] == $value["id_parent"]) { ?>
+                                            <tr>
+                                                <td style="width: 10%;">
+                                                    <span class="font-w600"><?php echo $i . "." . $value["title"] ?></span>
+                                                </td>
+                                                <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
+                                                    <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
+                                                </td>
+                                                <td class="text-danger text-center" style="width: 15%;">
+                                                    <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
+                                                </td>
+                                            </tr>
+                                <?php $i += 1;
+                                        }
+                                    }
+                                } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- END Belum Selesai -->
+            <!--  Selesai -->
+            <div class="container-fluid">
+                <div class="block block-mode-loading-oneui">
+                    <div class="block-header border-bottom">
+                        <h3 class="block-title text-success">Tugas Staff | Selesai</h3>
+                    </div>
+                    <div class="block-content block-content-full">
+                        <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
+                            <thead class="thead-dark">
+                                <tr class="text-uppercase">
+                                    <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
+                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Departemen PJ</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
+                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Deadline</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($tasksaya as $valueparent) {
+                                    if ($valueparent["status"] == "Selesai") { ?>
+                                        <tr>
+                                            <td style="width: 10%;" `>
+                                                <span class="font-w600">#<?php echo $valueparent["id_task"] ." ".$valueparent["title"]  ?></span>
+                                            </td>
+                                            <td style="width: 10%;" `>
+                                                <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
+                                            </td>
+                                            <td style="width: 10%;" class="text-center">
+                                                <span class="font-w600"><?php echo $valueparent["nama_dept_tujuan"] ?></span>
+                                            </td>
+                                            <td style="width: 10%;" class="text-center">
+                                                <span class="font-w600">-</span>
+                                            </td>
+                                            <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
+                                                <span class="font-size-sm  "><?php echo $valueparent["dateline"] ?></span>
+                                            </td>
+                                            <td class="text-danger text-center" style="width: 15%;">
+                                                <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $valueparent["status"] ?></span>
+                                            </td>
+                                        </tr>
+                                <?php }
+                                } ?>
+                            <tbody>
+                                <?php foreach ($taskparent as $valueparent) {
+                                    $i = 1;
+                                    $row_taskselesai = 1;
+                                    foreach ($taskselesai as $value) {
+                                        if ($valueparent["id_task"] == $value["id_parent"]) {
+                                            $row_taskselesai += 1;
+                                        }
+                                    }
+                                ?>
+                                    <tr>
+                                        <?php if ($row_taskselesai != 1) { ?>
+                                            <td style="width: 10%;" rowspan="<?= $row_taskselesai ?>">
+                                                <span class="font-w600">#<?php echo $valueparent["id_task"]." ".$valueparent["title"] ?></span>
+                                            </td>
+                                            <td style="width: 10%;" rowspan="<?= $row_taskselesai ?>">
+                                                <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
+                                            </td>
+                                            <td style="width: 10%;" class="text-center" rowspan="<?= $row_taskselesai ?>">
+                                                <span class="font-w600"><?php echo $valueparent["nama_dept_tujuan"] ?></span>
+                                            </td>
+                                        <?php } ?>
+                                    </tr>
+                                    <?php foreach ($taskselesai as $value) {
+                                        if ($valueparent["id_task"] == $value["id_parent"]) { ?>
+                                            <tr>
+                                                <td style="width: 10%;">
+                                                    <span class="font-w600"><?php echo $i . "." . $value["title"] ?></span>
+                                                </td>
+                                                <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
+                                                    <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
+                                                </td>
+                                                <td class="text-danger text-center" style="width: 15%;">
+                                                    <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span>
+                                                </td>
+                                            </tr>
+                                <?php $i += 1;
+                                        }
+                                    }
+                                } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- END  Selesai -->
+        </div>
 
         <div class="tab-pane fade fade-up" id="tiket" role="tabpanel">
             <!--  Tiket Belum Selesai -->
@@ -308,15 +511,15 @@
                         <h3 class="block-title text-danger">Tiket Saya | Belum Selesai</h3>
                     </div>
                     <div class="block-content block-content-full">
-                        <table class="table table-striped table-hover  table-vcenter font-size-sm mb-0">
+                        <table class="table table-bordered table-hover  table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 10%;"># ID Task</th>
-                                    <th class="font-w700 text-center" style="width: 10%;">Ketua Task</th>
-                                    <th class="font-w700 text-center" style="width: 25%;">Sub Title Task</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Deadline</th>
-                                    <th class="font-w700 text-center" style="width: 15%;">Status</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 15%;">Aksi</th>
+                                    <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
+                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Deadline</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Status</th>
+                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -324,13 +527,13 @@
                                     if ($value["status"] == "Belum Selesai" && $value["id_parent"]=="") { ?>
                                         <tr>
                                             <td style="width: 10%;" >
-                                                <span class="font-w600">#<?php echo $value["id_task"] ?></span>
+                                                <span class="font-w600">#<?php echo $value["id_task"]." ".$value["title"] ?></span>
                                             </td>
-                                            <td style="width: 10%;" >
-                                                <span class="font-w600"><?php echo $value["nama"] ?></span>
+                                            <td style="width: 10%;" class="text-center">
+                                                <span class="font-w600">-</span>
                                             </td>
-                                            <td style="width: 10%;">
-                                                <span class="font-w600"><?php echo $value["title"] ?></span>
+                                            <td style="width: 10%;" class="text-center">
+                                                <span class="font-w600">-</span>
                                             </td>
                                             <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
                                                 <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
@@ -350,13 +553,13 @@
                                     if ($value["status"] == "Belum Selesai" && $value["id_parent"]=="") { ?>
                                         <tr>
                                             <td style="width: 10%;" >
-                                                <span class="font-w600">#<?php echo $value["id_task"] ?></span>
+                                                <span class="font-w600">#<?php echo $value["id_task"]." ".$value["title"] ?></span>
                                             </td>
                                             <td style="width: 10%;" >
                                                 <span class="font-w600"><?php echo $value["nama"] ?></span>
                                             </td>
-                                            <td style="width: 10%;">
-                                                <span class="font-w600"><?php echo $value["title"] ?></span>
+                                            <td style="width: 10%;" class="text-center">
+                                                <span class="font-w600">-</span>
                                             </td>
                                             <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
                                                 <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
@@ -424,15 +627,15 @@
                         <h3 class="block-title text-success">Tiket Saya | Selesai</h3>
                     </div>
                     <div class="block-content block-content-full">
-                        <table class="table table-striped table-hover table-vcenter font-size-sm mb-0">
+                        <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 10%;"># ID Task</th>
-                                    <th class="font-w700 text-center" style="width: 10%;">Ketua Task</th>
-                                    <th class="font-w700 text-center" style="width: 25%;">Sub Title Task</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 20%;">Deadline</th>
-                                    <th class="font-w700 text-center" style="width: 15%;">Status</th>
-                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 15%;">Aksi</th>
+                                    <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
+                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Deadline</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Status</th>
+                                    <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -526,24 +729,25 @@
                 },
                 success: function(data) {
                     $('input[name="customer"]').val(data["customer"]);
-                    $('input[name="id_pelanggan"]').val(id_pelanggan);
+                    $('input[name="id_pelanggan"]').val(data["id_pelanggan"]);
+                    $('input[id="layanan-pelanggan"]').val(data["nama_layanan"]); //set value
                 }
             });
-            $.ajax({
-                type: "GET",
-                url: "<?php echo base_url('index.php/home/get_layanan') ?>",
-                dataType: "JSON",
-                data: {
-                    id: id_pelanggan
-                },
-                success: function(data) {
-                    $("#layanan-pelanggan").empty();
-                    for(i=0;i<data.length;i++){
-                        $('#layanan-pelanggan').append(new Option(data[i]["nama_layanan"], data[i]["nama_layanan"])); 
-                    }
-                    $("#layanan_pelanggan").val(data.length);
-                }
-            });
+            // $.ajax({
+            //     type: "GET",
+            //     url: "<?php echo base_url('index.php/home/get_layanan') ?>",
+            //     dataType: "JSON",
+            //     data: {
+            //         id: id_pelanggan
+            //     },
+            //     success: function(data) {
+            //         $("#layanan-pelanggan").empty();
+            //         for(i=0;i<data.length;i++){
+            //             $('#layanan-pelanggan').append(new Option(data[i]["nama_layanan"], data[i]["nama_layanan"])); 
+            //         }
+            //         $("#layanan_pelanggan").val(data.length);
+            //     }
+            // });
         }
     </script>
     <!-- pop up tiket pelanggan -->
@@ -569,9 +773,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="layanan">Layanan</label>
-                                <select name="layanan" id="layanan-pelanggan" class="form-control">
-
-                                </select>
+                                <input type="text" class="form-control" name="layanan" id="layanan-pelanggan" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="masalah">Jenis Masalah</label>
@@ -593,16 +795,16 @@
                                     <span class="input-group-text input-group-text-alt">
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
-                                    <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true">
+                                    <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="0" data-autoclose="true" data-today-highlight="true">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
-                                <textarea class="form-control required" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
+                                <textarea class="form-control required js-summernote" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
                                 <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
                             </div>
-                            <div style="float:right;margin-bottom:3%">
-                                <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
+                            <div  style="float:right;margin-bottom:3%">
+                                <button type="reset" class="btn btn-outline-danger mr-2">Reset</button>
                                 <button type="submit" class="btn btn-primary">Buat</button>
 
                             </div>
@@ -651,39 +853,22 @@
                                     <span class="input-group-text input-group-text-alt">
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
-                                    <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true">
+                                    <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="0" data-autoclose="true" data-today-highlight="true">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
-                                <textarea class="form-control required" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
+                                <textarea class="form-control required js-summernote" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
                                 <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
                             </div>
 
-                            <div class="block-content block-content-full ">
-                                <!-- Summernote Container -->
-                                <div class="js-summernote-air">
-
-                                </div>
-                            </div>
+                            
                     </div>
-                    <div class="block">
-                        <div class="block-header">
-
-                            <div class="block-options">
-
-                            </div>
-                        </div>
-                        <div class="block-content block-content-full">
-                            <!-- Summernote Container -->
-                            <div class="js-summernote">Hello Summernote!</div>
-                        </div>
-                    </div>
-                    <!-- END Summernote -->
+                    
                     <div style="float:right;margin-bottom:3%">
-                        <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>
+                        <button type="reset" class="btn btn-outline-danger mr-2">Reset</button>
 
-                        <button type="submit" class="btn btn-primary">Buat</button>
+                        <button type="submit" class="btn btn-primary mr-4">Buat</button>
 
                     </div>
 
@@ -704,29 +889,14 @@
                     Crafted with <i class="fa fa-heart text-danger"></i> by <a class="font-w600" href="" target="_blank">ARMTEAM</a>
                 </div>
                 <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left">
-                    <a class="font-w600" href="https://1.envato.market/xWy" target="_blank">Gink Technology x OneUI 4.2</a> &copy; <span data-toggle="year-copy"></span>
+                    <a class="font-w600" href="https://1.envato.market/xWy" target="_blank">Gink Technology x ARMTEAM</a> &copy; <span data-toggle="year-copy"></span>
                 </div>
             </div>
         </div>
     </footer>
     <!-- END Footer -->
 
-    <!--
-            OneUI JS Core
 
-            Vital libraries and plugins used in all pages. You can choose to not include this file if you would like
-            to handle those dependencies through webpack. Please check out assets/_es6/main/bootstrap.js for more info.
-
-            If you like, you could also include them separately directly from the assets/js/core folder in the following
-            order. That can come in handy if you would like to include a few of them (eg jQuery) from a CDN.
-
-            assets/js/core/jquery.min.js
-            assets/js/core/bootstrap.bundle.min.js
-            assets/js/core/simplebar.min.js
-            assets/js/core/jquery-scrollLock.min.js
-            assets/js/core/jquery.appear.min.js
-            assets/js/core/js.cookie.min.js
-        -->
     <script src="<?php echo base_url('assets/oneui/js/oneui.core.min.js') ?>"></script>
 
     <!-- validasi form -->
@@ -743,12 +913,7 @@
     </script>
     <!-- akhir validasi form -->
 
-    <!--
-            OneUI JS
-
-            Custom functionality including Blocks/Layout API as well as other vital and optional helpers
-            webpack is putting everything together at assets/_es6/main/app.js
-        -->
+   
     <script src="<?php echo base_url('assets/oneui/js/oneui.app.min.js') ?>"></script>
 
     <!-- Page JS Plugins -->
@@ -778,6 +943,15 @@
         });
     </script>
 
+<!-- 
+                            script atur summernote height di buat tiket pelanggan -->
+                            <script type='text/javascript'>//<![CDATA[ 
+                            $(function(){
+                            $('#deskripsi').summernote({height: 200});
+                                          
+                            });//]]>  
+                            </script>
+                            <!-- akhir -->
 
 </body>
 

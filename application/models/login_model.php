@@ -11,8 +11,8 @@ class login_model extends CI_model
         return $this->db->get_where('employe',array("id_employ"=>$id_user))->row_array();
     }
     
-    public function regisStaff($data)
-    {
-        $this->db->insert('staff', $data);
-    }
+    // public function regisStaff($data)
+    // {
+    //     $this->db->insert('staff', $data);
+    // }
 }

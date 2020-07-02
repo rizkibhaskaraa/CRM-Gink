@@ -146,6 +146,16 @@
                             <td class="font-weight-bold">Nama Pengirim</td>
                             <td>: <?php echo $nama_kirim . " (" . $task["nama_dept_kirim"] . ")" ?></td>
                         </tr>
+                        <?php if ($task["customer"] != NULL) { ?>
+                            <tr>
+                                <td class="font-weight-bold">Customer</td>
+                                <td>: <?= $task["customer"] ?></td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold">Layanan Customer</td>
+                                <td>: <?= $task["nama_layanan"] ?></td>
+                            </tr>
+                        <?php } ?>
                         <tr>
                             <td class="font-weight-bold">Departemen Tujuan</td>
                             <td>: <?php echo $task["nama_dept_tujuan"] ?></td>

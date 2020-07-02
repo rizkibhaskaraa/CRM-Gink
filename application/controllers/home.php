@@ -215,6 +215,8 @@ class Home extends CI_Controller
                 //jika buat tiket dari tabel pelanggan
                 $data_task = array(
                     "id_pelanggan" => $this->input->post("id_pelanggan"),
+                    "customer" => $this->input->post("customer"),
+                    "nama_layanan" => $this->input->post("layanan"),
                     "nama_dept_tujuan" => $departemen_tujuan,
                     "id_employ_kirim" => $id_employ,
                     "nama_dept_kirim" => $departemen["nama_departemen"],

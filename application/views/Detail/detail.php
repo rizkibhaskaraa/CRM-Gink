@@ -138,8 +138,8 @@
                                 </p>
                                 <p class="font-size-sm "><?php echo $nama_kirim . " (" . $task["nama_dept_kirim"] . ")" ?></p>
                             </td>
-                            <td class="font-weight-bold mt-2" width="15%">Title</td>
-                            <td width="70%">: <?php echo $task["title"] ?> </td>
+                            <td class="font-weight-bold mt-2" style="width: 20%;">Title</td>
+                            <td width="70%"><?php echo $task["title"] ?> </td>
                         </tr>
                         <!-- <tr>
                             <td class="font-weight-bold">Nama Pengirim</td>
@@ -147,38 +147,43 @@
                         </tr> -->
                         <?php if ($task["customer"] != NULL) { ?>
                             <tr>
-                                <td class="font-weight-bold">Customer</td>
-                                <td>: <?= $task["customer"] ?></td>
+                                <td class="font-weight-bold" style="width: 20%;">Customer</td>
+                                <td><?= $task["customer"] ?></td>
                             </tr>
                             <tr>
-                                <td class="font-weight-bold">Layanan Customer</td>
-                                <td>: <?= $task["nama_layanan"] ?></td>
+                                <td class="font-weight-bold" style="width: 20%;">Layanan Customer</td>
+                                <td><?= $task["nama_layanan"] ?></td>
                             </tr>
                         <?php } ?>
                         <tr>
-                            <td class="font-weight-bold">Departemen Tujuan</td>
-                            <td>: <?php echo $task["nama_dept_tujuan"] ?></td>
+                            <td class="font-weight-bold" style="width: 20%;">Departemen Tujuan</td>
+                            <td><?php echo $task["nama_dept_tujuan"] ?></td>
                         </tr>
                         <tr>
-                            <td class="font-weight-bold">Deadline</td>
-                            <td>: <?php echo $task["dateline"] ?></td>
+                            <td class="font-weight-bold" style="width: 20%;">Deadline</td>
+                            <td><?php echo $task["dateline"] ?></td>
                         </tr>
                         <tr>
-                            <td class="font-weight-bold">Status Task</td>
+                            <td class="font-weight-bold" style="width: 20%;">Status Task</td>
                             <?php if ($task["status"] == "Belum Selesai") { ?>
                                 <td><span class=" font-w600 btn-sm btn-block btn-danger col-3"><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $task["status"] ?></span></td>
                             <?php } else { ?>
                                 <td><span class="font-w600 btn-sm btn-block btn-success col-3"><i class="fa fa-fw fa-check"></i> <?php echo $task["status"] ?></span></td>
                             <?php } ?>
                         </tr>
-                        
+                        <tr>
+                            <td class="font-weight-bold " style="width: 20%;">Deskripsi Task</td>
+                            <td>
+                                <p><?php echo $task["deskripsi"] ?></p>
+                            </td>
+                        </tr>
                         <tr>
                             <!-- keterangan == Request, setting tampilan head departemen -->
                             <?php if ($cekTabel == 'Request') { ?>
-                                <td class="font-weight-bold ">Penanggung Jawab</td>
+                                <td class="font-weight-bold" style="width: 20%;">Penanggung Jawab</td>
                                 <td>
                                     <form method="post" action="<?php echo base_url('index.php/detail/ubahPJ/' . $employ_id . '/' . $task['id_task']) ?>">
-                                        : <?php $isi = $PJ_task['id_employ_tujuan'] ?>
+                                        <?php $isi = $PJ_task['id_employ_tujuan'] ?>
                                         <!-- jika PJ task == null, add selection untuk pilih PJ task -->
                                         <?php if ($isi != null) {
                                             echo $namaPJ . "(" . $dept_PJtask . ")";
@@ -218,9 +223,9 @@
                                 </td>
                             <?php } else if (($cekTabel == 'TugasBelum' || $status == "staff" || $task["id_parent"] != NULL) && (count($subtask) == 0) && $cekTabel != 'Tiket' && $cekTabel != 'TugasSelesai') { ?>
                                 <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
-                                <td class="font-weight-bold">Berkas (opsional)</td>
+                                <td class="font-weight-bold" style="width: 20%;">Berkas (opsional)</td>
                                 <td>
-                                    : <input type="file" name="file">
+                                    <input type="file" name="file">
                                     <div class="block-content block-content-full text-right border-top mt-5">
                                         <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
                                         <input type="submit" class="btn btn-sm btn-primary" value="Selesai">
@@ -229,9 +234,8 @@
                                 <?php echo form_close(); ?>
                             <?php } else if ($cekTabel == 'TugasSelesai' && $task["id_parent"] != NULL && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum' || (count($subtask) == 0 && $task["id_parent"] == NULL && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum')) { ?>
                                 <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
-                                <td class="font-weight-bold">Berkas (opsional)</td>
+                                <td class="font-weight-bold" style="width: 20%;">Berkas (opsional)</td>
                                 <td>
-                                    :
                                     <?php if ($task['berkas'] != null) { ?>
                                         <a href="<?= base_url('upload/') . $task['berkas'] ?>"><?= $task['berkas'] ?></a>
                                         </br>
@@ -245,15 +249,14 @@
                         </tr>
                         <?php if ($cekTabel == 'Tiket') { ?>
                             <tr>
-                                <td class="font-weight-bold">Penanggung Jawab</td>
+                                <td class="font-weight-bold" style="width: 20%;">Penanggung Jawab</td>
                                 <td>
-                                    : <?= $namaPJ . " (" . $dept_PJtask . ")" ?>
+                                    <?= $namaPJ . " (" . $dept_PJtask . ")" ?>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="font-weight-bold">Waktu Selesai</td>
+                                <td class="font-weight-bold" style="width: 20%;">Waktu Selesai</td>
                                 <td>
-                                    :
                                     <?php if ($task['status'] == 'Belum Selesai') {
                                         echo '-';
                                     } ?>
@@ -261,21 +264,14 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="font-weight-bold  ">Berkas</td>
+                                <td class="font-weight-bold" style="width: 20%;">Berkas</td>
                                 <td>
-                                    :
                                     <?php if ($task['berkas'] == null) {
                                         echo '-';
                                     } ?>
                                     <a href="<?= base_url('upload/') . $task['berkas'] ?>"><?= $task['berkas'] ?></a>
                                 </td>
                             </tr>
-                            <tr>
-                            <td class="font-weight-bold  ">Deskripsi Task</td>
-                            <td>
-                                <p>: <?php echo $task["deskripsi"] ?></p>
-                            </td>
-                        </tr>
                         <?php } ?>
                         <?php if ($cekTabel == "Request" && count($subtask) != 0) { ?>
                             <!-- tabel sub task -->

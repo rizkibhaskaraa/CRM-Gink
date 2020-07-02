@@ -45,19 +45,19 @@
 <body>
     <!-- Right Section -->
     <!-- Home button -->
-    <?php if($employ_dept=="ceo"){
-        $linkhome = base_url('index.php/home/ceo/').$username;
-    }else{
-        $linkhome = base_url('index.php/home/index/').$username;
-    }?>
-     <div class="ml-4"  style="float:left;">
-                <a class="btn btn-sm btn-dual" href="<?php echo $linkhome?>">
-                    <img class="rounded"  src="<?php echo base_url('assets/oneui/media/avatars/home.png') ?>" alt="Header Avatar" style="width: 18px;">
-                    <span class="ml-2">Home</span>
-                
-                </a>
-            </div>
-            <!-- end home button -->
+    <?php if ($employ_dept == "ceo") {
+        $linkhome = base_url('index.php/home/ceo/') . $username;
+    } else {
+        $linkhome = base_url('index.php/home/index/') . $username;
+    } ?>
+    <div class="ml-4" style="float:left;">
+        <a class="btn btn-sm btn-dual" href="<?php echo $linkhome ?>">
+            <img class="rounded" src="<?php echo base_url('assets/oneui/media/avatars/home.png') ?>" alt="Header Avatar" style="width: 18px;">
+            <span class="ml-2">Home</span>
+
+        </a>
+    </div>
+    <!-- end home button -->
     <div class="col-md-2 ml-auto px-4">
         <!-- User Dropdown -->
         <div class="dropdown d-inline-block ml-2">
@@ -405,7 +405,7 @@
                                     <?php if ($employ_nama == $value["nama_kirim_komen"]) { ?>
                                         <!-- Jika user == pengirim komentar, tampilkan button delete komentar -->
                                         <form action="<?php echo base_url('index.php/detail/deletekomen/') . $task["id_task"] . "/" . $employ_id . "/" . $cekTabel . "/" . $value["id_komentar"] ?>" method="POST">
-                                            <button class="btn btn-sm btn-danger" data-toggle="click-ripple"type="submit">Delete</button>
+                                            <button class="btn btn-sm btn-danger" data-toggle="click-ripple" type="submit">Delete</button>
                                         </form>
                                     <?php } ?>
                                 </td>
@@ -418,7 +418,7 @@
                                         </a>
                                     </p>
                                     <!-- menampilkan nama pengirim komentar dan nama departemen pengirim komentar -->
-                                    <p class="font-size-sm"><?= $value["nama_kirim_komen"] ?><br><?= $task["nama_dept_komen"] ?></p>
+                                    <p class="font-size-sm"><?= $value["nama_kirim_komen"] ?><br><?= $value["nama_dept_komen"] ?></p>
                                 </td>
                                 <td>
                                     <p><?= $value["komentar"] ?></p>

@@ -126,14 +126,14 @@
                 <h3 class="block-title dark ">Hallo <?php echo $employ_nama ?> , berikut isi Detail Tasknya</h3>
             </div>
             <div class="block-content">
-                <table class="table table-borderless">
+                <table class="table table-bordered">
                     <tbody>
                         <tr>
                             <td class="d-none d-sm-table-cell text-center" rowspan="11" style="width: 15%;">
+                                <p>Pengirim</p>
                                 <p>
-                                    <a href="be_pages_generic_profile.html">
+                                    <a>
                                         <img class="img-avatar " src="<?php echo base_url('assets/oneui/media/avatars/avatar7.jpg') ?>" alt="">
-
                                     </a>
                                 </p>
                                 <p class="font-size-sm "><?php echo $nama_kirim . " (" . $task["nama_dept_kirim"] . ")" ?></p>
@@ -141,11 +141,10 @@
                             <td class="font-weight-bold mt-2" width="15%">Title</td>
                             <td width="70%">: <?php echo $task["title"] ?> </td>
                         </tr>
-
-                        <tr>
+                        <!-- <tr>
                             <td class="font-weight-bold">Nama Pengirim</td>
                             <td>: <?php echo $nama_kirim . " (" . $task["nama_dept_kirim"] . ")" ?></td>
-                        </tr>
+                        </tr> -->
                         <?php if ($task["customer"] != NULL) { ?>
                             <tr>
                                 <td class="font-weight-bold">Customer</td>

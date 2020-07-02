@@ -141,8 +141,9 @@
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
                                     <th class="font-w700 text-center" style="width: 10%;">#ID</th>
-                                    <th class="font-w700 text-center" style="width: 30%;">Customer</th>
-                                    <th class="font-w700 text-center" style="width: 30%;">Layanan</th>
+                                    <th class="font-w700 text-center" style="width: 25%;">Customer</th>
+                                    <th class="font-w700 text-center" style="width: 15%;">+Layanan</th>
+                                    <th class="font-w700 text-center" style="width: 20%;">Layanan</th>
                                     <th class="font-w700 text-center" style="width: 15%;">Status</th>
                                     <th class="font-w700 text-center" style="width: 15%;">+Tiket</th>
                                 </tr>
@@ -163,6 +164,11 @@
                                         <td class="text-center" rowspan="<?= $row_layanan ?>">
                                             <span class="font-w600"><?php echo $value["customer"] ?></span>
                                         </td>
+                                        <td class="text-center" rowspan="<?= $row_layanan ?>">
+                                            <a data-toggle="modal" data-target="#modal-block-large-tambah-layanan" href="" id="<?php echo $value["id_pelanggan"] ?>" onclick="dataidpelanggan(this);">
+                                                <button class="btn btn-light"><i class="fa fa-plus fa-2x"></i></button>
+                                            </a>
+                                        </td>
                                     </tr>
                                     <?php foreach ($layanan as $value1){ 
                                         if ($value["id_pelanggan"] == $value1["id_pelanggan"]){?>
@@ -172,11 +178,25 @@
                                         </td>
                                         <?php if ($value1["status"] == "Tidak Aktif") { ?>
                                             <!-- jika status tidak aktif -->
-                                            <td class="text-center"><span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value1["status"] ?></span></td>
-                                        <?php } else { ?>
+                                            <td class="text-center">
+                                                <a class="font-w600   btn-sm btn-block btn-danger" data-toggle="modal" data-target="#modal-block-large-status-layanan" href="" id="<?php echo $value1["id_layanan"] ?>" onclick="datalayanan(this);">
+                                                    <i class="fa fa-fw fa-times-circle"></i> <?php echo $value1["status"] ?>
+                                                </a>
+                                            </td>
+                                        <?php } else if($value1["status"] == "Aktif"){ ?>
                                             <!-- jika status aktif -->
-                                            <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value1["status"] ?></span></td>
-                                        <?php } ?>
+                                            <td class="text-center">
+                                                <a class="font-w600   btn-sm btn-block btn-success" data-toggle="modal" data-target="#modal-block-large-status-layanan" href="" id="<?php echo $value1["id_layanan"] ?>" onclick="datalayanan(this);">
+                                                    <i class="fa fa-fw fa-check"></i> <?php echo $value1["status"] ?>
+                                                </a>
+                                            </td>
+                                        <?php } else { ?>
+                                            <td class="text-center">
+                                                <a class="font-w600   btn-sm btn-block btn-warning" data-toggle="modal" data-target="#modal-block-large-status-layanan" href="" id="<?php echo $value1["id_layanan"] ?>" onclick="datalayanan(this);">
+                                                    <i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value1["status"] ?>
+                                                </a>
+                                            </td>
+                                        <?php }?>
                                         <td class="text-center">
                                             <a href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value1["id_layanan"] ?>" onclick="datapelanggan(this,'CS');"><button class="btn btn-light"><i class="fa fa-plus fa-2x"></i></button></a>
                                             <!-- <a class="text-decoration-none" href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"] ?>" onclick="datapelanggan(this,'CS');">+ tiket</a> -->
@@ -719,13 +739,13 @@
     <!-- POP UP BUAT TIKET -->
     <script>
         function datapelanggan(a, status) {
-            var id_pelanggan = a.id;
+            var id_layanan = a.id;
             $.ajax({
                 type: "GET",
-                url: "<?php echo base_url('index.php/home/get_pelanggan') ?>",
+                url: "<?php echo base_url('index.php/home/get_layanan') ?>",
                 dataType: "JSON",
                 data: {
-                    id: id_pelanggan
+                    id: id_layanan
                 },
                 success: function(data) {
                     $('input[name="customer"]').val(data["customer"]);
@@ -748,6 +768,25 @@
             //         $("#layanan_pelanggan").val(data.length);
             //     }
             // });
+        }
+        function datalayanan(a) {
+            var id_layanan = a.id;
+            $('input[name="id_layanan"]').val(id_layanan); //set value
+        }
+        function dataidpelanggan(a) {
+            var id_pelanggan = a.id;
+            $('input[name="id_pelanggan"]').val(id_pelanggan); //set value
+            $.ajax({
+                type: "GET",
+                url: "<?php echo base_url('index.php/home/get_pelanggan') ?>",
+                dataType: "JSON",
+                data: {
+                    id: id_pelanggan
+                },
+                success: function(data) {
+                    $('input[name="customer-popup"]').val(data["customer"]);
+                }
+            });
         }
     </script>
     <!-- pop up tiket pelanggan -->
@@ -879,8 +918,89 @@
             </div>
         </div>
     </div>
-    </div>
     <!-- akhir pop up tiket staff -->
+    <!-- pop up tambah layanan pelanggan -->
+    <div class="modal fade" id="modal-block-large-status-layanan" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="block block-themed block-transparent mb-0">
+                    <div class="block-header bg-primary-dark">
+                        <h3 class="block-title">Update status</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                <i class="fa fa-fw fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content font-size-sm mt-3 text-justify ">
+                        <h4>Pilih Status Layanan Pelanggan</h4>
+                        <form action="<?php echo base_url('index.php/home/updatelayanan/').$employ_id?>" method="POST" id="form-staff">
+                            <input type="text" name="id_layanan" hidden>
+                            <div class="form-group">
+                                <label for="status-layanan">Status Layanan</label>
+                                <select name="status-layanan" id="status-layanan" class="form-control">
+                                    <option value="Aktif">Aktif</option>
+                                    <option value="Tidak Aktif">Tidak Aktif</option>
+                                    <option value="Pending">Pending</option>
+                                </select>
+                            </div>
+                            <div style="float:right;margin-bottom:3%">
+                                <button type="submit" class="btn btn-primary mr-4">Simpan</button>
+                             </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- akhir pop up update status layanan pelanggan -->
+        <!-- pop up update status layanan pelanggan -->
+        <div class="modal fade" id="modal-block-large-tambah-layanan" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="block block-themed block-transparent mb-0">
+                    <div class="block-header bg-primary-dark">
+                        <h3 class="block-title">Tambah Layanan</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                <i class="fa fa-fw fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content font-size-sm mt-3 text-justify ">
+                        <h4>Isi Data Dibawah Ini dengan Lengkap untuk Tambah Layanan</h4>
+                        <form action="<?php echo base_url('index.php/home/tambahlayanan/').$employ_id?>" method="POST" id="form-staff">
+                            <input type="text" name="id_pelanggan" hidden>
+                            <div class="form-group">
+                                <label for="title">Customer</label>
+                                <input type="text" class="form-control" name="customer-popup" id="customer-popup" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="title">ID Layanan</label>
+                                <input type="text" class="form-control" name="id-layanan" id="id-layanan">
+                            </div>
+                            <div class="form-group">
+                                <label for="title">Nama Layanan</label>
+                                <input type="text" class="form-control" name="nama-layanan" id="nama-layanan">
+                            </div>
+                            <div class="form-group">
+                                <label for="status-layanan">Status Layanan</label>
+                                <select name="status-layanan" id="status-layanan" class="form-control">
+                                    <option value="Aktif">Aktif</option>
+                                    <option value="Tidak Aktif">Tidak Aktif</option>
+                                    <option value="Pending">Pending</option>
+                                </select>
+                            </div>
+                            <div style="float:right;margin-bottom:3%">
+                                <button type="submit" class="btn btn-primary mr-4">Tambah</button>
+                             </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- akhir pop up tambah layanan pelanggan -->
     <!-- Footer -->
     <footer id="page-footer" class="bg-body-light">
         <div class="content py-3">

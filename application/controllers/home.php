@@ -119,13 +119,13 @@ class Home extends CI_Controller
     }
 
     //fungsi edit status pelanggan
-    // public function editpelanggan()
-    // {
-    //     $id = $this->input->post("id_pelanggan");
-    //     $status = $this->input->post("status_pelanggan");
-    //     $user = $this->home_model->updatestatuspelanggan($id, $status);
-    //     redirect(base_url('index.php/home/index/') . $user);
-    // }
+    public function updatelayanan($id_employ)
+    {
+        $id_layanan = $this->input->post("id_layanan");
+        $status = $this->input->post("status-layanan");
+        $user = $this->home_model->updatestatuslayanan($id_employ,$id_layanan, $status);
+        redirect(base_url('index.php/home/ceo/') . $user);
+    }
 
     //fungsi menuju halaman detail
     public function detail($id, $task, $cekTabel)
@@ -169,7 +169,7 @@ class Home extends CI_Controller
     }
 
     //fungsi mendapatkan data tabel pelanggan join layanan
-    function get_pelanggan()
+    function get_layanan()
     {
         $id_layanan = $this->input->get('id');
         $data = $this->home_model->getlayananbyid($id_layanan);
@@ -177,12 +177,12 @@ class Home extends CI_Controller
     }
 
     //fungsi mendapatkan data tabel pelanggan
-    // function get_layanan()
-    // {
-    //     $id_pelanggan = $this->input->get('id');
-    //     $data = $this->home_model->getlayananbyid($id_pelanggan);
-    //     echo json_encode($data);
-    // }
+    function get_pelanggan()
+    {
+        $id_pelanggan = $this->input->get('id');
+        $data = $this->home_model->getpelangganbyid($id_pelanggan);
+        echo json_encode($data);
+    }
 
     //fungsi untuk menambah data tiket/task
     public function addtiket($id_employ)
@@ -254,15 +254,17 @@ class Home extends CI_Controller
     }
 
     //fungsi tambah data pelanggan
-    // public function addpelanggan()
-    // {
-    //     $data_pelanggan = array(
-    //         "id_pelanggan" => rand(0001, 1000),
-    //         "customer" => $this->input->post("customer"),
-    //         "layanan" => $this->input->post("layanan"),
-    //         "status" => $this->input->post("status_customer")
-    //     );
-    //     $this->home_model->insert_pelanggan($data_pelanggan);
-    //     redirect(base_url('index.php/home/index/') . $user["username"]);
-    // }
+    public function tambahlayanan()
+    {
+        $sum_layanan = $this->home_model->getsumlayanan();
+        $id_layanan = "LYN-0".($sum_layanan+1);
+        $data_layanan = array(
+            "id_layanan" => $id_layanan,
+            "nama_layanan" => $this->input->post("nama-layanan"),
+            "status" => $this->input->post("status-layanan"),
+            "id_pelanggan" => $this->input->post("id_pelanggan")
+        );
+        $this->home_model->insert_layanan($data_layanan);
+        redirect(base_url('index.php/home/ceo/') . $user["username"]);
+    }
 }

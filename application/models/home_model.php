@@ -1,5 +1,5 @@
 <?php
-error_reporting(0); //menyembunyikan error
+//error_reporting(0); //menyembunyikan error
 class home_model extends CI_model
 {
     //fungsi ambil data tabel employ
@@ -54,6 +54,12 @@ class home_model extends CI_model
     public function getlayanan()
     {
         return $this->db->get("layanan_pelanggan")->result_array();
+    }
+
+    //fungsi ambil jumlah data tabel layanan
+    public function getsumlayanan()
+    {
+        return $this->db->count_all("layanan_pelanggan");
     }
 
     //fungsi ambil data tabel pelanggan berdasarkan id pelanggan
@@ -171,6 +177,16 @@ class home_model extends CI_model
         return $user["username"];
     }
 
+     //fungsi update status layanan
+     public function updatestatuslayanan($id_employ,$id,$status){
+        $this->db->set('status', $status);
+        $this->db->where('id_layanan', $id);
+        $this->db->update('layanan_pelanggan');
+
+        $user = $this->db->get_where("user", array("id_employ" => $id_employ))->row_array();
+        return $user["username"];
+     }
+
     //fungsi search tabel pelanggan untuk searching dan sorting tabel pelanggan
     public function getsearch($status, $search)
     {
@@ -198,6 +214,12 @@ class home_model extends CI_model
     public function insert_task($data_task)
     {
         return $this->db->insert("task", $data_task);
+    }
+
+    //fungsi insert add layanan
+    public function insert_layanan($data_layanan)
+    {
+        return $this->db->insert("layanan_pelanggan", $data_layanan);
     }
 
     // report tanpa periode

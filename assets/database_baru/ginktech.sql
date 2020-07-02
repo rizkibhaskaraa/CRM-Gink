@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.9.1
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2020 at 07:00 AM
--- Server version: 10.1.9-MariaDB
--- PHP Version: 7.0.0
+-- Generation Time: Jul 02, 2020 at 04:42 AM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -75,7 +77,7 @@ INSERT INTO `employe` (`id_employ`, `nama`, `id_departemen`, `status_employ`) VA
 
 CREATE TABLE `komentar` (
   `id_komentar` varchar(30) NOT NULL,
-  `komentar` text,
+  `komentar` text DEFAULT NULL,
   `id_task` int(11) DEFAULT NULL,
   `nama_kirim_komen` varchar(50) DEFAULT NULL,
   `nama_dept_komen` varchar(50) NOT NULL,
@@ -88,7 +90,9 @@ CREATE TABLE `komentar` (
 
 INSERT INTO `komentar` (`id_komentar`, `komentar`, `id_task`, `nama_kirim_komen`, `nama_dept_komen`, `tanggal_komen`) VALUES
 ('443', '<p>oke mantap gaskeun</p>\r\n', 986, 'Yusuf', 'Developer', '2020-07-01 11:57:01'),
+('631', '<p>APA</p>\r\n\r\n<p>&nbsp;</p>\r\n', 989, 'Yusuf', 'Developer', '2020-07-02 09:29:51'),
 ('899', '<p>Ini udah saya kerjakan, tolong di check kembali ya&nbsp;</p>\r\n', 985, 'Yusuf', 'Developer', '2020-07-01 11:52:44'),
+('922', '<p>WKWK</p>\r\n', 989, 'Rizky Bhaskara', 'Marketing', '2020-07-02 09:29:23'),
 ('946', '<p>Sudah saya check sudah benar kok ini. Terimakasih banyak ya</p>\r\n', 985, 'Rizky Bhaskara', 'Marketing', '2020-07-01 11:53:22'),
 ('955', '<p>Terimakasih</p>\r\n', 985, 'Yusuf', 'Developer', '2020-07-01 11:54:41');
 
@@ -144,12 +148,14 @@ CREATE TABLE `task` (
   `id_task` int(11) NOT NULL,
   `id_parent` varchar(30) NOT NULL,
   `id_pelanggan` varchar(30) DEFAULT NULL,
+  `customer` varchar(50) DEFAULT NULL,
+  `nama_layanan` varchar(50) DEFAULT NULL,
   `id_employ_tujuan` varchar(30) DEFAULT NULL,
   `nama_dept_tujuan` varchar(30) DEFAULT NULL,
   `id_employ_kirim` varchar(30) DEFAULT NULL,
   `nama_dept_kirim` varchar(30) DEFAULT NULL,
   `title` varchar(30) DEFAULT NULL,
-  `deskripsi` longtext,
+  `deskripsi` longtext DEFAULT NULL,
   `kategori_masalah` varchar(20) DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   `dateline` date DEFAULT NULL,
@@ -162,11 +168,12 @@ CREATE TABLE `task` (
 -- Dumping data for table `task`
 --
 
-INSERT INTO `task` (`id_task`, `id_parent`, `id_pelanggan`, `id_employ_tujuan`, `nama_dept_tujuan`, `id_employ_kirim`, `nama_dept_kirim`, `title`, `deskripsi`, `kategori_masalah`, `date`, `dateline`, `berkas`, `waktu_selesai`, `status`) VALUES
-(985, '', NULL, '138', 'Developer', '082', 'Marketing', 'Bantu Solve Bug', '<b>Tolong dibantu ya</b>', NULL, '2020-07-01 11:48:26', '2020-07-03', 'Branding.png', '2020-07-01 11:52:13', 'Selesai'),
-(986, '', '002', '151', 'Developer', '138', 'Developer', 'Ini Coba', '<p><b>Coba tolong di bantu ya<br></b></p>', 'support', '2020-07-01 11:55:49', '2020-07-12', 'Branding1.png', '2020-07-01 11:56:44', 'Selesai'),
-(987, '985', NULL, '138', 'Developer', '138', 'Developer', 'Malas ngebantu', '<p><b>asdsa<br></b></p>', NULL, '2020-07-01 11:59:07', '2020-07-03', NULL, '2020-07-01 11:59:38', 'Selesai'),
-(988, '985', NULL, '138', 'Developer', '138', 'Developer', 'Popup error', '<p><b>dsasa<br></b></p>', NULL, '2020-07-01 11:59:25', '2020-07-11', NULL, '2020-07-01 11:59:40', 'Selesai');
+INSERT INTO `task` (`id_task`, `id_parent`, `id_pelanggan`, `customer`, `nama_layanan`, `id_employ_tujuan`, `nama_dept_tujuan`, `id_employ_kirim`, `nama_dept_kirim`, `title`, `deskripsi`, `kategori_masalah`, `date`, `dateline`, `berkas`, `waktu_selesai`, `status`) VALUES
+(985, '', NULL, NULL, NULL, '138', 'Developer', '082', 'Marketing', 'Bantu Solve Bug', '<b>Tolong dibantu ya</b>', NULL, '2020-07-01 11:48:26', '2020-07-03', 'Branding.png', '2020-07-01 11:52:13', 'Selesai'),
+(986, '', '002', NULL, NULL, '151', 'Developer', '138', 'Developer', 'Ini Coba', '<p><b>Coba tolong di bantu ya<br></b></p>', 'support', '2020-07-01 11:55:49', '2020-07-12', 'Branding1.png', '2020-07-01 11:56:44', 'Selesai'),
+(987, '985', NULL, NULL, NULL, '138', 'Developer', '138', 'Developer', 'Malas ngebantu', '<p><b>asdsa<br></b></p>', NULL, '2020-07-01 11:59:07', '2020-07-03', NULL, '2020-07-01 11:59:38', 'Selesai'),
+(988, '985', NULL, NULL, NULL, '138', 'Developer', '138', 'Developer', 'Popup error', '<p><b>dsasa<br></b></p>', NULL, '2020-07-01 11:59:25', '2020-07-11', NULL, '2020-07-01 11:59:40', 'Selesai'),
+(989, '', NULL, NULL, NULL, NULL, 'Marketing', '151', 'Developer', 'WKWK', '<p>WKWK<br></p>', NULL, '2020-07-02 09:28:47', '2020-08-01', NULL, NULL, 'Belum Selesai');
 
 -- --------------------------------------------------------
 
@@ -254,7 +261,8 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `task`
 --
 ALTER TABLE `task`
-  MODIFY `id_task` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=989;
+  MODIFY `id_task` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=990;
+
 --
 -- Constraints for dumped tables
 --
@@ -290,6 +298,7 @@ ALTER TABLE `task`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`id_employ`) REFERENCES `employe` (`id_employ`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

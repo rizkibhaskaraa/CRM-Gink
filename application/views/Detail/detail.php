@@ -171,12 +171,7 @@
                                 <td><span class="font-w600 btn-sm btn-block btn-success col-3"><i class="fa fa-fw fa-check"></i> <?php echo $task["status"] ?></span></td>
                             <?php } ?>
                         </tr>
-                        <tr>
-                            <td class="font-weight-bold  ">Deskripsi Task</td>
-                            <td>
-                                <p>: <?php echo $task["deskripsi"] ?></p>
-                            </td>
-                        </tr>
+                        
                         <tr>
                             <!-- keterangan == Request, setting tampilan head departemen -->
                             <?php if ($cekTabel == 'Request') { ?>
@@ -275,6 +270,12 @@
                                     <a href="<?= base_url('upload/') . $task['berkas'] ?>"><?= $task['berkas'] ?></a>
                                 </td>
                             </tr>
+                            <tr>
+                            <td class="font-weight-bold  ">Deskripsi Task</td>
+                            <td>
+                                <p>: <?php echo $task["deskripsi"] ?></p>
+                            </td>
+                        </tr>
                         <?php } ?>
                         <?php if ($cekTabel == "Request" && count($subtask) != 0) { ?>
                             <!-- tabel sub task -->

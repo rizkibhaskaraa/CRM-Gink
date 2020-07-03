@@ -85,31 +85,47 @@ class Detail extends CI_Controller
         //membuat id_task
         $task = $this->detail_model->gettask();
         $id_task = [];
-        foreach ($task as $value){
-            $no_id = substr($value["id_task"],5);
+        foreach ($task as $value) {
+            $no_id = substr($value["id_task"], 5);
             $no_id = intval($no_id);
             array_push($id_task, $no_id);
         }
         $max_id = max($id_task);
-        $id_task = "TASK-0".($max_id+1);
+        $id_task = "TASK-0" . ($max_id + 1);
         //akhir membuat id_task
+        if ($this->input->post("id_pelanggan") == NULL) {
+            $data_sub_task = array(
+                "id_task" => $id_task,
+                "nama_dept_tujuan" => $departemen["nama_departemen"],
+                "id_employ_tujuan" => $this->input->post("PJsubtask"),
+                "id_parent" => $this->input->post("id_parent"),
+                "id_employ_kirim" => $id_employ,
+                "nama_dept_kirim" => $departemen["nama_departemen"],
+                "title" => $this->input->post("title"),
+                "deskripsi" => $this->input->post("deskripsi"),
+                "date" => date("Y-m-d H-i-s"),
+                "dateline" => $this->input->post("dateline"),
+                "status" => "Belum Selesai"
+            );
+        } else {
+            $data_sub_task = array(
+                "id_task" => $id_task,
+                "id_pelanggan" => $this->input->post("id_pelanggan"),
+                "customer" => $this->input->post("customer"),
+                "nama_layanan" => $this->input->post("nama_layanan"),
+                "nama_dept_tujuan" => $departemen["nama_departemen"],
+                "id_employ_tujuan" => $this->input->post("PJsubtask"),
+                "id_parent" => $this->input->post("id_parent"),
+                "id_employ_kirim" => $id_employ,
+                "nama_dept_kirim" => $departemen["nama_departemen"],
+                "title" => $this->input->post("title"),
+                "deskripsi" => $this->input->post("deskripsi"),
+                "date" => date("Y-m-d H-i-s"),
+                "dateline" => $this->input->post("dateline"),
+                "status" => "Belum Selesai"
 
-        $data_sub_task = array(
-            "id_task" => $id_task,
-            "id_pelanggan" => $this->input->post("id_pelanggan"),
-            "customer" => $this->input->post("customer"),
-            "nama_layanan" => $this->input->post("nama_layanan"),
-            "nama_dept_tujuan" => $departemen["nama_departemen"],
-            "id_employ_tujuan" => $this->input->post("PJsubtask"),
-            "id_parent" => $this->input->post("id_parent"),
-            "id_employ_kirim" => $id_employ,
-            "nama_dept_kirim" => $departemen["nama_departemen"],
-            "title" => $this->input->post("title"),
-            "deskripsi" => $this->input->post("deskripsi"),
-            "date" => date("Y-m-d H-i-s"),
-            "dateline" => $this->input->post("dateline"),
-            "status" => "Belum Selesai"
-        );
+            );
+        }
         $this->detail_model->insert_sub_task($data_sub_task, $id_employ, $id_Task);
         redirect(base_url('index.php/detail/detailumum/') . $id_employ . "/" . $id_Task . "/" . $tabel);
     }
@@ -117,10 +133,22 @@ class Detail extends CI_Controller
     public function addkomen($idtask, $nama, $id_employ, $tabel, $dept)
     {
         date_default_timezone_set('Asia/Bangkok');
+        $komen = $this->detail_model->getallkomen();
         $nama = str_replace('%20', ' ', $nama);
         $dept = str_replace('%20', ' ', $dept);
+
+        $id_komen = [];
+        foreach ($komen as $value) {
+            $no_id = substr($value["id_komentar"], 4);
+            $no_id = intval($no_id);
+            array_push($id_komen, $no_id);
+        }
+
+        $max_id = max($id_komen);
+        $id_komen = "KMN-0" . ($max_id + 1);
+
         $data = array(
-            "id_komentar" => rand(0001, 1000),
+            "id_komentar" => $id_komen,
             "komentar" => $this->input->post("komentar"),
             "id_task" => $idtask,
             "nama_kirim_komen" => $nama,

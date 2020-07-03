@@ -167,6 +167,10 @@ class detail_model extends CI_model
         //data user
         return $this->db->insert("task", $data_sub_task);
     }
+    public function getallkomen()
+    {
+        return $this->db->get("komentar")->result_array();
+    }
     public function getkomentar($task)
     {
         // $this->db->or_where("id_parent", $task);

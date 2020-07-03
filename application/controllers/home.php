@@ -201,7 +201,7 @@ class Home extends CI_Controller
         $task = $this->home_model->gettask();
         $id_task = [];
         foreach ($task as $value){
-            $no_id = substr($value["id_task"],4);
+            $no_id = substr($value["id_task"],5);
             $no_id = intval($no_id);
             array_push($id_task, $no_id);
         }
@@ -219,14 +219,14 @@ class Home extends CI_Controller
                 if ($masalah == "umum") {
                     $departemen_tujuan = "umum";
                 } else if ($masalah == "hosting" || $masalah == "billing") {
-                    $departemen_tujuan = "Finance";
+                    $departemen_tujuan = "Marketing";
                 } else if ($masalah == "support") {
                     $departemen_tujuan = "Developer";
                 }
 
                 //jika buat tiket dari tabel pelanggan
                 $data_task = array(
-                    "id_task" = $id_task,
+                    "id_task" => $id_task,
                     "id_pelanggan" => $this->input->post("id_pelanggan"),
                     "customer" => $this->input->post("customer"),
                     "nama_layanan" => $this->input->post("layanan"),
@@ -245,7 +245,7 @@ class Home extends CI_Controller
                 $departemen_tujuan = $this->input->post("departemen");
                 //jika staff yang buat tiket untuk staff
                 $data_task = array(
-                    "id_task" = $id_task,
+                    "id_task" => $id_task,
                     "nama_dept_tujuan" => $departemen_tujuan,
                     "id_employ_kirim" => $id_employ,
                     "nama_dept_kirim" => $departemen["nama_departemen"],

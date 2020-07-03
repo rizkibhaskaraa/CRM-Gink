@@ -86,7 +86,7 @@ class Detail extends CI_Controller
         $task = $this->detail_model->gettask();
         $id_task = [];
         foreach ($task as $value){
-            $no_id = substr($value["id_task"],4);
+            $no_id = substr($value["id_task"],5);
             $no_id = intval($no_id);
             array_push($id_task, $no_id);
         }
@@ -95,7 +95,7 @@ class Detail extends CI_Controller
         //akhir membuat id_task
 
         $data_sub_task = array(
-            "id_task" = $id_task,
+            "id_task" => $id_task,
             "nama_dept_tujuan" => $departemen["nama_departemen"],
             "id_employ_tujuan" => $this->input->post("PJsubtask"),
             "id_parent" => $this->input->post("id_parent"),

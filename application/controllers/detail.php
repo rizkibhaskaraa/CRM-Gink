@@ -94,22 +94,39 @@ class Detail extends CI_Controller
         $id_task = "TASK-".($max_id+1);
         //akhir membuat id_task
 
-        $data_sub_task = array(
-            "id_task" => $id_task,
-            "id_pelanggan" => $this->input->post("id_pelanggan"),
-            "customer" => $this->input->post("customer"),
-            "nama_layanan" => $this->input->post("nama_layanan"),
-            "nama_dept_tujuan" => $departemen["nama_departemen"],
-            "id_employ_tujuan" => $this->input->post("PJsubtask"),
-            "id_parent" => $this->input->post("id_parent"),
-            "id_employ_kirim" => $id_employ,
-            "nama_dept_kirim" => $departemen["nama_departemen"],
-            "title" => $this->input->post("title"),
-            "deskripsi" => $this->input->post("deskripsi"),
-            "date" => date("Y-m-d H-i-s"),
-            "dateline" => $this->input->post("dateline"),
-            "status" => "Belum Selesai"
-        );
+        if ($this->input->post("id_pelanggan") == NULL) {
+            $data_sub_task = array(
+                "id_task" => $id_task,
+                "nama_dept_tujuan" => $departemen["nama_departemen"],
+                "id_employ_tujuan" => $this->input->post("PJsubtask"),
+                "id_parent" => $this->input->post("id_parent"),
+                "id_employ_kirim" => $id_employ,
+                "nama_dept_kirim" => $departemen["nama_departemen"],
+                "title" => $this->input->post("title"),
+                "deskripsi" => $this->input->post("deskripsi"),
+                "date" => date("Y-m-d H-i-s"),
+                "dateline" => $this->input->post("dateline"),
+                "status" => "Belum Selesai"
+            );
+        } else {
+            $data_sub_task = array(
+                "id_task" => $id_task,
+                "id_pelanggan" => $this->input->post("id_pelanggan"),
+                "customer" => $this->input->post("customer"),
+                "nama_layanan" => $this->input->post("nama_layanan"),
+                "nama_dept_tujuan" => $departemen["nama_departemen"],
+                "id_employ_tujuan" => $this->input->post("PJsubtask"),
+                "id_parent" => $this->input->post("id_parent"),
+                "id_employ_kirim" => $id_employ,
+                "nama_dept_kirim" => $departemen["nama_departemen"],
+                "title" => $this->input->post("title"),
+                "deskripsi" => $this->input->post("deskripsi"),
+                "date" => date("Y-m-d H-i-s"),
+                "dateline" => $this->input->post("dateline"),
+                "status" => "Belum Selesai"
+
+            );
+        }
         $this->detail_model->insert_sub_task($data_sub_task, $id_employ, $id_Task);
         redirect(base_url('index.php/detail/detailumum/') . $id_employ . "/" . $id_Task . "/" . $tabel);
     }

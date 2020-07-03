@@ -81,7 +81,7 @@ class Detail extends CI_Controller
         date_default_timezone_set('Asia/Bangkok');
         $employ = $this->detail_model->getemploy($id_employ);
         $departemen = $this->detail_model->getdept($employ["id_departemen"]);
-        
+
         //membuat id_task
         $task = $this->detail_model->gettask();
         $id_task = [];
@@ -96,6 +96,9 @@ class Detail extends CI_Controller
 
         $data_sub_task = array(
             "id_task" => $id_task,
+            "id_pelanggan" => $this->input->post("id_pelanggan"),
+            "customer" => $this->input->post("customer"),
+            "nama_layanan" => $this->input->post("nama_layanan"),
             "nama_dept_tujuan" => $departemen["nama_departemen"],
             "id_employ_tujuan" => $this->input->post("PJsubtask"),
             "id_parent" => $this->input->post("id_parent"),

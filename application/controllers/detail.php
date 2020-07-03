@@ -91,7 +91,7 @@ class Detail extends CI_Controller
             array_push($id_task, $no_id);
         }
         $max_id = max($id_task);
-        $id_task = "TASK-0" . ($max_id + 1);
+        $id_task = "TASK-" . ($max_id + 1);
         //akhir membuat id_task
         if ($this->input->post("id_pelanggan") == NULL) {
             $data_sub_task = array(
@@ -145,7 +145,7 @@ class Detail extends CI_Controller
         }
 
         $max_id = max($id_komen);
-        $id_komen = "KMN-0" . ($max_id + 1);
+        $id_komen = "KMN-" . ($max_id + 1);
 
         $data = array(
             "id_komentar" => $id_komen,

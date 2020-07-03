@@ -850,13 +850,13 @@
 <script>
     //fungsi ambil data pelanggan
     function datapelanggan(a, status) {
-        var id_pelanggan = a.id; //set variabel
-        $.ajax({ //ajax ambil data pelanggan
+        var id_layanan = a.id; //set variabel
+        $.ajax({ //ajax ambil data layanan
             type: "GET",
-            url: "<?php echo base_url('index.php/home/get_pelanggan') ?>",
+            url: "<?php echo base_url('index.php/home/get_layanan') ?>",
             dataType: "JSON",
             data: {
-                id: id_pelanggan
+                id: id_layanan
             },
             success: function(data) { //jika ambil data sukses
                 $('input[name="customer"]').val(data["customer"]); //set value

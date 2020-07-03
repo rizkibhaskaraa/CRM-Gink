@@ -117,6 +117,7 @@ class Detail extends CI_Controller
     public function addkomen($idtask, $nama, $id_employ, $tabel, $dept)
     {
         date_default_timezone_set('Asia/Bangkok');
+        $komen = $this->detail_model->getallkomen();
         $nama = str_replace('%20', ' ', $nama);
         $dept = str_replace('%20', ' ', $dept);
 

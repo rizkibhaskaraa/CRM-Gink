@@ -123,7 +123,7 @@ class Home extends CI_Controller
     {
         $id_layanan = $this->input->post("id_layanan");
         $status = $this->input->post("status-layanan");
-        $user = $this->home_model->updatestatuslayanan($id_employ,$id_layanan, $status);
+        $user = $this->home_model->updatestatuslayanan($id_employ, $id_layanan, $status);
         redirect(base_url('index.php/home/ceo/') . $user);
     }
 
@@ -200,13 +200,13 @@ class Home extends CI_Controller
         //membuat id_task
         $task = $this->home_model->gettask();
         $id_task = [];
-        foreach ($task as $value){
-            $no_id = substr($value["id_task"],5);
+        foreach ($task as $value) {
+            $no_id = substr($value["id_task"], 5);
             $no_id = intval($no_id);
             array_push($id_task, $no_id);
         }
         $max_id = max($id_task);
-        $id_task = "TASK-0".($max_id+1);
+        $id_task = "TASK-0" . ($max_id + 1);
         //akhir membuat id_task
 
         if ($this->form_validation->run() == false) {
@@ -275,13 +275,13 @@ class Home extends CI_Controller
         //$sum_layanan = $this->home_model->getsumlayanan();
         $layanan = $this->home_model->getlayanan();
         $id_lay = [];
-        foreach ($layanan as $value){
-            $no_id = substr($value["id_layanan"],4);
+        foreach ($layanan as $value) {
+            $no_id = substr($value["id_layanan"], 4);
             $no_id = intval($no_id);
             array_push($id_lay, $no_id);
         }
         $max_id = max($id_lay);
-        $id_layanan = "LYN-0".($max_id+1);
+        $id_layanan = "LYN-0" . ($max_id + 1);
         //akhir membuat id_layanan
 
         $data_layanan = array(
@@ -291,6 +291,27 @@ class Home extends CI_Controller
             "id_pelanggan" => $this->input->post("id_pelanggan")
         );
         $this->home_model->insert_layanan($data_layanan);
+        redirect(base_url('index.php/home/ceo/') . $user["username"]);
+    }
+    public function addcustomer()
+    {
+        //membuat id customer        
+        $pelanggan = $this->home_model->getpelanggan();
+        $id_cus = [];
+        foreach ($pelanggan as $value) {
+            $no_id = substr($value["id_pelanggan"], 4);
+            $no_id = intval($no_id);
+            array_push($id_cus, $no_id);
+        }
+        $max_id = max($id_cus);
+        $id_pel = "CUS-0" . ($max_id + 1);
+        //akhir membuat id_pelanggan
+
+        $data_pelanggan = array(
+            "id_pelanggan" => $id_pel,
+            "customer" => $this->input->post("customer"),
+        );
+        $this->home_model->insert_pelanggan($data_pelanggan);
         redirect(base_url('index.php/home/ceo/') . $user["username"]);
     }
 }

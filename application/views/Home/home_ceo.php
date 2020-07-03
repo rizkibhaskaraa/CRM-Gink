@@ -129,12 +129,12 @@
                     <div class="block-header border-bottom">
                         <h3 class="block-title text-primary">Data Pelanggan</h3>
                     </div>
-                    <input type="text" id="search" class="form-control col-2 search  mt-3 ml-2 mr-4" name="search" placeholder="Cari Layanan">
-                    <select name="status" id="status-pelanggan" class="form-control col-2 status-pelanggan mt-3">
+                    <input type="text" id="search" class="form-control col-2 search  mt-3 ml-2 mr-4" name="search" placeholder="Cari Customer">
+                    <!-- <select name="status" id="status-pelanggan" class="form-control col-2 status-pelanggan mt-3">
                         <option value="semua">Semua Status</option>
                         <option value="aktif">Aktif</option>
                         <option value="tidak aktif">Tidak Aktif</option>
-                    </select>
+                    </select> -->
                     <input type="text" id="link" name="link" value="<?php echo base_url('index.php/home/search/') . $employ_id . "/" ?>" hidden>
                     <div class="block-content block-content-full">
                         <table class="table table-bordered table-hover  table-vcenter font-size-sm mb-0" id="tabel-pelanggan">

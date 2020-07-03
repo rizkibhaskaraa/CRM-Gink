@@ -178,16 +178,17 @@ class home_model extends CI_model
     }
 
     //fungsi search tabel pelanggan untuk searching dan sorting tabel pelanggan
-    public function getsearch($status, $search)
+    public function getsearch($search)
     {
-            if ($status == "semua") {
+            // if ($status == "semua") {
                 
-            } else {
-                $this->db->where("status", $status);
-            }
+            // } else {
+            //     $this->db->where("status", $status);
+            // }
         
-        $this->db->like('nama_layanan', $search);
-        return $this->db->get("layanan_pelanggan")->result_array();
+        $this->db->like('customer', $search);
+        $this->db->or_like('id_pelanggan', $search);
+        return $this->db->get("pelanggan")->result_array();
     }
 
     //fungsi search departemen di report

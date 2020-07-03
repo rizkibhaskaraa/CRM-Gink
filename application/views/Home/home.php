@@ -152,12 +152,12 @@
                         <h3 class="block-title text-primary">Data Pelanggan</h3>
                     </div>
                     <!-- bagian field search dan sorting -->
-                    <input type="text" id="search" class="form-control col-2 search  mt-3 ml-2 mr-4" name="search" placeholder="Cari Layanan">
-                    <select name="status" id="status-pelanggan" class="form-control col-2 status-pelanggan mt-3">
+                    <input type="text" id="search" class="form-control col-2 search  mt-3 ml-2 mr-4" name="search" placeholder="Cari Customer">
+                    <!-- <select name="status" id="status-pelanggan" class="form-control col-2 status-pelanggan mt-3">
                         <option value="semua">Semua Status</option>
                         <option value="aktif">Aktif</option>
                         <option value="tidak aktif">Tidak Aktif</option>
-                    </select>
+                    </select> -->
                     <input type="text" id="link" name="link" value="<?php echo base_url('index.php/home/search/') . $employ_id . "/" ?>" hidden>
                     <!-- akhir bagian field search dan sorting -->
                     <div class="block-content block-content-full">

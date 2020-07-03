@@ -82,7 +82,23 @@ class Detail extends CI_Controller
         $employ = $this->detail_model->getemploy($id_employ);
         $departemen = $this->detail_model->getdept($employ["id_departemen"]);
 
+        //membuat id_task
+        $task = $this->detail_model->gettask();
+        $id_task = [];
+        foreach ($task as $value){
+            $no_id = substr($value["id_task"],5);
+            $no_id = intval($no_id);
+            array_push($id_task, $no_id);
+        }
+        $max_id = max($id_task);
+        $id_task = "TASK-0".($max_id+1);
+        //akhir membuat id_task
+
         $data_sub_task = array(
+            "id_task" => $id_task,
+            "id_pelanggan" => $this->input->post("id_pelanggan"),
+            "customer" => $this->input->post("customer"),
+            "nama_layanan" => $this->input->post("nama_layanan"),
             "nama_dept_tujuan" => $departemen["nama_departemen"],
             "id_employ_tujuan" => $this->input->post("PJsubtask"),
             "id_parent" => $this->input->post("id_parent"),

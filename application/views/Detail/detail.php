@@ -493,6 +493,9 @@
                         <!-- FORM add subtiket dengan parameter id employ, id task, status tabel -->
                         <form action="<?php echo base_url('index.php/detail/addsubtiket/') . $employ_id . "/" . $task["id_task"] . "/" . $cekTabel ?>" method="POST" id="form-staff">
                             <input type="text" name="id_parent" value="<?php echo $task["id_task"] ?>" hidden>
+                            <input type="text" name="id_pelanggan" value="<?php echo $task["id_pelanggan"] ?>" hidden>
+                            <input type="text" name="customer" value="<?php echo $task["customer"] ?>" hidden>
+                            <input type="text" name="nama_layanan" value="<?php echo $task["nama_layanan"] ?>" hidden>
 
                             <div class="form-group">
                                 <label for="title">Judul Parent Task</label>

@@ -119,8 +119,19 @@ class Detail extends CI_Controller
         date_default_timezone_set('Asia/Bangkok');
         $nama = str_replace('%20', ' ', $nama);
         $dept = str_replace('%20', ' ', $dept);
+
+        $id_komen = [];
+        foreach ($komen as $value) {
+            $no_id = substr($value["id_komentar"], 4);
+            $no_id = intval($no_id);
+            array_push($id_komen, $no_id);
+        }
+
+        $max_id = max($id_komen);
+        $id_komen = "KMN-" . ($max_id + 1);
+
         $data = array(
-            "id_komentar" => rand(0001, 1000),
+            "id_komentar" => $id_komen),
             "komentar" => $this->input->post("komentar"),
             "id_task" => $idtask,
             "nama_kirim_komen" => $nama,

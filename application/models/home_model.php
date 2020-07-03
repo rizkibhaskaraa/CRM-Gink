@@ -56,11 +56,11 @@ class home_model extends CI_model
         return $this->db->get("layanan_pelanggan")->result_array();
     }
 
-    //fungsi ambil jumlah data tabel layanan
-    public function getsumlayanan()
-    {
-        return $this->db->count_all("layanan_pelanggan");
-    }
+    // //fungsi ambil jumlah data tabel layanan
+    // public function getsumlayanan()
+    // {
+    //     return $this->db->count_all("layanan_pelanggan");
+    // }
 
     //fungsi ambil data tabel pelanggan berdasarkan id pelanggan
     public function getpelangganbyid($id)

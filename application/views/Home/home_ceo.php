@@ -976,10 +976,6 @@
                                 <input type="text" class="form-control" name="customer-popup" id="customer-popup" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="title">ID Layanan</label>
-                                <input type="text" class="form-control" name="id-layanan" id="id-layanan">
-                            </div>
-                            <div class="form-group">
                                 <label for="title">Nama Layanan</label>
                                 <input type="text" class="form-control" name="nama-layanan" id="nama-layanan">
                             </div>

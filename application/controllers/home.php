@@ -256,8 +256,20 @@ class Home extends CI_Controller
     //fungsi tambah data pelanggan
     public function tambahlayanan()
     {
-        $sum_layanan = $this->home_model->getsumlayanan();
-        $id_layanan = "LYN-0".($sum_layanan+1);
+
+        //membuat id layanan
+        //$sum_layanan = $this->home_model->getsumlayanan();
+        $layanan = $this->home_model->getlayanan();
+        $id_lay = [];
+        foreach ($layanan as $value){
+            $no_id = substr($value["id_layanan"],4);
+            $no_id = intval($no_id);
+            array_push($id_lay, $no_id);
+        }
+        $max_id = max($id_lay);
+        $id_layanan = "LYN-0".($max_id+1);
+        //akhir membuat id_layanan
+        
         $data_layanan = array(
             "id_layanan" => $id_layanan,
             "nama_layanan" => $this->input->post("nama-layanan"),

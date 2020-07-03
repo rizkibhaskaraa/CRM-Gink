@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 02, 2020 at 04:42 AM
+-- Generation Time: Jul 03, 2020 at 04:41 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `departemen` (
-  `id_departemen` varchar(30) NOT NULL,
+  `id_departemen` varchar(10) NOT NULL,
   `nama_departemen` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -50,7 +50,7 @@ INSERT INTO `departemen` (`id_departemen`, `nama_departemen`) VALUES
 --
 
 CREATE TABLE `employe` (
-  `id_employ` varchar(30) NOT NULL,
+  `id_employ` varchar(10) NOT NULL,
   `nama` varchar(50) DEFAULT NULL,
   `id_departemen` varchar(30) DEFAULT NULL,
   `status_employ` varchar(10) DEFAULT NULL
@@ -76,9 +76,9 @@ INSERT INTO `employe` (`id_employ`, `nama`, `id_departemen`, `status_employ`) VA
 --
 
 CREATE TABLE `komentar` (
-  `id_komentar` varchar(30) NOT NULL,
+  `id_komentar` varchar(10) NOT NULL,
   `komentar` text DEFAULT NULL,
-  `id_task` int(11) DEFAULT NULL,
+  `id_task` varchar(10) DEFAULT NULL,
   `nama_kirim_komen` varchar(50) DEFAULT NULL,
   `nama_dept_komen` varchar(50) NOT NULL,
   `tanggal_komen` datetime DEFAULT NULL
@@ -89,12 +89,7 @@ CREATE TABLE `komentar` (
 --
 
 INSERT INTO `komentar` (`id_komentar`, `komentar`, `id_task`, `nama_kirim_komen`, `nama_dept_komen`, `tanggal_komen`) VALUES
-('443', '<p>oke mantap gaskeun</p>\r\n', 986, 'Yusuf', 'Developer', '2020-07-01 11:57:01'),
-('631', '<p>APA</p>\r\n\r\n<p>&nbsp;</p>\r\n', 989, 'Yusuf', 'Developer', '2020-07-02 09:29:51'),
-('899', '<p>Ini udah saya kerjakan, tolong di check kembali ya&nbsp;</p>\r\n', 985, 'Yusuf', 'Developer', '2020-07-01 11:52:44'),
-('922', '<p>WKWK</p>\r\n', 989, 'Rizky Bhaskara', 'Marketing', '2020-07-02 09:29:23'),
-('946', '<p>Sudah saya check sudah benar kok ini. Terimakasih banyak ya</p>\r\n', 985, 'Rizky Bhaskara', 'Marketing', '2020-07-01 11:53:22'),
-('955', '<p>Terimakasih</p>\r\n', 985, 'Yusuf', 'Developer', '2020-07-01 11:54:41');
+('443', '<p>oke mantap gaskeun</p>\r\n', 'TASK-02', 'Yusuf', 'Developer', '2020-07-01 11:57:01');
 
 -- --------------------------------------------------------
 
@@ -106,7 +101,7 @@ CREATE TABLE `layanan_pelanggan` (
   `id_layanan` varchar(10) NOT NULL,
   `nama_layanan` varchar(50) DEFAULT NULL,
   `status` varchar(30) DEFAULT NULL,
-  `id_pelanggan` varchar(30) DEFAULT NULL
+  `id_pelanggan` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -114,9 +109,11 @@ CREATE TABLE `layanan_pelanggan` (
 --
 
 INSERT INTO `layanan_pelanggan` (`id_layanan`, `nama_layanan`, `status`, `id_pelanggan`) VALUES
-('LYN-01', 'Website', 'Aktif', '001'),
-('LYN-02', 'Hosting', 'Aktif', '001'),
-('LYN-03', 'Website Toefl', 'Aktif', '002');
+('LYN-01', 'Website', 'Aktif', 'CUS-01'),
+('LYN-03', 'Website Toefl', 'Aktif', 'CUS-02'),
+('LYN-04', 'Hosting', 'Aktif', 'CUS-04'),
+('LYN-05', 'Website Toko', 'Aktif', 'CUS-03'),
+('LYN-06', 'Website Unila', 'Aktif', 'CUS-02');
 
 -- --------------------------------------------------------
 
@@ -125,7 +122,7 @@ INSERT INTO `layanan_pelanggan` (`id_layanan`, `nama_layanan`, `status`, `id_pel
 --
 
 CREATE TABLE `pelanggan` (
-  `id_pelanggan` varchar(30) NOT NULL,
+  `id_pelanggan` varchar(10) NOT NULL,
   `customer` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -134,9 +131,10 @@ CREATE TABLE `pelanggan` (
 --
 
 INSERT INTO `pelanggan` (`id_pelanggan`, `customer`) VALUES
-('001', 'Jaya Bakery'),
-('002', 'ITERA'),
-('003', 'Jual Bakery');
+('CUS-01', 'Jaya Bakery'),
+('CUS-02', 'ITERA'),
+('CUS-03', 'Jual Bakery'),
+('CUS-04', 'Propera');
 
 -- --------------------------------------------------------
 
@@ -145,9 +143,9 @@ INSERT INTO `pelanggan` (`id_pelanggan`, `customer`) VALUES
 --
 
 CREATE TABLE `task` (
-  `id_task` int(11) NOT NULL,
-  `id_parent` varchar(30) NOT NULL,
-  `id_pelanggan` varchar(30) DEFAULT NULL,
+  `id_task` varchar(10) NOT NULL,
+  `id_parent` varchar(10) NOT NULL,
+  `id_pelanggan` varchar(10) DEFAULT NULL,
   `customer` varchar(50) DEFAULT NULL,
   `nama_layanan` varchar(50) DEFAULT NULL,
   `id_employ_tujuan` varchar(30) DEFAULT NULL,
@@ -169,11 +167,12 @@ CREATE TABLE `task` (
 --
 
 INSERT INTO `task` (`id_task`, `id_parent`, `id_pelanggan`, `customer`, `nama_layanan`, `id_employ_tujuan`, `nama_dept_tujuan`, `id_employ_kirim`, `nama_dept_kirim`, `title`, `deskripsi`, `kategori_masalah`, `date`, `dateline`, `berkas`, `waktu_selesai`, `status`) VALUES
-(985, '', NULL, NULL, NULL, '138', 'Developer', '082', 'Marketing', 'Bantu Solve Bug', '<b>Tolong dibantu ya</b>', NULL, '2020-07-01 11:48:26', '2020-07-03', 'Branding.png', '2020-07-01 11:52:13', 'Selesai'),
-(986, '', '002', NULL, NULL, '151', 'Developer', '138', 'Developer', 'Ini Coba', '<p><b>Coba tolong di bantu ya<br></b></p>', 'support', '2020-07-01 11:55:49', '2020-07-12', 'Branding1.png', '2020-07-01 11:56:44', 'Selesai'),
-(987, '985', NULL, NULL, NULL, '138', 'Developer', '138', 'Developer', 'Malas ngebantu', '<p><b>asdsa<br></b></p>', NULL, '2020-07-01 11:59:07', '2020-07-03', NULL, '2020-07-01 11:59:38', 'Selesai'),
-(988, '985', NULL, NULL, NULL, '138', 'Developer', '138', 'Developer', 'Popup error', '<p><b>dsasa<br></b></p>', NULL, '2020-07-01 11:59:25', '2020-07-11', NULL, '2020-07-01 11:59:40', 'Selesai'),
-(989, '', NULL, NULL, NULL, NULL, 'Marketing', '151', 'Developer', 'WKWK', '<p>WKWK<br></p>', NULL, '2020-07-02 09:28:47', '2020-08-01', NULL, NULL, 'Belum Selesai');
+('TASK-01', '', NULL, NULL, NULL, '138', 'Developer', '082', 'Marketing', 'Bantu Solve Bug', '<b>Tolong dibantu ya</b>', NULL, '2020-07-01 11:48:26', '2020-07-03', 'Branding.png', '2020-07-01 11:52:13', 'Selesai'),
+('TASK-02', '', 'CUS-02', 'ITERA', 'Website Toefl', '151', 'Developer', '138', 'Developer', 'Ini Coba', '<p><b>Coba tolong di bantu ya<br></b></p>', 'support', '2020-07-01 11:55:49', '2020-07-12', 'Branding1.png', '2020-07-01 11:56:44', 'Selesai'),
+('TASK-03', 'TASK-01', NULL, NULL, NULL, '138', 'Developer', '138', 'Developer', 'Malas ngebantu', '<p><b>asdsa<br></b></p>', NULL, '2020-07-01 11:59:07', '2020-07-03', NULL, '2020-07-01 11:59:38', 'Selesai'),
+('TASK-04', 'TASK-01', NULL, NULL, NULL, '138', 'Developer', '138', 'Developer', 'Popup error', '<p><b>dsasa<br></b></p>', NULL, '2020-07-01 11:59:25', '2020-07-11', NULL, '2020-07-01 11:59:40', 'Selesai'),
+('TASK-05', '', NULL, NULL, NULL, NULL, 'Marketing', '151', 'Developer', 'WKWK', '<p>WKWK<br></p>', NULL, '2020-07-02 09:28:47', '2020-08-01', NULL, NULL, 'Belum Selesai'),
+('TASK-06', '', 'CUS-01', 'Jaya Bakery', 'Website', NULL, 'umum', '138', 'Developer', 'JAYA BAKERY MAU WEBSITE', '<h4>Isi Data Dibawah Ini dengan Lengkap Untuk Membuat Tiket</h4>', 'umum', '2020-07-02 10:42:22', '2020-08-01', NULL, NULL, 'Belum Selesai');
 
 -- --------------------------------------------------------
 
@@ -184,7 +183,7 @@ INSERT INTO `task` (`id_task`, `id_parent`, `id_pelanggan`, `customer`, `nama_la
 CREATE TABLE `user` (
   `username` varchar(30) NOT NULL,
   `password` varchar(20) DEFAULT NULL,
-  `id_employ` varchar(30) DEFAULT NULL
+  `id_employ` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -252,16 +251,6 @@ ALTER TABLE `task`
 ALTER TABLE `user`
   ADD PRIMARY KEY (`username`),
   ADD KEY `id_employ` (`id_employ`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `task`
---
-ALTER TABLE `task`
-  MODIFY `id_task` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=990;
 
 --
 -- Constraints for dumped tables

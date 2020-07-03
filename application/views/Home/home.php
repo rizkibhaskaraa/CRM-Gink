@@ -152,7 +152,7 @@
                         <h3 class="block-title text-primary">Data Pelanggan</h3>
                     </div>
                     <!-- bagian field search dan sorting -->
-                    <input type="text" id="search" class="form-control col-2 search  mt-3 ml-2 mr-4" name="search" placeholder="Cari Customer">
+                    <input type="text" id="search" class="form-control col-2 search  mt-3 ml-2 mr-4" name="search" placeholder="Cari Layanan">
                     <select name="status" id="status-pelanggan" class="form-control col-2 status-pelanggan mt-3">
                         <option value="semua">Semua Status</option>
                         <option value="aktif">Aktif</option>

@@ -91,7 +91,7 @@ class Detail extends CI_Controller
             array_push($id_task, $no_id);
         }
         $max_id = max($id_task);
-        $id_task = "TASK-0".($max_id+1);
+        $id_task = "TASK-".($max_id+1);
         //akhir membuat id_task
 
         $data_sub_task = array(

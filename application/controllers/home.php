@@ -206,7 +206,7 @@ class Home extends CI_Controller
             array_push($id_task, $no_id);
         }
         $max_id = max($id_task);
-        $id_task = "TASK-0" . ($max_id + 1);
+        $id_task = "TASK-" . ($max_id + 1);
         //akhir membuat id_task
 
         if ($this->form_validation->run() == false) {
@@ -281,7 +281,7 @@ class Home extends CI_Controller
             array_push($id_lay, $no_id);
         }
         $max_id = max($id_lay);
-        $id_layanan = "LYN-0" . ($max_id + 1);
+        $id_layanan = "LYN-" . ($max_id + 1);
         //akhir membuat id_layanan
 
         $data_layanan = array(
@@ -304,7 +304,7 @@ class Home extends CI_Controller
             array_push($id_cus, $no_id);
         }
         $max_id = max($id_cus);
-        $id_pel = "CUS-0" . ($max_id + 1);
+        $id_pel = "CUS-" . ($max_id + 1);
         //akhir membuat id_pelanggan
 
         $data_pelanggan = array(

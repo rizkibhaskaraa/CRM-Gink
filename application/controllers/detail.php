@@ -132,7 +132,7 @@ class Detail extends CI_Controller
         $id_komen = "KMN-" . ($max_id + 1);
 
         $data = array(
-            "id_komentar" => $id_komen),
+            "id_komentar" => $id_komen,
             "komentar" => $this->input->post("komentar"),
             "id_task" => $idtask,
             "nama_kirim_komen" => $nama,

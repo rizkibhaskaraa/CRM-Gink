@@ -123,7 +123,7 @@ class Home extends CI_Controller
     {
         $id_layanan = $this->input->post("id_layanan");
         $status = $this->input->post("status-layanan");
-        $user = $this->home_model->updatestatuslayanan($id_employ,$id_layanan, $status);
+        $user = $this->home_model->updatestatuslayanan($id_employ, $id_layanan, $status);
         redirect(base_url('index.php/home/ceo/') . $user);
     }
 
@@ -256,14 +256,24 @@ class Home extends CI_Controller
     //fungsi tambah data pelanggan
     public function tambahlayanan()
     {
-        $sum_layanan = $this->home_model->getsumlayanan();
-        $id_layanan = "LYN-0".($sum_layanan+1);
+        $layanan = $this->home_model->getlayanan();
+        $id_lay = [];
+        foreach ($layanan as $value) {
+            //$no_id = $value["id_layanan"];
+            $no_id = substr($value["id_layanan"], 4);
+            $idint = intval($no_id);
+            array_push($id_lay, $idint);
+        }
+        $id_max = max($id_lay);
+        $id_layanan = "LYN-0" . ($id_max + 1);
+
         $data_layanan = array(
             "id_layanan" => $id_layanan,
             "nama_layanan" => $this->input->post("nama-layanan"),
             "status" => $this->input->post("status-layanan"),
             "id_pelanggan" => $this->input->post("id_pelanggan")
         );
+
         $this->home_model->insert_layanan($data_layanan);
         redirect(base_url('index.php/home/ceo/') . $user["username"]);
     }

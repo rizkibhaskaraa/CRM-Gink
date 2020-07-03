@@ -24,12 +24,6 @@ class home_model extends CI_model
         return $this->db->get_where("user", array("id_employ" => $id_employ))->row_array();
     }
 
-    //fungsi ambil data tabel task
-    public function gettask()
-    {
-        return $this->db->get("task")->result_array();
-    }
-
     //fungsi ambil data tabel employ
     public function getemploytiket($id_employ)
     {

@@ -7,6 +7,13 @@ class detail_model extends CI_model
         //dapatkan data user yang login
         return $this->db->get_where("user", array("id_employ" => $id))->row_array();
     }
+
+    //fungsi ambil data tabel task
+    public function gettask()
+    {
+        return $this->db->get("task")->result_array();
+    }
+
     public function getemploy($user)
     {
         //dapatkan data user yang login

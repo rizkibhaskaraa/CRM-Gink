@@ -197,6 +197,18 @@ class Home extends CI_Controller
         $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
         //akhir validasi form
 
+        //membuat id_task
+        $task = $this->home_model->gettask();
+        $id_task = [];
+        foreach ($task as $value){
+            $no_id = substr($value["id_task"],4);
+            $no_id = intval($no_id);
+            array_push($id_task, $no_id);
+        }
+        $max_id = max($id_task);
+        $id_task = "TASK-0".($max_id+1);
+        //akhir membuat id_task
+
         if ($this->form_validation->run() == false) {
             $data["id_employ"] = $id_employ;
             redirect(base_url('index.php/home/index/'));
@@ -214,6 +226,7 @@ class Home extends CI_Controller
 
                 //jika buat tiket dari tabel pelanggan
                 $data_task = array(
+                    "id_task" = $id_task,
                     "id_pelanggan" => $this->input->post("id_pelanggan"),
                     "customer" => $this->input->post("customer"),
                     "nama_layanan" => $this->input->post("layanan"),
@@ -232,6 +245,7 @@ class Home extends CI_Controller
                 $departemen_tujuan = $this->input->post("departemen");
                 //jika staff yang buat tiket untuk staff
                 $data_task = array(
+                    "id_task" = $id_task,
                     "nama_dept_tujuan" => $departemen_tujuan,
                     "id_employ_kirim" => $id_employ,
                     "nama_dept_kirim" => $departemen["nama_departemen"],
@@ -269,7 +283,7 @@ class Home extends CI_Controller
         $max_id = max($id_lay);
         $id_layanan = "LYN-0".($max_id+1);
         //akhir membuat id_layanan
-        
+
         $data_layanan = array(
             "id_layanan" => $id_layanan,
             "nama_layanan" => $this->input->post("nama-layanan"),

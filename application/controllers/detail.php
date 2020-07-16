@@ -85,14 +85,15 @@ class Detail extends CI_Controller
         //membuat id_task
         $task = $this->detail_model->gettask();
         $id_task = [];
-        foreach ($task as $value) {
-            $no_id = substr($value["id_task"], 5);
+        foreach ($task as $value){
+            $no_id = substr($value["id_task"],5);
             $no_id = intval($no_id);
             array_push($id_task, $no_id);
         }
         $max_id = max($id_task);
-        $id_task = "TASK-" . ($max_id + 1);
+        $id_task = "TASK-".($max_id+1);
         //akhir membuat id_task
+
         if ($this->input->post("id_pelanggan") == NULL) {
             $data_sub_task = array(
                 "id_task" => $id_task,

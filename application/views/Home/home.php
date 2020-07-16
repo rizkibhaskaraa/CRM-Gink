@@ -197,10 +197,20 @@
                                                 <?php if ($value1["status"] == "Tidak Aktif") { ?>
                                                     <!-- jika status tidak aktif -->
                                                     <td class="text-center"><span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value1["status"] ?></span></td>
-                                                <?php } else { ?>
+                                                <?php } else if ($value1["status"] == "Aktif") { ?>
                                                     <!-- jika status aktif -->
-                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value1["status"] ?></span></td>
-                                                <?php } ?>
+                                                    <td class="text-center">
+                                                        <a class="font-w600   btn-sm btn-block btn-success" data-toggle="modal" data-target="#modal-block-large-status-layanan" href="" id="<?php echo $value1["id_layanan"] ?>" onclick="datalayanan(this);">
+                                                            <i class="fa fa-fw fa-check"></i> <?php echo $value1["status"] ?>
+                                                        </a>
+                                                    </td>
+                                                <?php } else { ?>
+                                                    <td class="text-center">
+                                                        <a class="font-w600   btn-sm btn-block btn-warning" data-toggle="modal" data-target="#modal-block-large-status-layanan" href="" id="<?php echo $value1["id_layanan"] ?>" onclick="datalayanan(this);">
+                                                            <i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value1["status"] ?>
+                                                        </a>
+                                                    </td>
+                                                <?php }  ?>
                                                 <td class="text-center">
                                                     <a href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value1["id_layanan"] ?>" onclick="datapelanggan(this,'CS');"><button class="btn btn-light"><i class="fa fa-plus fa-2x"></i></button></a>
                                                     <!-- <a class="text-decoration-none" href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"] ?>" onclick="datapelanggan(this,'CS');">+ tiket</a> -->
@@ -850,13 +860,13 @@
 <script>
     //fungsi ambil data pelanggan
     function datapelanggan(a, status) {
-        var id_pelanggan = a.id; //set variabel
-        $.ajax({ //ajax ambil data pelanggan
+        var id_layanan = a.id; //set variabel
+        $.ajax({ //ajax ambil data layanan
             type: "GET",
-            url: "<?php echo base_url('index.php/home/get_pelanggan') ?>",
+            url: "<?php echo base_url('index.php/home/get_layanan') ?>",
             dataType: "JSON",
             data: {
-                id: id_pelanggan
+                id: id_layanan
             },
             success: function(data) { //jika ambil data sukses
                 $('input[name="customer"]').val(data["customer"]); //set value

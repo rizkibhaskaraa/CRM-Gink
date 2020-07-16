@@ -32,12 +32,26 @@
                     <span class="font-w600"><?php echo $i . ". " . $value1["nama_layanan"] ?></span>
                 </td>
                 <?php if ($value1["status"] == "Tidak Aktif") { ?>
-                    <!-- jika status tidak aktif -->
-                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value1["status"] ?></span></td>
-                <?php } else { ?>
-                    <!-- jika status aktif -->
-                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value1["status"] ?></span></td>
-                <?php } ?>
+                                                    <!-- jika status tidak aktif -->
+                                                    <td class="text-center">
+                                                        <a class="font-w600   btn-sm btn-block btn-danger" data-toggle="modal" data-target="#modal-block-large-status-layanan" href="" id="<?php echo $value1["id_layanan"] ?>" onclick="datalayanan(this);">
+                                                            <i class="fa fa-fw fa-times-circle"></i> <?php echo $value1["status"] ?>
+                                                        </a>
+                                                    </td>
+                                                <?php } else if ($value1["status"] == "Aktif") { ?>
+                                                    <!-- jika status aktif -->
+                                                    <td class="text-center">
+                                                        <a class="font-w600   btn-sm btn-block btn-success" data-toggle="modal" data-target="#modal-block-large-status-layanan" href="" id="<?php echo $value1["id_layanan"] ?>" onclick="datalayanan(this);">
+                                                            <i class="fa fa-fw fa-check"></i> <?php echo $value1["status"] ?>
+                                                        </a>
+                                                    </td>
+                                                <?php } else { ?>
+                                                    <td class="text-center">
+                                                        <a class="font-w600   btn-sm btn-block btn-warning" data-toggle="modal" data-target="#modal-block-large-status-layanan" href="" id="<?php echo $value1["id_layanan"] ?>" onclick="datalayanan(this);">
+                                                            <i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value1["status"] ?>
+                                                        </a>
+                                                    </td>
+                                                <?php } ?>
                 <td class="text-center">
                     <a href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value1["id_layanan"] ?>" onclick="datapelanggan(this,'CS');"><button class="btn btn-light"><i class="fa fa-plus fa-2x"></i></button></a>
                     <!-- <a class="text-decoration-none" href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"] ?>" onclick="datapelanggan(this,'CS');">+ tiket</a> -->

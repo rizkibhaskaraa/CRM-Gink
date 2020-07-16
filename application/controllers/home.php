@@ -295,7 +295,8 @@ class Home extends CI_Controller
     }
     public function addcustomer()
     {
-        //membuat id customer        
+        //membuat id customer 
+       
         $pelanggan = $this->home_model->getpelanggan();
         $id_cus = [];
         foreach ($pelanggan as $value) {

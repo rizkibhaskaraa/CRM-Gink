@@ -131,7 +131,7 @@
                     </div>
                     <!-- Tambah Customer -->
                     <form method="post" action="<?php echo base_url('index.php/home/addcustomer/' . $username) ?>">
-                        <input type="text" id="customer" name="customer" class="form-control col-2 customer mt-3 ml-3" style="float:left" placeholder="Customer">
+                        <input type="text" id="customer" name="customer" class="form-control col-2 customer mt-3 ml-3" style="float:left" placeholder="Customer" required>
                         <input type="submit" value="Add Customer" class="btn btn-primary  mt-3 ml-3" style="float:left" data-toggle="click-ripple"></input>
                     </form>
                     <!-- Search layanan -->

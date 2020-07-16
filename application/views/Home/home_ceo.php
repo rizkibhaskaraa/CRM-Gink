@@ -135,12 +135,7 @@
                         <input type="submit" value="Add Customer" class="btn btn-primary  mt-3 ml-3" style="float:left" data-toggle="click-ripple"></input>
                     </form>
                     <!-- Search layanan -->
-                    <input type="text" id="search" class="form-control col-2 search mt-3 ml-2 mr-4" name="search" placeholder="Cari Layanan">
-                    <select name="status" id="status-pelanggan" class="form-control col-2 status-pelanggan mt-3">
-                        <option value="semua">Semua Status</option>
-                        <option value="aktif">Aktif</option>
-                        <option value="tidak aktif">Tidak Aktif</option>
-                    </select>
+                    <input type="text" id="search" class="form-control col-2 search mt-3 ml-2 mr-4" name="search" placeholder="Cari Customer">
                     <input type="text" id="link" name="link" value="<?php echo base_url('index.php/home/search/') . $employ_id . "/" ?>" hidden>
                     <div class="block-content block-content-full">
                         <table class="table table-bordered table-hover  table-vcenter font-size-sm mb-0" id="tabel-pelanggan">

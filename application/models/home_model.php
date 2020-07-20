@@ -1,5 +1,5 @@
 <?php
-//error_reporting(0); //menyembunyikan error
+error_reporting(0); //menyembunyikan error
 class home_model extends CI_model
 {
     //fungsi ambil data tabel employ
@@ -11,17 +11,17 @@ class home_model extends CI_model
         return $this->db->get_where("employe", array("id_employ" => $id_employ))->row_array();
     }
 
-    //fungsi ambil data tabel task
-    public function gettask()
-    {
-        return $this->db->get("task")->result_array();
-    }
-
     //fungsi ambil data tabel user
     public function getuser($id_employ)
     {
         //mendapatkan data berdasarkan id_employ
         return $this->db->get_where("user", array("id_employ" => $id_employ))->row_array();
+    }
+
+    //fungsi ambil data tabel task
+    public function gettask()
+    {
+        return $this->db->get("task")->result_array();
     }
 
     //fungsi ambil data tabel employ
@@ -34,19 +34,20 @@ class home_model extends CI_model
     //fungsi ambil data table employ
     public function getemploydept($id_dept)
     {
-        if ($id_dept != "ceo") { //jika yang login dari CEO
+        if($id_dept != "ceo"){ //jika yang login dari CEO
             $this->db->order_by('nama_departemen', 'ASC'); //sort hasil menurut nama_departemen
             $this->db->order_by('status_employ', 'ASC'); //sort hasil menurut status employ 
             //join tabel departemen ke tabel employ dimana employe.id_departemen = departemen.id_departemen
-            $this->db->join("departemen", "employe.id_departemen = departemen.id_departemen");
+            $this->db->join("departemen", "employe.id_departemen = departemen.id_departemen"); 
             //ambil data employ menurut id_departemen
             return $this->db->get_where("employe", array("employe.id_departemen" => $id_dept))->result_array();
-        } else {
+        }else{
             $this->db->order_by('nama_departemen', 'ASC');
             $this->db->order_by('status_employ', 'ASC');
             $this->db->join("departemen", "employe.id_departemen = departemen.id_departemen");
             return $this->db->get_where("employe")->result_array();
         }
+        
     }
 
     //fungsi ambil data tabel pelanggan
@@ -60,12 +61,6 @@ class home_model extends CI_model
     {
         return $this->db->get("layanan_pelanggan")->result_array();
     }
-
-    // //fungsi ambil jumlah data tabel layanan
-    // public function getsumlayanan()
-    // {
-    //     return $this->db->count_all("layanan_pelanggan");
-    // }
 
     //fungsi ambil data tabel pelanggan berdasarkan id pelanggan
     public function getpelangganbyid($id)
@@ -87,21 +82,22 @@ class home_model extends CI_model
     }
 
     //fungsi ambil data task selesai berdarakan id_employ_tujuan(PJ task)
-    public function gettaskselesai($id_employ, $dept)
+    public function gettaskselesai($id_employ,$dept)
     {
-        if ($dept == "Chief Executive Officer ") { //jika CEO yang login
+        if($dept == "Chief Executive Officer "){ //jika CEO yang login
             return $this->db->get_where('task', array("status" => "Selesai"))->result_array();
-        } else {
+        }else{
             return $this->db->get_where('task', array('id_employ_tujuan' => $id_employ, "status" => "Selesai"))->result_array();
         }
+        
     }
 
     //fungsi ambil data task belum selesai berdarakan id_employ_tujuan(PJ task)
-    public function gettaskbelum($id_employ, $dept)
+    public function gettaskbelum($id_employ,$dept)
     {
-        if ($dept == "Chief Executive Officer ") { //jika CEO yang login
+        if($dept == "Chief Executive Officer "){ //jika CEO yang login
             return $this->db->get_where('task', array('status' => "Belum Selesai"))->result_array();
-        } else {
+        }else{
             return $this->db->get_where('task', array('id_employ_tujuan' => $id_employ, 'status' => "Belum Selesai"))->result_array();
         }
     }
@@ -116,7 +112,7 @@ class home_model extends CI_model
     //fungsi ambil data tabel task untuk tiket berdarakan id_employ_tujuan(PJ task)
     public function gettiketsaya($id_employ)
     {
-        return $this->db->get_where('task', array('id_employ_kirim' => $id_employ, 'id_employ_tujuan' => NULL))->result_array();
+        return $this->db->get_where('task', array('id_employ_kirim' => $id_employ,'id_employ_tujuan' => NULL))->result_array();
     }
 
     //fungsi ambil data tabel task untuk request task berdarakan nama_dept_tujuan(departemen PJ task)
@@ -135,7 +131,7 @@ class home_model extends CI_model
     {
         $departemen = array($nama_departemen, "umum");
         $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
-        if ($nama_departemen != "Chief Executive Officer ") {
+        if($nama_departemen != "Chief Executive Officer "){
             $this->db->where_in('nama_dept_tujuan', $departemen);
         }
         $this->db->where('id_parent', "");
@@ -143,11 +139,11 @@ class home_model extends CI_model
     }
 
     //fungsi ambil data tabel task untuk tugas saya berdarakan nama_dept_tujuan(departemen PJ task) dan id_employ_tujuan
-    public function gettasksaya($id_employ, $dept)
+    public function gettasksaya($id_employ,$dept)
     {
         $this->db->where('id_parent', "");
         $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
-        if ($dept != "Chief Executive Officer ") { //jika bukan CEO yang login
+        if($dept != "Chief Executive Officer "){ //jika bukan CEO yang login
             $this->db->where('id_employ_tujuan', $id_employ);
         }
         return $this->db->get('task')->result_array();
@@ -181,27 +177,18 @@ class home_model extends CI_model
         return $user["username"];
     }
 
-    //fungsi update status layanan
-    public function updatestatuslayanan($id_employ, $id, $status)
-    {
-        $this->db->set('status', $status);
-        $this->db->where('id_layanan', $id);
-        $this->db->update('layanan_pelanggan');
-
-        $user = $this->db->get_where("user", array("id_employ" => $id_employ))->row_array();
-        return $user["username"];
-    }
-
     //fungsi search tabel pelanggan untuk searching dan sorting tabel pelanggan
-    public function getsearch($status, $search)
+    public function getsearch($search)
     {
-        if ($status == "semua") {
-        } else {
-            $this->db->where("status", $status);
-        }
-
-        $this->db->like('nama_layanan', $search);
-        return $this->db->get("layanan_pelanggan")->result_array();
+            // if ($status == "semua") {
+                
+            // } else {
+            //     $this->db->where("status", $status);
+            // }
+        
+        $this->db->like('customer', $search);
+        $this->db->or_like('id_pelanggan', $search);
+        return $this->db->get("pelanggan")->result_array();
     }
 
     //fungsi search departemen di report
@@ -220,25 +207,13 @@ class home_model extends CI_model
         return $this->db->insert("task", $data_task);
     }
 
-    //fungsi insert add layanan
-    public function insert_layanan($data_layanan)
-    {
-        return $this->db->insert("layanan_pelanggan", $data_layanan);
-    }
-
-    //fungsi insert add pelanggan
-    public function insert_pelanggan($data_pelanggan)
-    {
-        return $this->db->insert("pelanggan", $data_pelanggan);
-    }
-
     // report tanpa periode
     //fungsi get report (untuk kolom request tugas)
     public function getreport($dept)
-    {
+    {   
         $this->db->order_by('nama_dept_tujuan', 'ASC');
         $this->db->order_by('status_employ', 'ASC');
-        if ($dept != "Chief Executive Officer ") { //jika bukan CEO yang login
+        if($dept != "Chief Executive Officer "){ //jika bukan CEO yang login
             $this->db->where("nama_dept_tujuan", $dept);
         }
         $this->db->select("count(task.status),id_employ_tujuan,nama,status_employ,id_departemen,nama_dept_tujuan"); //select kolom
@@ -250,7 +225,7 @@ class home_model extends CI_model
     //fungsi get report (untuk kolom tugas selesai)
     public function gettugaspjselesai($dept)
     {
-        if ($dept != "Chief Executive Officer ") {
+        if($dept != "Chief Executive Officer "){
             $this->db->where("nama_dept_tujuan", $dept);
         }
         $this->db->where("task.status", "Selesai");
@@ -264,7 +239,7 @@ class home_model extends CI_model
     //fungsi get report (untuk kolom on progres)
     public function gettugaspjbelum($dept)
     {
-        if ($dept != "Chief Executive Officer ") {
+        if($dept != "Chief Executive Officer "){
             $this->db->where("nama_dept_tujuan", $dept);
         }
         $this->db->where("task.status", "Belum Selesai");
@@ -278,11 +253,11 @@ class home_model extends CI_model
 
     // report dengan periode
     //fungsi get report (untuk kolom request tugas) dengan periode
-    public function getreport_periode($dept, $tgl_start, $tgl_end)
+    public function getreport_periode($dept,$tgl_start,$tgl_end)
     {
         $this->db->order_by('nama_dept_tujuan', 'ASC');
         $this->db->order_by('status_employ', 'ASC');
-        if ($dept != "Chief Executive Officer ") {
+        if($dept != "Chief Executive Officer "){
             $this->db->where("nama_dept_tujuan", $dept);
         }
         $this->db->where('date >=', $tgl_start); //where tanggal
@@ -292,11 +267,11 @@ class home_model extends CI_model
         $this->db->group_by("id_employ_tujuan"); //group by
         return $this->db->get("task")->result_array();
     }
-
+    
     //fungsi get report (untuk kolom tugas selesai) dengan periode
-    public function gettugaspjselesai_periode($dept, $tgl_start, $tgl_end)
+    public function gettugaspjselesai_periode($dept,$tgl_start,$tgl_end)
     {
-        if ($dept != "Chief Executive Officer ") {
+        if($dept != "Chief Executive Officer "){
             $this->db->where("nama_dept_tujuan", $dept);
         }
         $this->db->where("task.status", "Selesai");
@@ -308,11 +283,11 @@ class home_model extends CI_model
         $this->db->group_by("id_employ_tujuan");
         return $this->db->get("task")->result_array();
     }
-
+    
     //fungsi get report (untuk kolom on progres) dengan periode
-    public function gettugaspjbelum_periode($dept, $tgl_start, $tgl_end)
+    public function gettugaspjbelum_periode($dept,$tgl_start,$tgl_end)
     {
-        if ($dept != "Chief Executive Officer ") {
+        if($dept != "Chief Executive Officer "){
             $this->db->where("nama_dept_tujuan", $dept);
         }
         $this->db->where("task.status", "Belum Selesai");
@@ -325,4 +300,30 @@ class home_model extends CI_model
         return $this->db->get("task")->result_array();
     }
     // end report dengan periode
+
+    //function-fiunction datatable
+    public function count_all($dept){
+        $this->db->where("nama_dept_tujuan",$dept);
+        $this->db->from('task');
+        return $this->db->count_all_results(); 
+    }
+
+    public function filter($search, $limit, $start, $order_field, $order_ascdesc,$dept){    
+        if($search != ""){
+            $this->db->like('title', $search); 
+            $this->db->where("nama_dept_tujuan",$dept);
+        }   
+        $this->db->order_by($order_field, $order_ascdesc); 
+        $this->db->limit($limit, $start); 
+        return $this->db->get_where('task',array("nama_dept_tujuan"=>$dept))->result_array(); 
+    }
+
+    public function count_filter($search,$dept){
+        if($search != ""){
+            $this->db->like('title', $search); 
+            $this->db->where("nama_dept_tujuan",$dept); 
+        }  
+        return $this->db->get_where('task',array("nama_dept_tujuan"=>$dept))->num_rows(); 
+    }
+    //akhir function-fiunction datatable
 }

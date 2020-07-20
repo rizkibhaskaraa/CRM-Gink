@@ -48,8 +48,8 @@ class Home extends CI_Controller
         //akhir ambil data tabel task untuk tugas saya
 
         //ambil data tabel task untuk request tugas
-        $data["taskdihead"] = $this->home_model->gettaskdihead($departemen["nama_departemen"]);
-        $data["taskdiheadkosong"] = $this->home_model->gettaskdiheadkosong($departemen["nama_departemen"]);
+        // $data["taskdihead"] = $this->home_model->gettaskdihead($departemen["nama_departemen"]);
+        // $data["taskdiheadkosong"] = $this->home_model->gettaskdiheadkosong($departemen["nama_departemen"]);
         //akhir ambil data tabel task untuk request tugas
 
         //ambil data tabel task untuk tiket saya
@@ -119,13 +119,13 @@ class Home extends CI_Controller
     }
 
     //fungsi edit status pelanggan
-    public function updatelayanan($id_employ)
-    {
-        $id_layanan = $this->input->post("id_layanan");
-        $status = $this->input->post("status-layanan");
-        $user = $this->home_model->updatestatuslayanan($id_employ, $id_layanan, $status);
-        redirect(base_url('index.php/home/ceo/') . $user);
-    }
+    // public function editpelanggan()
+    // {
+    //     $id = $this->input->post("id_pelanggan");
+    //     $status = $this->input->post("status_pelanggan");
+    //     $user = $this->home_model->updatestatuspelanggan($id, $status);
+    //     redirect(base_url('index.php/home/index/') . $user);
+    // }
 
     //fungsi menuju halaman detail
     public function detail($id, $task, $cekTabel)
@@ -139,13 +139,13 @@ class Home extends CI_Controller
     }
 
     //fungsi mencari data pelanggan dan filter data pelanggan
-    public function search($employ_id, $status, $search)
+    public function search($employ_id, $search)
     {
         $search_pelanggan = str_replace('%20', ' ', $search); //menggganti %20 dengan spasi
-        $status_pelanggan = str_replace('%20', ' ', $status); //menggganti %20 dengan spasi
-        $data["pelanggan"] = $this->home_model->getpelanggan(); //memanggil fungsi getpelanggan di home_model
+        //$status_pelanggan = str_replace('%20', ' ', $status); //menggganti %20 dengan spasi
+        $data["layanan"] = $this->home_model->getlayanan(); //memanggil fungsi getpelanggan di home_model
         $data["employ_id"] = $employ_id;
-        $data["layanan"] = $layanan = $this->home_model->getsearch($status_pelanggan, $search_pelanggan); //memanggil fungsi getsearch di home_model
+        $data["pelanggan"] = $pelanggan = $this->home_model->getsearch($search_pelanggan); //memanggil fungsi getsearch di home_model
         $this->load->view('home/hasil_search', $data);
     }
 
@@ -169,7 +169,7 @@ class Home extends CI_Controller
     }
 
     //fungsi mendapatkan data tabel pelanggan join layanan
-    function get_layanan()
+    function get_pelanggan()
     {
         $id_layanan = $this->input->get('id');
         $data = $this->home_model->getlayananbyid($id_layanan);
@@ -177,12 +177,12 @@ class Home extends CI_Controller
     }
 
     //fungsi mendapatkan data tabel pelanggan
-    function get_pelanggan()
-    {
-        $id_pelanggan = $this->input->get('id');
-        $data = $this->home_model->getpelangganbyid($id_pelanggan);
-        echo json_encode($data);
-    }
+    // function get_layanan()
+    // {
+    //     $id_pelanggan = $this->input->get('id');
+    //     $data = $this->home_model->getlayananbyid($id_pelanggan);
+    //     echo json_encode($data);
+    // }
 
     //fungsi untuk menambah data tiket/task
     public function addtiket($id_employ)
@@ -200,13 +200,13 @@ class Home extends CI_Controller
         //membuat id_task
         $task = $this->home_model->gettask();
         $id_task = [];
-        foreach ($task as $value) {
-            $no_id = substr($value["id_task"], 5);
+        foreach ($task as $value){
+            $no_id = substr($value["id_task"],5);
             $no_id = intval($no_id);
             array_push($id_task, $no_id);
         }
         $max_id = max($id_task);
-        $id_task = "TASK-" . ($max_id + 1);
+        $id_task = "TASK-".($max_id+1);
         //akhir membuat id_task
 
         if ($this->form_validation->run() == false) {
@@ -268,50 +268,38 @@ class Home extends CI_Controller
     }
 
     //fungsi tambah data pelanggan
-    public function tambahlayanan()
-    {
+    // public function addpelanggan()
+    // {
+    //     $data_pelanggan = array(
+    //         "id_pelanggan" => rand(0001, 1000),
+    //         "customer" => $this->input->post("customer"),
+    //         "layanan" => $this->input->post("layanan"),
+    //         "status" => $this->input->post("status_customer")
+    //     );
+    //     $this->home_model->insert_pelanggan($data_pelanggan);
+    //     redirect(base_url('index.php/home/index/') . $user["username"]);
+    // }
 
-        //membuat id layanan
-        //$sum_layanan = $this->home_model->getsumlayanan();
-        $layanan = $this->home_model->getlayanan();
-        $id_lay = [];
-        foreach ($layanan as $value) {
-            $no_id = substr($value["id_layanan"], 4);
-            $no_id = intval($no_id);
-            array_push($id_lay, $no_id);
-        }
-        $max_id = max($id_lay);
-        $id_layanan = "LYN-" . ($max_id + 1);
-        //akhir membuat id_layanan
-
-        $data_layanan = array(
-            "id_layanan" => $id_layanan,
-            "nama_layanan" => $this->input->post("nama-layanan"),
-            "status" => $this->input->post("status-layanan"),
-            "id_pelanggan" => $this->input->post("id_pelanggan")
-        );
-        $this->home_model->insert_layanan($data_layanan);
-        redirect(base_url('index.php/home/ceo/') . $user["username"]);
+    //function-fiunction datatable
+    public function view($dept){
+        $search = $_POST['search']['value']; 
+        $limit = $_POST['length']; 
+        $start = $_POST['start']; 
+        $order_index = $_POST['order'][0]['column']; 
+        $order_field = $_POST['columns'][$order_index]['data']; 
+        $order_ascdesc = $_POST['order'][0]['dir']; 
+        $sql_total = $this->home_model->count_all($dept); 
+        $sql_data = $this->home_model->filter($search, $limit, $start, $order_field, $order_ascdesc,$dept); 
+        $sql_filter = $this->home_model->count_filter($search,$dept); 
+        $callback = array(        
+            'draw'=>$_POST['draw'], 
+            'recordsTotal'=>$sql_total,        
+            'recordsFiltered'=>$sql_filter,        
+            'data'=>$sql_data    
+        );    
+        
+        header('Content-Type: application/json');    
+        echo json_encode($callback); 
     }
-    public function addcustomer()
-    {
-        //membuat id customer        
-        $pelanggan = $this->home_model->getpelanggan();
-        $id_cus = [];
-        foreach ($pelanggan as $value) {
-            $no_id = substr($value["id_pelanggan"], 4);
-            $no_id = intval($no_id);
-            array_push($id_cus, $no_id);
-        }
-        $max_id = max($id_cus);
-        $id_pel = "CUS-" . ($max_id + 1);
-        //akhir membuat id_pelanggan
-
-        $data_pelanggan = array(
-            "id_pelanggan" => $id_pel,
-            "customer" => $this->input->post("customer"),
-        );
-        $this->home_model->insert_pelanggan($data_pelanggan);
-        redirect(base_url('index.php/home/ceo/') . $user["username"]);
-    }
+    //akhir function-fiunction datatable
 }

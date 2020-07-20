@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
     <link rel="stylesheet" id="css-main" href="<?php echo base_url('assets/oneui/css/oneui.min.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/home/home.css') ?>">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/> -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css"/>
 
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="<?php echo base_url('assets/oneui/js/plugins/summernote/summernote-bs4.css') ?>">
@@ -321,6 +323,7 @@
                 </div>
             </div>
         <!-- END report-->
+        
         <div class="tab-pane fade fade-up" id="tugas" role="tabpanel">
             <!-- Belum Selesai -->
             <div class="container-fluid">
@@ -895,6 +898,13 @@
         </div>
     </footer>
     <!-- END Footer -->
+
+
+    <!-- //script datatable -->
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>    
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap.min.js"></script>
+
+    <!-- //end script datatable -->
 
 
     <script src="<?php echo base_url('assets/oneui/js/oneui.core.min.js') ?>"></script>

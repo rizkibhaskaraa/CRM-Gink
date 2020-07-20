@@ -48,8 +48,8 @@ class Home extends CI_Controller
         //akhir ambil data tabel task untuk tugas saya
 
         //ambil data tabel task untuk request tugas
-        $data["taskdihead"] = $this->home_model->gettaskdihead($departemen["nama_departemen"]);
-        $data["taskdiheadkosong"] = $this->home_model->gettaskdiheadkosong($departemen["nama_departemen"]);
+        // $data["taskdihead"] = $this->home_model->gettaskdihead($departemen["nama_departemen"]);
+        // $data["taskdiheadkosong"] = $this->home_model->gettaskdiheadkosong($departemen["nama_departemen"]);
         //akhir ambil data tabel task untuk request tugas
 
         //ambil data tabel task untuk tiket saya
@@ -279,4 +279,27 @@ class Home extends CI_Controller
     //     $this->home_model->insert_pelanggan($data_pelanggan);
     //     redirect(base_url('index.php/home/index/') . $user["username"]);
     // }
+
+    //function-fiunction datatable
+    public function view($dept){
+        $search = $_POST['search']['value']; 
+        $limit = $_POST['length']; 
+        $start = $_POST['start']; 
+        $order_index = $_POST['order'][0]['column']; 
+        $order_field = $_POST['columns'][$order_index]['data']; 
+        $order_ascdesc = $_POST['order'][0]['dir']; 
+        $sql_total = $this->home_model->count_all($dept); 
+        $sql_data = $this->home_model->filter($search, $limit, $start, $order_field, $order_ascdesc,$dept); 
+        $sql_filter = $this->home_model->count_filter($search,$dept); 
+        $callback = array(        
+            'draw'=>$_POST['draw'], 
+            'recordsTotal'=>$sql_total,        
+            'recordsFiltered'=>$sql_filter,        
+            'data'=>$sql_data    
+        );    
+        
+        header('Content-Type: application/json');    
+        echo json_encode($callback); 
+    }
+    //akhir function-fiunction datatable
 }

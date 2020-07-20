@@ -300,4 +300,30 @@ class home_model extends CI_model
         return $this->db->get("task")->result_array();
     }
     // end report dengan periode
+
+    //function-fiunction datatable
+    public function count_all($dept){
+        $this->db->where("nama_dept_tujuan",$dept);
+        $this->db->from('task');
+        return $this->db->count_all_results(); 
+    }
+
+    public function filter($search, $limit, $start, $order_field, $order_ascdesc,$dept){    
+        if($search != ""){
+            $this->db->like('title', $search); 
+            $this->db->where("nama_dept_tujuan",$dept);
+        }   
+        $this->db->order_by($order_field, $order_ascdesc); 
+        $this->db->limit($limit, $start); 
+        return $this->db->get_where('task',array("nama_dept_tujuan"=>$dept))->result_array(); 
+    }
+
+    public function count_filter($search,$dept){
+        if($search != ""){
+            $this->db->like('title', $search); 
+            $this->db->where("nama_dept_tujuan",$dept); 
+        }  
+        return $this->db->get_where('task',array("nama_dept_tujuan"=>$dept))->num_rows(); 
+    }
+    //akhir function-fiunction datatable
 }

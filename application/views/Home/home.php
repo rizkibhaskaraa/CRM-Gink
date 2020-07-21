@@ -966,7 +966,7 @@
                     { "data": "title" ,
                         className: 'font-weight-bold'
                     },
-                    { "data": "id_employ_tujuan",
+                    { "data": "nama",
                         className : 'text-center font-weight-bold'
                      },
                     { "data": "dateline", 

@@ -301,7 +301,7 @@ class home_model extends CI_model
     }
     // end report dengan periode
 
-    //function-fiunction datatable
+    //function-fiunction datatable request task
     public function count_all($dept,$status){
         $this->db->where("nama_dept_tujuan",$dept);
         if($status != ""){
@@ -335,5 +335,40 @@ class home_model extends CI_model
         }
         return $this->db->get_where('task',array("nama_dept_tujuan"=>$dept))->num_rows(); 
     }
-    //akhir function-fiunction datatable
+    //akhir function-fiunction datatable request task
+
+    //function-fiunction datatable pelanggan
+    public function count_all_pelanggan($status){
+        $this->db->select("pelanggan.id_pelanggan,customer,status,nama_layanan,id_layanan");
+        $this->db->join("layanan_pelanggan", "layanan_pelanggan.id_pelanggan=pelanggan.id_pelanggan"); //join tabel employe dengan task
+        if($status != ""){
+            $this->db->where("status","Aktif");
+        }
+        return $this->db->count_all("pelanggan"); 
+    }
+
+    public function filter_pelanggan($search, $limit, $start, $order_field, $order_ascdesc,$status){    
+        $this->db->select("pelanggan.id_pelanggan,customer,status,nama_layanan,id_layanan");
+        $this->db->join("layanan_pelanggan", "layanan_pelanggan.id_pelanggan=pelanggan.id_pelanggan"); //join tabel employe dengan task
+        $this->db->like('pelanggan.id_pelanggan', $search); 
+        $this->db->or_like('customer', $search); 
+        $this->db->order_by($order_field, $order_ascdesc); 
+        $this->db->limit($limit, $start); 
+        if($status != ""){
+            $this->db->where("status","Aktif");
+        }
+        return $this->db->get('pelanggan')->result_array(); 
+    }
+
+    public function count_filter_pelanggan($search,$status){
+        $this->db->select("pelanggan.id_pelanggan,customer,status,nama_layanan,id_layanan");
+        $this->db->join("layanan_pelanggan", "layanan_pelanggan.id_pelanggan=pelanggan.id_pelanggan"); //join tabel employe dengan task
+        $this->db->like('pelanggan.id_pelanggan', $search); 
+        $this->db->or_like('customer', $search); 
+        if($status != ""){
+            $this->db->where("status","Aktif");
+        }
+        return $this->db->get_where('pelanggan')->num_rows(); 
+    }
+    //akhir function-fiunction datatable pelanggan    
 }

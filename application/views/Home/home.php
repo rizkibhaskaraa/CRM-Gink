@@ -572,9 +572,8 @@
                     </div>
                 </div>
             </div>
-        <!-- END  Selesai -->
+            <!-- END  Selesai -->
         </div>
-
         <div class="tab-pane fade fade-up" id="tiket" role="tabpanel">
             <!--  Tiket Belum Selesai -->
             <div class="container-fluid">
@@ -792,8 +791,8 @@
 
     </div>
     <!-- END request task,pelanggan,tugas selesai,tugas Belum Selesai,tiket selesai,tiket Belum Selesai -->
-        <!-- pop up tiket pelanggan -->
-        <div class="modal fade" id="modal-block-large" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
+    <!-- pop up tiket pelanggan -->
+    <div class="modal fade" id="modal-block-large" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="block block-themed block-transparent mb-0">
@@ -856,6 +855,7 @@
                 </div>
             </div>
         </div>
+    </div>
     <!-- akhir pop up tiket pelanggan -->
     <!-- pop up tiket staff -->
     <div class="modal fade" id="modal-block-large-staff" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
@@ -922,7 +922,6 @@
             </div>
         </div>
     </div>
-    </div>
     <!-- akhir pop up tiket staff -->
     <!-- Footer -->
     <footer id="page-footer" class="bg-body-light">
@@ -937,6 +936,33 @@
             </div>
         </div>
     </footer>
+
+    
+    <div class="col-3 float-right">
+            <select name="filter-status-layanan" id="filter-status-layanan" class="form-control">
+                <option value="">Status</option>
+                <option value="Aktif">Aktif</option>
+                <option value="Tidak Aktif">Tidak Aktif</option>
+            </select>
+        </div>
+    <div class="block-content block-content-full">
+        <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0 w-100" id="table-pelanggan">
+            <thead class="thead-dark">
+                <tr class="text-uppercase">
+                    <th class="font-w700 text-center" style="width: 10%;">#ID</th>
+                    <th class="font-w700 text-center" style="width: 30%;">Customer</th>
+                    <th class="font-w700 text-center" style="width: 30%;">Layanan</th>
+                    <th class="font-w700 text-center" style="width: 15%;">Status</th>
+                    <th class="font-w700 text-center" style="width: 15%;">+Tiket</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </div>
+
+
     <!-- END Footer -->
     <!-- END Page Content -->
     <script src="<?php echo base_url('assets/oneui/js/oneui.core.min.js') ?>"></script>
@@ -1002,13 +1028,89 @@
             });
         });    
     </script>
+    <script>    
+        var table = null;
+        $(document).ready(function() {        
+            table = $('#table-pelanggan').DataTable({            
+                "processing": true,            
+                "serverSide": true,            
+                "ordering": true, 
+                "order": [[ 0, 'asc' ]],
+                "ajax":            
+                {                
+                    "url": "<?php echo base_url('index.php/home/view_pelanggan/')?>",
+                    "type": "POST" ,
+                    'data': function(data){
+                        data.searchStatus = $('#filter-status-layanan').val();;
+                    }
+                },            
+                "deferRender": true,            
+                "aLengthMenu": [[5, 50, 100],[ 5, 50, 100]],          
+                "columns": [                
+                    { "data": "id_pelanggan" ,
+                        className: 'font-weight-bold'
+                    },
+                    { "data": "customer",
+                        className : 'text-center font-weight-bold'
+                    },
+                    { "data": "nama_layanan", 
+                        className : 'text-center font-weight-bold',
+                    },          
+                    { "data": "status" ,
+                        className : 'text-center',
+                        render 	: function( data, type, row ){
+                            if(data == "Aktif"){
+                                let html = "<strong class='btn-sm btn-block btn-success'><i class='fa fa-fw fa-check'></i>"+data+"</strong>";
+                                return html;
+                            }else {
+                                
+                                let html = "<strong class='btn-sm btn-block btn-danger'><i class='fa fa-fw fa-exclamation-circle'></i>"+data+"</strong>";
+                                return html;
+                            }
+                        }
+                    }, 
+                    {  "data": "id_layanan",
+                        className : 'text-center',
+                        render 	: function( data, type, row ){
+                            let html = "<a href='javascript:void(0)' data-toggle='modal' data-target='#modal-block-large' data-pk='"+data+
+                            "' class='btn btn-light btn-edit'><i class='fa fa-plus fa-2x'></i></a>";
+                            return html;
+					    }
+                    }
+                ],   
+                drawCallback 	: function(){
+								$('.btn-edit').click(function(a){
+									let pk = $(this).data('pk');
+									// alert(pk);
+                                    $.ajax({ //ajax ambil data pelanggan
+                                        type: "GET",
+                                        url: "<?php echo base_url('index.php/home/get_pelanggan') ?>",
+                                        dataType: "JSON",
+                                        data: {
+                                            id: pk
+                                        },
+                                        success: function(data) { //jika ambil data sukses
+                                            $('input[name="customer"]').val(data["customer"]); //set value
+                                            $('input[name="id_pelanggan"]').val(data["id_pelanggan"]); //set value
+                                            $('input[id="layanan-pelanggan"]').val(data["nama_layanan"]); //set value
+                                        }
+                                    });
+								});
+							}     
+            });
+            $("#filter-status-layanan").change(function(){
+                table.ajax.reload();
+            });
+        });    
+    </script>
     <!-- //end script datatable -->
 
     <!-- POP UP BUAT TIKET -->
-    <script>
+    <!-- <script>
         //fungsi ambil data pelanggan
         function datapelanggan(a, status) {
             var id_pelanggan = a.id; //set variabel
+            // alert(id_pelanggan);
             $.ajax({ //ajax ambil data pelanggan
                 type: "GET",
                 url: "<?php echo base_url('index.php/home/get_pelanggan') ?>",
@@ -1039,7 +1141,7 @@
             //     }
             // });
         }
-    </script>
+    </script> -->
 
     <!-- script atur summernote height di buat tiket pelanggan -->
     <script type='text/javascript'>

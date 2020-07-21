@@ -122,7 +122,7 @@
     <!-- request task,pelanggan,tugas selesai,tugas Belum Selesai,tiket selesai,tiket Belum Selesai -->
 
     <!-- navigasi bar pilih tabel -->
-    <ul class="nav nav-tabs nav-tabs-block ml-3 px-3 mt-3" data-toggle="tabs" role="tablist">
+    <ul class="nav nav-tabs nav-tabs-block ml-4 px-2 mt-3" data-toggle="tabs" role="tablist">
         <li style="background-color:lavender" class="nav-item">
             <a class="nav-link" href="#pelanggan">Data Pelanggan</a>
         </li>

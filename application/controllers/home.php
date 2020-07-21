@@ -281,16 +281,16 @@ class Home extends CI_Controller
     // }
 
     //function-fiunction datatable
-    public function view($dept){
+    public function view($dept,$status){
         $search = $_POST['search']['value']; 
         $limit = $_POST['length']; 
         $start = $_POST['start']; 
         $order_index = $_POST['order'][0]['column']; 
         $order_field = $_POST['columns'][$order_index]['data']; 
         $order_ascdesc = $_POST['order'][0]['dir']; 
-        $sql_total = $this->home_model->count_all($dept); 
+        $sql_total = $this->home_model->count_all($dept,$status); 
         $sql_data = $this->home_model->filter($search, $limit, $start, $order_field, $order_ascdesc,$dept,$status); 
-        $sql_filter = $this->home_model->count_filter($search,$dept); 
+        $sql_filter = $this->home_model->count_filter($search,$dept,$status); 
         $callback = array(        
             'draw'=>$_POST['draw'], 
             'recordsTotal'=>$sql_total,        

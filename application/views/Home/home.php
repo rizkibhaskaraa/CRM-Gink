@@ -229,7 +229,7 @@
                         </div>
                         <div class="col-3 float-right">
                             <select name="filter-status" id="filter-status" class="form-control">
-                                <option value="">Status</option>
+                                <option value="Semua">Status</option>
                                 <option value="Selesai">Selesai</option>
                                 <option value="Belum Selesai">Belum Selesai</option>
                             </select>
@@ -947,15 +947,21 @@
     <script src="<?php echo base_url('assets/oneui/js/plugins/datatables/dataTables.bootstrap4.min.js')?>"></script>
     <script>    
         $(document).ready(function() {        
-            // var status = $('#filter-status').val();
-            $('#table-request').DataTable({            
+            var table =null;
+            var status = $('#filter-status').val();
+            $('#filter-status').change(function(){
+                status = $('#filter-status').val(); 
+                alert(status);
+                table.ajax.reload();
+            }); 
+            table = $('#table-request').DataTable({            
                 "processing": true,            
                 "serverSide": true,            
                 "ordering": true, 
                 "order": [[ 0, 'asc' ]],
                 "ajax":            
                 {                
-                    "url": "<?php echo base_url('index.php/home/view/').$nama_departemen.'/'?>",
+                    "url": "<?php echo base_url('index.php/home/view/').$nama_departemen.'/'?>"+status,
                     "type": "POST" ,
                 },            
                 "deferRender": true,            
@@ -969,6 +975,9 @@
                             if(data == "Selesai"){
                                 let html = "<i>"+data+"</i>";
                                 return html;
+                            }else{
+                                let html = "<strong>"+data+"</strong>";
+                                return html;
                             }
                         }
                     }, 
@@ -981,7 +990,12 @@
 					}
                     }
                 ],        
-            });   
+            }); 
+            // $('#filter-status').change(function(){
+            //     // status = $('#filter-status').val(); 
+            //     alert(status);
+            //     table.ajax.reload();
+            // }); 
         });    
     </script>   
     <!-- //end script datatable -->

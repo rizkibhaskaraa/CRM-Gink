@@ -78,34 +78,39 @@ class Home extends CI_Controller
 
         //ambil data dari tabel employ berdasarkan user yang login ($user)
         $employ = $this->home_model->getemploy($user); //memanggil fungsi getemploy di home_model
-        $data["employ_nama"] = $employ["nama"];
-        $data["employ_id"] = $employ["id_employ"];
-        $data["employ_dept"] = $employ["id_departemen"];
+        $data["employ_nama"] = $employ["employee_nama"];
+        $data["employ_id"] = $employ["employee_id"];
+        // $data["employ_dept"] = $employ["id_departemen"];
         $data["status"] = $employ["status_employ"];
         //akhir ambil data dari tabel employ berdasarkan user yang login ($user)
 
+        //ambil departemen user
+        $position = $this->home_model->getdeptuser($employ["position_id"]);
+        $data["user_dept"] = $position["departement_id"];
+
         $data["pelanggan"] = $pelanggan = $this->home_model->getpelanggan(); //memanggil fungsi getpelanggan di home_model
         $data["layanan"] = $layanan = $this->home_model->getlayanan(); //memanggil fungsi getlayanan di home_model
-        $departemen = $this->home_model->getdepartemen($employ["id_departemen"]); //memanggil fungsi getdepartemen di home_model
-        $data["nama_departemen"] = $departemen["nama_departemen"];
+        $data["product"] = $product = $this->home_model->getproduct(); //memanggil fungsi getlayanan di home_model
+        // $departemen = $this->home_model->getdepartemen($employ["id_departemen"]); //memanggil fungsi getdepartemen di home_model
+        // $data["nama_departemen"] = $departemen["nama_departemen"];
 
         //ambil data tabel task untuk tugas saya
-        $data["taskselesai"] = $this->home_model->gettaskselesai($employ["id_employ"], $departemen["nama_departemen"]);
-        $data["taskbelum"] = $this->home_model->gettaskbelum($employ["id_employ"], $departemen["nama_departemen"]);
-        $data["tasksaya"] = $this->home_model->gettasksaya($data["employ_id"], $departemen["nama_departemen"]);
-        $data["taskparent"] = $this->home_model->gettaskparent($departemen["nama_departemen"]);
+        // $data["taskselesai"] = $this->home_model->gettaskselesai($employ["id_employ"], $departemen["nama_departemen"]);
+        // $data["taskbelum"] = $this->home_model->gettaskbelum($employ["id_employ"], $departemen["nama_departemen"]);
+        // $data["tasksaya"] = $this->home_model->gettasksaya($data["employ_id"], $departemen["nama_departemen"]);
+        // $data["taskparent"] = $this->home_model->gettaskparent($departemen["nama_departemen"]);
         //akhir ambil data tabel task untuk tugas saya
 
         //ambil data tabel task untuk menghitung report staff
-        $data["report"] = $this->home_model->getreport($departemen["nama_departemen"]);
-        $data['tugas_belum'] = $this->home_model->gettugaspjbelum($departemen["nama_departemen"]);
-        $data['tugas_selesai'] = $this->home_model->gettugaspjselesai($departemen["nama_departemen"]);
-        $data['employ_report'] = $this->home_model->getemploydept($data["employ_dept"]);
+        // $data["report"] = $this->home_model->getreport($departemen["nama_departemen"]);
+        // $data['tugas_belum'] = $this->home_model->gettugaspjbelum($departemen["nama_departemen"]);
+        // $data['tugas_selesai'] = $this->home_model->gettugaspjselesai($departemen["nama_departemen"]);
+        // $data['employ_report'] = $this->home_model->getemploydept($data["employ_dept"]);
         //akhir ambil data tabel task untuk menghitung report staff
 
         //ambil data tabel task untuk tiket saya
-        $data["tiket"] = $this->home_model->gettiket($employ["id_employ"]);
-        $data["tiketsaya"] = $this->home_model->gettiketsaya($employ["id_employ"]);
+        // $data["tiket"] = $this->home_model->gettiket($employ["id_employ"]);
+        // $data["tiketsaya"] = $this->home_model->gettiketsaya($employ["id_employ"]);
         //akhir ambil data tabel task untuk tiket saya
 
         $this->load->view('home/home_ceo', $data);
@@ -200,13 +205,13 @@ class Home extends CI_Controller
         //membuat id_task
         $task = $this->home_model->gettask();
         $id_task = [];
-        foreach ($task as $value){
-            $no_id = substr($value["id_task"],5);
+        foreach ($task as $value) {
+            $no_id = substr($value["id_task"], 5);
             $no_id = intval($no_id);
             array_push($id_task, $no_id);
         }
         $max_id = max($id_task);
-        $id_task = "TASK-".($max_id+1);
+        $id_task = "TASK-" . ($max_id + 1);
         //akhir membuat id_task
 
         if ($this->form_validation->run() == false) {
@@ -281,26 +286,27 @@ class Home extends CI_Controller
     // }
 
     //function-fiunction datatable
-    public function view($dept){
-        $search = $_POST['search']['value']; 
-        $limit = $_POST['length']; 
-        $start = $_POST['start']; 
+    public function view($dept)
+    {
+        $search = $_POST['search']['value'];
+        $limit = $_POST['length'];
+        $start = $_POST['start'];
         $status = $this->input->post('searchStatus');
-        $order_index = $_POST['order'][0]['column']; 
-        $order_field = $_POST['columns'][$order_index]['data']; 
-        $order_ascdesc = $_POST['order'][0]['dir']; 
-        $sql_total = $this->home_model->count_all($dept,$status); 
-        $sql_data = $this->home_model->filter($search, $limit, $start, $order_field, $order_ascdesc,$dept,$status); 
-        $sql_filter = $this->home_model->count_filter($search,$dept,$status); 
-        $callback = array(        
-            'draw'=>$_POST['draw'], 
-            'recordsTotal'=>$sql_total,        
-            'recordsFiltered'=>$sql_filter,        
-            'data'=>$sql_data    
-        );    
-        
-        header('Content-Type: application/json');    
-        echo json_encode($callback); 
+        $order_index = $_POST['order'][0]['column'];
+        $order_field = $_POST['columns'][$order_index]['data'];
+        $order_ascdesc = $_POST['order'][0]['dir'];
+        $sql_total = $this->home_model->count_all($dept, $status);
+        $sql_data = $this->home_model->filter($search, $limit, $start, $order_field, $order_ascdesc, $dept, $status);
+        $sql_filter = $this->home_model->count_filter($search, $dept, $status);
+        $callback = array(
+            'draw' => $_POST['draw'],
+            'recordsTotal' => $sql_total,
+            'recordsFiltered' => $sql_filter,
+            'data' => $sql_data
+        );
+
+        header('Content-Type: application/json');
+        echo json_encode($callback);
     }
     //akhir function-fiunction datatable
 }

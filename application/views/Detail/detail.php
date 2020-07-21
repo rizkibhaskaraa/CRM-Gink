@@ -214,8 +214,8 @@
                                             </select>
                                             </br>
                                             </br>
-                                            <div class="row items-push text-center text-sm-left mb-4 mr-10 mt-2" style="float:right;margin-bottom:3%">
-                                                <div class="col-sm-6 col-xl-4 ">
+                                           
+                                                <div style="float:right;">
                                                     <input type="submit" value="Simpan" class="btn btn-primary" data-toggle="click-ripple"></input>
                                                 </div>
                                             <?php } ?>
@@ -226,9 +226,9 @@
                                 <td class="font-weight-bold" style="width: 20%;">Berkas (opsional)</td>
                                 <td>
                                     <input type="file" name="file">
-                                    <div class="block-content block-content-full text-right border-top mt-5">
-                                        <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
-                                        <input type="submit" class="btn btn-sm btn-primary" value="Selesai">
+                                    <div class="mt-5" style="float:right;">
+                                    
+                                        <input type="submit" class="btn btn-primary" value="Selesai">
                                     </div>
                                 </td>
                                 <?php echo form_close(); ?>
@@ -242,7 +242,10 @@
                                     <?php } ?>
                                     <input type="file" name="file">
                                     </br>
-                                    <input type="submit" value="Simpan">
+                                    <div>
+                                    <input class="btn btn-primary mt-5" style="float:right;" type="submit" value="Simpan">
+                                    </div>
+                                    
                                 </td>
                                 <?php echo form_close(); ?>
                             <?php } ?>

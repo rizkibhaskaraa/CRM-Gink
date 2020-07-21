@@ -967,13 +967,26 @@
                 "deferRender": true,            
                 "aLengthMenu": [[5, 50, 100],[ 5, 50, 100]],          
                 "columns": [                
-                    { "data": "title" },
-                    { "data": "id_employ_tujuan" },
-                    { "data": "dateline" },          
+                    { "data": "title" ,
+                        className: 'font-weight-bold'
+                    },
+                    { "data": "id_employ_tujuan",
+                        className : 'text-center font-weight-bold'
+                     },
+                    { "data": "dateline", 
+                        className : 'text-center font-weight-bold'
+                    
+                    
+                    },          
                     { "data": "status" ,
+                        className : 'text-center',
                         render 	: function( data, type, row ){
                             if(data == "Selesai"){
-                                let html = "<i>"+data+"</i>";
+                                let html = "<strong class='btn-sm btn-block btn-success'><i class='fa fa-fw fa-check'></i>"+data+"</strong>";
+                                return html;
+                            }else {
+                                
+                                let html = "<strong class='btn-sm btn-block btn-danger'><i class='fa fa-fw fa-exclamation-circle'></i>"+data+"</strong>";
                                 return html;
                             }else{
                                 let html = "<strong>"+data+"</strong>";

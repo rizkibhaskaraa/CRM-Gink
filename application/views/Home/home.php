@@ -227,6 +227,14 @@
                         <div class="block-header border-bottom ">
                             <h3 class="block-title text-primary">Request Tugas</h3>
                         </div>
+                        <div class="col-3 float-right">
+                            <select name="filter-status" id="filter-status" class="form-control">
+                                <option value="">Status</option>
+                                <option value="Selesai">Selesai</option>
+                                <option value="Belum Selesai">Belum Selesai</option>
+                            </select>
+                        </div>
+                        <div style="clear:both"></div>
                         <div class="block-content block-content-full">
                             <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0 w-100" id="table-request">
                                 <thead class="thead-dark">
@@ -939,6 +947,7 @@
     <script src="<?php echo base_url('assets/oneui/js/plugins/datatables/dataTables.bootstrap4.min.js')?>"></script>
     <script>    
         $(document).ready(function() {        
+            // var status = $('#filter-status').val();
             $('#table-request').DataTable({            
                 "processing": true,            
                 "serverSide": true,            
@@ -946,8 +955,8 @@
                 "order": [[ 0, 'asc' ]],
                 "ajax":            
                 {                
-                    "url": "<?php echo base_url('index.php/home/view/').$nama_departemen ?>",
-                    "type": "POST"            
+                    "url": "<?php echo base_url('index.php/home/view/').$nama_departemen.'/'?>",
+                    "type": "POST" ,
                 },            
                 "deferRender": true,            
                 "aLengthMenu": [[5, 50, 100],[ 5, 50, 100]],          
@@ -955,23 +964,24 @@
                     { "data": "title" },
                     { "data": "id_employ_tujuan" },
                     { "data": "dateline" },          
-                    { "data": "status" }, 
-                    { className : 'text-center',
+                    { "data": "status" ,
                         render 	: function( data, type, row ){
-						let html = '<div class="dropdown">'+
-									'<button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" >'+
-										'<i class="fa fa-cogs"></i>'+
-									'</button>'+
-									'<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">'+
-										'<a class="dropdown-item" href="#modal-form" data-toggle="modal" data-pk="'+ data +'" data-a ction="update">Edit</a>'+
-										'<a class="dropdown-item btn-delete" href="javascript:void(0)"  data-pk="'+ data +'">Delete</a>'+
-									'</div>'+
-								'</div>';
+                            if(data == "Selesai"){
+                                let html = "<i>"+data+"</i>";
+                                return html;
+                            }
+                        }
+                    }, 
+                    {   "data": "id_task",
+                        className : 'text-center',
+                        render 	: function( data, type, row ){
+						let html = "<a class='link-fx font-weight-bold' href='<?php echo base_url('index.php/home/detail/') . $employ_id . '/' ?>"+
+                        data + "/Request'>Buka</a>";
 						return html;
 					}
                     }
                 ],        
-            });    
+            });   
         });    
     </script>   
     <!-- //end script datatable -->

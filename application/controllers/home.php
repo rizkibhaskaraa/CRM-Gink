@@ -289,7 +289,7 @@ class Home extends CI_Controller
         $order_field = $_POST['columns'][$order_index]['data']; 
         $order_ascdesc = $_POST['order'][0]['dir']; 
         $sql_total = $this->home_model->count_all($dept); 
-        $sql_data = $this->home_model->filter($search, $limit, $start, $order_field, $order_ascdesc,$dept); 
+        $sql_data = $this->home_model->filter($search, $limit, $start, $order_field, $order_ascdesc,$dept,$status); 
         $sql_filter = $this->home_model->count_filter($search,$dept); 
         $callback = array(        
             'draw'=>$_POST['draw'], 

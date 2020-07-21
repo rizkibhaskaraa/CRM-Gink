@@ -178,16 +178,17 @@ class home_model extends CI_model
     }
 
     //fungsi search tabel pelanggan untuk searching dan sorting tabel pelanggan
-    public function getsearch($status, $search)
+    public function getsearch($search)
     {
-            if ($status == "semua") {
+            // if ($status == "semua") {
                 
-            } else {
-                $this->db->where("status", $status);
-            }
+            // } else {
+            //     $this->db->where("status", $status);
+            // }
         
-        $this->db->like('nama_layanan', $search);
-        return $this->db->get("layanan_pelanggan")->result_array();
+        $this->db->like('customer', $search);
+        $this->db->or_like('id_pelanggan', $search);
+        return $this->db->get("pelanggan")->result_array();
     }
 
     //fungsi search departemen di report
@@ -299,4 +300,40 @@ class home_model extends CI_model
         return $this->db->get("task")->result_array();
     }
     // end report dengan periode
+
+    //function-fiunction datatable
+    public function count_all($dept,$status){
+        $this->db->where("nama_dept_tujuan",$dept);
+        if($status != ""){
+            $this->db->where("status",$status);
+        }
+        $this->db->from('task');
+        return $this->db->count_all_results(); 
+    }
+
+    public function filter($search, $limit, $start, $order_field, $order_ascdesc,$dept,$status){    
+        if($search != ""){
+            $this->db->like('title', $search); 
+            $this->db->where("nama_dept_tujuan",$dept);
+        }
+        if($status != ""){
+            $this->db->where("status",$status);
+        }
+        $this->db->order_by($order_field, $order_ascdesc); 
+        $this->db->limit($limit, $start); 
+        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan"); //join tabel employe dengan task
+        return $this->db->get_where('task',array("nama_dept_tujuan"=>$dept))->result_array(); 
+    }
+
+    public function count_filter($search,$dept,$status){
+        if($search != ""){
+            $this->db->like('title', $search); 
+            $this->db->where("nama_dept_tujuan",$dept); 
+        }  
+        if($status != ""){
+            $this->db->where("status",$status);
+        }
+        return $this->db->get_where('task',array("nama_dept_tujuan"=>$dept))->num_rows(); 
+    }
+    //akhir function-fiunction datatable
 }

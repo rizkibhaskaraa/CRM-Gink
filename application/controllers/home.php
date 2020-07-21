@@ -48,8 +48,8 @@ class Home extends CI_Controller
         //akhir ambil data tabel task untuk tugas saya
 
         //ambil data tabel task untuk request tugas
-        $data["taskdihead"] = $this->home_model->gettaskdihead($departemen["nama_departemen"]);
-        $data["taskdiheadkosong"] = $this->home_model->gettaskdiheadkosong($departemen["nama_departemen"]);
+        // $data["taskdihead"] = $this->home_model->gettaskdihead($departemen["nama_departemen"]);
+        // $data["taskdiheadkosong"] = $this->home_model->gettaskdiheadkosong($departemen["nama_departemen"]);
         //akhir ambil data tabel task untuk request tugas
 
         //ambil data tabel task untuk tiket saya
@@ -139,13 +139,13 @@ class Home extends CI_Controller
     }
 
     //fungsi mencari data pelanggan dan filter data pelanggan
-    public function search($employ_id, $status, $search)
+    public function search($employ_id, $search)
     {
         $search_pelanggan = str_replace('%20', ' ', $search); //menggganti %20 dengan spasi
-        $status_pelanggan = str_replace('%20', ' ', $status); //menggganti %20 dengan spasi
-        $data["pelanggan"] = $this->home_model->getpelanggan(); //memanggil fungsi getpelanggan di home_model
+        //$status_pelanggan = str_replace('%20', ' ', $status); //menggganti %20 dengan spasi
+        $data["layanan"] = $this->home_model->getlayanan(); //memanggil fungsi getpelanggan di home_model
         $data["employ_id"] = $employ_id;
-        $data["layanan"] = $layanan = $this->home_model->getsearch($status_pelanggan, $search_pelanggan); //memanggil fungsi getsearch di home_model
+        $data["pelanggan"] = $pelanggan = $this->home_model->getsearch($search_pelanggan); //memanggil fungsi getsearch di home_model
         $this->load->view('home/hasil_search', $data);
     }
 
@@ -206,7 +206,7 @@ class Home extends CI_Controller
             array_push($id_task, $no_id);
         }
         $max_id = max($id_task);
-        $id_task = "TASK-0".($max_id+1);
+        $id_task = "TASK-".($max_id+1);
         //akhir membuat id_task
 
         if ($this->form_validation->run() == false) {
@@ -279,4 +279,28 @@ class Home extends CI_Controller
     //     $this->home_model->insert_pelanggan($data_pelanggan);
     //     redirect(base_url('index.php/home/index/') . $user["username"]);
     // }
+
+    //function-fiunction datatable
+    public function view($dept){
+        $search = $_POST['search']['value']; 
+        $limit = $_POST['length']; 
+        $start = $_POST['start']; 
+        $status = $this->input->post('searchStatus');
+        $order_index = $_POST['order'][0]['column']; 
+        $order_field = $_POST['columns'][$order_index]['data']; 
+        $order_ascdesc = $_POST['order'][0]['dir']; 
+        $sql_total = $this->home_model->count_all($dept,$status); 
+        $sql_data = $this->home_model->filter($search, $limit, $start, $order_field, $order_ascdesc,$dept,$status); 
+        $sql_filter = $this->home_model->count_filter($search,$dept,$status); 
+        $callback = array(        
+            'draw'=>$_POST['draw'], 
+            'recordsTotal'=>$sql_total,        
+            'recordsFiltered'=>$sql_filter,        
+            'data'=>$sql_data    
+        );    
+        
+        header('Content-Type: application/json');    
+        echo json_encode($callback); 
+    }
+    //akhir function-fiunction datatable
 }

@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
     <link rel="stylesheet" id="css-main" href="<?php echo base_url('assets/oneui/css/oneui.min.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/home/home.css') ?>">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/> -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css"/>
 
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="<?php echo base_url('assets/oneui/js/plugins/summernote/summernote-bs4.css') ?>">
@@ -129,12 +131,12 @@
                     <div class="block-header border-bottom">
                         <h3 class="block-title text-primary">Data Pelanggan</h3>
                     </div>
-                    <input type="text" id="search" class="form-control col-2 search  mt-3 ml-2 mr-4" name="search" placeholder="Cari Layanan">
-                    <select name="status" id="status-pelanggan" class="form-control col-2 status-pelanggan mt-3">
+                    <input type="text" id="search" class="form-control col-2 search  mt-3 ml-2 mr-4" name="search" placeholder="Cari Customer">
+                    <!-- <select name="status" id="status-pelanggan" class="form-control col-2 status-pelanggan mt-3">
                         <option value="semua">Semua Status</option>
                         <option value="aktif">Aktif</option>
                         <option value="tidak aktif">Tidak Aktif</option>
-                    </select>
+                    </select> -->
                     <input type="text" id="link" name="link" value="<?php echo base_url('index.php/home/search/') . $employ_id . "/" ?>" hidden>
                     <div class="block-content block-content-full">
                         <table class="table table-bordered table-hover  table-vcenter font-size-sm mb-0" id="tabel-pelanggan">
@@ -321,6 +323,7 @@
                 </div>
             </div>
         <!-- END report-->
+        
         <div class="tab-pane fade fade-up" id="tugas" role="tabpanel">
             <!-- Belum Selesai -->
             <div class="container-fluid">
@@ -895,6 +898,13 @@
         </div>
     </footer>
     <!-- END Footer -->
+
+
+    <!-- //script datatable -->
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>    
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap.min.js"></script>
+
+    <!-- //end script datatable -->
 
 
     <script src="<?php echo base_url('assets/oneui/js/oneui.core.min.js') ?>"></script>

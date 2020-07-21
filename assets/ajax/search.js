@@ -20,7 +20,8 @@ cari.addEventListener('keyup', function(){
 			konten.innerHTML = ajaxCari.responseText;
 		}
 	}
-	ajaxCari.open('GET', alamat.value+status_pelanggan.value+"/"+cari.value , true);
+	ajaxCari.open('GET', alamat.value+cari.value , true);//+status_pelanggan.value+"/"
+	
 	ajaxCari.send();
 
 });

@@ -229,7 +229,7 @@
                         </div>
                         <div class="col-3 float-right">
                             <select name="filter-status" id="filter-status" class="form-control">
-                                <option value="Semua">Status</option>
+                                <option value="">Status</option>
                                 <option value="Selesai">Selesai</option>
                                 <option value="Belum Selesai">Belum Selesai</option>
                             </select>
@@ -940,20 +940,13 @@
     <!-- END Footer -->
     <!-- END Page Content -->
     <script src="<?php echo base_url('assets/oneui/js/oneui.core.min.js') ?>"></script>
-    <script src="<?php echo base_url('assets/oneui/js/oneui.app.min.js') ?>"></script>
-
+    <script src="<?php echo base_url('assets/oneui/js/oneui.app.min.js') ?>"></script>  
     <!-- //script datatable -->
     <script src="<?php echo base_url('assets/oneui/js/plugins/datatables/jquery.dataTables.min.js')?>"></script>
     <script src="<?php echo base_url('assets/oneui/js/plugins/datatables/dataTables.bootstrap4.min.js')?>"></script>
     <script>    
         $(document).ready(function() {        
-            var table =null;
-            var status = $('#filter-status').val();
-            $('#filter-status').change(function(){
-                status = $('#filter-status').val(); 
-                alert(status);
-                table.ajax.reload();
-            }); 
+            var table = null;
             table = $('#table-request').DataTable({            
                 "processing": true,            
                 "serverSide": true,            
@@ -961,8 +954,11 @@
                 "order": [[ 0, 'asc' ]],
                 "ajax":            
                 {                
-                    "url": "<?php echo base_url('index.php/home/view/').$nama_departemen.'/'?>"+status,
+                    "url": "<?php echo base_url('index.php/home/view/').$nama_departemen?>",
                     "type": "POST" ,
+                    'data': function(data){
+                        data.searchStatus = $('#filter-status').val();;
+                    }
                 },            
                 "deferRender": true,            
                 "aLengthMenu": [[5, 50, 100],[ 5, 50, 100]],          
@@ -988,9 +984,6 @@
                                 
                                 let html = "<strong class='btn-sm btn-block btn-danger'><i class='fa fa-fw fa-exclamation-circle'></i>"+data+"</strong>";
                                 return html;
-                            }else{
-                                let html = "<strong>"+data+"</strong>";
-                                return html;
                             }
                         }
                     }, 
@@ -1003,14 +996,12 @@
 					}
                     }
                 ],        
-            }); 
-            // $('#filter-status').change(function(){
-            //     // status = $('#filter-status').val(); 
-            //     alert(status);
-            //     table.ajax.reload();
-            // }); 
+            });   
+            $("#filter-status").change(function(){
+                table.ajax.reload();
+            });
         });    
-    </script>   
+    </script>
     <!-- //end script datatable -->
 
     <!-- POP UP BUAT TIKET -->

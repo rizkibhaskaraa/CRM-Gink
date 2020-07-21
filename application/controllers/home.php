@@ -281,10 +281,11 @@ class Home extends CI_Controller
     // }
 
     //function-fiunction datatable
-    public function view($dept,$status){
+    public function view($dept){
         $search = $_POST['search']['value']; 
         $limit = $_POST['length']; 
         $start = $_POST['start']; 
+        $status = $this->input->post('searchStatus');
         $order_index = $_POST['order'][0]['column']; 
         $order_field = $_POST['columns'][$order_index]['data']; 
         $order_ascdesc = $_POST['order'][0]['dir']; 

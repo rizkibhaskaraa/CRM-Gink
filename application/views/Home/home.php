@@ -940,23 +940,25 @@
     <!-- END Footer -->
     <!-- END Page Content -->
     <script src="<?php echo base_url('assets/oneui/js/oneui.core.min.js') ?>"></script>
-    <script src="<?php echo base_url('assets/oneui/js/oneui.app.min.js') ?>"></script>
-
+    <script src="<?php echo base_url('assets/oneui/js/oneui.app.min.js') ?>"></script>  
     <!-- //script datatable -->
     <script src="<?php echo base_url('assets/oneui/js/plugins/datatables/jquery.dataTables.min.js')?>"></script>
     <script src="<?php echo base_url('assets/oneui/js/plugins/datatables/dataTables.bootstrap4.min.js')?>"></script>
     <script>    
         $(document).ready(function() {        
-            // var status = $('#filter-status').val();
-            $('#table-request').DataTable({            
+            var table = null;
+            table = $('#table-request').DataTable({            
                 "processing": true,            
                 "serverSide": true,            
                 "ordering": true, 
                 "order": [[ 0, 'asc' ]],
                 "ajax":            
                 {                
-                    "url": "<?php echo base_url('index.php/home/view/').$nama_departemen.'/'?>",
+                    "url": "<?php echo base_url('index.php/home/view/').$nama_departemen?>",
                     "type": "POST" ,
+                    'data': function(data){
+                        data.searchStatus = $('#filter-status').val();;
+                    }
                 },            
                 "deferRender": true,            
                 "aLengthMenu": [[5, 50, 100],[ 5, 50, 100]],          
@@ -995,8 +997,11 @@
                     }
                 ],        
             });   
+            $("#filter-status").change(function(){
+                table.ajax.reload();
+            });
         });    
-    </script>   
+    </script>
     <!-- //end script datatable -->
 
     <!-- POP UP BUAT TIKET -->

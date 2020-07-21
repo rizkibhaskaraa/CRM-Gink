@@ -321,6 +321,7 @@ class home_model extends CI_model
         }
         $this->db->order_by($order_field, $order_ascdesc); 
         $this->db->limit($limit, $start); 
+        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan"); //join tabel employe dengan task
         return $this->db->get_where('task',array("nama_dept_tujuan"=>$dept))->result_array(); 
     }
 

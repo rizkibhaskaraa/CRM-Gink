@@ -312,7 +312,7 @@ class home_model extends CI_model
         if($search != ""){
             $this->db->like('title', $search); 
             $this->db->where("nama_dept_tujuan",$dept);
-        }   
+        }
         $this->db->order_by($order_field, $order_ascdesc); 
         $this->db->limit($limit, $start); 
         return $this->db->get_where('task',array("nama_dept_tujuan"=>$dept))->result_array(); 
@@ -323,6 +323,7 @@ class home_model extends CI_model
             $this->db->like('title', $search); 
             $this->db->where("nama_dept_tujuan",$dept); 
         }  
+        
         return $this->db->get_where('task',array("nama_dept_tujuan"=>$dept))->num_rows(); 
     }
     //akhir function-fiunction datatable

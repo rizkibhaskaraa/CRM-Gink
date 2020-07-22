@@ -1,9 +1,9 @@
 console.log('ok');
 //ambil elemen
-var cari = document.getElementById('search');
-var status_pelanggan = document.getElementById("status-pelanggan");
-var konten = document.getElementById('tabel-pelanggan');
-var alamat = document.getElementById('link');
+// var cari = document.getElementById('search');
+// var status_pelanggan = document.getElementById("status-pelanggan");
+// var konten = document.getElementById('tabel-pelanggan');
+// var alamat = document.getElementById('link');
 var alamat_report = document.getElementById('alamat-report');
 var tgl_start = document.getElementById('tgl-start');
 var tgl_end = document.getElementById('tgl-end');
@@ -11,20 +11,20 @@ var button = document.getElementById('button-report');
 var button_reset = document.getElementById('button-reset');
 var kontenreport = document.getElementById('report-table');
 
-cari.addEventListener('keyup', function(){
-	//buat objeck
-	var ajaxCari = new XMLHttpRequest();
+// cari.addEventListener('keyup', function(){
+// 	//buat objeck
+// 	var ajaxCari = new XMLHttpRequest();
 
-	ajaxCari.onreadystatechange = function(){
-		if(ajaxCari.readyState == 4 && ajaxCari.status == 200){
-			konten.innerHTML = ajaxCari.responseText;
-		}
-	}
-	ajaxCari.open('GET', alamat.value+cari.value , true);//+status_pelanggan.value+"/"
+// 	ajaxCari.onreadystatechange = function(){
+// 		if(ajaxCari.readyState == 4 && ajaxCari.status == 200){
+// 			konten.innerHTML = ajaxCari.responseText;
+// 		}
+// 	}
+// 	ajaxCari.open('GET', alamat.value+cari.value , true);//+status_pelanggan.value+"/"
 	
-	ajaxCari.send();
+// 	ajaxCari.send();
 
-});
+// });
 
 button.addEventListener('click', function(){
 	
@@ -37,6 +37,7 @@ button.addEventListener('click', function(){
 	//buat objeck
 	var ajaxstart = new XMLHttpRequest();
 
+	window.alert(alamat_report.value+tgl_start.value+"/"+tgl_end.value);
 	ajaxstart.onreadystatechange = function(){
 		if(ajaxstart.readyState == 4 && ajaxstart.status == 200){
 			kontenreport.innerHTML = ajaxstart.responseText;
@@ -50,7 +51,6 @@ button.addEventListener('click', function(){
 	if(tgl_start.value == "2000-01-01"){
 		tgl_start.value = "";
 	}
-	
 
 });
 
@@ -68,16 +68,16 @@ button_reset.addEventListener('click', function(){
 
 });
 
-status_pelanggan.addEventListener('change', function(){
-	//buat objeck
-	var ajaxstatus = new XMLHttpRequest();
+// status_pelanggan.addEventListener('change', function(){
+// 	//buat objeck
+// 	var ajaxstatus = new XMLHttpRequest();
 
-	ajaxstatus.onreadystatechange = function(){
-		if(ajaxstatus.readyState == 4 && ajaxstatus.status == 200){
-			konten.innerHTML = ajaxstatus.responseText;
-		}
-	}
-	ajaxstatus.open('GET', alamat.value+status_pelanggan.value+"/"+cari.value , true);
-	ajaxstatus.send();
+// 	ajaxstatus.onreadystatechange = function(){
+// 		if(ajaxstatus.readyState == 4 && ajaxstatus.status == 200){
+// 			konten.innerHTML = ajaxstatus.responseText;
+// 		}
+// 	}
+// 	ajaxstatus.open('GET', alamat.value+status_pelanggan.value+"/"+cari.value , true);
+// 	ajaxstatus.send();
 
-});
+// });

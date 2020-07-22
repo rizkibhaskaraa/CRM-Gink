@@ -45,18 +45,15 @@ class home_model extends CI_model
     //fungsi ambil data table employ
     public function getemploydept($id_dept)
     {
-        if ($id_dept != "ceo") { //jika yang login dari CEO
-            $this->db->order_by('nama_departemen', 'ASC'); //sort hasil menurut nama_departemen
-            $this->db->order_by('status_employ', 'ASC'); //sort hasil menurut status employ 
-            //join tabel departemen ke tabel employ dimana employe.id_departemen = departemen.id_departemen
-            $this->db->join("departemen", "employe.id_departemen = departemen.id_departemen");
-            //ambil data employ menurut id_departemen
-            return $this->db->get_where("employe", array("employe.id_departemen" => $id_dept))->result_array();
+        $this->db->select("hr_employee.employee_name,hr_department.department_name,hr_department.department_id");
+        $this->db->order_by('hr_department.department_name', 'ASC');
+        $this->db->join("hr_designation", "hr_employee.employee_id = hr_designation.employee_id",'left');
+        $this->db->join("hr_position","hr_position.position_id = hr_designation.position_id");
+        $this->db->join("hr_department","hr_department.department_id = hr_position.department_id");
+        if ($id_dept != "1") { //jika yang login dari CEO
+            return $this->db->get_where("hr_employee", array("hr_department.department_id" => $id_dept))->result_array();
         } else {
-            $this->db->order_by('nama_departemen', 'ASC');
-            $this->db->order_by('status_employ', 'ASC');
-            $this->db->join("departemen", "employe.id_departemen = departemen.id_departemen");
-            return $this->db->get_where("employe")->result_array();
+            return $this->db->get_where("hr_employee")->result_array();
         }
     }
 
@@ -111,9 +108,9 @@ class home_model extends CI_model
     public function gettaskselesai($id_employ, $dept)
     {
         if ($dept == "1") { //jika CEO yang login
-            return $this->db->get_where('tm_task', array("task_status" => "Selesai"))->result_array();
+            return $this->db->get_where('tm_task', array("task_status" => "Finish"))->result_array();
         } else {
-            return $this->db->get_where('tm_task', array('employee_destination' => $id_employ, "task_status" => "Selesai"))->result_array();
+            return $this->db->get_where('tm_task', array('employee_destination' => $id_employ, "task_status" => "Finish"))->result_array();
         }
     }
 
@@ -121,9 +118,9 @@ class home_model extends CI_model
     public function gettaskbelum($id_employ, $dept)
     {
         if ($dept == "1") { //jika CEO yang login
-            return $this->db->get_where('tm_task', array("task_status" => "Belum Selesai"))->result_array();
+            return $this->db->get_where('tm_task', array("task_status" => "Not Finished"))->result_array();
         } else {
-            return $this->db->get_where('tm_task', array('employee_destination' => $id_employ, "task_status" => "Belum Selesai"))->result_array();
+            return $this->db->get_where('tm_task', array('employee_destination' => $id_employ, "task_status" => "Not Finished"))->result_array();
         }
     }
 
@@ -154,12 +151,12 @@ class home_model extends CI_model
     //fungsi ambil data tabel task untuk tugas saya berdarakan nama_dept_tujuan(departemen PJ task)
     public function gettaskparent($nama_departemen)
     {
-        $departemen = array($nama_departemen, "umum");
+        $departemen = array($nama_departemen, "");
         $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination");
         if ($nama_departemen != "1") {
             $this->db->where_in('department_destination', $departemen);
         }
-        $this->db->where('task_parent', "");
+        $this->db->where('task_parent', NULL);
         return $this->db->get('tm_task')->result_array();
     }
 
@@ -236,43 +233,46 @@ class home_model extends CI_model
     //fungsi get report (untuk kolom request tugas)
     public function getreport($dept)
     {
-        $this->db->order_by('nama_dept_tujuan', 'ASC');
-        $this->db->order_by('status_employ', 'ASC');
-        if ($dept != "Chief Executive Officer ") { //jika bukan CEO yang login
-            $this->db->where("nama_dept_tujuan", $dept);
+        $this->db->order_by('department_destination', 'ASC');
+        // $this->db->order_by('status_employ', 'ASC');
+        if ($dept != "1") { //jika bukan CEO yang login
+            $this->db->where("department_destination", $dept);
         }
-        $this->db->select("count(task.status),id_employ_tujuan,nama,status_employ,id_departemen,nama_dept_tujuan"); //select kolom
-        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan"); //join
-        $this->db->group_by("id_employ_tujuan"); //group by 
-        return $this->db->get("task")->result_array();
+        $this->db->select("count(tm_task.task_status),employee_destination,employee_name,department_destination,department_name"); //select kolom
+        $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination"); //join
+        $this->db->join("hr_department", "hr_department.department_id = tm_task.department_destination"); //join
+        $this->db->group_by("employee_destination"); //group by 
+        return $this->db->get("tm_task")->result_array();
     }
 
     //fungsi get report (untuk kolom tugas selesai)
     public function gettugaspjselesai($dept)
     {
-        if ($dept != "Chief Executive Officer ") {
-            $this->db->where("nama_dept_tujuan", $dept);
+        if ($dept != "1") {
+            $this->db->where("department_destination", $dept);
         }
-        $this->db->where("task.status", "Selesai");
-        $this->db->where_not_in("id_employ_tujuan", ""); //clause where not in
-        $this->db->select("count(task.status),id_employ_tujuan,nama,status_employ,id_departemen");
-        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
-        $this->db->group_by("id_employ_tujuan");
-        return $this->db->get("task")->result_array();
+        $this->db->where("tm_task.task_status", "Finish");
+        $this->db->where_not_in("employee_destination", "");
+        $this->db->select("count(tm_task.task_status),employee_destination,employee_name,department_destination,department_name");
+        $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination"); //join
+        $this->db->join("hr_department", "hr_department.department_id = tm_task.department_destination"); //join
+        $this->db->group_by("employee_destination");
+        return $this->db->get("tm_task")->result_array();
     }
 
     //fungsi get report (untuk kolom on progres)
     public function gettugaspjbelum($dept)
     {
-        if ($dept != "Chief Executive Officer ") {
-            $this->db->where("nama_dept_tujuan", $dept);
+        if ($dept != "1") {
+            $this->db->where("department_destination", $dept);
         }
-        $this->db->where("task.status", "Belum Selesai");
-        $this->db->where_not_in("id_employ_tujuan", "");
-        $this->db->select("count(task.status),id_employ_tujuan,nama,status_employ,id_departemen");
-        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
-        $this->db->group_by("id_employ_tujuan");
-        return $this->db->get("task")->result_array();
+        $this->db->where("tm_task.task_status", "Not Finished");
+        $this->db->where_not_in("employee_destination", "");
+        $this->db->select("count(tm_task.task_status),employee_destination,employee_name,department_destination,department_name");
+        $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination"); //join
+        $this->db->join("hr_department", "hr_department.department_id = tm_task.department_destination"); //join
+        $this->db->group_by("employee_destination");
+        return $this->db->get("tm_task")->result_array();
     }
     // end report tanpa periode
 
@@ -280,49 +280,52 @@ class home_model extends CI_model
     //fungsi get report (untuk kolom request tugas) dengan periode
     public function getreport_periode($dept, $tgl_start, $tgl_end)
     {
-        $this->db->order_by('nama_dept_tujuan', 'ASC');
-        $this->db->order_by('status_employ', 'ASC');
-        if ($dept != "Chief Executive Officer ") {
-            $this->db->where("nama_dept_tujuan", $dept);
+        $this->db->order_by('department_destination', 'ASC');
+        // $this->db->order_by('status_employ', 'ASC');
+        if ($dept != "1") { //jika bukan CEO yang login
+            $this->db->where("department_destination", $dept);
         }
         $this->db->where('date >=', $tgl_start); //where tanggal
         $this->db->where('date <=', $tgl_end); //where tanggan
-        $this->db->select("count(task.status),id_employ_tujuan,nama,status_employ,nama_dept_tujuan"); //select kolom
-        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan"); //join
-        $this->db->group_by("id_employ_tujuan"); //group by
-        return $this->db->get("task")->result_array();
+        $this->db->select("count(tm_task.task_status),employee_destination,employee_name,department_destination,department_name"); //select kolom
+        $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination"); //join
+        $this->db->join("hr_department", "hr_department.department_id = tm_task.department_destination"); //join
+        $this->db->group_by("employee_destination"); //group by 
+        return $this->db->get("tm_task")->result_array();
     }
 
     //fungsi get report (untuk kolom tugas selesai) dengan periode
     public function gettugaspjselesai_periode($dept, $tgl_start, $tgl_end)
     {
-        if ($dept != "Chief Executive Officer ") {
-            $this->db->where("nama_dept_tujuan", $dept);
+        if ($dept != "1") {
+            $this->db->where("department_destination", $dept);
         }
-        $this->db->where("task.status", "Selesai");
         $this->db->where('date >=', $tgl_start);
         $this->db->where('date <=', $tgl_end);
-        $this->db->where_not_in("id_employ_tujuan", "");
-        $this->db->select("count(task.status),id_employ_tujuan,nama,status_employ,id_departemen");
-        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
-        $this->db->group_by("id_employ_tujuan");
-        return $this->db->get("task")->result_array();
+        $this->db->where("tm_task.task_status", "Finish");
+        $this->db->where_not_in("employee_destination", "");
+        $this->db->select("count(tm_task.task_status),employee_destination,employee_name,department_destination,department_name");
+        $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination"); //join
+        $this->db->join("hr_department", "hr_department.department_id = tm_task.department_destination"); //join
+        $this->db->group_by("employee_destination");
+        return $this->db->get("tm_task")->result_array();
     }
 
     //fungsi get report (untuk kolom on progres) dengan periode
     public function gettugaspjbelum_periode($dept, $tgl_start, $tgl_end)
     {
-        if ($dept != "Chief Executive Officer ") {
-            $this->db->where("nama_dept_tujuan", $dept);
+        if ($dept != "1") {
+            $this->db->where("department_destination", $dept);
         }
-        $this->db->where("task.status", "Belum Selesai");
         $this->db->where('date >=', $tgl_start);
         $this->db->where('date <=', $tgl_end);
-        $this->db->where_not_in("id_employ_tujuan", "");
-        $this->db->select("count(task.status),id_employ_tujuan,nama,status_employ,id_departemen");
-        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
-        $this->db->group_by("id_employ_tujuan");
-        return $this->db->get("task")->result_array();
+        $this->db->where("tm_task.task_status", "Not Finished");
+        $this->db->where_not_in("employee_destination", "");
+        $this->db->select("count(tm_task.task_status),employee_destination,employee_name,department_destination,department_name");
+        $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination"); //join
+        $this->db->join("hr_department", "hr_department.department_id = tm_task.department_destination"); //join
+        $this->db->group_by("employee_destination");
+        return $this->db->get("tm_task")->result_array();
     }
     // end report dengan periode
 

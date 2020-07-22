@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+// error_reporting(0);
 class detail_model extends CI_model
 {
     public function getuser($id)

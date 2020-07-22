@@ -47,7 +47,7 @@ class Home extends CI_Controller
         //ambil data tabel task untuk tugas saya
         $data["taskselesai"] = $this->home_model->gettaskselesai($data["employ_id"], $data["employ_dept"]["department_id"]);
         $data["taskbelum"] = $this->home_model->gettaskbelum($data["employ_id"], $data["employ_dept"]["department_id"]);
-        $data["tasksaya"] = $this->home_model->gettasksaya($data["employ_id"],$data["employ_dept"]["department_id"]);
+        $data["tasksaya"] = $this->home_model->gettasksaya($data["employ_id"], $data["employ_dept"]["department_id"]);
         $data["taskparent"] = $this->home_model->gettaskparent($data["employ_dept"]["department_id"]);
         //akhir ambil data tabel task untuk tugas saya
 
@@ -100,7 +100,7 @@ class Home extends CI_Controller
         //ambil data tabel task untuk tugas saya
         $data["taskselesai"] = $this->home_model->gettaskselesai($data["employ_id"], $data["employ_dept"]["department_id"]);
         $data["taskbelum"] = $this->home_model->gettaskbelum($data["employ_id"], $data["employ_dept"]["department_id"]);
-        $data["tasksaya"] = $this->home_model->gettasksaya($data["employ_id"],$data["employ_dept"]["department_id"]);
+        $data["tasksaya"] = $this->home_model->gettasksaya($data["employ_id"], $data["employ_dept"]["department_id"]);
         $data["taskparent"] = $this->home_model->gettaskparent($data["employ_dept"]["department_id"]);
         //akhir ambil data tabel task untuk tugas saya
 
@@ -200,7 +200,7 @@ class Home extends CI_Controller
         $employ = $this->home_model->getemploytiket($id_employ);
         $user = $this->home_model->getuser($id_employ);
         $departemen = $this->home_model->getdepartemen($user["user_username"]);
-        
+
 
         // //membuat id_task
         // $task = $this->home_model->gettask();
@@ -213,64 +213,61 @@ class Home extends CI_Controller
         // $max_id = max($id_task);
         // $id_task = "TASK-" . ($max_id + 1);
         // //akhir membuat id_task
-            //menentukan departemen tujuan
-            $masalah = $this->input->post("masalah");
-            if ($masalah != null) {
-                if ($masalah == "umum") {
-                    $departemen_tujuan = "umum";
-                } else if ($masalah == "hosting" || $masalah == "billing") {
-                    $departemen_tujuan = "Sales And Marketing";
-                } else if ($masalah == "support") {
-                    $departemen_tujuan = "Research And Development";
-                }
-                $department_id = $this->home_model->getdepartmentbyid($departemen_tujuan);
-                if($department_id == ""){
-                    $department_id = NULL;
-                }else{
-                    $department_id = $department_id["department_id"];
-                }
-                //jika buat tiket dari tabel pelanggan
-                $data_task = array(
-                    "task_id"=>rand(0,100000),
-                    // "id_pelanggan" => $this->input->post("id_pelanggan"),
-                    // "customer" => $this->input->post("customer"),
-                    "service_id" => $this->input->post("service"),
-                    "department_destination" => $department_id,
-                    "employee_sent" => $id_employ,
-                    "department_sent" => $departemen["department_id"],
-                    "task_title" => $this->input->post("title"),
-                    "task_description" => $this->input->post("deskripsi"),
-                    // "kategori_masalah" => $masalah,
-                    "task_date" => date("Y-m-d H-i-s"),
-                    "task_dateline" => $this->input->post("dateline"),
-                    "task_status" => "Not Finished"
-                );
-                //akhir jika buat tiket dari tabel pelanggan
-            } else {
-                $departemen_tujuan = $this->input->post("departemen");
-                $department_id = $this->home_model->getdepartmentbyid($departemen_tujuan);
-                //jika staff yang buat tiket untuk staff
-                $data_task = array(
-                    "department_destination" => $department_id["department_id"],
-                    "task_id"=>rand(0,100000),
-                    "employee_sent" => $id_employ,
-                    "department_sent" => $departemen["department_id"],
-                    "task_title" => $this->input->post("title"),
-                    "task_description" => $this->input->post("deskripsi"),
-                    "task_date" => date("Y-m-d H-i-s"),
-                    "task_dateline" => $this->input->post("dateline"),
-                    "task_status" => "Not Finished"
-                );
-                //akhir jika staff yang buat tiket untuk staff
+        //menentukan departemen tujuan
+        $masalah = $this->input->post("masalah");
+        if ($masalah != null) {
+            if ($masalah == "umum") {
+                $departemen_tujuan = "umum";
+            } else if ($masalah == "hosting" || $masalah == "billing") {
+                $departemen_tujuan = "Sales And Marketing";
+            } else if ($masalah == "support") {
+                $departemen_tujuan = "Research And Development";
             }
-            //akhir menentukan departemen tujuan
-            $this->home_model->insert_task($data_task);
-            if ($departemen["department_id"] == "1") {
-                redirect(base_url('index.php/home/ceo/') . $user["user_username"]);
+            $department_id = $this->home_model->getdepartmentbyid($departemen_tujuan);
+            if ($department_id == "") {
+                $department_id = NULL;
             } else {
-                redirect(base_url('index.php/home/index/') . $user["user_username"]);
+                $department_id = $department_id["department_id"];
             }
-        
+            //jika buat tiket dari tabel pelanggan
+            $data_task = array(
+                // "id_pelanggan" => $this->input->post("id_pelanggan"),
+                // "customer" => $this->input->post("customer"),
+                "service_id" => $this->input->post("service"),
+                "department_destination" => $department_id,
+                "employee_sent" => $id_employ,
+                "department_sent" => $departemen["department_id"],
+                "task_title" => $this->input->post("title"),
+                "task_description" => $this->input->post("deskripsi"),
+                // "kategori_masalah" => $masalah,
+                "task_date" => date("Y-m-d H-i-s"),
+                "task_dateline" => $this->input->post("dateline"),
+                "task_status" => "Not Finished"
+            );
+            //akhir jika buat tiket dari tabel pelanggan
+        } else {
+            $departemen_tujuan = $this->input->post("departemen");
+            $department_id = $this->home_model->getdepartmentbyid($departemen_tujuan);
+            //jika staff yang buat tiket untuk staff
+            $data_task = array(
+                "department_destination" => $department_id["department_id"],
+                "employee_sent" => $id_employ,
+                "department_sent" => $departemen["department_id"],
+                "task_title" => $this->input->post("title"),
+                "task_description" => $this->input->post("deskripsi"),
+                "task_date" => date("Y-m-d H-i-s"),
+                "task_dateline" => $this->input->post("dateline"),
+                "task_status" => "Not Finished"
+            );
+            //akhir jika staff yang buat tiket untuk staff
+        }
+        //akhir menentukan departemen tujuan
+        $this->home_model->insert_task($data_task);
+        if ($departemen["department_id"] == "1") {
+            redirect(base_url('index.php/home/ceo/') . $user["user_username"]);
+        } else {
+            redirect(base_url('index.php/home/index/') . $user["user_username"]);
+        }
     }
 
     //fungsi tambah data pelanggan
@@ -311,30 +308,31 @@ class Home extends CI_Controller
     }
     //akhir function-fiunction datatable
 
-    
+
     //function-fiunction datatable pelanggan
-    public function view_pelanggan(){
-        $search = $_POST['search']['value']; 
-        $limit = $_POST['length']; 
-        $start = $_POST['start']; 
+    public function view_pelanggan()
+    {
+        $search = $_POST['search']['value'];
+        $limit = $_POST['length'];
+        $start = $_POST['start'];
         $status = $this->input->post('searchStatus');
-        $order_index = $_POST['order'][0]['column']; 
-        $order_field = $_POST['columns'][$order_index]['data']; 
-        $order_ascdesc = $_POST['order'][0]['dir']; 
-        $sql_total = $this->home_model->count_all_pelanggan($status); 
-        $sql_data = $this->home_model->filter_pelanggan($search, $limit, $start, $order_field, $order_ascdesc,$status); 
-        $sql_filter = $this->home_model->count_filter_pelanggan($search,$status); 
+        $order_index = $_POST['order'][0]['column'];
+        $order_field = $_POST['columns'][$order_index]['data'];
+        $order_ascdesc = $_POST['order'][0]['dir'];
+        $sql_total = $this->home_model->count_all_pelanggan($status);
+        $sql_data = $this->home_model->filter_pelanggan($search, $limit, $start, $order_field, $order_ascdesc, $status);
+        $sql_filter = $this->home_model->count_filter_pelanggan($search, $status);
         // $layanan = $this->home_model->getlayanan();
-        $callback = array(        
-            'draw'=>$_POST['draw'], 
-            'recordsTotal'=>$sql_total,        
-            'recordsFiltered'=>$sql_filter,        
-            'data'=>$sql_data,    
+        $callback = array(
+            'draw' => $_POST['draw'],
+            'recordsTotal' => $sql_total,
+            'recordsFiltered' => $sql_filter,
+            'data' => $sql_data,
             // 'data-layanan'=>$layanan
-        );    
-        
-        header('Content-Type: application/json');    
-        echo json_encode($callback); 
+        );
+
+        header('Content-Type: application/json');
+        echo json_encode($callback);
     }
     //akhir function-fiunction datatable pelanggan   
 }

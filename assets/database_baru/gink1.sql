@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 21, 2020 at 09:23 AM
+-- Generation Time: Jul 22, 2020 at 09:21 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -264,13 +264,6 @@ CREATE TABLE `tm_comment` (
   `comment_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `tm_comment`
---
-
-INSERT INTO `tm_comment` (`comment_id`, `comment_description`, `task_id`, `employee_id`, `department_id`, `comment_date`) VALUES
-(1, 'Udah mau deadline, masih belum kelar??? Jangan Mabar dong woy!!!', 1, 6, 1, '2020-07-15 00:00:00');
-
 -- --------------------------------------------------------
 
 --
@@ -301,8 +294,10 @@ CREATE TABLE `tm_task` (
 --
 
 INSERT INTO `tm_task` (`task_id`, `task_parent`, `customer_id`, `product_id`, `service_id`, `employee_destination`, `department_destination`, `employee_sent`, `department_sent`, `task_title`, `task_description`, `task_date`, `task_dateline`, `task_file`, `task_finish`, `task_status`) VALUES
-(1, NULL, 1, 3, 1, 10, 3, 6, 1, 'Membuat Official Website Bank ', 'Website Bank Lampung yang Bagus, Indah dan dapat digunakan di berbagai platform', '2020-07-01 00:00:00', '2020-07-31', NULL, NULL, 'Not Finished'),
-(2, NULL, 2, 3, 3, NULL, NULL, 16, 2, 'Membuat Official Website Bank Utomo', 'Website Bank Utomo, spesifikasi website belum diberikan', '2020-07-01 00:00:00', '2020-07-31', NULL, NULL, 'Not Finished');
+(1, NULL, NULL, NULL, 1, NULL, 2, 5, 1, 'Hosting Website Official Bank Lampung', '<p>Hosting Website Official Bank Lampung dengan jangka waktu 5 tahun<br></p>', '2020-07-22 14:04:24', '2020-09-12', NULL, NULL, 'Not Finished'),
+(2, NULL, NULL, NULL, 3, NULL, 3, 6, 1, 'Maintenance Website ', 'Perbaikan bug dan tampilan kurang baik pada website', '2020-07-22 14:06:13', '2020-10-03', NULL, NULL, 'Not Finished'),
+(3, NULL, NULL, NULL, 2, NULL, 2, 6, 1, 'Hosting Fitur', '<p>Hosting Bank Lampung<br></p>', '2020-07-22 14:09:41', '2020-08-08', NULL, NULL, 'Not Finished'),
+(4, NULL, NULL, NULL, NULL, NULL, 2, 6, 1, 'Daftar Keuangan Mingguan', '<p>Tolong rekap data ke saya</p>', '2020-07-22 14:16:08', '2020-08-08', NULL, NULL, 'Not Finished');
 
 --
 -- Indexes for dumped tables
@@ -369,6 +364,7 @@ ALTER TABLE `master_user`
 -- Indexes for table `tm_comment`
 --
 ALTER TABLE `tm_comment`
+  ADD PRIMARY KEY (`comment_id`),
   ADD KEY `task_id` (`task_id`),
   ADD KEY `department_id` (`department_id`),
   ADD KEY `employee_id` (`employee_id`);
@@ -413,6 +409,30 @@ ALTER TABLE `hr_employee`
 --
 ALTER TABLE `hr_position`
   MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `master_product`
+--
+ALTER TABLE `master_product`
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `master_service`
+--
+ALTER TABLE `master_service`
+  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tm_comment`
+--
+ALTER TABLE `tm_comment`
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tm_task`
+--
+ALTER TABLE `tm_task`
+  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

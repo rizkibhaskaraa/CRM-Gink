@@ -167,13 +167,13 @@ class Home extends CI_Controller
         $data["tgl_end"] = $tgl_end . " 00:00:00"; //concat tanggal dengan jam 00:00:00
 
         //mengambil data report staff dati tabel task
-        $data["report"] = $this->home_model->getreport_periode($data["employ_dept"]["department_id"], $data["tgl_start"], $data["tgl_end"]);
-        $data['tugas_belum'] = $this->home_model->gettugaspjbelum_periode($data["employ_dept"]["department_id"], $data["tgl_start"], $data["tgl_end"]);
-        $data['tugas_selesai'] = $this->home_model->gettugaspjselesai_periode($data["employ_dept"]["department_id"], $data["tgl_start"], $data["tgl_end"]);
+        $data["report"] = $this->home_model->getreport_periode($departemen["department_id"], $data["tgl_start"], $data["tgl_end"]);
+        $data['tugas_belum'] = $this->home_model->gettugaspjbelum_periode($departemen["department_id"], $data["tgl_start"], $data["tgl_end"]);
+        $data['tugas_selesai'] = $this->home_model->gettugaspjselesai_periode($departemen["department_id"], $data["tgl_start"], $data["tgl_end"]);
         //akhir mengambil data report staff dati tabel task
 
         $data["employ_id"] = $employ_id;
-        $data['employ_report'] = $this->home_model->getemploydept($data["employ_dept"]["department_id"]);
+        $data['employ_report'] = $this->home_model->getemploydept($departemen["department_id"]);
         $this->load->view('home/hasil_search_report', $data);
     }
 

@@ -285,8 +285,8 @@ class home_model extends CI_model
         if ($dept != "1") { //jika bukan CEO yang login
             $this->db->where("department_destination", $dept);
         }
-        $this->db->where('date >=', $tgl_start); //where tanggal
-        $this->db->where('date <=', $tgl_end); //where tanggan
+        $this->db->where('task_date >=', $tgl_start); //where tanggal
+        $this->db->where('task_date <=', $tgl_end); //where tanggan
         $this->db->select("count(tm_task.task_status),employee_destination,employee_name,department_destination,department_name"); //select kolom
         $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination"); //join
         $this->db->join("hr_department", "hr_department.department_id = tm_task.department_destination"); //join
@@ -300,8 +300,8 @@ class home_model extends CI_model
         if ($dept != "1") {
             $this->db->where("department_destination", $dept);
         }
-        $this->db->where('date >=', $tgl_start);
-        $this->db->where('date <=', $tgl_end);
+        $this->db->where('task_date >=', $tgl_start);
+        $this->db->where('task_date <=', $tgl_end);
         $this->db->where("tm_task.task_status", "Finish");
         $this->db->where_not_in("employee_destination", "");
         $this->db->select("count(tm_task.task_status),employee_destination,employee_name,department_destination,department_name");
@@ -317,8 +317,8 @@ class home_model extends CI_model
         if ($dept != "1") {
             $this->db->where("department_destination", $dept);
         }
-        $this->db->where('date >=', $tgl_start);
-        $this->db->where('date <=', $tgl_end);
+        $this->db->where('task_date >=', $tgl_start);
+        $this->db->where('task_date <=', $tgl_end);
         $this->db->where("tm_task.task_status", "Not Finished");
         $this->db->where_not_in("employee_destination", "");
         $this->db->select("count(tm_task.task_status),employee_destination,employee_name,department_destination,department_name");

@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -24,6 +25,7 @@
     <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
     <!-- END Stylesheets -->
 </head>
+
 <body>
     <!-- Right Section -->
     <!-- Home button -->
@@ -493,7 +495,7 @@
                                                 <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["task_status"] ?></span>
                                             </td>
                                             <td class="text-center" style="width: 15%;">
-                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['task_id'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
+                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . "/" . $value['task_id'] . "/" . $status . "/Tiket" ?>" class="text-decoration-none">Buka</a>
                                             </td>
                                         </tr>
                                 <?php }
@@ -681,10 +683,10 @@
                     id: id_pelanggan
                 },
                 success: function(data) {
-                        $('input[name="customer"]').val(data["customer_name"]); //set value
-                            $('input[name="id_pelanggan"]').val(data["customer_id"]); //set value
-                            $('input[id="layanan-pelanggan"]').val(data["service_name"]); //set value
-                        
+                    $('input[name="customer"]').val(data["customer_name"]); //set value
+                    $('input[name="id_pelanggan"]').val(data["customer_id"]); //set value
+                    $('input[id="layanan-pelanggan"]').val(data["service_name"]); //set value
+
                 }
             });
         }
@@ -836,88 +838,96 @@
     </footer>
     <!-- END Footer -->
     <script src="<?php echo base_url('assets/oneui/js/oneui.core.min.js') ?>"></script>
-    <script src="<?php echo base_url('assets/oneui/js/oneui.app.min.js') ?>"></script>  
+    <script src="<?php echo base_url('assets/oneui/js/oneui.app.min.js') ?>"></script>
     <!-- script datatable untuk data customer -->
-    <script src="<?php echo base_url('assets/oneui/js/plugins/datatables/jquery.dataTables.min.js')?>"></script>
-    <script src="<?php echo base_url('assets/oneui/js/plugins/datatables/dataTables.bootstrap4.min.js')?>"></script>
-    <script>    
-        $(document).ready(function() {        
+    <script src="<?php echo base_url('assets/oneui/js/plugins/datatables/jquery.dataTables.min.js') ?>"></script>
+    <script src="<?php echo base_url('assets/oneui/js/plugins/datatables/dataTables.bootstrap4.min.js') ?>"></script>
+    <script>
+        $(document).ready(function() {
             var table = null;
-            table = $('#table-pelanggan').DataTable({            
-                "processing": true,            
-                "serverSide": true,            
-                "ordering": true, 
-                "order": [[ 0, 'asc' ]],
-                "ajax":            
-                {                
-                    "url": "<?php echo base_url('index.php/home/view_pelanggan/')?>",
-                    "type": "POST" ,
-                    'data': function(data){
+            table = $('#table-pelanggan').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "ordering": true,
+                "order": [
+                    [0, 'asc']
+                ],
+                "ajax": {
+                    "url": "<?php echo base_url('index.php/home/view_pelanggan/') ?>",
+                    "type": "POST",
+                    'data': function(data) {
                         data.searchStatus = $('#filter-status-layanan').val();
                     }
-                },            
-                "deferRender": true,            
-                "aLengthMenu": [[5, 50, 100],[ 5, 50, 100]],          
-                "columns": [                
-                    { "data": "service_id" ,
+                },
+                "deferRender": true,
+                "aLengthMenu": [
+                    [5, 50, 100],
+                    [5, 50, 100]
+                ],
+                "columns": [{
+                        "data": "service_id",
                         className: 'font-weight-bold'
                     },
-                    { "data": "customer_name",
-                        className : 'text-center font-weight-bold'
+                    {
+                        "data": "customer_name",
+                        className: 'text-center font-weight-bold'
                     },
-                    { "data": "service_name", 
-                        className : 'text-center font-weight-bold',
-                    },          
-                    { "data": "service_status" ,
-                        className : 'text-center',
-                        render 	: function( data, type, row ){
-                            if(data == "Active" && data != ""){
-                                let html = "<strong class='btn-sm btn-block btn-success'><i class='fa fa-fw fa-check'></i>"+data+"</strong>";
+                    {
+                        "data": "service_name",
+                        className: 'text-center font-weight-bold',
+                    },
+                    {
+                        "data": "service_status",
+                        className: 'text-center',
+                        render: function(data, type, row) {
+                            if (data == "Active" && data != "") {
+                                let html = "<strong class='btn-sm btn-block btn-success'><i class='fa fa-fw fa-check'></i>" + data + "</strong>";
                                 return html;
-                            }else if(data == "Not Active" && data != ""){
-                                let html = "<strong class='btn-sm btn-block btn-danger'><i class='fa fa-fw fa-exclamation-circle'></i>"+data+"</strong>";
+                            } else if (data == "Not Active" && data != "") {
+                                let html = "<strong class='btn-sm btn-block btn-danger'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</strong>";
                                 return html;
-                            }else{
+                            } else {
                                 let html = "<strong></strong>";
                                 return html;
                             }
                         }
-                    }, 
-                    {  "data": "service_id",
-                        className : 'text-center',
-                        render 	: function( data, type, row ){
-                            let html = "<a href='javascript:void(0)' data-toggle='modal' data-target='#modal-block-large' data-pk='"+data+
-                            "' class='btn btn-light btn-edit'><i class='fa fa-plus fa-2x'></i></a>";
+                    },
+                    {
+                        "data": "service_id",
+                        className: 'text-center',
+                        render: function(data, type, row) {
+                            let html = "<a href='javascript:void(0)' data-toggle='modal' data-target='#modal-block-large' data-pk='" + data +
+                                "' class='btn btn-light btn-edit'><i class='fa fa-plus fa-2x'></i></a>";
                             return html;
-					    }
+                        }
                     }
-                ],   
-                drawCallback 	: function(){
-								$('.btn-edit').click(function(a){
-									let pk = $(this).data('pk');
-									// alert(pk);
-                                    $.ajax({ //ajax ambil data pelanggan
-                                        type: "GET",
-                                        url: "<?php echo base_url('index.php/home/get_pelanggan') ?>",
-                                        dataType: "JSON",
-                                        data: {
-                                            id: pk
-                                        },
-                                        success: function(data) { //jika ambil data sukses
-                                            $('input[name="customer"]').val(data["customer_name"]); //set value
-                                            $('input[name="service"]').val(pk); //set value
-                                            $('input[name="id_pelanggan"]').val(data["customer_id"]); //set value
-                                            $('input[id="layanan-pelanggan"]').val(data["service_name"]); //set value
-                                        }
-                                    });
-								});
-							}     
+                ],
+                drawCallback: function() {
+                    $('.btn-edit').click(function(a) {
+                        let pk = $(this).data('pk');
+                        // alert(pk);
+                        $.ajax({ //ajax ambil data pelanggan
+                            type: "GET",
+                            url: "<?php echo base_url('index.php/home/get_pelanggan') ?>",
+                            dataType: "JSON",
+                            data: {
+                                id: pk
+                            },
+                            success: function(data) { //jika ambil data sukses
+                                $('input[name="customer"]').val(data["customer_name"]); //set value
+                                $('input[name="service"]').val(pk); //set value
+                                $('input[name="id_pelanggan"]').val(data["customer_id"]); //set value
+                                $('input[id="layanan-pelanggan"]').val(data["service_name"]); //set value
+                            }
+                        });
+                    });
+                }
             });
-            $("#filter-status-layanan").change(function(){
+            $("#filter-status-layanan").change(function() {
                 // alert($('#filter-status-layanan').val());   
                 table.ajax.reload();
             });
-        });    
+        });
     </script>
     <!-- end script datatable untuk data customer -->
     <!-- validasi form -->
@@ -965,4 +975,5 @@
     </script>
     <!-- akhir -->
 </body>
+
 </html>

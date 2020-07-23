@@ -18,7 +18,15 @@ class home_model extends CI_model
         return $this->db->get_where("hr_position", array("position_id" => $position_id))->row_array();
     }
 
-    public function getdesignation($employee_id){
+    public function getdesignationUser($username)
+    {
+        $user = $this->db->get_where("master_user", array("user_username" => $username))->row_array();
+        $id_position = $user["position_id"];
+        return $this->db->get_where("hr_designation", array("position_id" => $id_position = $user["position_id"]))->row_array();
+    }
+
+    public function getdesignation($employee_id)
+    {
         return $this->db->get_where("hr_designation", array("employee_id" => $employee_id))->row_array();
     }
 
@@ -47,9 +55,9 @@ class home_model extends CI_model
     {
         $this->db->select("hr_employee.employee_name,hr_department.department_name,hr_department.department_id");
         $this->db->order_by('hr_department.department_name', 'ASC');
-        $this->db->join("hr_designation", "hr_employee.employee_id = hr_designation.employee_id",'left');
-        $this->db->join("hr_position","hr_position.position_id = hr_designation.position_id");
-        $this->db->join("hr_department","hr_department.department_id = hr_position.department_id");
+        $this->db->join("hr_designation", "hr_employee.employee_id = hr_designation.employee_id", 'left');
+        $this->db->join("hr_position", "hr_position.position_id = hr_designation.position_id");
+        $this->db->join("hr_department", "hr_department.department_id = hr_position.department_id");
         if ($id_dept != "1") { //jika yang login dari CEO
             return $this->db->get_where("hr_employee", array("hr_department.department_id" => $id_dept))->result_array();
         } else {
@@ -94,12 +102,12 @@ class home_model extends CI_model
         $datauser = $this->db->get_where("master_user", array("user_username" => $user))->row_array();
         return $this->db->get_where("hr_position", array("position_id" => $datauser["position_id"]))->row_array();
     }
-    
+
     public function getdepartmentbyid($department_name)
-    {   
-        if($department_name == "umum"){
+    {
+        if ($department_name == "umum") {
             return "";
-        }else{
+        } else {
             return $this->db->get_where("hr_department", array("department_name" => $department_name))->row_array();
         }
     }
@@ -368,38 +376,41 @@ class home_model extends CI_model
     }
     //akhir function-fiunction datatable
 
-     //function-fiunction datatable pelanggan
-     public function count_all_pelanggan($status){
+    //function-fiunction datatable pelanggan
+    public function count_all_pelanggan($status)
+    {
         $this->db->select("crm_customer.customer_id,customer_name,service_name,service_id,service_status");
-        if($status != ""){
-            $this->db->where("service_status",$status);
+        if ($status != "") {
+            $this->db->where("service_status", $status);
         }
-        $this->db->join("master_service", "master_service.customer_id = crm_customer.customer_id",'left'); //join tabel employe dengan task
+        $this->db->join("master_service", "master_service.customer_id = crm_customer.customer_id", 'left'); //join tabel employe dengan task
         return $this->db->count_all_results("crm_customer");
     }
 
-    public function filter_pelanggan($search, $limit, $start, $order_field, $order_ascdesc,$status){    
+    public function filter_pelanggan($search, $limit, $start, $order_field, $order_ascdesc, $status)
+    {
         $this->db->select("crm_customer.customer_id,customer_name,service_name,service_id,service_status");
-        if($status != ""){
-            $this->db->where("service_status",$status);
+        if ($status != "") {
+            $this->db->where("service_status", $status);
         }
         // $this->db->like('crm_customer.customer_id', $search); 
-        $this->db->like('customer_name', $search); 
-        $this->db->order_by($order_field, $order_ascdesc); 
-        $this->db->limit($limit, $start); 
-        $this->db->join("master_service", "master_service.customer_id = crm_customer.customer_id",'left'); //join tabel employe dengan task
-        return $this->db->get('crm_customer')->result_array(); 
+        $this->db->like('customer_name', $search);
+        $this->db->order_by($order_field, $order_ascdesc);
+        $this->db->limit($limit, $start);
+        $this->db->join("master_service", "master_service.customer_id = crm_customer.customer_id", 'left'); //join tabel employe dengan task
+        return $this->db->get('crm_customer')->result_array();
     }
 
-    public function count_filter_pelanggan($search,$status){
+    public function count_filter_pelanggan($search, $status)
+    {
         $this->db->select("crm_customer.customer_id,customer_name,service_name,service_id,service_status");
-        if($status != ""){
-            $this->db->where("service_status",$status);
+        if ($status != "") {
+            $this->db->where("service_status", $status);
         }
         // $this->db->like('crm_customer.customer_id', $search); 
-        $this->db->like('customer_name', $search); 
-        $this->db->join("master_service", "master_service.customer_id = crm_customer.customer_id",'left'); //join tabel employe dengan task
-        return $this->db->get('crm_customer')->num_rows(); 
+        $this->db->like('customer_name', $search);
+        $this->db->join("master_service", "master_service.customer_id = crm_customer.customer_id", 'left'); //join tabel employe dengan task
+        return $this->db->get('crm_customer')->num_rows();
     }
     //akhir function-fiunction datatable pelanggan
 }

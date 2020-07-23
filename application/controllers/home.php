@@ -26,6 +26,10 @@ class Home extends CI_Controller
             $user = $_SESSION["staff_user"];
         }
 
+        //ambil designation
+        $designation = $this->home_model->getdesignationUser($user);
+        $data["designation"] = $designation["designation_id"];
+
         //ambil data dari tabel employ berdasarkan user yang login ($user)
         $employ = $this->home_model->getemploy($user); //memanggil fungsi getemploy di home_model
         $data["username"] = $user;
@@ -79,13 +83,20 @@ class Home extends CI_Controller
         } else { //jika sudah login
             $user = $_SESSION["staff_user"];
         }
-
         //ambil data dari tabel employ berdasarkan user yang login ($user)
         $employ = $this->home_model->getemploy($user); //memanggil fungsi getemploy di home_model
         $data["username"] = $user;
         $data["employ_nama"] = $employ["employee_name"];
         $data["employ_id"] = $employ["employee_id"];
         //akhir ambil data dari tabel employ berdasarkan user yang login ($user)
+
+        //ambil designation
+        $designation = $this->home_model->getdesignationUser($user);
+        $data["designation"] = $designation["designation_id"];
+
+        //ambil data status 
+        $userdata = $this->home_model->getuser($data["employ_id"]);
+        $data["status"] = $userdata["user_status"];
 
         //ambil departemen user
         $data["employ_dept"] = $this->home_model->getdepartemen($user);
@@ -136,14 +147,14 @@ class Home extends CI_Controller
     // }
 
     //fungsi menuju halaman detail
-    public function detail($id, $task, $cekTabel)
+    public function detail($designation, $id, $task, $status, $cekTabel)
     {
         if (!isset($_SESSION["login"])) { //jika belum login
             redirect(base_url());
         } else { //jika sudah login
             $id = $_SESSION["staff_id"];
         }
-        redirect(base_url('index.php/detail/detailumum/') . $id . "/" . $task . "/" . $cekTabel);
+        redirect(base_url('index.php/detail/detailumum/') . $designation . "/" . $id . "/" . $task . "/" . $status . "/" . $cekTabel);
     }
 
     //fungsi mencari data pelanggan dan filter data pelanggan

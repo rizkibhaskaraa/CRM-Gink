@@ -9,7 +9,7 @@ class Detail extends CI_Controller
         $this->load->model('detail_model');
     }
 
-    public function detailumum($user, $task, $cekTabel)
+    public function detailumum($designation, $user, $task, $status, $cekTabel)
     {
         if (!isset($_SESSION["login"])) {
             redirect(base_url());
@@ -22,22 +22,26 @@ class Detail extends CI_Controller
         $employ = $this->detail_model->getemploy($user);
         $data["employ_nama"] = $employ["employee_name"];
         $data["employ_id"] = $employ["employee_id"];
-        $data["employ_dept"] = $employ["id_departemen"];
-        $data["status"] = $employ["status_employ"];
+        $data["status"] = $status;
+
+        //get nama posisi
+        $posisi = $this->detail_model->getdeptposisi($designation);
+        $data["position"] = $posisi["position_name"];
+
         //akhir data employ yang akses
 
         $data["cekTabel"] = $cekTabel; //cek table asal
-        $data["getPJ"] = $this->detail_model->getsemuaPJ($employ["id_departemen"]); //data employ di departemen
+        $data["getPJ"] = $this->detail_model->getsemuaPJ($posisi["position_id"]); //data employ di departemen
         $data["task"] = $this->detail_model->getdetail($task); //data task dengan id $task
         $data["PJ_task"] = $this->detail_model->getPJ_task($task); //data task dengan id $task
         $data["nama_kirim"] = $this->detail_model->getnama_kirim($task); //nama pengirim
         $data["dept_PJtask"] = $this->detail_model->getdeptPJTask($task); //data departemen PJ task
         $data["komentar"] = $this->detail_model->getkomentar($task); //ambil data komentar, untuk task parent
         $data["komentarsub"] = $this->detail_model->getkomentarsub($task); //ambil data komentar, untuk subtask
-        $data["nama_dept"] = $this->detail_model->getdeptcalonpj($data["employ_dept"]); //data departemen calon PJ task
+        $data["nama_dept"] = $this->detail_model->getdeptcalonpj($posisi["position_id"]); //data departemen calon PJ task
         $data['namaPJ'] = $this->detail_model->getnama_PJ($task); //data nama PJ task
-        $data['tugas_employ'] = $this->detail_model->gettugaspj($data["nama_dept"]); //data tugas milik calon PJ
-        $data["semua_employ"] = $this->detail_model->getsemuaemploy($data["employ_dept"]); //data employ pada suatu departemen
+        $data['tugas_employ'] = $this->detail_model->gettugaspj($data["task"]["department_destination"]); //data tugas milik calon PJ
+        $data["semua_employ"] = $this->detail_model->getsemuaemploy($posisi["position_id"]); //data employ pada suatu departemen
         $data["subtask"] = $this->detail_model->getsubtask($task); //ambil subtask berdasarkan parent task
         $data["subtaskselesai"] = $this->detail_model->getsubtaskselesai($task); //get subtask yang sudah selesai
         $this->load->view('detail/detail', $data);

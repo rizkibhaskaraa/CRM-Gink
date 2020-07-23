@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/oneui/js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css') ?>">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
     <link rel="stylesheet" id="css-main" href="<?php echo base_url('assets/oneui/css/oneui.min.css') ?>">
-    
+
     <!-- style tdatepicker -->
     <link rel="stylesheet" href="<?php echo base_url('assets/oneui/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') ?>">
 
@@ -365,10 +365,10 @@
                                 <?php foreach ($tasksaya as $valueparent) {
                                     if ($valueparent["task_status"] == "Not Finished") { ?>
                                         <tr>
-                                            <td style="width: 10%;" >
+                                            <td style="width: 10%;">
                                                 <span class="font-w600">#<?php echo $valueparent["task_id"] . " " . $valueparent["task_title"] ?></span>
                                             </td>
-                                            <td class="text-center" style="width: 10%;" >
+                                            <td class="text-center" style="width: 10%;">
                                                 <span class="font-w600"><?php echo $valueparent["employee_destination"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
@@ -381,7 +381,7 @@
                                                 <span class="font-w600 btn-sm btn-block btn-danger"><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $valueparent["task_status"] ?></span>
                                             </td>
                                             <td class="text-center" style="width: 15%;">
-                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $valueparent['task_id'] . "/TugasBelum" ?>" class="text-decoration-none">Buka</a>
+                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . "/" . $valueparent['task_id'] . "/" . $status . "/TugasBelum" ?>" class="text-decoration-none">Buka</a>
                                             </td>
                                         </tr>
                                 <?php }
@@ -423,7 +423,7 @@
                                                     <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["task_status"] ?></span>
                                                 </td>
                                                 <td class="text-center" style="width: 15%;">
-                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['task_id'] . "/TugasBelum" ?>" class="text-decoration-none">Buka | </a>
+                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . "/" . $value['task_id'] . "/" . $status . "/TugasBelum" ?>" class="text-decoration-none">Buka | </a>
                                                     <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/status/') . $value["task_id"] ?>" class="text-decoration-none">Selesai</a>
                                                 </td>
                                             </tr>
@@ -477,7 +477,7 @@
                                                 <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $valueparent["task_status"] ?></span>
                                             </td>
                                             <td class="text-center" style="width: 15%;">
-                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $valueparent['task_id'] . "/TugasSelesai" ?>" class="text-decoration-none">Buka</a>
+                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . "/" . $valueparent['task_id'] . "/" . $status . "/TugasSelesai" ?>" class="text-decoration-none">Buka</a>
                                             </td>
                                         </tr>
                                 <?php }
@@ -518,7 +518,7 @@
                                                     <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["task_status"] ?></span>
                                                 </td>
                                                 <td class="text-center" style="width: 15%;">
-                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['task_id'] . "/TugasSelesai" ?>" class="text-decoration-none">Buka</a>
+                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . "/" . $value['task_id'] . "/" . $status . "/TugasSelesai" ?>" class="text-decoration-none">Buka</a>
                                                 </td>
                                             </tr>
                                 <?php $i += 1;
@@ -531,7 +531,7 @@
                     </div>
                 </div>
             </div>
-        <!-- END  Selesai -->
+            <!-- END  Selesai -->
         </div>
 
         <div class="tab-pane fade fade-up" id="tiket" role="tabpanel">
@@ -574,7 +574,7 @@
                                                 <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["task_status"] ?></span>
                                             </td>
                                             <td class="text-center" style="width: 15%;">
-                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['task_id'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
+                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . "/" . $value['task_id'] . "/" . $status . "/Tiket" ?>" class="text-decoration-none">Buka</a>
                                             </td>
                                         </tr>
                                 <?php }
@@ -751,71 +751,71 @@
 
     </div>
     <!-- END request task,pelanggan,tugas selesai,tugas Belum Selesai,tiket selesai,tiket Belum Selesai -->
-        <!-- pop up tiket pelanggan -->
-        <div class="modal fade" id="modal-block-large" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="block block-themed block-transparent mb-0">
-                        <div class="block-header bg-primary-dark">
-                            <h3 class="block-title">Buat Tiket</h3>
-                            <div class="block-options">
-                                <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
-                                    <i class="fa fa-fw fa-times"></i>
-                                </button>
+    <!-- pop up tiket pelanggan -->
+    <div class="modal fade" id="modal-block-large" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="block block-themed block-transparent mb-0">
+                    <div class="block-header bg-primary-dark">
+                        <h3 class="block-title">Buat Tiket</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                <i class="fa fa-fw fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content font-size-sm mt-3 text-justify ">
+                        <h4>Isi Data Dibawah Ini dengan Lengkap Untuk Membuat Tiket</h4>
+                        <form action="<?php echo base_url('index.php/home/addtiket/') . $employ_id ?>" method="POST" id="form-tiket">
+                            <input type="text" name="id_pelanggan" id="id_pelanggan" value="123" hidden>
+                            <div class="form-group">
+                                <label for="title">Customer</label>
+                                <input type="text" class="form-control" name="customer" id="customer" value="" placeholder="" readonly>
                             </div>
-                        </div>
-                        <div class="block-content font-size-sm mt-3 text-justify ">
-                            <h4>Isi Data Dibawah Ini dengan Lengkap Untuk Membuat Tiket</h4>
-                            <form action="<?php echo base_url('index.php/home/addtiket/') . $employ_id ?>" method="POST" id="form-tiket">
-                                <input type="text" name="id_pelanggan" id="id_pelanggan" value="123" hidden>
-                                <div class="form-group">
-                                    <label for="title">Customer</label>
-                                    <input type="text" class="form-control" name="customer" id="customer" value="" placeholder="" readonly>
+                            <div class="form-group">
+                                <label for="layanan">Layanan</label>
+                                <input type="text" class="form-control" name="layanan" id="layanan-pelanggan" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="masalah">Jenis Masalah</label>
+                                <select name="masalah" id="masalah" class="form-control">
+                                    <option value="umum">General</option>
+                                    <option value="support">Support</option>
+                                    <option value="hosting">Hosting</option>
+                                    <option value="biling">Billing</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="title">Judul Tugas</label>
+                                <input type="text" class="form-control required" name="title" id="title" placeholder="Judul/Subject">
+                                <?= form_error('title', '<span class="text-danger">', '</span>') ?>
+                            </div>
+                            <div class="form-group">
+                                <label for="dateline">Deadline</label>
+                                <div class="input-group">
+                                    <span class="input-group-text input-group-text-alt">
+                                        <i class="far fa-calendar-alt"></i>
+                                    </span>
+                                    <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true">
                                 </div>
-                                <div class="form-group">
-                                    <label for="layanan">Layanan</label>
-                                    <input type="text" class="form-control" name="layanan" id="layanan-pelanggan" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label for="masalah">Jenis Masalah</label>
-                                    <select name="masalah" id="masalah" class="form-control">
-                                        <option value="umum">General</option>
-                                        <option value="support">Support</option>
-                                        <option value="hosting">Hosting</option>
-                                        <option value="biling">Billing</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="title">Judul Tugas</label>
-                                    <input type="text" class="form-control required" name="title" id="title" placeholder="Judul/Subject">
-                                    <?= form_error('title', '<span class="text-danger">', '</span>') ?>
-                                </div>
-                                <div class="form-group">
-                                    <label for="dateline">Deadline</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text input-group-text-alt">
-                                            <i class="far fa-calendar-alt"></i>
-                                        </span>
-                                        <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="deskripsi">Deskripsi</label>
-                                    <textarea class="form-control required js-summernote" name="deskripsi" id="deskripsi" rows="3"></textarea>
-                                    <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
+                            </div>
+                            <div class="form-group">
+                                <label for="deskripsi">Deskripsi</label>
+                                <textarea class="form-control required js-summernote" name="deskripsi" id="deskripsi" rows="3"></textarea>
+                                <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
 
-                                </div>
-                                <div style="float:right;margin-bottom:3%;">
-                                    <button type="reset" class="btn btn-outline-danger mr-2">Reset</button>
-                                    <button type="submit" class="btn btn-primary">Buat</button>
+                            </div>
+                            <div style="float:right;margin-bottom:3%;">
+                                <button type="reset" class="btn btn-outline-danger mr-2">Reset</button>
+                                <button type="submit" class="btn btn-primary">Buat</button>
 
-                                </div>
-                            </form>
-                        </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     <!-- akhir pop up tiket pelanggan -->
     <!-- pop up tiket staff -->
     <div class="modal fade" id="modal-block-large-staff" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
@@ -833,7 +833,7 @@
                     <div class="block-content font-size-sm mt-3 text-justify ">
                         <h4>Isi Data Dibawah Ini dengan Lengkap untuk Membuat Tiket</h4>
                         <form action="<?php echo base_url('index.php/home/addtiket/') . $employ_id ?>" method="POST" id="form-staff">
-                            
+
                             <input type="text" name="masalah" value="" hidden>
                             <input type="text" name="layanan" value="" hidden>
                             <div class="form-group">
@@ -891,145 +891,161 @@
     <!-- END Footer -->
     <!-- END Page Content -->
     <script src="<?php echo base_url('assets/oneui/js/oneui.core.min.js') ?>"></script>
-    <script src="<?php echo base_url('assets/oneui/js/oneui.app.min.js') ?>"></script>  
+    <script src="<?php echo base_url('assets/oneui/js/oneui.app.min.js') ?>"></script>
     <!-- //script datatable -->
-    <script src="<?php echo base_url('assets/oneui/js/plugins/datatables/jquery.dataTables.min.js')?>"></script>
-    <script src="<?php echo base_url('assets/oneui/js/plugins/datatables/dataTables.bootstrap4.min.js')?>"></script>
-    <script>    
-        $(document).ready(function() {        
+    <script src="<?php echo base_url('assets/oneui/js/plugins/datatables/jquery.dataTables.min.js') ?>"></script>
+    <script src="<?php echo base_url('assets/oneui/js/plugins/datatables/dataTables.bootstrap4.min.js') ?>"></script>
+    <script>
+        $(document).ready(function() {
             var table = null;
-            table = $('#table-request').DataTable({            
-                "processing": true,            
-                "serverSide": true,            
-                "ordering": true, 
-                "order": [[ 0, 'asc' ]],
-                "ajax":            
-                {                
-                    "url": "<?php echo base_url('index.php/home/view/').$employ_dept["department_id"]?>",
-                    "type": "POST" ,
-                    'data': function(data){
+            table = $('#table-request').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "ordering": true,
+                "order": [
+                    [0, 'asc']
+                ],
+                "ajax": {
+                    "url": "<?php echo base_url('index.php/home/view/') . $employ_dept["department_id"] ?>",
+                    "type": "POST",
+                    'data': function(data) {
                         data.searchStatus = $('#filter-status').val();;
                     }
-                },            
-                "deferRender": true,            
-                "aLengthMenu": [[5, 50, 100],[ 5, 50, 100]],          
-                "columns": [                
-                    { "data": "task_title" ,
+                },
+                "deferRender": true,
+                "aLengthMenu": [
+                    [5, 50, 100],
+                    [5, 50, 100]
+                ],
+                "columns": [{
+                        "data": "task_title",
                         className: 'font-weight-bold'
                     },
-                    { "data": "employee_name",
-                        className : 'text-center font-weight-bold'
-                     },
-                    { "data": "task_dateline", 
-                        className : 'text-center font-weight-bold'
-                    
-                    
-                    },          
-                    { "data": "task_status" ,
-                        className : 'text-center',
-                        render 	: function( data, type, row ){
-                            if(data == "Finish"){
-                                let html = "<strong class='btn-sm btn-block btn-success'><i class='fa fa-fw fa-check'></i>"+data+"</strong>";
+                    {
+                        "data": "employee_name",
+                        className: 'text-center font-weight-bold'
+                    },
+                    {
+                        "data": "task_dateline",
+                        className: 'text-center font-weight-bold'
+
+
+                    },
+                    {
+                        "data": "task_status",
+                        className: 'text-center',
+                        render: function(data, type, row) {
+                            if (data == "Finish") {
+                                let html = "<strong class='btn-sm btn-block btn-success'><i class='fa fa-fw fa-check'></i>" + data + "</strong>";
                                 return html;
-                            }else {
-                                let html = "<strong class='btn-sm btn-block btn-danger'><i class='fa fa-fw fa-exclamation-circle'></i>"+data+"</strong>";
+                            } else {
+                                let html = "<strong class='btn-sm btn-block btn-danger'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</strong>";
                                 return html;
                             }
                         }
-                    }, 
-                    {   "data": "task_id",
-                        className : 'text-center',
-                        render 	: function( data, type, row ){
-						let html = "<a class='link-fx font-weight-bold' href='<?php echo base_url('index.php/home/detail/') . $employ_id . '/' ?>"+
-                        data + "/Request'>Buka</a>";
-						return html;
-					}
+                    },
+                    {
+                        "data": "task_id",
+                        className: 'text-center',
+                        render: function(data, type, row) {
+                            let html = "<a class='link-fx font-weight-bold' href='<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . '/' ?>" +
+                                data + "/<?php echo $status ?>" + "/Request'>Buka</a>";
+                            return html;
+                        }
                     }
-                ],        
-            });   
-            $("#filter-status").change(function(){
+                ],
+            });
+            $("#filter-status").change(function() {
                 table.ajax.reload();
             });
-        });    
+        });
     </script>
-    <script>    
-        $(document).ready(function() {        
+    <script>
+        $(document).ready(function() {
             var table = null;
-            table = $('#table-pelanggan').DataTable({            
-                "processing": true,            
-                "serverSide": true,            
-                "ordering": true, 
-                "order": [[ 0, 'asc' ]],
-                "ajax":            
-                {                
-                    "url": "<?php echo base_url('index.php/home/view_pelanggan/')?>",
-                    "type": "POST" ,
-                    'data': function(data){
+            table = $('#table-pelanggan').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "ordering": true,
+                "order": [
+                    [0, 'asc']
+                ],
+                "ajax": {
+                    "url": "<?php echo base_url('index.php/home/view_pelanggan/') ?>",
+                    "type": "POST",
+                    'data': function(data) {
                         data.searchStatus = $('#filter-status-layanan').val();
                     }
-                },            
-                "deferRender": true,            
-                "aLengthMenu": [[5, 50, 100],[ 5, 50, 100]],          
-                "columns": [                
-                    { "data": "service_id" ,
+                },
+                "deferRender": true,
+                "aLengthMenu": [
+                    [5, 50, 100],
+                    [5, 50, 100]
+                ],
+                "columns": [{
+                        "data": "service_id",
                         className: 'font-weight-bold'
                     },
-                    { "data": "customer_name",
-                        className : 'text-center font-weight-bold'
+                    {
+                        "data": "customer_name",
+                        className: 'text-center font-weight-bold'
                     },
-                    { "data": "service_name", 
-                        className : 'text-center font-weight-bold',
-                    },          
-                    { "data": "service_status" ,
-                        className : 'text-center',
-                        render 	: function( data, type, row ){
-                            if(data == "Active" && data != ""){
-                                let html = "<strong class='btn-sm btn-block btn-success'><i class='fa fa-fw fa-check'></i>"+data+"</strong>";
+                    {
+                        "data": "service_name",
+                        className: 'text-center font-weight-bold',
+                    },
+                    {
+                        "data": "service_status",
+                        className: 'text-center',
+                        render: function(data, type, row) {
+                            if (data == "Active" && data != "") {
+                                let html = "<strong class='btn-sm btn-block btn-success'><i class='fa fa-fw fa-check'></i>" + data + "</strong>";
                                 return html;
-                            }else if(data == "Not Active" && data != ""){
-                                let html = "<strong class='btn-sm btn-block btn-danger'><i class='fa fa-fw fa-exclamation-circle'></i>"+data+"</strong>";
+                            } else if (data == "Not Active" && data != "") {
+                                let html = "<strong class='btn-sm btn-block btn-danger'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</strong>";
                                 return html;
-                            }else{
+                            } else {
                                 let html = "<strong></strong>";
                                 return html;
                             }
                         }
-                    }, 
-                    {  "data": "service_id",
-                        className : 'text-center',
-                        render 	: function( data, type, row ){
-                            let html = "<a href='javascript:void(0)' data-toggle='modal' data-target='#modal-block-large' data-pk='"+data+
-                            "' class='btn btn-light btn-edit'><i class='fa fa-plus fa-2x'></i></a>";
+                    },
+                    {
+                        "data": "service_id",
+                        className: 'text-center',
+                        render: function(data, type, row) {
+                            let html = "<a href='javascript:void(0)' data-toggle='modal' data-target='#modal-block-large' data-pk='" + data +
+                                "' class='btn btn-light btn-edit'><i class='fa fa-plus fa-2x'></i></a>";
                             return html;
-					    }
+                        }
                     }
-                ],   
-                drawCallback 	: function(){
-								$('.btn-edit').click(function(a){
-									let pk = $(this).data('pk');
-									// alert(pk);
-                                    $.ajax({ //ajax ambil data pelanggan
-                                        type: "GET",
-                                        url: "<?php echo base_url('index.php/home/get_pelanggan') ?>",
-                                        dataType: "JSON",
-                                        data: {
-                                            id: pk
-                                        },
-                                        success: function(data) { //jika ambil data sukses
-                                            $('input[name="customer"]').val(data["customer_name"]); //set value
-                                            $('input[name="service"]').val(pk); //set value
-                                            $('input[name="id_pelanggan"]').val(data["customer_id"]); //set value
-                                            $('input[id="layanan-pelanggan"]').val(data["service_name"]); //set value
-                                        }
-                                    });
-								});
-							}     
+                ],
+                drawCallback: function() {
+                    $('.btn-edit').click(function(a) {
+                        let pk = $(this).data('pk');
+                        // alert(pk);
+                        $.ajax({ //ajax ambil data pelanggan
+                            type: "GET",
+                            url: "<?php echo base_url('index.php/home/get_pelanggan') ?>",
+                            dataType: "JSON",
+                            data: {
+                                id: pk
+                            },
+                            success: function(data) { //jika ambil data sukses
+                                $('input[name="customer"]').val(data["customer_name"]); //set value
+                                $('input[name="service"]').val(pk); //set value
+                                $('input[name="id_pelanggan"]').val(data["customer_id"]); //set value
+                                $('input[id="layanan-pelanggan"]').val(data["service_name"]); //set value
+                            }
+                        });
+                    });
+                }
             });
-            $("#filter-status-layanan").change(function(){
+            $("#filter-status-layanan").change(function() {
                 // alert($('#filter-status-layanan').val());   
                 table.ajax.reload();
             });
-        });    
+        });
     </script>
     <!-- //end script datatable -->
 

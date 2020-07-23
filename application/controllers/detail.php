@@ -55,10 +55,10 @@ class Detail extends CI_Controller
         redirect(base_url('index.php/home/index/') . $user['user_username']);
     }
     //fungsi ubah status task menjadi selesai
-    public function ubahstatustask($id, $task)
+    public function ubahstatustask($designation,$id, $task,$status)
     {
         $ubah = $this->detail_model->ubahstatustask($task);
-        redirect(base_url('index.php/home/detail/') . $id . "/" . $task . "/Request");
+        redirect(base_url('index.php/home/detail/') .$designation."/". $id . "/" . $task ."/".$status. "/Request");
     }
     //add fungsi tambah laporan
     public function insertLaporan($id, $task)

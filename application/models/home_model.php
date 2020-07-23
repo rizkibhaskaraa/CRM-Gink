@@ -194,17 +194,17 @@ class home_model extends CI_model
     {
         //update
         date_default_timezone_set('Asia/Bangkok');
-        $this->db->set('status', "Selesai"); //set status jadi selesai
-        $this->db->set('waktu_selesai', date("Y-m-d H-i-s")); //set waktu_selesai menjadi waktu saat ini
-        $this->db->where('id_task', $id);
-        $this->db->update('task');
+        $this->db->set('task_status', "Finish"); //set status jadi selesai
+        $this->db->set('task_finish', date("Y-m-d H-i-s")); //set waktu_selesai menjadi waktu saat ini
+        $this->db->where('task_id', $id);
+        $this->db->update('tm_task');
         //akhir update
         //data user
-        $task = $this->db->get_where("task", array("id_task" => $id))->row_array();
-        $employ = $this->db->get_where("employe", array("id_employ" => $task["id_employ_tujuan"]))->row_array();
-        $user = $this->db->get_where("user", array("id_employ" => $employ["id_employ"]))->row_array();
+        $task = $this->db->get_where("tm_task", array("task_id" => $id))->row_array();
+        $employ = $this->db->get_where("hr_employee", array("employee_id" => $task["employee_destination"]))->row_array();
+        $user = $this->db->get_where("master_user", array("employee_id" => $employ["employee_id"]))->row_array();
         //akhir data user
-        return $user["username"];
+        return $user["user_username"];
     }
 
     //fungsi search tabel pelanggan untuk searching dan sorting tabel pelanggan

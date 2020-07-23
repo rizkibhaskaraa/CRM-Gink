@@ -301,7 +301,7 @@
                                                 </div>
 
                                                 <?php if ($progres == 100 && $task['task_status'] == 'Not Finished') { ?>
-                                                    <a class="btn btn-success" class="bg-success text-white text-decoration-none" href="<?php echo base_url('index.php/detail/ubahstatustask/' . $employ_id . '/' . $task['id_task']) ?>" style="float:right">
+                                                    <a class="btn btn-success" class="bg-success text-white text-decoration-none" href="<?php echo base_url('index.php/detail/ubahstatustask/' .$designation."/". $employ_id . '/' . $task['task_id']."/".$status) ?>" style="float:right">
                                                         <i class="fa fa-fw fa-check"></i> Konfirmasi Selesai
                                                     </a>
                                                 <?php } ?>

@@ -18,10 +18,10 @@ class Detail extends CI_Controller
         }
         //data employ yang akses
         $user1 = $this->detail_model->getuser($user);
-        $data["username"] = $user1["username"];
+        $data["username"] = $user1["user_username"];
         $employ = $this->detail_model->getemploy($user);
-        $data["employ_nama"] = $employ["nama"];
-        $data["employ_id"] = $employ["id_employ"];
+        $data["employ_nama"] = $employ["employee_name"];
+        $data["employ_id"] = $employ["employee_id"];
         $data["employ_dept"] = $employ["id_departemen"];
         $data["status"] = $employ["status_employ"];
         //akhir data employ yang akses

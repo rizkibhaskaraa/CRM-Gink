@@ -5,22 +5,28 @@ class detail_model extends CI_model
     public function getuser($id)
     {
         //dapatkan data user yang login
-        return $this->db->get_where("user", array("id_employ" => $id))->row_array();
+        return $this->db->get_where("master_user", array("employee_id" => $id))->row_array();
     }
     public function getemploy($user)
     {
         //dapatkan data user yang login
-        return $this->db->get_where("employe", array("id_employ" => $user))->row_array();
+        return $this->db->get_where("hr_employee", array("employee_id" => $user))->row_array();
     }
     //fungsi ambil data tabel task
     public function gettask()
     {
-        return $this->db->get("task")->result_array();
+        return $this->db->get("tm_task")->result_array();
     }
+    // public function getdeptUser($id_task)
+    // {
+    //     $datatask = $this->db->get_where('tm_task', array('task_id' => $id_task))->row_array();
+    //     $iddept = $this->db->get_where('', array('' => $$datatask["employee_destination"]));
+
+    // }
     public function getdetail($id_task)
     {
         //dapatkan data task berdasarkan id task
-        return $this->db->get_where('task', array('id_task' => $id_task))->row_array();
+        return $this->db->get_where('tm_task', array('task_id' => $id_task))->row_array();
     }
     public function getsubtask($id_parent)
     {

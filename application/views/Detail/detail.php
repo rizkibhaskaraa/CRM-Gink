@@ -232,12 +232,12 @@
                                     </div>
                                 </td>
                                 <?php echo form_close(); ?>
-                            <?php } else if ($cekTabel == 'TugasSelesai' && $task["id_parent"] != NULL && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum' || (count($subtask) == 0 && $task["task_parent"] == NULL && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum')) { ?>
-                                <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['id_task']); ?>
+                            <?php } else if ($cekTabel == 'TugasSelesai' && $task["task_parent"] != NULL && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum' || (count($subtask) == 0 && $task["task_parent"] == NULL && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum')) { ?>
+                                <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['task_id']); ?>
                                 <td class="font-weight-bold" style="width: 20%;">Berkas (opsional)</td>
                                 <td>
-                                    <?php if ($task['berkas'] != null) { ?>
-                                        <a href="<?= base_url('upload/') . $task['berkas'] ?>"><?= $task['berkas'] ?></a>
+                                    <?php if ($task['task_file'] != null) { ?>
+                                        <a href="<?= base_url('upload/') . $task['task_file'] ?>"><?= $task['task_file'] ?></a>
                                         </br>
                                     <?php } ?>
                                     <input type="file" name="file">
@@ -300,7 +300,7 @@
                                                     </div>
                                                 </div>
 
-                                                <?php if ($progres == 100 && $task['status'] == 'Belum Selesai') { ?>
+                                                <?php if ($progres == 100 && $task['task_status'] == 'Not Finished') { ?>
                                                     <a class="btn btn-success" class="bg-success text-white text-decoration-none" href="<?php echo base_url('index.php/detail/ubahstatustask/' . $employ_id . '/' . $task['id_task']) ?>" style="float:right">
                                                         <i class="fa fa-fw fa-check"></i> Konfirmasi Selesai
                                                     </a>
@@ -322,28 +322,28 @@
                                         <tbody>
                                             <tr>
                                                 <td class="text-center" style="width: 10%;">
-                                                    <span class="font-w600">#<?php echo $value["id_task"] ?></span>
+                                                    <span class="font-w600">#<?php echo $value["task_id"] ?></span>
                                                 </td>
                                                 <td style="width: 25%;">
-                                                    <span class="font-w600"><?php echo $value["title"] ?></span>
+                                                    <span class="font-w600"><?php echo $value["task_title"] ?></span>
                                                 </td>
                                                 <td style="width: 20%;">
-                                                    <span class="font-w600"><?php echo $value["nama"] ?></span>
+                                                    <span class="font-w600"><?php echo $value["employee_name"] ?></span>
                                                 </td>
                                                 <td class="text-center font-w700" style="width: 20%;">
-                                                    <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
+                                                    <span class="font-size-sm  "><?php echo $value["task_dateline"] ?></span>
                                                 </td>
-                                                <?php if ($value["status"] == "Belum Selesai") { ?>
+                                                <?php if ($value["task_status"] == "Not Finished") { ?>
                                                     <td class="text-danger text-center" style="width: 15%;">
-                                                        <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
+                                                        <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["task_status"] ?></span>
                                                     </td>
                                                 <?php } else { ?>
                                                     <td class="text-danger text-center" style="width: 15%;">
-                                                        <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span>
+                                                        <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["task_status"] ?></span>
                                                     </td>
                                                 <?php } ?>
                                                 <td class="d-none d-sm-table-cell text-center" style="width: 10%;">
-                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
+                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') .$designation."/". $employ_id . "/" . $value['task_id'] ."/".$status. "/Tiket" ?>" class="text-decoration-none">Buka</a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -494,9 +494,9 @@
                     <div class="block-content font-size-sm mt-3 text-justify ">
                         <h4>Isi Data Dibawah Ini dengan Lengkap untuk Membuat Sub Tiket</h4>
                         <!-- FORM add subtiket dengan parameter id employ, id task, status tabel -->
-                        <form action="<?php echo base_url('index.php/detail/addsubtiket/') . $employ_id . "/" . $task["task_id"] . "/" . $cekTabel ?>" method="POST" id="form-staff">
+                        <form action="<?php echo base_url('index.php/detail/addsubtiket/') .$designation."/". $employ_id . "/" . $task["task_id"] . "/" .$status."/". $cekTabel ?>" method="POST" id="form-staff">
                             <input type="text" name="id_parent" value="<?php echo $task["task_id"] ?>" hidden>
-                            <input type="text" name="id_servide" value="<?php echo $task["service_id"] ?>" hidden>
+                            <input type="text" name="id_service" value="<?php echo $task["service_id"] ?>" hidden>
                             <!-- <input type="text" name="customer" value="<?php echo $task["customer"] ?>" hidden> -->
                             <!-- <input type="text" name="nama_layanan" value="<?php echo $task["nama_layanan"] ?>" hidden> -->
 

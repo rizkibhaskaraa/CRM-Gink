@@ -29,7 +29,7 @@
 <body>
     <!-- Right Section -->
     <!-- Home button -->
-    <?php if ($employ_dept == "ceo") {
+    <?php if ($status == "C-Level") {
         $linkhome = base_url('index.php/home/ceo/') . $username;
     } else {
         $linkhome = base_url('index.php/home/index/') . $username;
@@ -521,7 +521,7 @@
                                                 <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["task_status"] ?></span>
                                             </td>
                                             <td class="text-center" style="width: 15%;">
-                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['task_id'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
+                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') .$designation."/". $employ_id . "/" . $value['task_id'] ."/".$status. "/Tiket" ?>" class="text-decoration-none">Buka</a>
                                             </td>
                                         </tr>
                                 <?php }
@@ -560,7 +560,7 @@
                                                     <span class="font-w600  btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["task_status"] ?></span>
                                                 </td>
                                                 <td class="text-center" style="width: 15%;">
-                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['task_id'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
+                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') .$designation."/". $employ_id . "/" . $value['task_id'] ."/".$status. "/Tiket" ?>" class="text-decoration-none">Buka</a>
                                                 </td>
                                             </tr>
                                 <?php $i += 1;
@@ -613,7 +613,7 @@
                                                 <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["task_status"] ?></span>
                                             </td>
                                             <td class="text-center" style="width: 15%;">
-                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['task_id'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
+                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') .$designation."/". $employ_id . "/" . $value['task_id'] ."/".$status. "/Tiket" ?>" class="text-decoration-none">Buka</a>
                                             </td>
                                         </tr>
                                 <?php }
@@ -642,7 +642,7 @@
                                         <?php } ?>
                                     </tr>
                                     <?php foreach ($tiket as $value) {
-                                        if ($valueparent["task_id"] == $value["task_parent"] && $value["task_status"] == "finish") { ?>
+                                        if ($valueparent["task_id"] == $value["task_parent"] && $value["task_status"] == "Finish") { ?>
                                             <tr>
                                                 <td style="width: 10%;">
                                                     <span class="font-w600"><?php echo $i . "." . $value["task_title"] ?></span>
@@ -654,7 +654,7 @@
                                                     <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["task_status"] ?></span>
                                                 </td>
                                                 <td class="text-center" style="width: 15%;">
-                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['task_id'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
+                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') .$designation."/". $employ_id . "/" . $value['task_id'] ."/".$status. "/Tiket" ?>" class="text-decoration-none">Buka</a>
                                                 </td>
                                             </tr>
                                 <?php $i += 1;

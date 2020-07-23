@@ -48,7 +48,7 @@
 
 <body>
     <!-- Home button -->
-    <?php if ($employ_dept == "ceo") {
+    <?php if ($status == "C-Level") {
         $linkhome = base_url('index.php/home/ceo/') . $username;
     } else {
         $linkhome = base_url('index.php/home/index/') . $username;
@@ -61,7 +61,6 @@
         </a>
     </div>
     <!-- end home button -->
-
     <div class="col-md-2 ml-auto px-4">
         <!-- User Dropdown -->
         <div class="dropdown d-inline-block ml-2">
@@ -89,7 +88,6 @@
         </div>
         <!-- END User Dropdown -->
     </div>
-
     <!-- Main Container -->
     <main id="main-container">
         <!-- Hero -->
@@ -102,7 +100,7 @@
 
                             <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250">Selama Datang , <?php echo $employ_nama ?></h2>
 
-                            <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250"><?php echo $status . " " . $nama_departemen ?> di Gink Technology</h2>
+                            <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250"><?php echo $nama_departemen ?> di Gink Technology</h2>
                         </div>
                         <div class="flex-sm-00-auto mt-3 mt-sm-0 ml-sm-3">
                             <span class="d-inline-block invisible" data-toggle="appear" data-timeout="350">
@@ -120,7 +118,6 @@
     <!-- END Main Container -->
     <!-- Page Content -->
     <!-- request task,pelanggan,tugas selesai,tugas Belum Selesai,tiket selesai,tiket Belum Selesai -->
-
     <!-- navigasi bar pilih tabel -->
     <ul class="nav nav-tabs nav-tabs-block ml-4 px-2 mt-3" data-toggle="tabs" role="tablist">
         <li style="background-color:lavender" class="nav-item">
@@ -142,9 +139,7 @@
         </li>
     </ul>
     <!-- akhir navigasi bar pilih tabel -->
-
     <div class="block-content tab-content overflow-hidden">
-
         <!-- pelanggan -->
         <div class="tab-pane fade fade-up show active" id="pelanggan" role="tabpanel">
             <div class="container-fluid">
@@ -177,7 +172,6 @@
             </div>
         </div>
         <!-- END pelanggan -->
-
         <!-- Request Task dan report -->
         <?php if ($status == "Manager") { ?>
             <div class="tab-pane fade fade-up" id="request" role="tabpanel">
@@ -340,7 +334,6 @@
             <!-- END report-->
         <?php } ?>
         <!-- END Request Task dan report-->
-
         <div class="tab-pane fade fade-up" id="tugas" role="tabpanel">
             <!-- Belum Selesai -->
             <div class="container-fluid">
@@ -533,7 +526,6 @@
             </div>
             <!-- END  Selesai -->
         </div>
-
         <div class="tab-pane fade fade-up" id="tiket" role="tabpanel">
             <!--  Tiket Belum Selesai -->
             <div class="container-fluid">
@@ -600,7 +592,7 @@
                                                 <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["task_status"] ?></span>
                                             </td>
                                             <td class="text-center" style="width: 15%;">
-                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['task_id'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
+                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') .$designation."/". $employ_id . "/" . $value['task_id'] ."/".$status. "/Tiket" ?>" class="text-decoration-none">Buka</a>
                                             </td>
                                         </tr>
                                 <?php }
@@ -639,7 +631,7 @@
                                                     <span class="font-w600  btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["task_status"] ?></span>
                                                 </td>
                                                 <td class="text-center" style="width: 15%;">
-                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['task_id'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
+                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') .$designation."/". $employ_id . "/" . $value['task_id'] ."/".$status. "/Tiket" ?>" class="text-decoration-none">Buka</a>
                                                 </td>
                                             </tr>
                                 <?php $i += 1;
@@ -748,7 +740,6 @@
             </div>
             <!-- END  Tiket Selesai -->
         </div>
-
     </div>
     <!-- END request task,pelanggan,tugas selesai,tugas Belum Selesai,tiket selesai,tiket Belum Selesai -->
     <!-- pop up tiket pelanggan -->

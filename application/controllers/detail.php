@@ -16,6 +16,7 @@ class Detail extends CI_Controller
         } else {
             $user = $_SESSION["staff_id"];
         }
+        $data["designation"] =$designation;
         //data employ yang akses
         $user1 = $this->detail_model->getuser($user);
         $data["username"] = $user1["user_username"];
@@ -51,7 +52,7 @@ class Detail extends CI_Controller
     {
         $ubah = $this->detail_model->ubahPJ($this->input->post("PJbaru"), $task);
         $user = $this->detail_model->getuser($id);
-        redirect(base_url('index.php/home/index/') . $user['username']);
+        redirect(base_url('index.php/home/index/') . $user['user_username']);
     }
     //fungsi ubah status task menjadi selesai
     public function ubahstatustask($id, $task)
@@ -77,61 +78,61 @@ class Detail extends CI_Controller
             $this->detail_model->Laporan($id, $data['nama_berkas'], $task);
         }
         $user = $this->detail_model->getuser($id);
-        redirect(base_url('index.php/home/index/') . $user['username']);
+        redirect(base_url('index.php/home/index/') . $user['user_username']);
     }
     //menambahkan subtiket
-    public function addsubtiket($id_employ, $id_Task, $tabel)
+    public function addsubtiket($designation, $id_employ, $id_Task,$status, $tabel)
     {
         date_default_timezone_set('Asia/Bangkok');
         $employ = $this->detail_model->getemploy($id_employ);
-        $departemen = $this->detail_model->getdept($employ["id_departemen"]);
+        $posisi = $this->detail_model->getdeptposisi($designation);
+        $departemen = $this->detail_model->getdept($posisi["department_id"]);
 
         //membuat id_task
-        $task = $this->detail_model->gettask();
-        $id_task = [];
-        foreach ($task as $value) {
-            $no_id = substr($value["id_task"], 5);
-            $no_id = intval($no_id);
-            array_push($id_task, $no_id);
-        }
-        $max_id = max($id_task);
-        $id_task = "TASK-" . ($max_id + 1);
+        // $task = $this->detail_model->gettask();
+        // $id_task = [];
+        // foreach ($task as $value) {
+        //     $no_id = substr($value["id_task"], 5);
+        //     $no_id = intval($no_id);
+        //     array_push($id_task, $no_id);
+        // }
+        // $max_id = max($id_task);
+        // $id_task = "TASK-" . ($max_id + 1);
         //akhir membuat id_task
-        if ($this->input->post("id_pelanggan") == NULL) {
+        if ($this->input->post("id_service") == NULL) {
             $data_sub_task = array(
-                "id_task" => $id_task,
-                "nama_dept_tujuan" => $departemen["nama_departemen"],
-                "id_employ_tujuan" => $this->input->post("PJsubtask"),
-                "id_parent" => $this->input->post("id_parent"),
-                "id_employ_kirim" => $id_employ,
-                "nama_dept_kirim" => $departemen["nama_departemen"],
-                "title" => $this->input->post("title"),
-                "deskripsi" => $this->input->post("deskripsi"),
-                "date" => date("Y-m-d H-i-s"),
-                "dateline" => $this->input->post("dateline"),
-                "status" => "Belum Selesai"
+                // "id_task" => $id_task,
+                "department_destination" => $departemen["department_id"],
+                "employee_destination" => $this->input->post("PJsubtask"),
+                "task_parent" => $this->input->post("id_parent"),
+                "employee_sent" => $id_employ,
+                "department_sent" => $departemen["department_id"],
+                "task_title" => $this->input->post("title"),
+                "task_description" => $this->input->post("deskripsi"),
+                "task_date" => date("Y-m-d H-i-s"),
+                "task_dateline" => $this->input->post("dateline"),
+                "task_status" => "Not Finished"
             );
         } else {
             $data_sub_task = array(
-                "id_task" => $id_task,
-                "id_pelanggan" => $this->input->post("id_pelanggan"),
-                "customer" => $this->input->post("customer"),
-                "nama_layanan" => $this->input->post("nama_layanan"),
-                "nama_dept_tujuan" => $departemen["nama_departemen"],
-                "id_employ_tujuan" => $this->input->post("PJsubtask"),
-                "id_parent" => $this->input->post("id_parent"),
-                "id_employ_kirim" => $id_employ,
-                "nama_dept_kirim" => $departemen["nama_departemen"],
-                "title" => $this->input->post("title"),
-                "deskripsi" => $this->input->post("deskripsi"),
-                "date" => date("Y-m-d H-i-s"),
-                "dateline" => $this->input->post("dateline"),
-                "status" => "Belum Selesai"
-
+                // "id_task" => $id_task,
+                "service_id" => $this->input->post("id_service"),
+                // "customer" => $this->input->post("customer"),
+                // "nama_layanan" => $this->input->post("nama_layanan"),
+                "department_destination" => $departemen["department_id"],
+                "employee_destination" => $this->input->post("PJsubtask"),
+                "task_parent" => $this->input->post("id_parent"),
+                "employee_sent" => $id_employ,
+                "department_sent" => $departemen["department_id"],
+                "task_title" => $this->input->post("title"),
+                "task_description" => $this->input->post("deskripsi"),
+                "task_date" => date("Y-m-d H-i-s"),
+                "task_dateline" => $this->input->post("dateline"),
+                "task_status" => "Not Finished"
             );
         }
         $this->detail_model->insert_sub_task($data_sub_task, $id_employ, $id_Task);
-        redirect(base_url('index.php/detail/detailumum/') . $id_employ . "/" . $id_Task . "/" . $tabel);
+        redirect(base_url('index.php/detail/detailumum/') .$designation."/". $id_employ . "/" . $id_Task . "/" .$status."/". $tabel);
     }
     //add fungsi tambah komentar
     public function addkomen($idtask, $nama, $id_employ, $tabel, $dept)

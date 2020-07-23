@@ -63,7 +63,7 @@ class detail_model extends CI_model
     }
     public function getdept($id_dept)
     {
-        return $this->db->get_where('hr_departement', array('departement_id' => $id_dept))->row_array();
+        return $this->db->get_where('hr_department', array('department_id' => $id_dept))->row_array();
     }
 
     public function getnama_PJ($id_task)

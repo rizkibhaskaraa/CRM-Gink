@@ -345,6 +345,7 @@ class home_model extends CI_model
             $this->db->where("task_status", $status);
         }
         $this->db->from('tm_task');
+        $result = $this->db->count_all_results();
         return $this->db->count_all_results();
     }
 
@@ -359,7 +360,8 @@ class home_model extends CI_model
         }
         $this->db->order_by($order_field, $order_ascdesc);
         $this->db->limit($limit, $start);
-        $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination"); //join tabel employe dengan task
+        $this->db->where("task_parent",null);
+        $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination",'left'); //join tabel employe dengan task
         return $this->db->get_where('tm_task', array("department_destination" => $dept))->result_array();
     }
 

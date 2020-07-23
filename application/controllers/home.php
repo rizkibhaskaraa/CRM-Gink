@@ -147,15 +147,15 @@ class Home extends CI_Controller
     }
 
     //fungsi mencari data pelanggan dan filter data pelanggan
-    public function search($employ_id, $search)
-    {
-        $search_pelanggan = str_replace('%20', ' ', $search); //menggganti %20 dengan spasi
-        //$status_pelanggan = str_replace('%20', ' ', $status); //menggganti %20 dengan spasi
-        $data["layanan"] = $this->home_model->getlayanan(); //memanggil fungsi getpelanggan di home_model
-        $data["employ_id"] = $employ_id;
-        $data["pelanggan"] = $pelanggan = $this->home_model->getsearch($search_pelanggan); //memanggil fungsi getsearch di home_model
-        $this->load->view('home/hasil_search', $data);
-    }
+    // public function search($employ_id, $search)
+    // {
+    //     $search_pelanggan = str_replace('%20', ' ', $search); //menggganti %20 dengan spasi
+    //     //$status_pelanggan = str_replace('%20', ' ', $status); //menggganti %20 dengan spasi
+    //     $data["layanan"] = $this->home_model->getlayanan(); //memanggil fungsi getpelanggan di home_model
+    //     $data["employ_id"] = $employ_id;
+    //     $data["pelanggan"] = $pelanggan = $this->home_model->getsearch($search_pelanggan); //memanggil fungsi getsearch di home_model
+    //     $this->load->view('home/hasil_search', $data);
+    // }
 
     //fungsi search report (periode report)
     public function searchreport($employ_id, $tgl_start, $tgl_end)

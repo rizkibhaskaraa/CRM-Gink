@@ -32,7 +32,7 @@ class home_model extends CI_model
     //fungsi ambil data tabel task
     public function gettask()
     {
-        return $this->db->get("task")->result_array();
+        return $this->db->get("tm_task")->result_array();
     }
 
     //fungsi ambil data tabel employ
@@ -75,10 +75,10 @@ class home_model extends CI_model
     }
 
     //fungsi ambil data tabel pelanggan berdasarkan id pelanggan
-    public function getpelangganbyid($id)
-    {
-        return $this->db->get_where("pelanggan", array("id_pelanggan" => $id))->row_array();
-    }
+    // public function getpelangganbyid($id)
+    // {
+    //     return $this->db->get_where("pelanggan", array("id_pelanggan" => $id))->row_array();
+    // }
 
     //fungsi ambil data tabel layanan berdasarkan id layanan
     public function getlayananbyid($id)
@@ -138,20 +138,20 @@ class home_model extends CI_model
     }
 
     //fungsi ambil data tabel task untuk request task berdarakan nama_dept_tujuan(departemen PJ task)
-    public function gettaskdihead($nama_departemen)
-    {
-        $departemen = array($nama_departemen, "umum");
-        $this->db->order_by('status', 'ASC');
-        $this->db->order_by('dateline', 'ASC');
-        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan"); //join tabel employe dengan task
-        $this->db->where_in('nama_dept_tujuan', $departemen); //clause where_in
-        return $this->db->get('task')->result_array();
-    }
+    // public function gettaskdihead($nama_departemen)
+    // {
+    //     $departemen = array($nama_departemen, "umum");
+    //     $this->db->order_by('status', 'ASC');
+    //     $this->db->order_by('dateline', 'ASC');
+    //     $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan"); //join tabel employe dengan task
+    //     $this->db->where_in('nama_dept_tujuan', $departemen); //clause where_in
+    //     return $this->db->get('task')->result_array();
+    // }
 
     //fungsi ambil data tabel task untuk tugas saya berdarakan nama_dept_tujuan(departemen PJ task)
     public function gettaskparent($nama_departemen)
     {
-        $departemen = array($nama_departemen, "");
+        $departemen = array($nama_departemen, null);
         $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination");
         if ($nama_departemen != "1") {
             $this->db->where_in('department_destination', $departemen);
@@ -172,14 +172,14 @@ class home_model extends CI_model
     }
 
     //ambil data tabel task untuk data request task
-    public function gettaskdiheadkosong($nama_departemen)
-    {
-        $departemen = array($nama_departemen, "umum");
-        $this->db->order_by('status', 'ASC');
-        $this->db->order_by('dateline', 'ASC');
-        $this->db->where_in('nama_dept_tujuan', $departemen);
-        return $this->db->get('task')->result_array();
-    }
+    // public function gettaskdiheadkosong($nama_departemen)
+    // {
+    //     $departemen = array($nama_departemen, "umum");
+    //     $this->db->order_by('status', 'ASC');
+    //     $this->db->order_by('dateline', 'ASC');
+    //     $this->db->where_in('nama_dept_tujuan', $departemen);
+    //     return $this->db->get('task')->result_array();
+    // }
 
     //fungsi update db task
     public function updatestatus($id)
@@ -200,18 +200,18 @@ class home_model extends CI_model
     }
 
     //fungsi search tabel pelanggan untuk searching dan sorting tabel pelanggan
-    public function getsearch($search)
-    {
-        // if ($status == "semua") {
+    // public function getsearch($search)
+    // {
+    //     // if ($status == "semua") {
 
-        // } else {
-        //     $this->db->where("status", $status);
-        // }
+    //     // } else {
+    //     //     $this->db->where("status", $status);
+    //     // }
 
-        $this->db->like('customer', $search);
-        $this->db->or_like('id_pelanggan', $search);
-        return $this->db->get("pelanggan")->result_array();
-    }
+    //     $this->db->like('customer', $search);
+    //     $this->db->or_like('id_pelanggan', $search);
+    //     return $this->db->get("pelanggan")->result_array();
+    // }
 
     //fungsi search departemen di report
     // public function getsearchreport($dept, $tglend, $tglstart)

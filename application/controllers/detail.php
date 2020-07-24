@@ -31,6 +31,10 @@ class Detail extends CI_Controller
 
         //akhir data employ yang akses
 
+        $data["department_destination"] = $this->detail_model->getdeptbyid($data["task"]["department_destination"]);
+        $data["customer"] = $this->detail_model->getcustomer($data["task"]["service_id"]);
+        $data["nama_layanan"] = $this->detail_model->getservice($data["task"]["service_id"]);
+
         $data["cekTabel"] = $cekTabel; //cek table asal
         $data["getPJ"] = $this->detail_model->getsemuaPJ($posisi["position_id"]); //data employ di departemen
         $data["task"] = $this->detail_model->getdetail($task); //data task dengan id $task

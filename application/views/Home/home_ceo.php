@@ -865,7 +865,7 @@
                     [5, 50, 100]
                 ],
                 "columns": [{
-                        "data": "service_id",
+                        "data": "customer_id",
                         className: 'font-weight-bold'
                     },
                     {

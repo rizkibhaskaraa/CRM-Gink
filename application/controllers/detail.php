@@ -31,13 +31,14 @@ class Detail extends CI_Controller
 
         //akhir data employ yang akses
 
+        $data["cekTabel"] = $cekTabel; //cek table asal
+        $data["getPJ"] = $this->detail_model->getsemuaPJ($posisi["position_id"]); //data employ di departemen
+        $data["task"] = $this->detail_model->getdetail($task); //data task dengan id $task
+
         $data["department_destination"] = $this->detail_model->getdeptbyid($data["task"]["department_destination"]);
         $data["customer"] = $this->detail_model->getcustomer($data["task"]["service_id"]);
         $data["nama_layanan"] = $this->detail_model->getservice($data["task"]["service_id"]);
 
-        $data["cekTabel"] = $cekTabel; //cek table asal
-        $data["getPJ"] = $this->detail_model->getsemuaPJ($posisi["position_id"]); //data employ di departemen
-        $data["task"] = $this->detail_model->getdetail($task); //data task dengan id $task
         $data["PJ_task"] = $this->detail_model->getPJ_task($task); //data task dengan id $task
         $data["nama_kirim"] = $this->detail_model->getnama_kirim($task); //nama pengirim
         $data["dept_PJtask"] = $this->detail_model->getdeptPJTask($task); //data departemen PJ task

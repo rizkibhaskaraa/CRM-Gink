@@ -32,7 +32,7 @@ class detail_model extends CI_model
     {
         //dapatkan data task berdasarkan id task
         $this->db->join("hr_position", "hr_position.department_id = tm_task.department_destination");
-
+        $this->db->join("hr_department", "hr_department.department_id = tm_task.department_destination");
         return $this->db->get_where('tm_task', array('task_id' => $id_task))->row_array();
     }
     public function getsubtask($id_parent)
@@ -196,6 +196,8 @@ class detail_model extends CI_model
     {
         // $this->db->or_where("id_parent", $task);
         $this->db->order_by('comment_date', 'ASC');
+        $this->db->join("hr_employee", "tm_comment.employee_id = hr_employee.employee_id");
+        $this->db->join("hr_position", "tm_comment.position_id = hr_position.position_id");
         $this->db->join("tm_task", "tm_comment.task_id = tm_task.task_id");
         $this->db->where("tm_task.task_id", $task);
         $this->db->or_where("tm_task.task_parent", $task);

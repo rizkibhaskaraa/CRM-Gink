@@ -16,7 +16,7 @@ class Detail extends CI_Controller
         } else {
             $user = $_SESSION["staff_id"];
         }
-        $data["designation"] =$designation;
+        $data["designation"] = $designation;
         //data employ yang akses
         $user1 = $this->detail_model->getuser($user);
         $data["username"] = $user1["user_username"];
@@ -55,10 +55,10 @@ class Detail extends CI_Controller
         redirect(base_url('index.php/home/index/') . $user['user_username']);
     }
     //fungsi ubah status task menjadi selesai
-    public function ubahstatustask($designation,$id, $task,$status)
+    public function ubahstatustask($designation, $id, $task, $status)
     {
         $ubah = $this->detail_model->ubahstatustask($task);
-        redirect(base_url('index.php/home/detail/') .$designation."/". $id . "/" . $task ."/".$status. "/Request");
+        redirect(base_url('index.php/home/detail/') . $designation . "/" . $id . "/" . $task . "/" . $status . "/Request");
     }
     //add fungsi tambah laporan
     public function insertLaporan($id, $task)
@@ -81,7 +81,7 @@ class Detail extends CI_Controller
         redirect(base_url('index.php/home/index/') . $user['user_username']);
     }
     //menambahkan subtiket
-    public function addsubtiket($designation, $id_employ, $id_Task,$status, $tabel)
+    public function addsubtiket($designation, $id_employ, $id_Task, $status, $tabel)
     {
         date_default_timezone_set('Asia/Bangkok');
         $employ = $this->detail_model->getemploy($id_employ);
@@ -132,36 +132,23 @@ class Detail extends CI_Controller
             );
         }
         $this->detail_model->insert_sub_task($data_sub_task, $id_employ, $id_Task);
-        redirect(base_url('index.php/detail/detailumum/') .$designation."/". $id_employ . "/" . $id_Task . "/" .$status."/". $tabel);
+        redirect(base_url('index.php/detail/detailumum/') . $designation . "/" . $id_employ . "/" . $id_Task . "/" . $status . "/" . $tabel);
     }
     //add fungsi tambah komentar
-    public function addkomen($idtask, $nama, $id_employ, $tabel, $dept)
+    public function addkomen($designation, $id_employ, $id_task, $status, $tabel)
     {
         date_default_timezone_set('Asia/Bangkok');
-        $komen = $this->detail_model->getallkomen();
-        $nama = str_replace('%20', ' ', $nama);
-        $dept = str_replace('%20', ' ', $dept);
-
-        $id_komen = [];
-        foreach ($komen as $value) {
-            $no_id = substr($value["id_komentar"], 4);
-            $no_id = intval($no_id);
-            array_push($id_komen, $no_id);
-        }
-
-        $max_id = max($id_komen);
-        $id_komen = "KMN-" . ($max_id + 1);
+        $position = $this->detail_model->getdeptposisi($designation);
 
         $data = array(
-            "id_komentar" => $id_komen,
-            "komentar" => $this->input->post("komentar"),
-            "id_task" => $idtask,
-            "nama_kirim_komen" => $nama,
-            "nama_dept_komen" => $dept,
-            "tanggal_komen" => date("Y-m-d H-i-s")
+            "comment_description" => $this->input->post("komentar"),
+            "task_id" => $id_task,
+            "employee_id" => $id_employ,
+            "position_id" => $position["position_id"],
+            "comment_date" => date("Y-m-d H-i-s")
         );
         $this->detail_model->buatkomen($data);
-        redirect(base_url('index.php/detail/detailumum/') . $id_employ . "/" . $idtask . "/" . $tabel);
+        redirect(base_url('index.php/detail/detailumum/') . $designation . "/" . $id_employ . "/" . $id_task . "/" . $status . "/" . $tabel);
     }
     //add fungsi delete komentar
     public function deletekomen($idtask, $id_employ, $tabel, $idkomen)

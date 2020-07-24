@@ -157,7 +157,7 @@
                         <?php } ?>
                         <tr>
                             <td class="font-weight-bold" style="width: 20%;">Departemen Tujuan</td>
-                            <td><?php echo $task["department_destination"] ?></td>
+                            <td><?php echo $task["department_name"] ?></td>
                         </tr>
                         <tr>
                             <td class="font-weight-bold" style="width: 20%;">Deadline</td>
@@ -301,7 +301,7 @@
                                                 </div>
 
                                                 <?php if ($progres == 100 && $task['task_status'] == 'Not Finished') { ?>
-                                                    <a class="btn btn-success" class="bg-success text-white text-decoration-none" href="<?php echo base_url('index.php/detail/ubahstatustask/' .$designation."/". $employ_id . '/' . $task['task_id']."/".$status) ?>" style="float:right">
+                                                    <a class="btn btn-success" class="bg-success text-white text-decoration-none" href="<?php echo base_url('index.php/detail/ubahstatustask/' . $designation . "/" . $employ_id . '/' . $task['task_id'] . "/" . $status) ?>" style="float:right">
                                                         <i class="fa fa-fw fa-check"></i> Konfirmasi Selesai
                                                     </a>
                                                 <?php } ?>
@@ -343,7 +343,7 @@
                                                     </td>
                                                 <?php } ?>
                                                 <td class="d-none d-sm-table-cell text-center" style="width: 10%;">
-                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') .$designation."/". $employ_id . "/" . $value['task_id'] ."/".$status. "/Tiket" ?>" class="text-decoration-none">Buka</a>
+                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . "/" . $value['task_id'] . "/" . $status . "/Tiket" ?>" class="text-decoration-none">Buka</a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -380,9 +380,9 @@
                                 <td class="d-none d-sm-table-cell"></td>
                                 <td class="font-size-md text-muted">
                                     <!-- Menampilkan nama pengirim komentar dan tanggal kirim komentarnya -->
-                                    <a href=""><?= $value["comment_employee"] ?></a> on <em><?= $value["comment_date"] ?></em>
+                                    <a href=""><?= $value["employee_name"] ?></a> on <em><?= $value["comment_date"] ?></em>
                                     <!-- Jika user == pengirim komentar, tampilkan button delete komentar -->
-                                    <?php if ($employ_nama == $value["nama_kirim_komen"]) { ?>
+                                    <?php if ($employ_nama == $value["employee_id"]) { ?>
                                         <form action="<?php echo base_url('index.php/detail/deletekomen/') . $task["id_task"] . "/" . $employ_id . "/" . $cekTabel . "/" . $value["id_komentar"] ?>" method="POST">
                                             <button class="btn btn-sm btn-danger" data-toggle="click-ripple" type="submit">Delete</button>
                                         </form>
@@ -396,10 +396,10 @@
                                             <img class="img-avatar" src="<?php echo base_url('assets/oneui/media/avatars/avatar7.jpg') ?>" alt="">
                                         </a>
                                     </p>
-                                    <p class="font-size-sm"><?= $value["nama_kirim_komen"] ?><br><?= $value["nama_dept_komen"] ?></p>
+                                    <p class="font-size-sm"><?= $value["employee_name"] ?><br><?= "(" . $value["position_name"] . ")" ?></p>
                                 </td>
                                 <td>
-                                    <p><?= $value["komentar"] ?></p>
+                                    <p><?= $value["comment_description"] ?></p>
                                 </td>
                             </tr>
                         <?php }
@@ -449,10 +449,10 @@
                                     <img class="img-avatar" src="<?php echo base_url('assets/oneui/media/avatars/avatar10.jpg') ?>" alt="">
                                 </a>
                             </p>
-                            <p class="font-size-sm"><?= $employ_nama ?><br><?= $nama_dept ?></p>
+                            <p class="font-size-sm"><?= $employ_nama ?><br><?= "(" . $nama_dept . ")" ?></p>
                         </td>
                         <td>
-                            <form action="<?php echo base_url('index.php/detail/addkomen/') . $task["task_id"] . "/" . $employ_nama . "/" . $employ_id . "/" . $cekTabel . "/" . $nama_dept ?>" method="POST">
+                            <form action="<?php echo base_url('index.php/detail/addkomen/') . $designation . "/" . $employ_id . "/" . $task["task_id"] .  "/" . $status . "/" . $cekTabel ?>" method="POST">
                                 <div class="form-group">
                                     <!-- CKEditor (js-ckeditor id is initialized in Helpers.ckeditor()) -->
                                     <!-- For more info and examples you can check out http://ckeditor.com -->
@@ -494,7 +494,7 @@
                     <div class="block-content font-size-sm mt-3 text-justify ">
                         <h4>Isi Data Dibawah Ini dengan Lengkap untuk Membuat Sub Tiket</h4>
                         <!-- FORM add subtiket dengan parameter id employ, id task, status tabel -->
-                        <form action="<?php echo base_url('index.php/detail/addsubtiket/') .$designation."/". $employ_id . "/" . $task["task_id"] . "/" .$status."/". $cekTabel ?>" method="POST" id="form-staff">
+                        <form action="<?php echo base_url('index.php/detail/addsubtiket/') . $designation . "/" . $employ_id . "/" . $task["task_id"] . "/" . $status . "/" . $cekTabel ?>" method="POST" id="form-staff">
                             <input type="text" name="id_parent" value="<?php echo $task["task_id"] ?>" hidden>
                             <input type="text" name="id_service" value="<?php echo $task["service_id"] ?>" hidden>
                             <!-- <input type="text" name="customer" value="<?php echo $task["customer"] ?>" hidden> -->

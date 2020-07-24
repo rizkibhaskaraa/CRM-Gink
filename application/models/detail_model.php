@@ -31,12 +31,10 @@ class detail_model extends CI_model
     public function getdetail($id_task)
     {
         //dapatkan data task berdasarkan id task
-<<<<<<< HEAD
+
         $this->db->join("hr_position", "hr_position.department_id = tm_task.department_destination");
         $this->db->join("hr_department", "hr_department.department_id = tm_task.department_destination");
-=======
-        $this->db->join("hr_department", "hr_department.department_id = tm_task.department_sent");
->>>>>>> semi-master
+
         return $this->db->get_where('tm_task', array('task_id' => $id_task))->row_array();
     }
     public function getcustomer($service_id)
@@ -121,7 +119,7 @@ class detail_model extends CI_model
 
         return $nama_Dept["position_name"];
     }
-    public function ubahstatustask($id,$nama_berkas)
+    public function ubahstatustask($id, $nama_berkas)
     {
         //update
         date_default_timezone_set('Asia/Bangkok');

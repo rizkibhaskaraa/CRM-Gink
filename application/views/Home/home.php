@@ -769,7 +769,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="masalah">Jenis Masalah</label>
-                                <select name="masalah" id="masalah" class="form-control">
+                                <select name="masalah" id="masalah" class="form-control custom-select" required>
+                                    <option selected disable value="">Masalah</option>
                                     <option value="umum">General</option>
                                     <option value="support">Support</option>
                                     <option value="hosting">Hosting</option>
@@ -778,8 +779,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="title">Judul Tugas</label>
-                                <input type="text" class="form-control required" name="title" id="title" placeholder="Judul/Subject">
-                                <?= form_error('title', '<span class="text-danger">', '</span>') ?>
+                                <input type="text" class="form-control" name="title" id="title" placeholder="Judul/Subject" required>
                             </div>
                             <div class="form-group">
                                 <label for="dateline">Deadline</label>
@@ -787,14 +787,12 @@
                                     <span class="input-group-text input-group-text-alt">
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
-                                    <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true">
+                                    <input type="text" class="js-datepicker form-control" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
                                 <textarea class="form-control required js-summernote" name="deskripsi" id="deskripsi" rows="3"></textarea>
-                                <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
-
                             </div>
                             <div style="float:right;margin-bottom:3%;">
                                 <button type="reset" class="btn btn-outline-danger mr-2">Reset</button>
@@ -829,7 +827,8 @@
                             <input type="text" name="layanan" value="" hidden>
                             <div class="form-group">
                                 <label for="departemen">Departemen tujuan</label>
-                                <select name="departemen" id="departemen" class="form-control">
+                                <select name="departemen" id="departemen" class="form-control custom-select" required>
+                                    <option selected disable value="">Departemen Tujuan</option>
                                     <option value="Sales And Marketing">Sales And Marketing</option>
                                     <option value="Research And Development">Research And Development</option>
                                     <option value="Support">Support</option>
@@ -837,8 +836,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="title">Judul Tugas</label>
-                                <input type="text" class="form-control required" name="title" id="title" placeholder="Judul/Subject">
-                                <?= form_error('title', '<span class="text-danger">', '</span>') ?>
+                                <input type="text" class="form-control" name="title" id="title" placeholder="Judul/Subject" required>
                             </div>
                             <div class="form-group">
                                 <label for="dateline">Deadline</label>
@@ -846,13 +844,12 @@
                                     <span class="input-group-text input-group-text-alt">
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
-                                    <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true">
+                                    <input type="text" class="js-datepicker form-control" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
                                 <textarea class="form-control required js-summernote" name="deskripsi" id="deskripsi" rows="3"></textarea>
-                                <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
                             </div>
                             <div style="float:right;margin-bottom:3%">
                                 <button type="reset" class="btn btn-outline-danger mr-2">Reset</button>
@@ -878,7 +875,6 @@
             </div>
         </div>
     </footer>
-
     <!-- END Footer -->
     <!-- END Page Content -->
     <script src="<?php echo base_url('assets/oneui/js/oneui.core.min.js') ?>"></script>
@@ -1039,8 +1035,6 @@
         });
     </script>
     <!-- //end script datatable -->
-
-    <!-- POP UP BUAT TIKET -->
     <script>
         //fungsi ambil data pelanggan
         function datapelanggan(a, status) {
@@ -1076,7 +1070,6 @@
             // });
         }
     </script>
-
     <!-- script atur summernote height di buat tiket pelanggan -->
     <script type='text/javascript'>
         //<![CDATA[ 
@@ -1088,21 +1081,6 @@
         }); //]]>  
     </script>
     <!-- akhir script atur summernote height di buat tiket pelanggan-->
-
-    <!-- validasi form -->
-    <script src="<?php echo base_url('assets/oneui/js/plugins/jquery-validation/jquery.validate.js') ?>"></script>
-    <script>
-        $(document).ready(function() {
-            $("#form-staff").validate(); //validasi form
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $("#form-tiket").validate(); //validasi form
-        });
-    </script>
-    <!-- akhir validasi form -->
-
     <!-- Page JS Plugins -->
     <script src="<?php echo base_url('assets/oneui/js/plugins/chart.js/Chart.bundle.min.js') ?>"></script>
     <!-- Page JS Code -->

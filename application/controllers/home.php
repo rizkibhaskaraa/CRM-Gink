@@ -106,7 +106,6 @@ class Home extends CI_Controller
         $data["pelanggan"] = $pelanggan = $this->home_model->getpelanggan(); //memanggil fungsi getpelanggan di home_model
         $data["layanan"] = $layanan = $this->home_model->getlayanan(); //memanggil fungsi getlayanan di home_model
         $data["product"] = $product = $this->home_model->getproduct(); //memanggil fungsi getlayanan di home_model
-        // $departemen = $this->home_model->getdepartemen($employ["id_departemen"]); //memanggil fungsi getdepartemen di home_model
 
         //ambil data tabel task untuk tugas saya
         $data["taskselesai"] = $this->home_model->gettaskselesai($data["employ_id"], $data["employ_dept"]["department_id"]);
@@ -137,15 +136,6 @@ class Home extends CI_Controller
         redirect(base_url('index.php/home/index/') . $user);
     }
 
-    //fungsi edit status pelanggan
-    // public function editpelanggan()
-    // {
-    //     $id = $this->input->post("id_pelanggan");
-    //     $status = $this->input->post("status_pelanggan");
-    //     $user = $this->home_model->updatestatuspelanggan($id, $status);
-    //     redirect(base_url('index.php/home/index/') . $user);
-    // }
-
     //fungsi menuju halaman detail
     public function detail($designation, $id, $task, $status, $cekTabel)
     {
@@ -156,17 +146,6 @@ class Home extends CI_Controller
         }
         redirect(base_url('index.php/detail/detailumum/') . $designation . "/" . $id . "/" . $task . "/" . $status . "/" . $cekTabel);
     }
-
-    //fungsi mencari data pelanggan dan filter data pelanggan
-    // public function search($employ_id, $search)
-    // {
-    //     $search_pelanggan = str_replace('%20', ' ', $search); //menggganti %20 dengan spasi
-    //     //$status_pelanggan = str_replace('%20', ' ', $status); //menggganti %20 dengan spasi
-    //     $data["layanan"] = $this->home_model->getlayanan(); //memanggil fungsi getpelanggan di home_model
-    //     $data["employ_id"] = $employ_id;
-    //     $data["pelanggan"] = $pelanggan = $this->home_model->getsearch($search_pelanggan); //memanggil fungsi getsearch di home_model
-    //     $this->load->view('home/hasil_search', $data);
-    // }
 
     //fungsi search report (periode report)
     public function searchreport($employ_id, $tgl_start, $tgl_end)
@@ -195,14 +174,6 @@ class Home extends CI_Controller
         $data = $this->home_model->getlayananbyid($id_layanan);
         echo json_encode($data);
     }
-
-    //fungsi mendapatkan data tabel pelanggan
-    // function get_layanan()
-    // {
-    //     $id_pelanggan = $this->input->get('id');
-    //     $data = $this->home_model->getlayananbyid($id_pelanggan);
-    //     echo json_encode($data);
-    // }
 
     //fungsi untuk menambah data tiket/task
     public function addtiket($id_employ)
@@ -243,15 +214,12 @@ class Home extends CI_Controller
             }
             //jika buat tiket dari tabel pelanggan
             $data_task = array(
-                // "id_pelanggan" => $this->input->post("id_pelanggan"),
-                // "customer" => $this->input->post("customer"),
                 "service_id" => $this->input->post("service"),
                 "department_destination" => $department_id,
                 "employee_sent" => $id_employ,
                 "department_sent" => $departemen["department_id"],
                 "task_title" => $this->input->post("title"),
                 "task_description" => $this->input->post("deskripsi"),
-                // "kategori_masalah" => $masalah,
                 "task_date" => date("Y-m-d H-i-s"),
                 "task_dateline" => $this->input->post("dateline"),
                 "task_status" => "Not Finished"
@@ -281,19 +249,6 @@ class Home extends CI_Controller
             redirect(base_url('index.php/home/index/') . $user["user_username"]);
         }
     }
-
-    //fungsi tambah data pelanggan
-    // public function addpelanggan()
-    // {
-    //     $data_pelanggan = array(
-    //         "id_pelanggan" => rand(0001, 1000),
-    //         "customer" => $this->input->post("customer"),
-    //         "layanan" => $this->input->post("layanan"),
-    //         "status" => $this->input->post("status_customer")
-    //     );
-    //     $this->home_model->insert_pelanggan($data_pelanggan);
-    //     redirect(base_url('index.php/home/index/') . $user["username"]);
-    // }
 
     //function-fiunction datatable
     public function view($dept)

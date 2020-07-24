@@ -14,9 +14,4 @@ class login_model extends CI_model
     {
         return $this->db->get_where('hr_position', array("position_id" => $id_user))->row_array();
     }
-
-    // public function regisStaff($data)
-    // {
-    //     $this->db->insert('staff', $data);
-    // }
 }

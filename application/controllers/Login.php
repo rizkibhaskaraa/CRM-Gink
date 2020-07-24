@@ -24,7 +24,7 @@ class Login extends CI_Controller
 		//akhir validasi form
 
 		if ($this->form_validation->run() == false) { //jika validasi tidak gagal
-			$this->load->view('login/login');
+			redirect(base_url());
 		} else {
 			$this->validationLogin();
 		}

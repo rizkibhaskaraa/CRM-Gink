@@ -82,12 +82,6 @@ class home_model extends CI_model
         return $this->db->get("master_product")->result_array();
     }
 
-    //fungsi ambil data tabel pelanggan berdasarkan id pelanggan
-    // public function getpelangganbyid($id)
-    // {
-    //     return $this->db->get_where("pelanggan", array("id_pelanggan" => $id))->row_array();
-    // }
-
     //fungsi ambil data tabel layanan berdasarkan id layanan
     public function getlayananbyid($id)
     {
@@ -145,17 +139,6 @@ class home_model extends CI_model
         return $this->db->get_where('tm_task', array('employee_sent' => $id_employ, 'employee_destination' => NULL))->result_array();
     }
 
-    //fungsi ambil data tabel task untuk request task berdarakan nama_dept_tujuan(departemen PJ task)
-    // public function gettaskdihead($nama_departemen)
-    // {
-    //     $departemen = array($nama_departemen, "umum");
-    //     $this->db->order_by('status', 'ASC');
-    //     $this->db->order_by('dateline', 'ASC');
-    //     $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan"); //join tabel employe dengan task
-    //     $this->db->where_in('nama_dept_tujuan', $departemen); //clause where_in
-    //     return $this->db->get('task')->result_array();
-    // }
-
     //fungsi ambil data tabel task untuk tugas saya berdarakan nama_dept_tujuan(departemen PJ task)
     public function gettaskparent($nama_departemen)
     {
@@ -179,16 +162,6 @@ class home_model extends CI_model
         return $this->db->get('tm_task')->result_array();
     }
 
-    //ambil data tabel task untuk data request task
-    // public function gettaskdiheadkosong($nama_departemen)
-    // {
-    //     $departemen = array($nama_departemen, "umum");
-    //     $this->db->order_by('status', 'ASC');
-    //     $this->db->order_by('dateline', 'ASC');
-    //     $this->db->where_in('nama_dept_tujuan', $departemen);
-    //     return $this->db->get('task')->result_array();
-    // }
-
     //fungsi update db task
     public function updatestatus($id)
     {
@@ -206,31 +179,6 @@ class home_model extends CI_model
         //akhir data user
         return $user["user_username"];
     }
-
-    //fungsi search tabel pelanggan untuk searching dan sorting tabel pelanggan
-    // public function getsearch($search)
-    // {
-    //     // if ($status == "semua") {
-
-    //     // } else {
-    //     //     $this->db->where("status", $status);
-    //     // }
-
-    //     $this->db->like('customer', $search);
-    //     $this->db->or_like('id_pelanggan', $search);
-    //     return $this->db->get("pelanggan")->result_array();
-    // }
-
-    //fungsi search departemen di report
-    // public function getsearchreport($dept, $tglend, $tglstart)
-    // {
-    //     $this->db->where("nama_dept_tujuan", $dept);
-    //     $this->db->where("dateline", $tglend);
-    //     $this->db->select("count(task.status),id_employ_tujuan,nama,status_employ");
-    //     $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
-    //     $this->db->group_by("id_employ_tujuan");
-    //     return $this->db->get("task")->result_array();
-    // }
 
     public function insert_task($data_task)
     {

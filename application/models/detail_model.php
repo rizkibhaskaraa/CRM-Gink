@@ -31,9 +31,31 @@ class detail_model extends CI_model
     public function getdetail($id_task)
     {
         //dapatkan data task berdasarkan id task
+<<<<<<< HEAD
         $this->db->join("hr_position", "hr_position.department_id = tm_task.department_destination");
         $this->db->join("hr_department", "hr_department.department_id = tm_task.department_destination");
+=======
+        $this->db->join("hr_department", "hr_department.department_id = tm_task.department_sent");
+>>>>>>> semi-master
         return $this->db->get_where('tm_task', array('task_id' => $id_task))->row_array();
+    }
+    public function getcustomer($service_id)
+    {
+        //dapatkan data task berdasarkan id task
+        $this->db->join("crm_customer", "crm_customer.customer_id = master_service.service_id");
+        $result = $this->db->get_where('master_service', array('service_id' => $service_id))->row_array();
+        return $result["customer_name"];
+    }
+    public function getservice($service_id)
+    {
+        //dapatkan data task berdasarkan id task
+        $result =  $this->db->get_where('master_service', array('service_id' => $service_id))->row_array();
+        return $result["service_name"];
+    }
+    public function getdeptbyid($dept_id)
+    {
+        $result = $this->db->get_where('hr_department', array('department_id' => $dept_id))->row_array();
+        return $result["department_name"];
     }
     public function getsubtask($id_parent)
     {
@@ -99,9 +121,12 @@ class detail_model extends CI_model
 
         return $nama_Dept["position_name"];
     }
-    public function ubahstatustask($id)
+    public function ubahstatustask($id,$nama_berkas)
     {
         //update
+        date_default_timezone_set('Asia/Bangkok');
+        $this->db->set('task_file', $nama_berkas);
+        $this->db->set('task_finish', date('Y-m-d H:i:s'));
         $this->db->set('task_status', "Finish");
         $this->db->where('task_id', $id);
         $this->db->update('tm_task');

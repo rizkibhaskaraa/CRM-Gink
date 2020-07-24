@@ -34,6 +34,11 @@ class Detail extends CI_Controller
         $data["cekTabel"] = $cekTabel; //cek table asal
         $data["getPJ"] = $this->detail_model->getsemuaPJ($posisi["position_id"]); //data employ di departemen
         $data["task"] = $this->detail_model->getdetail($task); //data task dengan id $task
+        
+        $data["department_destination"] = $this->detail_model->getdeptbyid($data["task"]["department_destination"]);
+        $data["customer"] = $this->detail_model->getcustomer($data["task"]["service_id"]);
+        $data["nama_layanan"] = $this->detail_model->getservice($data["task"]["service_id"]);
+
         $data["PJ_task"] = $this->detail_model->getPJ_task($task); //data task dengan id $task
         $data["nama_kirim"] = $this->detail_model->getnama_kirim($task); //nama pengirim
         $data["dept_PJtask"] = $this->detail_model->getdeptPJTask($task); //data departemen PJ task
@@ -57,8 +62,20 @@ class Detail extends CI_Controller
     //fungsi ubah status task menjadi selesai
     public function ubahstatustask($designation, $id, $task, $status)
     {
+<<<<<<< HEAD
         $ubah = $this->detail_model->ubahstatustask($task);
         redirect(base_url('index.php/home/detail/') . $designation . "/" . $id . "/" . $task . "/" . $status . "/Request");
+=======
+        $config['upload_path'] = './upload/'; //letak folder file yang akan diupload
+        $config['allowed_types'] = 'gif|jpg|png|img|jpeg|doc|docx|xls|xlsx|ppt|pptx|pdf'; //jenis file yang dapat diterima
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('file')) {
+            $this->upload->data();
+            $data['nama_berkas'] =  $this->upload->data('file_name');
+        }
+        $ubah = $this->detail_model->ubahstatustask($task,$data['nama_berkas']);
+        redirect(base_url('index.php/home/detail/') .$designation."/". $id . "/" . $task ."/".$status. "/Request");
+>>>>>>> semi-master
     }
     //add fungsi tambah laporan
     public function insertLaporan($id, $task)

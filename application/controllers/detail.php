@@ -163,9 +163,9 @@ class Detail extends CI_Controller
         redirect(base_url('index.php/detail/detailumum/') . $designation . "/" . $id_employ . "/" . $id_task . "/" . $status . "/" . $tabel);
     }
     //add fungsi delete komentar
-    public function deletekomen($idtask, $id_employ, $tabel, $idkomen)
+    public function deletekomen($designation, $id_employ, $id_task, $status, $tabel, $id_komen)
     {
-        $this->detail_model->deletekomen($idkomen);
-        redirect(base_url('index.php/detail/detailumum/') . $id_employ . "/" . $idtask . "/" . $tabel);
+        $this->detail_model->deletekomen($id_komen);
+        redirect(base_url('index.php/detail/detailumum/') . $designation . "/" . $id_employ . "/" . $id_task . "/" . $status . "/" . $tabel);
     }
 }

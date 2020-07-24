@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 22, 2020 at 09:21 AM
+-- Generation Time: Jul 24, 2020 at 09:37 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -92,7 +92,8 @@ INSERT INTO `hr_designation` (`designation_id`, `position_id`, `employee_id`, `d
 (5, 8, 16, '2020-06-03', '2021-06-25', 1),
 (6, 9, 10, '2019-12-04', '2020-09-25', 1),
 (7, 11, 7, '2020-03-11', '2020-09-04', 1),
-(8, 12, 3, '2020-04-07', '2020-10-09', 1);
+(8, 12, 3, '2020-04-07', '2020-10-09', 1),
+(9, 14, 18, '2020-07-01', '2020-07-31', 1);
 
 -- --------------------------------------------------------
 
@@ -165,10 +166,11 @@ INSERT INTO `hr_position` (`position_id`, `department_id`, `parent_id`, `positio
 (2, 1, 1, 3, 'Chief Operating Officer', 'COO'),
 (3, 1, 1, 1, 'Chief Technical Officer', 'CTO'),
 (4, 1, 1, 2, 'Chief Financial Officer', 'CFO'),
-(8, 2, 2, 1, 'Sales & Marketing Manager', ''),
+(8, 2, 2, 1, 'Sales and Marketing Manager', ''),
 (9, 3, 3, 1, 'Research & Development Manager', NULL),
 (11, 3, 9, 1, 'Development Supervisor', NULL),
-(12, 3, 9, 2, 'Creative Design Supervisor', NULL);
+(12, 3, 9, 2, 'Creative Design Supervisor', NULL),
+(14, 2, 8, 2, 'Sales and Marketing Staff', NULL);
 
 -- --------------------------------------------------------
 
@@ -247,7 +249,8 @@ INSERT INTO `master_user` (`user_username`, `user_password`, `employee_id`, `use
 ('Novi12', '123456', 9, 'C-Level', 4),
 ('Pulung12', '123456', 7, 'Staff', 11),
 ('Yasser12', '123456', 1, 'C-Level', 1),
-('Yudha12', '123456', 5, 'C-Level', 3);
+('Yudha12', '123456', 5, 'C-Level', 3),
+('zul12', '123456', 18, 'Staff', 14);
 
 -- --------------------------------------------------------
 
@@ -260,9 +263,21 @@ CREATE TABLE `tm_comment` (
   `comment_description` text DEFAULT NULL,
   `task_id` int(11) DEFAULT NULL,
   `employee_id` int(11) DEFAULT NULL,
-  `department_id` int(11) NOT NULL,
+  `position_id` int(11) NOT NULL,
   `comment_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tm_comment`
+--
+
+INSERT INTO `tm_comment` (`comment_id`, `comment_description`, `task_id`, `employee_id`, `position_id`, `comment_date`) VALUES
+(1, '<p>Cepet Diselesaikan sebelum deadline!!!</p>\r\n', 1, 5, 3, '2020-07-24 10:05:44'),
+(2, '<p>Mana pekerjaan yang sama minta??</p>\r\n', 1, 5, 3, '2020-07-24 10:07:35'),
+(7, '<p>Sebentar Pak</p>\r\n', 1, 16, 8, '2020-07-24 11:00:01'),
+(9, '<p>Oke</p>\r\n', 1, 5, 3, '2020-07-24 14:03:04'),
+(11, '<p>Baik pak laksanakan</p>\r\n', 14, 18, 14, '2020-07-24 14:28:23'),
+(13, '<p>Baik ditunggu</p>\r\n', 1, 5, 3, '2020-07-24 14:30:03');
 
 -- --------------------------------------------------------
 
@@ -294,10 +309,15 @@ CREATE TABLE `tm_task` (
 --
 
 INSERT INTO `tm_task` (`task_id`, `task_parent`, `customer_id`, `product_id`, `service_id`, `employee_destination`, `department_destination`, `employee_sent`, `department_sent`, `task_title`, `task_description`, `task_date`, `task_dateline`, `task_file`, `task_finish`, `task_status`) VALUES
-(1, NULL, NULL, NULL, 1, NULL, 2, 5, 1, 'Hosting Website Official Bank Lampung', '<p>Hosting Website Official Bank Lampung dengan jangka waktu 5 tahun<br></p>', '2020-07-22 14:04:24', '2020-09-12', NULL, NULL, 'Not Finished'),
+(1, NULL, NULL, NULL, 1, 16, 2, 5, 1, 'Hosting Website Official Bank Lampung', '<p>Hosting Website Official Bank Lampung dengan jangka waktu 5 tahun<br></p>', '2020-07-22 14:04:24', '2020-09-12', NULL, NULL, 'Not Finished'),
 (2, NULL, NULL, NULL, 3, NULL, 3, 6, 1, 'Maintenance Website ', 'Perbaikan bug dan tampilan kurang baik pada website', '2020-07-22 14:06:13', '2020-10-03', NULL, NULL, 'Not Finished'),
-(3, NULL, NULL, NULL, 2, NULL, 2, 6, 1, 'Hosting Fitur', '<p>Hosting Bank Lampung<br></p>', '2020-07-22 14:09:41', '2020-08-08', NULL, NULL, 'Not Finished'),
-(4, NULL, NULL, NULL, NULL, NULL, 2, 6, 1, 'Daftar Keuangan Mingguan', '<p>Tolong rekap data ke saya</p>', '2020-07-22 14:16:08', '2020-08-08', NULL, NULL, 'Not Finished');
+(3, NULL, NULL, NULL, 2, 16, 2, 6, 1, 'Hosting Fitur', '<p>Hosting Bank Lampung<br></p>', '2020-07-22 14:09:41', '2020-08-08', '20200421_085234.jpg', '2020-07-24 11:24:07', 'Finish'),
+(4, NULL, NULL, NULL, NULL, NULL, 2, 6, 1, 'Daftar Keuangan Mingguan', '<p>Tolong rekap data ke saya</p>', '2020-07-22 14:16:08', '2020-08-08', NULL, NULL, 'Not Finished'),
+(5, NULL, NULL, NULL, NULL, NULL, 3, 10, 3, 'Tugas Impossible', '<p>Tugas yang tidak mungkin dikerjakan oleh saya</p>', '2020-07-23 13:32:06', '2020-08-09', NULL, NULL, 'Not Finished'),
+(6, NULL, NULL, NULL, NULL, 7, 3, 16, 2, 'Tugas Impossible lagi', '<p>Tugas yang tidak mungkin dikerjakan oleh saya</p>', '2020-07-23 13:32:06', '2020-08-09', NULL, '2020-07-23 15:03:51', 'Finish'),
+(8, NULL, NULL, NULL, NULL, NULL, 3, 5, 1, 'Pembaharuan Website Ginktech ', '<p>Pembaharuan Website Ginktech dan Mintenance rutin</p>', '2020-07-24 09:41:46', '2020-08-08', NULL, NULL, 'Not Finished'),
+(14, 1, NULL, NULL, 1, 18, 2, 16, 2, 'Cepetan di Hosting', '<p>Pak Yudha udah nanyain<br></p>', '2020-07-24 14:21:51', '2020-08-09', NULL, NULL, 'Not Finished'),
+(15, 1, NULL, NULL, 1, NULL, 2, 16, 2, 'asd', '<p>asd</p>', '2020-07-24 14:36:30', '2020-07-19', NULL, NULL, 'Not Finished');
 
 --
 -- Indexes for dumped tables
@@ -366,8 +386,8 @@ ALTER TABLE `master_user`
 ALTER TABLE `tm_comment`
   ADD PRIMARY KEY (`comment_id`),
   ADD KEY `task_id` (`task_id`),
-  ADD KEY `department_id` (`department_id`),
-  ADD KEY `employee_id` (`employee_id`);
+  ADD KEY `employee_id` (`employee_id`),
+  ADD KEY `tm_comment_ibfk_3` (`position_id`);
 
 --
 -- Indexes for table `tm_task`
@@ -396,7 +416,7 @@ ALTER TABLE `hr_department`
 -- AUTO_INCREMENT for table `hr_designation`
 --
 ALTER TABLE `hr_designation`
-  MODIFY `designation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `designation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `hr_employee`
@@ -408,7 +428,7 @@ ALTER TABLE `hr_employee`
 -- AUTO_INCREMENT for table `hr_position`
 --
 ALTER TABLE `hr_position`
-  MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `master_product`
@@ -426,13 +446,13 @@ ALTER TABLE `master_service`
 -- AUTO_INCREMENT for table `tm_comment`
 --
 ALTER TABLE `tm_comment`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tm_task`
 --
 ALTER TABLE `tm_task`
-  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
@@ -477,8 +497,8 @@ ALTER TABLE `master_user`
 --
 ALTER TABLE `tm_comment`
   ADD CONSTRAINT `tm_comment_ibfk_1` FOREIGN KEY (`task_id`) REFERENCES `tm_task` (`task_id`),
-  ADD CONSTRAINT `tm_comment_ibfk_2` FOREIGN KEY (`department_id`) REFERENCES `hr_department` (`department_id`),
-  ADD CONSTRAINT `tm_comment_ibfk_3` FOREIGN KEY (`employee_id`) REFERENCES `hr_employee` (`employee_id`);
+  ADD CONSTRAINT `tm_comment_ibfk_2` FOREIGN KEY (`employee_id`) REFERENCES `hr_employee` (`employee_id`),
+  ADD CONSTRAINT `tm_comment_ibfk_3` FOREIGN KEY (`position_id`) REFERENCES `hr_position` (`position_id`);
 
 --
 -- Constraints for table `tm_task`

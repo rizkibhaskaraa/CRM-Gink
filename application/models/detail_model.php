@@ -240,6 +240,8 @@ class detail_model extends CI_model
         $this->db->order_by('comment_date', 'ASC');
         $this->db->where("tm_comment.task_id", $parent1);
         $this->db->or_where_in("tm_comment.task_id", $idsubtask);
+        $this->db->join("hr_employee", "tm_comment.employee_id = hr_employee.employee_id");
+        $this->db->join("hr_position", "tm_comment.position_id = hr_position.position_id");
         $this->db->join("tm_task", "tm_comment.task_id = tm_task.task_id");
         return $this->db->get("tm_comment")->result_array();
     }

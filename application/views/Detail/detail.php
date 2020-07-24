@@ -115,6 +115,8 @@
     </main>
     <!-- END Main Container -->
 
+
+
     <!-- Page Content -->
     <div class="content">
         <!-- Discussion -->
@@ -155,7 +157,7 @@
                         <?php } ?>
                         <tr>
                             <td class="font-weight-bold" style="width: 20%;">Departemen Tujuan</td>
-                            <td><?php echo $task["department_name"] ?></td>
+                            <td><?php echo $department_destination ?></td>
                         </tr>
                         <tr>
                             <td class="font-weight-bold" style="width: 20%;">Deadline</td>
@@ -299,9 +301,7 @@
                                                 </div>
 
                                                 <?php if ($progres == 100 && $task['task_status'] == 'Not Finished') { ?>
-                                                    <<<<<<< HEAD <a class="btn btn-success" class="bg-success text-white text-decoration-none" href="<?php echo base_url('index.php/detail/ubahstatustask/' . $designation . "/" . $employ_id . '/' . $task['task_id'] . "/" . $status) ?>" style="float:right">
-                                                        =======
-                                                        <?php echo form_open_multipart('index.php/detail/ubahstatustask/' . $designation . "/" . $employ_id . '/' . $task['task_id'] . "/" . $status); ?>
+                                                    <?php echo form_open_multipart('index.php/detail/ubahstatustask/' . $designation . "/" . $employ_id . '/' . $task['task_id'] . "/" . $status); ?>
                                             <td class="font-weight-bold" style="width: 20%;">Berkas (opsional)</td>
                                             <td>
                                                 <input type="file" name="file">
@@ -311,7 +311,6 @@
                                             </td>
                                             <?php echo form_close(); ?>
                                             <!-- <a class="btn btn-success" class="bg-success text-white text-decoration-none" href="<?php echo base_url('index.php/detail/ubahstatustask/' . $designation . "/" . $employ_id . '/' . $task['task_id'] . "/" . $status) ?>" style="float:right">
->>>>>>> semi-master
                                                         <i class="fa fa-fw fa-check"></i> Konfirmasi Selesai
                                                     </a> -->
                                         <?php } ?>
@@ -392,8 +391,8 @@
                                     <!-- Menampilkan nama pengirim komentar dan tanggal kirim komentarnya -->
                                     <a href=""><?= $value["employee_name"] ?></a> on <em><?= $value["comment_date"] ?></em>
                                     <!-- Jika user == pengirim komentar, tampilkan button delete komentar -->
-                                    <?php if ($employ_nama == $value["employee_id"]) { ?>
-                                        <form action="<?php echo base_url('index.php/detail/deletekomen/') . $task["id_task"] . "/" . $employ_id . "/" . $cekTabel . "/" . $value["id_komentar"] ?>" method="POST">
+                                    <?php if ($employ_id == $value["employee_id"]) { ?>
+                                        <form action="<?php echo base_url('index.php/detail/deletekomen/') . $designation . "/" . $employ_id . "/" . $task["task_id"] .  "/" . $status . "/" . $cekTabel . "/" . $value["comment_id"]  ?>" method="POST">
                                             <button class="btn btn-sm btn-danger" data-toggle="click-ripple" type="submit">Delete</button>
                                         </form>
                                     <?php } ?>
@@ -420,10 +419,10 @@
                                 <td class="d-none d-sm-table-cell"></td>
                                 <td class="font-size-md text-muted">
                                     <!-- Menampilkan nama pengirim komentar dan tanggal kirim komentarnya -->
-                                    <a href=".html"><?= $value["nama_kirim_komen"] ?></a> on <em><?= $value["tanggal_komen"] ?></em>
-                                    <?php if ($employ_nama == $value["nama_kirim_komen"]) { ?>
+                                    <a href=".html"><?= $value["employee_name"] ?></a> on <em><?= $value["comment_date"] ?></em>
+                                    <?php if ($employ_nama == $value["employee_name"]) { ?>
                                         <!-- Jika user == pengirim komentar, tampilkan button delete komentar -->
-                                        <form action="<?php echo base_url('index.php/detail/deletekomen/') . $task["id_task"] . "/" . $employ_id . "/" . $cekTabel . "/" . $value["id_komentar"] ?>" method="POST">
+                                        <form action="<?php echo base_url('index.php/detail/deletekomen/') . $designation . "/" . $employ_id . "/" . $task["task_id"] .  "/" . $status . "/" . $cekTabel . "/" . $value["comment_id"]  ?>" method="POST">
                                             <button class="btn btn-sm btn-danger" data-toggle="click-ripple" type="submit">Delete</button>
                                         </form>
                                     <?php } ?>
@@ -437,10 +436,10 @@
                                         </a>
                                     </p>
                                     <!-- menampilkan nama pengirim komentar dan nama departemen pengirim komentar -->
-                                    <p class="font-size-sm"><?= $value["nama_kirim_komen"] ?><br><?= $value["nama_dept_komen"] ?></p>
+                                    <p class="font-size-sm"><?= $value["employee_name"] ?><br><?= "(" . $value["position_name"] . ")" ?></p>
                                 </td>
                                 <td>
-                                    <p><?= $value["komentar"] ?></p>
+                                    <p><?= $value["comment_description"] ?></p>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -517,13 +516,13 @@
 
                             <div class="form-group">
                                 <label for="title">Judul Sub Task</label>
-                                <input type="text" class="form-control required" name="title" id="title" placeholder="Judul/Subject">
+                                <input type="text" class="form-control required" name="title" id="title" placeholder="Judul/Subject " required>
                             </div>
                             <!-- Add pj sub task -->
                             <div class="form-group">
                                 <label for="PJsubtask">Penanggung Jawab Sub Task</label></br>
-                                <select name="PJsubtask" id="PJsubtask" class="btn btn-secondary dropdown-toggle">
-                                    <option disabled selected> Belum ada </option>
+                                <select name="PJsubtask" id="PJsubtask" class="btn btn-secondary dropdown-toggle custom-select" required>
+                                    <option disabled selected value=""> Belum ada </option>
                                     <?php
                                     $employe = [];
                                     //load data employ dengan jumlah task yang dipegang > 0
@@ -554,12 +553,12 @@
                                     <span class="input-group-text input-group-text-alt">
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
-                                    <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true">
+                                    <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
-                                <textarea class="form-control required js-summernote" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
+                                <textarea class="form-control required js-summernote" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi" required></textarea>
                             </div>
                             <div style="float:right;margin-bottom:3%">
                                 <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>

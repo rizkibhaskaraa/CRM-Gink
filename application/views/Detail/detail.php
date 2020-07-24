@@ -115,8 +115,6 @@
     </main>
     <!-- END Main Container -->
 
-
-
     <!-- Page Content -->
     <div class="content">
         <!-- Discussion -->
@@ -157,11 +155,7 @@
                         <?php } ?>
                         <tr>
                             <td class="font-weight-bold" style="width: 20%;">Departemen Tujuan</td>
-<<<<<<< HEAD
                             <td><?php echo $task["department_name"] ?></td>
-=======
-                            <td><?php echo $department_destination ?></td>
->>>>>>> semi-master
                         </tr>
                         <tr>
                             <td class="font-weight-bold" style="width: 20%;">Deadline</td>
@@ -286,7 +280,7 @@
                                 <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                                     <thead>
                                         <tr>
-                                            <td colspan="4">    
+                                            <td colspan="4">
                                                 <?php $color = "bg-success";
                                                 $progres = count($subtaskselesai) / count($subtask) * 100;
                                                 if ($progres < 80) {
@@ -305,24 +299,23 @@
                                                 </div>
 
                                                 <?php if ($progres == 100 && $task['task_status'] == 'Not Finished') { ?>
-<<<<<<< HEAD
-                                                    <a class="btn btn-success" class="bg-success text-white text-decoration-none" href="<?php echo base_url('index.php/detail/ubahstatustask/' . $designation . "/" . $employ_id . '/' . $task['task_id'] . "/" . $status) ?>" style="float:right">
-=======
-                                                    <?php echo form_open_multipart('index.php/detail/ubahstatustask/' .$designation."/". $employ_id . '/' . $task['task_id']."/".$status); ?>
-                                                        <td class="font-weight-bold" style="width: 20%;">Berkas (opsional)</td>
-                                                        <td>
-                                                            <input type="file" name="file">
-                                                            <div class="mt-5" style="float:right;">
-                                                                <input type="submit" class="btn btn-success" value="Konfirmasi Selesai">
-                                                            </div>
-                                                        </td>
-                                                    <?php echo form_close(); ?>
-                                                    <!-- <a class="btn btn-success" class="bg-success text-white text-decoration-none" href="<?php echo base_url('index.php/detail/ubahstatustask/' .$designation."/". $employ_id . '/' . $task['task_id']."/".$status) ?>" style="float:right">
+                                                    <<<<<<< HEAD <a class="btn btn-success" class="bg-success text-white text-decoration-none" href="<?php echo base_url('index.php/detail/ubahstatustask/' . $designation . "/" . $employ_id . '/' . $task['task_id'] . "/" . $status) ?>" style="float:right">
+                                                        =======
+                                                        <?php echo form_open_multipart('index.php/detail/ubahstatustask/' . $designation . "/" . $employ_id . '/' . $task['task_id'] . "/" . $status); ?>
+                                            <td class="font-weight-bold" style="width: 20%;">Berkas (opsional)</td>
+                                            <td>
+                                                <input type="file" name="file">
+                                                <div class="mt-5" style="float:right;">
+                                                    <input type="submit" class="btn btn-success" value="Konfirmasi Selesai">
+                                                </div>
+                                            </td>
+                                            <?php echo form_close(); ?>
+                                            <!-- <a class="btn btn-success" class="bg-success text-white text-decoration-none" href="<?php echo base_url('index.php/detail/ubahstatustask/' . $designation . "/" . $employ_id . '/' . $task['task_id'] . "/" . $status) ?>" style="float:right">
 >>>>>>> semi-master
                                                         <i class="fa fa-fw fa-check"></i> Konfirmasi Selesai
                                                     </a> -->
-                                                <?php } ?>
-                                            </td>
+                                        <?php } ?>
+                                        </td>
                                         </tr>
                                     </thead>
                                     <thead class="thead-dark">

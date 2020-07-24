@@ -57,7 +57,14 @@ class Detail extends CI_Controller
     //fungsi ubah status task menjadi selesai
     public function ubahstatustask($designation, $id, $task, $status)
     {
-        $ubah = $this->detail_model->ubahstatustask($task);
+        $config['upload_path'] = './upload/'; //letak folder file yang akan diupload
+        $config['allowed_types'] = 'gif|jpg|png|img|jpeg|doc|docx|xls|xlsx|ppt|pptx|pdf'; //jenis file yang dapat diterima
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('file')) {
+            $this->upload->data();
+            $data['nama_berkas'] =  $this->upload->data('file_name');
+        }
+        $ubah = $this->detail_model->ubahstatustask($task, $data['nama_berkas']);
         redirect(base_url('index.php/home/detail/') . $designation . "/" . $id . "/" . $task . "/" . $status . "/Request");
     }
     //add fungsi tambah laporan

@@ -578,7 +578,7 @@
                                     if ($value["task_status"] == "Not Finished" && $value["task_parent"] == "") { ?>
                                         <tr>
                                             <td style="width: 10%;">
-                                                <span class="font-w600">#<?php echo $value["task_id"] . " " . $value["title"] ?></span>
+                                                <span class="font-w600">#<?php echo $value["task_id"] . " " . $value["task_title"] ?></span>
                                             </td>
                                             <td class="text-center" style="width: 10%;">
                                                 <span class="font-w600"><?php echo $value["employee_destination"] ?></span>

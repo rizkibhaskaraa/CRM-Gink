@@ -204,12 +204,12 @@
                                                 <span class="font-w600 text-danger">0 Tugas</span>
                                             </td>
                                         </tr>
-                                    </tbody>
+                                    <!-- </tbody> -->
                             <?php }
                             } ?>
                             <?php $employe = [];
                             foreach ($report as $value) { ?>
-                                <tbody>
+                                <!-- <tbody> -->
                                     <?php foreach ($tugas_selesai as $value2) {
                                         if ($value2["employee_name"] == $value["employee_name"]) {
                                             array_push($employe, $value["employee_name"]); ?>
@@ -236,10 +236,10 @@
                                     <?php
                                         }
                                     } ?>
-                                </tbody>
+                                <!-- </tbody> -->
                             <?php } ?>
                             <?php foreach ($report as $value) { ?>
-                                <tbody>
+                                <!-- <tbody> -->
                                     <?php foreach ($tugas_belum as $value2) {
                                         if ($value2["employee_name"] == $value["employee_name"] && !in_array($value["employee_name"], $employe)) {
                                             array_push($employe, $value["employee_name"]); ?>

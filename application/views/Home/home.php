@@ -154,15 +154,16 @@
                             <option value="Not Active">Tidak Aktif</option>
                         </select>
                     </div>
+                    <div style="clear:both"></div>
                     <div class="block-content block-content-full">
                         <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0" id="table-pelanggan">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 10%;">#ID</th>
-                                    <th class="font-w700 text-center" style="width: 30%;">Customer</th>
-                                    <th class="font-w700 text-center" style="width: 30%;">Layanan</th>
-                                    <th class="font-w700 text-center" style="width: 15%;">Status</th>
-                                    <th class="font-w700 text-center" style="width: 15%;">+Tiket</th>
+                                    <th class="text-center">#ID</th>
+                                    <th class="text-center">Customer</th>
+                                    <th class="text-center">Layanan</th>
+                                    <th class="text-center">Status</th>
+                                    <th class="text-center">+Tiket</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -262,12 +263,12 @@
                                                     <span class="font-w600 text-danger">0 Tugas</span>
                                                 </td>
                                             </tr>
-                                        </tbody>
+                                        <!-- </tbody> -->
                                 <?php }
                                 } ?>
                                 <?php $employe = [];
                                 foreach ($report as $value) { ?>
-                                    <tbody>
+                                    <!-- <tbody> -->
                                         <?php foreach ($tugas_selesai as $value2) {
                                             if ($value2["employee_name"] == $value["employee_name"]) {
                                                 array_push($employe, $value["employee_name"]); ?>
@@ -294,10 +295,10 @@
                                         <?php
                                             }
                                         } ?>
-                                    </tbody>
+                                    <!-- </tbody> -->
                                 <?php } ?>
                                 <?php foreach ($report as $value) { ?>
-                                    <tbody>
+                                    <!-- <tbody> -->
                                         <?php foreach ($tugas_belum as $value2) {
                                             if ($value2["employee_name"] == $value["employee_name"] && !in_array($value["employee_name"], $employe)) {
                                                 array_push($employe, $value["employee_name"]); ?>

@@ -140,7 +140,8 @@
                                 <tr class="text-uppercase">
                                     <th class="font-w700 text-center" style="width: 10%;">ID Service</th>
                                     <th class="font-w700 text-center" style="width: 25%;">Customer</th>
-                                    <th class="font-w700 text-center" style="width: 40%;">Layanan</th>
+                                    <th class="font-w700 text-center" style="width: 10%;">+ Layanan</th>
+                                    <th class="font-w700 text-center" style="width: 30%;">Layanan</th>
                                     <th class="font-w700 text-center" style="width: 15%;">Status</th>
                                     <th class="font-w700 text-center" style="width: 10%;">+Tiket</th>
                                 </tr>
@@ -873,6 +874,15 @@
                     {
                         "data": "customer_name",
                         className: 'font-weight-bold'
+                    },
+                    {
+                        "data": "customer_id",
+                        className: 'text-center',
+                        render: function(data, type, row) {
+                            let html = "<a href='javascript:void(0)' data-toggle='modal' data-target='#tambah_layanan' data-pk='" + data +
+                                "' class='btn btn-light btn-edit'><i class='fa fa-plus fa-2x'></i></a>";
+                            return html;
+                        }
                     },
                     {
                         "data": "service_name",

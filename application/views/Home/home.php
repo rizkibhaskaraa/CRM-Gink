@@ -34,6 +34,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
     <link rel="stylesheet" id="css-main" href="<?php echo base_url('assets/oneui/css/oneui.min.css') ?>">
 
+    <!-- style sweetalert -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/oneui/js/plugins/sweetalert2/sweetalert2.min.css') ?>">
+
     <!-- style tdatepicker -->
     <link rel="stylesheet" href="<?php echo base_url('assets/oneui/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') ?>">
 
@@ -47,6 +50,8 @@
 </head>
 
 <body>
+    <div class="status-login" data-flashdata="<?= $this->session->flashdata('status-login');?>"></div>
+
     <!-- Home button -->
     <?php if ($status == "C-Level") {
         $linkhome = base_url('index.php/home/ceo/') . $username;
@@ -1104,6 +1109,23 @@
         });
     </script>
 
+    <!-- script untuk menampilkan sweetalert2 -->
+    <script src="<?php echo base_url('assets/oneui/js/plugins/es6-promise/es6-promise.auto.min.js') ?>"></script>
+    <script src="<?php echo base_url('assets/oneui/js/plugins/sweetalert2/sweetalert2.min.js') ?>"></script>
+    <script src="<?php echo base_url('assets/oneui/js/pages/be_comp_dialogs.min.js') ?>"></script>
+    <script>
+    $(document).ready(function() {
+        var status_login = $(".status-login").data('flashdata');
+        alert(status_login);
+        if(status_login){
+            Swal.fire({
+                title 	: "Berhasil Login",
+                text 	: "Selamat Datang, "+"<?= $employ_nama ?>",
+                type 	: "Success"
+            });
+        }
+    });
+    </script>
 </body>
 
 </html>

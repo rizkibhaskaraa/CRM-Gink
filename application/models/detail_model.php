@@ -22,19 +22,11 @@ class detail_model extends CI_model
     {
         return $this->db->get("tm_task")->result_array();
     }
-    // public function getdeptUser($id_task)
-    // {
-    //     $datatask = $this->db->get_where('tm_task', array('task_id' => $id_task))->row_array();
-    //     $iddept = $this->db->get_where('', array('' => $$datatask["employee_destination"]));
-
-    // }
     public function getdetail($id_task)
     {
         //dapatkan data task berdasarkan id task
-
         $this->db->join("hr_position", "hr_position.department_id = tm_task.department_destination");
         $this->db->join("hr_department", "hr_department.department_id = tm_task.department_destination");
-
         return $this->db->get_where('tm_task', array('task_id' => $id_task))->row_array();
     }
     public function getcustomer($service_id)

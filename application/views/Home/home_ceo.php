@@ -121,7 +121,7 @@
                     <div class="block-header border-bottom">
                         <h3 class="block-title text-primary">Data Pelanggan</h3>
                     </div>
-                    <div class="col-3 float-right">
+                    <div class="col-2 float-right mt-2 mr-1">
                         <select name="filter-status-layanan" id="filter-status-layanan" class="form-control">
                             <option value="">Status</option>
                             <option value="Active">Aktif</option>
@@ -133,11 +133,11 @@
                         <table class="table table-bordered table-hover  table-vcenter font-size-sm mb-0" id="table-pelanggan">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 10%;">#ID Service</th>
-                                    <th class="font-w700 text-center" style="width: 30%;">Customer</th>
-                                    <th class="font-w700 text-center" style="width: 30%;">Layanan</th>
+                                    <th class="font-w700 text-center" style="width: 10%;">ID Service</th>
+                                    <th class="font-w700 text-center" style="width: 25%;">Customer</th>
+                                    <th class="font-w700 text-center" style="width: 40%;">Layanan</th>
                                     <th class="font-w700 text-center" style="width: 15%;">Status</th>
-                                    <th class="font-w700 text-center" style="width: 15%;">+Tiket</th>
+                                    <th class="font-w700 text-center" style="width: 10%;">+Tiket</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -204,12 +204,12 @@
                                                 <span class="font-w600 text-danger">0 Tugas</span>
                                             </td>
                                         </tr>
-                                    </tbody>
+                                    <!-- </tbody> -->
                             <?php }
                             } ?>
                             <?php $employe = [];
                             foreach ($report as $value) { ?>
-                                <tbody>
+                                <!-- <tbody> -->
                                     <?php foreach ($tugas_selesai as $value2) {
                                         if ($value2["employee_name"] == $value["employee_name"]) {
                                             array_push($employe, $value["employee_name"]); ?>
@@ -236,10 +236,10 @@
                                     <?php
                                         }
                                     } ?>
-                                </tbody>
+                                <!-- </tbody> -->
                             <?php } ?>
                             <?php foreach ($report as $value) { ?>
-                                <tbody>
+                                <!-- <tbody> -->
                                     <?php foreach ($tugas_belum as $value2) {
                                         if ($value2["employee_name"] == $value["employee_name"] && !in_array($value["employee_name"], $employe)) {
                                             array_push($employe, $value["employee_name"]); ?>
@@ -285,7 +285,7 @@
                         <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">ID Task</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
                                     <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Departemen PJ</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
@@ -304,7 +304,7 @@
                                                 <span class="font-w600"><?php echo $valueparent["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
-                                                <span class="font-w600"><?php echo $valueparent["department_destination"] ?></span>
+                                                <span class="font-w600"><?php echo $valueparent["department_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
                                                 <span class="font-w600">-</span>
@@ -338,7 +338,7 @@
                                                 <span class="font-w600"><?php echo $valueparent["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center" rowspan="<?= $row_taskbelum ?>">
-                                                <span class="font-w600"><?php echo $valueparent["department_destination"] ?></span>
+                                                <span class="font-w600"><?php echo $valueparent["department_name"] ?></span>
                                             </td>
                                         <?php } ?>
                                     </tr>
@@ -375,7 +375,7 @@
                         <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">ID Task</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
                                     <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Departemen PJ</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
@@ -394,7 +394,7 @@
                                                 <span class="font-w600"><?php echo $valueparent["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
-                                                <span class="font-w600"><?php echo $valueparent["department_destination"] ?></span>
+                                                <span class="font-w600"><?php echo $valueparent["department_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
                                                 <span class="font-w600">-</span>
@@ -427,7 +427,7 @@
                                                 <span class="font-w600"><?php echo $valueparent["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center" rowspan="<?= $row_taskselesai ?>">
-                                                <span class="font-w600"><?php echo $valueparent["department_destination"] ?></span>
+                                                <span class="font-w600"><?php echo $valueparent["department_name"] ?></span>
                                             </td>
                                         <?php } ?>
                                     </tr>
@@ -466,7 +466,7 @@
                         <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">ID Task</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Deadline</th>
@@ -584,7 +584,7 @@
                         <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">ID Task</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Deadline</th>
@@ -719,7 +719,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="masalah">Jenis Masalah</label>
-                                <select name="masalah" id="masalah" class="form-control">
+                                <select name="masalah" id="masalah" class="form-control custom-select" required>
+                                    <option selected disable value="">Masalah</option>
                                     <option value="umum">General</option>
                                     <option value="support">Support</option>
                                     <option value="hosting">Hosting</option>
@@ -728,8 +729,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="title">Judul Tugas</label>
-                                <input type="text" class="form-control required" name="title" id="title" placeholder="Judul/Subject">
-                                <?= form_error('title', '<span class="text-danger">', '</span>') ?>
+                                <input type="text" class="form-control" name="title" id="title" placeholder="Judul/Subject" required>
                             </div>
                             <div class="form-group">
                                 <label for="dateline">Deadline</label>
@@ -737,13 +737,12 @@
                                     <span class="input-group-text input-group-text-alt">
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
-                                    <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="0" data-autoclose="true" data-today-highlight="true">
+                                    <input type="text" class="js-datepicker form-control" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="0" data-autoclose="true" data-today-highlight="true" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
                                 <textarea class="form-control required js-summernote" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
-                                <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
                             </div>
                             <div style="float:right;margin-bottom:3%">
                                 <button type="reset" class="btn btn-outline-danger mr-2">Reset</button>
@@ -778,7 +777,8 @@
                             <input type="text" name="layanan" value="" hidden>
                             <div class="form-group">
                                 <label for="departemen">Departemen tujuan</label>
-                                <select name="departemen" id="departemen" class="form-control">
+                                <select name="departemen" id="departemen" class="form-control custom-select" required>
+                                    <option selected disable value="">Departemen Tujuan</option>
                                     <option value="Sales And Marketing">Sales And Marketing</option>
                                     <option value="Research And Development">Research And Development</option>
                                     <option value="Support">Support</option>
@@ -786,8 +786,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="title">Judul Tugas</label>
-                                <input type="text" class="form-control required" name="title" id="title" placeholder="Judul/Subject">
-                                <?= form_error('title', '<span class="text-danger">', '</span>') ?>
+                                <input type="text" class="form-control" name="title" id="title" placeholder="Judul/Subject" required>
                             </div>
                             <div class="form-group">
                                 <label for="dateline">Deadline</label>
@@ -795,13 +794,12 @@
                                     <span class="input-group-text input-group-text-alt">
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
-                                    <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="0" data-autoclose="true" data-today-highlight="true">
+                                    <input type="text" class="js-datepicker form-control" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="0" data-autoclose="true" data-today-highlight="true" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
                                 <textarea class="form-control required js-summernote" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
-                                <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
                             </div>
 
 
@@ -821,14 +819,13 @@
             </div>
         </div>
     </div>
-    </div>
     <!-- akhir pop up tiket staff -->
     <!-- Footer -->
     <footer id="page-footer" class="bg-body-light">
         <div class="content py-3">
             <div class="row font-size-sm">
                 <div class="col-sm-6 order-sm-2 py-1 text-center text-sm-right">
-                    Crafted with <i class="fa fa-heart text-danger"></i> by <a class="font-w600" href="" target="_blank">ARMTEAM</a>
+                    Developed with <i class="fa fa-heart text-danger"></i> by <a class="font-w600" href="" target="_blank">ARMTEAM</a>
                 </div>
                 <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left">
                     <a class="font-w600" href="https://1.envato.market/xWy" target="_blank">Gink Technology x ARMTEAM</a> &copy; <span data-toggle="year-copy"></span>
@@ -861,20 +858,20 @@
                 },
                 "deferRender": true,
                 "aLengthMenu": [
-                    [5, 50, 100],
-                    [5, 50, 100]
+                    [5, 10, 30, 50, 100],
+                    [5, 10, 30, 50, 100]
                 ],
                 "columns": [{
                         "data": "customer_id",
-                        className: 'font-weight-bold'
-                    },
-                    {
-                        "data": "customer_name",
                         className: 'text-center font-weight-bold'
                     },
                     {
+                        "data": "customer_name",
+                        className: 'font-weight-bold'
+                    },
+                    {
                         "data": "service_name",
-                        className: 'text-center font-weight-bold',
+                        className: 'font-weight-bold',
                     },
                     {
                         "data": "service_status",
@@ -930,19 +927,6 @@
         });
     </script>
     <!-- end script datatable untuk data customer -->
-    <!-- validasi form -->
-    <script src="<?php echo base_url('assets/oneui/js/plugins/jquery-validation/jquery.validate.js') ?>"></script>
-    <script>
-        $(document).ready(function() {
-            $("#form-staff").validate();
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $("#form-tiket").validate();
-        });
-    </script>
-    <!-- akhir validasi form -->
     <!-- Page JS Plugins -->
     <script src="<?php echo base_url('assets/oneui/js/plugins/chart.js/Chart.bundle.min.js') ?>"></script>
     <!-- Page JS Code -->

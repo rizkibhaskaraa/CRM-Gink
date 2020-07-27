@@ -24,11 +24,9 @@ class Detail extends CI_Controller
         $data["employ_nama"] = $employ["employee_name"];
         $data["employ_id"] = $employ["employee_id"];
         $data["status"] = $status;
-
         //get nama posisi
         $posisi = $this->detail_model->getdeptposisi($designation);
         $data["position"] = $posisi["position_name"];
-
         //akhir data employ yang akses
 
         $data["cekTabel"] = $cekTabel; //cek table asal

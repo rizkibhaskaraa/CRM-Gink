@@ -28,17 +28,11 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="<?php echo base_url('assets/js/plugins/sweetalert2/sweetalert2.min.css') ?>">
-
     <link rel="stylesheet" href="<?php echo base_url('assets/oneui/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') ?>">
-
     <!-- Fonts and OneUI framework -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
     <link rel="stylesheet" id="css-main" href="<?php echo base_url('assets/oneui/css/oneui.min.css') ?>">
-
     <link rel="stylesheet" href="<?php echo base_url('assets/oneui/js/plugins/summernote/summernote-bs4.css') ?>">
-
-    <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
-    <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
     <!-- END Stylesheets -->
 </head>
 
@@ -82,6 +76,7 @@
         <!-- END User Dropdown -->
     </div>
     <!-- END Right Section -->
+
     <!-- Batas account dan main container -->
 
     <!-- Main Container -->
@@ -114,9 +109,6 @@
         <!-- END Hero -->
     </main>
     <!-- END Main Container -->
-
-
-
     <!-- Page Content -->
     <div class="content">
         <!-- Discussion -->
@@ -141,10 +133,6 @@
                             <td class="font-weight-bold mt-2" style="width: 20%;">Title</td>
                             <td width="70%"><?php echo $task["task_title"] ?> </td>
                         </tr>
-                        <!-- <tr>
-                            <td class="font-weight-bold">Nama Pengirim</td>
-                            <td>: <?php echo $nama_kirim . " (" . $task["department_sent"] . ")" ?></td>
-                        </tr> -->
                         <?php if ($task["service_id"] != NULL) { ?>
                             <tr>
                                 <td class="font-weight-bold" style="width: 20%;">Customer</td>
@@ -227,7 +215,6 @@
                                 <td>
                                     <input type="file" name="file">
                                     <div class="mt-5" style="float:right;">
-
                                         <input type="submit" class="btn btn-primary" value="Selesai">
                                     </div>
                                 </td>
@@ -299,22 +286,18 @@
                                                         <span class="font-size-sm font-w600"><?php echo (count($subtaskselesai) / count($subtask)) * 100 ?>%</span>
                                                     </div>
                                                 </div>
-
                                                 <?php if ($progres == 100 && $task['task_status'] == 'Not Finished') { ?>
                                                     <?php echo form_open_multipart('index.php/detail/ubahstatustask/' . $designation . "/" . $employ_id . '/' . $task['task_id'] . "/" . $status); ?>
-                                            <td class="font-weight-bold" style="width: 20%;">Berkas (opsional)</td>
-                                            <td>
-                                                <input type="file" name="file">
-                                                <div class="mt-5" style="float:right;">
-                                                    <input type="submit" class="btn btn-success" value="Konfirmasi Selesai">
-                                                </div>
+                                                        <td class="font-weight-bold" style="width: 20%;">Berkas (opsional)</td>
+                                                        <td>
+                                                            <input type="file" name="file">
+                                                            <div class="mt-5" style="float:right;">
+                                                                <input type="submit" class="btn btn-success" value="Konfirmasi Selesai">
+                                                            </div>
+                                                        </td>
+                                                    <?php echo form_close(); ?>
+                                                 <?php } ?>
                                             </td>
-                                            <?php echo form_close(); ?>
-                                            <!-- <a class="btn btn-success" class="bg-success text-white text-decoration-none" href="<?php echo base_url('index.php/detail/ubahstatustask/' . $designation . "/" . $employ_id . '/' . $task['task_id'] . "/" . $status) ?>" style="float:right">
-                                                        <i class="fa fa-fw fa-check"></i> Konfirmasi Selesai
-                                                    </a> -->
-                                        <?php } ?>
-                                        </td>
                                         </tr>
                                     </thead>
                                     <thead class="thead-dark">
@@ -358,7 +341,6 @@
                                         </tbody>
                                     <?php } ?>
                                 </table>
-
                             </div>
                             <!-- END tabel sub task -->
                         <?php } ?>
@@ -444,7 +426,6 @@
                             </tr>
                         <?php } ?>
                     <?php } ?>
-
                     <tr class="table-active" id="forum-reply-form">
                         <td class="d-none d-sm-table-cell"></td>
                         <td class="font-size-sm text-muted">

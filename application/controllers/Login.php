@@ -46,6 +46,8 @@ class Login extends CI_Controller
 				$_SESSION["staff_user"] = $email;
 				$_SESSION["staff_id"] = $user["employee_id"];
 				//akhir set session
+				
+				$this->session->set_flashdata('status-login', 'Berhasil');
 
 				if ($user["user_status"] == "C-Level") {
 					redirect(base_url('index.php/home/ceo/') . $email);

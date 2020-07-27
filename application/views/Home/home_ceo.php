@@ -21,12 +21,17 @@
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="<?php echo base_url('assets/oneui/js/plugins/summernote/summernote-bs4.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/oneui/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') ?>">
+    <!-- style sweetalert -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/oneui/js/plugins/sweetalert2/sweetalert2.min.css') ?>">
     <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
     <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
     <!-- END Stylesheets -->
 </head>
 
 <body>
+    <div class="status-login" data-flashdata="<?= $this->session->flashdata('status-login');?>"></div>
+    <div class="sukses_buat" data-flashdata="<?= $this->session->flashdata('sukses_buat');?>"></div>
+
     <!-- Right Section -->
     <!-- Home button -->
     <?php if ($status == "C-Level") {
@@ -961,6 +966,30 @@
             });
 
         });
+    </script>
+    <!-- script untuk menampilkan sweetalert2 -->
+    <script src="<?php echo base_url('assets/oneui/js/plugins/es6-promise/es6-promise.auto.min.js') ?>"></script>
+    <script src="<?php echo base_url('assets/oneui/js/plugins/sweetalert2/sweetalert2.min.js') ?>"></script>
+    <script src="<?php echo base_url('assets/oneui/js/pages/be_comp_dialogs.min.js') ?>"></script>
+    <script>
+    $(document).ready(function() {
+        var status_login = $(".status-login").data('flashdata');
+        var sukses_buat = $(".sukses_buat").data('flashdata');
+        if(status_login){
+            Swal.fire({
+                title 	: "Berhasil Login",
+                text 	: "Selamat Datang, "+"<?= $employ_nama ?>",
+                type 	: "success"
+            });
+        }
+        if(sukses_buat){
+            Swal.fire({
+                title 	: "Berhasil Membuat Tiket",
+                text 	: "",
+                type 	: "success"
+            });
+        }
+    });
     </script>
     <!-- akhir -->
 </body>

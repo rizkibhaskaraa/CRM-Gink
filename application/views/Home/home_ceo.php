@@ -831,6 +831,63 @@
         </div>
     </div>
     <!-- akhir pop up tiket staff -->
+    <!-- pop up update status layanan pelanggan -->
+    <div class="modal fade" id="tambah_layanan" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="block block-themed block-transparent mb-0">
+                    <div class="block-header bg-primary-dark">
+                        <h3 class="block-title">Tambah Layanan</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                <i class="fa fa-fw fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content font-size-sm mt-3 text-justify ">
+                        <h4>Isi Data Dibawah Ini dengan Lengkap untuk Tambah Layanan</h4>
+                        <form action="<?php echo base_url('index.php/home/tambahlayanan/') . $employ_id ?>" method="POST" id="form-staff">
+                            <input type="text" name="id_pelanggan" hidden>
+                            <div class="form-group">
+                                <label for="title">Customer</label>
+                                <input type="text" class="form-control" name="customer-popup" id="customer-popup" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="title">Nama Layanan</label>
+                                <input type="text" class="form-control" name="nama-layanan" id="nama-layanan">
+                            </div>
+                            <div class="form-group">
+                                <label for="status-layanan">Kategori Produk</label>
+                                <select name="status-layanan" id="status-layanan" class="form-control">
+                                    <option value="" disabled="disabled">Project</option>
+                                    <option value="Webstie">Webstie</option>
+                                    <option value="App Website">App Website</option>
+                                    <option value="" disabled="disabled">Server & Hosting</option>
+                                    <option value="Dedicated Server">Dedicated Server</option>
+                                    <option value="Colocation Server">Colocation Server</option>
+                                    <option value="Hosting 10">Hosting 10</option>
+                                    <option value="Hosting 50">Hosting 50</option>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="status-layanan">Status Layanan</label>
+                                <select name="status-layanan" id="status-layanan" class="form-control">
+                                    <option value="Active">Aktif</option>
+                                    <option value="No Active">Tidak Aktif</option>
+                                    <option value="Pending">Pending</option>
+                                </select>
+                            </div>
+                            <div style="float:right;margin-bottom:3%">
+                                <button type="submit" class="btn btn-primary mr-4">Tambah</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- akhir pop up tambah layanan pelanggan -->
     <!-- Footer -->
     <footer id="page-footer" class="bg-body-light">
         <div class="content py-3">
@@ -885,7 +942,7 @@
                         className: 'text-center',
                         render: function(data, type, row) {
                             let html = "<a href='javascript:void(0)' data-toggle='modal' data-target='#tambah_layanan' data-pk='" + data +
-                                "' class='btn btn-light btn-edit'><i class='fa fa-plus fa-2x'></i></a>";
+                                "' class='btn btn-light btn-tambah-layanan'><i class='fa fa-plus fa-2x'></i></a>";
                             return html;
                         }
                     },
@@ -935,6 +992,21 @@
                                 $('input[name="service"]').val(pk); //set value
                                 $('input[name="id_pelanggan"]').val(data["customer_id"]); //set value
                                 $('input[id="layanan-pelanggan"]').val(data["service_name"]); //set value
+                            }
+                        });
+                    });
+                    $('.btn-tambah-layanan').click(function(a) {
+                        let pk = $(this).data('pk');
+                        // alert(pk);
+                        $.ajax({ //ajax ambil data pelanggan
+                            type: "GET",
+                            url: "<?php echo base_url('index.php/home/get_customer') ?>",
+                            dataType: "JSON",
+                            data: {
+                                id: pk
+                            },
+                            success: function(data) { //jika ambil data sukses
+                                $('input[name="customer-popup"]').val(data["customer_name"]); //set value
                             }
                         });
                     });

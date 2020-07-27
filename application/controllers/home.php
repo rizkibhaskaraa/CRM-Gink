@@ -175,6 +175,12 @@ class Home extends CI_Controller
         echo json_encode($data);
     }
 
+    function get_customer()
+    {
+        $id_customer = $this->input->get('id');
+        $data = $this->home_model->getcustomerbyid($id_customer);
+        echo json_encode($data);
+    }
     //fungsi untuk menambah data tiket/task
     public function addtiket($id_employ)
     {

@@ -70,6 +70,10 @@ class home_model extends CI_model
     {
         return $this->db->get("crm_customer")->result_array();
     }
+    public function getcustomerbyid($id)
+    {
+        return $this->db->get_where("crm_customer",array("customer_id"=>$id))->row_array();
+    }
 
     //fungsi ambil data tabel layanan
     public function getlayanan()

@@ -282,6 +282,30 @@ class Home extends CI_Controller
     }
     //akhir function-fiunction datatable
 
+    public function tambahlayanan($username)
+    {
+        $produk = $this->input->post("kategori_produk");
+        $produk = $this->home_model->getproduk($produk);
+        // $id_lay = [];
+        // foreach ($layanan as $value) {
+        //     $no_id = substr($value["id_layanan"], 4);
+        //     $no_id = intval($no_id);
+        //     array_push($id_lay, $no_id);
+        // }
+        // $max_id = max($id_lay);
+        // $id_layanan = "LYN-" . ($max_id + 1);
+        //akhir membuat id_layanan
+
+        $data_layanan = array(
+            "service_name" => $this->input->post("nama-layanan"),
+            "service_status" => $this->input->post("status-layanan"),
+            "customer_id" => $this->input->post("customer_id"),
+            "product_id" => $produk["product_id"],
+        );
+        $this->home_model->insert_layanan($data_layanan);
+        $this->session->set_flashdata("sukses_add_layanan","Berhasil");
+        redirect(base_url('index.php/home/ceo/') . $username);
+    }
 
     //function-fiunction datatable pelanggan
     public function view_pelanggan()

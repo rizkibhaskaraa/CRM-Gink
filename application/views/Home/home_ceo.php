@@ -31,6 +31,7 @@
 <body>
     <div class="status-login" data-flashdata="<?= $this->session->flashdata('status-login');?>"></div>
     <div class="sukses_buat" data-flashdata="<?= $this->session->flashdata('sukses_buat');?>"></div>
+    <div class="sukses_add_layanan" data-flashdata="<?= $this->session->flashdata('sukses_add_layanan');?>"></div>
 
     <!-- Right Section -->
     <!-- Home button -->
@@ -846,8 +847,8 @@
                     </div>
                     <div class="block-content font-size-sm mt-3 text-justify ">
                         <h4>Isi Data Dibawah Ini dengan Lengkap untuk Tambah Layanan</h4>
-                        <form action="<?php echo base_url('index.php/home/tambahlayanan/') . $employ_id ?>" method="POST" id="form-staff">
-                            <input type="text" name="id_pelanggan" hidden>
+                        <form action="<?php echo base_url('index.php/home/tambahlayanan/') . $username ?>" method="POST" id="form-staff">
+                            <input type="text" name="customer_id" hidden>
                             <div class="form-group">
                                 <label for="title">Customer</label>
                                 <input type="text" class="form-control" name="customer-popup" id="customer-popup" readonly>
@@ -857,11 +858,11 @@
                                 <input type="text" class="form-control" name="nama-layanan" id="nama-layanan">
                             </div>
                             <div class="form-group">
-                                <label for="status-layanan">Kategori Produk</label>
-                                <select name="status-layanan" id="status-layanan" class="form-control">
+                                <label for="kategori_produk">Kategori Produk</label>
+                                <select name="kategori_produk" id="kategori_produk" class="form-control">
                                     <option value="" disabled="disabled">Project</option>
-                                    <option value="Webstie">Webstie</option>
-                                    <option value="App Website">App Website</option>
+                                    <option value="Website">Webstie</option>
+                                    <option value="Web Apps">App Website</option>
                                     <option value="" disabled="disabled">Server & Hosting</option>
                                     <option value="Dedicated Server">Dedicated Server</option>
                                     <option value="Colocation Server">Colocation Server</option>
@@ -874,7 +875,7 @@
                                 <label for="status-layanan">Status Layanan</label>
                                 <select name="status-layanan" id="status-layanan" class="form-control">
                                     <option value="Active">Aktif</option>
-                                    <option value="No Active">Tidak Aktif</option>
+                                    <option value="Not Active">Tidak Aktif</option>
                                     <option value="Pending">Pending</option>
                                 </select>
                             </div>
@@ -1007,6 +1008,7 @@
                             },
                             success: function(data) { //jika ambil data sukses
                                 $('input[name="customer-popup"]').val(data["customer_name"]); //set value
+                                $('input[name="customer_id"]').val(pk); //set value
                             }
                         });
                     });
@@ -1057,6 +1059,7 @@
     $(document).ready(function() {
         var status_login = $(".status-login").data('flashdata');
         var sukses_buat = $(".sukses_buat").data('flashdata');
+        var sukses_add_layanan = $(".sukses_add_layanan").data('flashdata');
         if(status_login){
             Swal.fire({
                 title 	: "Berhasil Login",
@@ -1067,6 +1070,13 @@
         if(sukses_buat){
             Swal.fire({
                 title 	: "Berhasil Membuat Tiket",
+                text 	: "",
+                type 	: "success"
+            });
+        }
+        if(sukses_add_layanan){
+            Swal.fire({
+                title 	: "Berhasil Menambah Layanan",
                 text 	: "",
                 type 	: "success"
             });

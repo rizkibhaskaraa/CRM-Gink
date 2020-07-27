@@ -207,6 +207,14 @@ class home_model extends CI_model
         return $this->db->get("tm_task")->result_array();
     }
 
+    public function insert_layanan($data_layanan)
+    {
+        return $this->db->insert("master_service", $data_layanan);
+    }
+    public function getproduk($produk)
+    {
+        return $this->db->get_where("master_product", array("product_name"=>$produk))->row_array();
+    }
     //fungsi get report (untuk kolom tugas selesai)
     public function gettugaspjselesai($dept)
     {

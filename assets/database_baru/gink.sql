@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 24, 2020 at 09:37 AM
+-- Generation Time: Jul 27, 2020 at 10:15 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -38,6 +38,7 @@ CREATE TABLE `crm_customer` (
 --
 
 INSERT INTO `crm_customer` (`customer_id`, `customer_name`) VALUES
+(0, 'apa'),
 (1, 'Bank Lampung'),
 (2, 'Utomo Bank'),
 (3, 'PT. Multi Karya Engineering'),
@@ -277,7 +278,8 @@ INSERT INTO `tm_comment` (`comment_id`, `comment_description`, `task_id`, `emplo
 (7, '<p>Sebentar Pak</p>\r\n', 1, 16, 8, '2020-07-24 11:00:01'),
 (9, '<p>Oke</p>\r\n', 1, 5, 3, '2020-07-24 14:03:04'),
 (11, '<p>Baik pak laksanakan</p>\r\n', 14, 18, 14, '2020-07-24 14:28:23'),
-(13, '<p>Baik ditunggu</p>\r\n', 1, 5, 3, '2020-07-24 14:30:03');
+(13, '<p>Baik ditunggu</p>\r\n', 1, 5, 3, '2020-07-24 14:30:03'),
+(15, '<p>SIAP</p>\r\n', 6, 7, 11, '2020-07-27 14:35:22');
 
 -- --------------------------------------------------------
 
@@ -309,7 +311,7 @@ CREATE TABLE `tm_task` (
 --
 
 INSERT INTO `tm_task` (`task_id`, `task_parent`, `customer_id`, `product_id`, `service_id`, `employee_destination`, `department_destination`, `employee_sent`, `department_sent`, `task_title`, `task_description`, `task_date`, `task_dateline`, `task_file`, `task_finish`, `task_status`) VALUES
-(1, NULL, NULL, NULL, 1, 16, 2, 5, 1, 'Hosting Website Official Bank Lampung', '<p>Hosting Website Official Bank Lampung dengan jangka waktu 5 tahun<br></p>', '2020-07-22 14:04:24', '2020-09-12', NULL, NULL, 'Not Finished'),
+(1, NULL, NULL, NULL, 1, 16, 2, 5, 1, 'Hosting Website Official Bank Lampung', '<p>Hosting Website Official Bank Lampung dengan jangka waktu 5 tahun<br></p>', '2020-07-22 14:04:24', '2020-09-12', NULL, NULL, 'Finish'),
 (2, NULL, NULL, NULL, 3, NULL, 3, 6, 1, 'Maintenance Website ', 'Perbaikan bug dan tampilan kurang baik pada website', '2020-07-22 14:06:13', '2020-10-03', NULL, NULL, 'Not Finished'),
 (3, NULL, NULL, NULL, 2, 16, 2, 6, 1, 'Hosting Fitur', '<p>Hosting Bank Lampung<br></p>', '2020-07-22 14:09:41', '2020-08-08', '20200421_085234.jpg', '2020-07-24 11:24:07', 'Finish'),
 (4, NULL, NULL, NULL, NULL, NULL, 2, 6, 1, 'Daftar Keuangan Mingguan', '<p>Tolong rekap data ke saya</p>', '2020-07-22 14:16:08', '2020-08-08', NULL, NULL, 'Not Finished'),
@@ -412,6 +414,10 @@ ALTER TABLE `tm_task`
 ALTER TABLE `hr_department`
   MODIFY `department_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
+
+ALTER TABLE `crm_customer`
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `hr_designation`
 --
@@ -446,7 +452,7 @@ ALTER TABLE `master_service`
 -- AUTO_INCREMENT for table `tm_comment`
 --
 ALTER TABLE `tm_comment`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tm_task`

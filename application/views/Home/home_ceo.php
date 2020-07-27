@@ -121,6 +121,11 @@
                     <div class="block-header border-bottom">
                         <h3 class="block-title text-primary">Data Pelanggan</h3>
                     </div>
+                    <!-- Tambah Customer -->
+                    <form method="post" action="<?php echo base_url('index.php/home/addcustomer/' . $username) ?>">
+                        <input type="text" id="customer" name="customer" class="form-control col-2 customer mt-3 ml-3" style="float:left" placeholder="Customer" required>
+                        <input type="submit" value="Add Customer" class="btn btn-primary  mt-3 ml-3" style="float:left" data-toggle="click-ripple"></input>
+                    </form>
                     <div class="col-2 float-right mt-2 mr-1">
                         <select name="filter-status-layanan" id="filter-status-layanan" class="form-control">
                             <option value="">Status</option>
@@ -204,12 +209,12 @@
                                                 <span class="font-w600 text-danger">0 Tugas</span>
                                             </td>
                                         </tr>
-                                    <!-- </tbody> -->
-                            <?php }
+                                        <!-- </tbody> -->
+                                <?php }
                             } ?>
-                            <?php $employe = [];
-                            foreach ($report as $value) { ?>
-                                <!-- <tbody> -->
+                                <?php $employe = [];
+                                foreach ($report as $value) { ?>
+                                    <!-- <tbody> -->
                                     <?php foreach ($tugas_selesai as $value2) {
                                         if ($value2["employee_name"] == $value["employee_name"]) {
                                             array_push($employe, $value["employee_name"]); ?>
@@ -236,10 +241,10 @@
                                     <?php
                                         }
                                     } ?>
-                                <!-- </tbody> -->
-                            <?php } ?>
-                            <?php foreach ($report as $value) { ?>
-                                <!-- <tbody> -->
+                                    <!-- </tbody> -->
+                                <?php } ?>
+                                <?php foreach ($report as $value) { ?>
+                                    <!-- <tbody> -->
                                     <?php foreach ($tugas_belum as $value2) {
                                         if ($value2["employee_name"] == $value["employee_name"] && !in_array($value["employee_name"], $employe)) {
                                             array_push($employe, $value["employee_name"]); ?>
@@ -266,8 +271,8 @@
                                     <?php
                                         }
                                     } ?>
-                                </tbody>
-                            <?php } ?>
+                                    </tbody>
+                                <?php } ?>
                         </table>
                     </div>
                 </div>

@@ -153,7 +153,7 @@
                     <div class="block-header border-bottom">
                         <h3 class="block-title text-primary">Data Pelanggan</h3>
                     </div>
-                    <div class="col-3 float-right">
+                    <div class="col-2 float-right mt-2 mr-1">
                         <select name="filter-status-layanan" id="filter-status-layanan" class="form-control">
                             <option value="">Status</option>
                             <option value="Active">Aktif</option>

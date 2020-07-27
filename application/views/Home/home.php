@@ -51,6 +51,7 @@
 
 <body>
     <div class="status-login" data-flashdata="<?= $this->session->flashdata('status-login');?>"></div>
+    <div class="sukses_buat" data-flashdata="<?= $this->session->flashdata('sukses_buat');?>"></div>
 
     <!-- Home button -->
     <?php if ($status == "C-Level") {
@@ -977,15 +978,15 @@
                 ],
                 "columns": [{
                         "data": "customer_id",
-                        className: 'font-weight-bold'
+                        className: 'font-weight-bold text-center'
                     },
                     {
                         "data": "customer_name",
-                        className: 'text-center font-weight-bold'
+                        className: 'font-weight-bold'
                     },
                     {
                         "data": "service_name",
-                        className: 'text-center font-weight-bold',
+                        className: 'font-weight-bold',
                     },
                     {
                         "data": "service_status",
@@ -1116,12 +1117,19 @@
     <script>
     $(document).ready(function() {
         var status_login = $(".status-login").data('flashdata');
-        alert(status_login);
+        var sukses_buat = $(".sukses_buat").data('flashdata');
         if(status_login){
             Swal.fire({
                 title 	: "Berhasil Login",
                 text 	: "Selamat Datang, "+"<?= $employ_nama ?>",
-                type 	: "Success"
+                type 	: "success"
+            });
+        }
+        if(sukses_buat){
+            Swal.fire({
+                title 	: "Berhasil Membuat Tiket",
+                text 	: "",
+                type 	: "success"
             });
         }
     });

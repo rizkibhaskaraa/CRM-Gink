@@ -243,6 +243,7 @@ class Home extends CI_Controller
         }
         //akhir menentukan departemen tujuan
         $this->home_model->insert_task($data_task);
+        $this->session->set_flashdata("sukses_buat","Berhasil");
         if ($departemen["department_id"] == "1") {
             redirect(base_url('index.php/home/ceo/') . $user["user_username"]);
         } else {

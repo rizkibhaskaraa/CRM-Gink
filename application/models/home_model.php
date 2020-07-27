@@ -144,6 +144,7 @@ class home_model extends CI_model
     {
         $departemen = array($nama_departemen, null);
         $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination");
+        $this->db->join("hr_department", "hr_department.department_id = tm_task.department_destination");
         if ($nama_departemen != "1") {
             $this->db->where_in('department_destination', $departemen);
         }
@@ -156,6 +157,7 @@ class home_model extends CI_model
     {
         $this->db->where('task_parent', null);
         $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination");
+        $this->db->join("hr_department", "hr_department.department_id = tm_task.department_destination");
         if ($dept != "1") { //jika bukan CEO yang login
             $this->db->where('employee_destination', $id_employ);
         }

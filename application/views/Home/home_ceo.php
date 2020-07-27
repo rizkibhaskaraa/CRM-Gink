@@ -121,7 +121,7 @@
                     <div class="block-header border-bottom">
                         <h3 class="block-title text-primary">Data Pelanggan</h3>
                     </div>
-                    <div class="col-3 float-right">
+                    <div class="col-2 float-right mt-2 mr-1">
                         <select name="filter-status-layanan" id="filter-status-layanan" class="form-control">
                             <option value="">Status</option>
                             <option value="Active">Aktif</option>
@@ -304,7 +304,7 @@
                                                 <span class="font-w600"><?php echo $valueparent["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
-                                                <span class="font-w600"><?php echo $valueparent["department_destination"] ?></span>
+                                                <span class="font-w600"><?php echo $valueparent["department_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
                                                 <span class="font-w600">-</span>
@@ -338,7 +338,7 @@
                                                 <span class="font-w600"><?php echo $valueparent["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center" rowspan="<?= $row_taskbelum ?>">
-                                                <span class="font-w600"><?php echo $valueparent["department_destination"] ?></span>
+                                                <span class="font-w600"><?php echo $valueparent["department_name"] ?></span>
                                             </td>
                                         <?php } ?>
                                     </tr>
@@ -394,7 +394,7 @@
                                                 <span class="font-w600"><?php echo $valueparent["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
-                                                <span class="font-w600"><?php echo $valueparent["department_destination"] ?></span>
+                                                <span class="font-w600"><?php echo $valueparent["department_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
                                                 <span class="font-w600">-</span>
@@ -427,7 +427,7 @@
                                                 <span class="font-w600"><?php echo $valueparent["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center" rowspan="<?= $row_taskselesai ?>">
-                                                <span class="font-w600"><?php echo $valueparent["department_destination"] ?></span>
+                                                <span class="font-w600"><?php echo $valueparent["department_name"] ?></span>
                                             </td>
                                         <?php } ?>
                                     </tr>
@@ -858,8 +858,8 @@
                 },
                 "deferRender": true,
                 "aLengthMenu": [
-                    [10, 30, 50, 100],
-                    [10, 30, 50, 100]
+                    [5, 10, 30, 50, 100],
+                    [5, 10, 30, 50, 100]
                 ],
                 "columns": [{
                         "data": "customer_id",

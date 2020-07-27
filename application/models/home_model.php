@@ -365,4 +365,8 @@ class home_model extends CI_model
         return $this->db->get('crm_customer')->num_rows();
     }
     //akhir function-fiunction datatable pelanggan
+    public function insert_pelanggan($data_pelanggan)
+    {
+        return $this->db->insert("crm_customer", $data_pelanggan);
+    }
 }

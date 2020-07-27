@@ -302,4 +302,12 @@ class Home extends CI_Controller
         echo json_encode($callback);
     }
     //akhir function-fiunction datatable pelanggan   
+    public function addcustomer($user)
+    {
+        $data_pelanggan = array(
+            "customer_name" => $this->input->post("customer"),
+        );
+        $this->home_model->insert_pelanggan($data_pelanggan);
+        redirect(base_url('index.php/home/ceo/') . $user);
+    }
 }

@@ -133,11 +133,11 @@
                         <table class="table table-bordered table-hover  table-vcenter font-size-sm mb-0" id="table-pelanggan">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 10%;">#ID Service</th>
-                                    <th class="font-w700 text-center" style="width: 30%;">Customer</th>
-                                    <th class="font-w700 text-center" style="width: 30%;">Layanan</th>
+                                    <th class="font-w700 text-center" style="width: 10%;">ID Service</th>
+                                    <th class="font-w700 text-center" style="width: 25%;">Customer</th>
+                                    <th class="font-w700 text-center" style="width: 40%;">Layanan</th>
                                     <th class="font-w700 text-center" style="width: 15%;">Status</th>
-                                    <th class="font-w700 text-center" style="width: 15%;">+Tiket</th>
+                                    <th class="font-w700 text-center" style="width: 10%;">+Tiket</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -285,7 +285,7 @@
                         <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">ID Task</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
                                     <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Departemen PJ</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
@@ -375,7 +375,7 @@
                         <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">ID Task</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
                                     <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Departemen PJ</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
@@ -466,7 +466,7 @@
                         <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">ID Task</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Deadline</th>
@@ -584,7 +584,7 @@
                         <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">ID Task</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Deadline</th>
@@ -825,7 +825,7 @@
         <div class="content py-3">
             <div class="row font-size-sm">
                 <div class="col-sm-6 order-sm-2 py-1 text-center text-sm-right">
-                    Crafted with <i class="fa fa-heart text-danger"></i> by <a class="font-w600" href="" target="_blank">ARMTEAM</a>
+                    Developed with <i class="fa fa-heart text-danger"></i> by <a class="font-w600" href="" target="_blank">ARMTEAM</a>
                 </div>
                 <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left">
                     <a class="font-w600" href="https://1.envato.market/xWy" target="_blank">Gink Technology x ARMTEAM</a> &copy; <span data-toggle="year-copy"></span>
@@ -858,20 +858,20 @@
                 },
                 "deferRender": true,
                 "aLengthMenu": [
-                    [5, 50, 100],
-                    [5, 50, 100]
+                    [10, 30, 50, 100],
+                    [10, 30, 50, 100]
                 ],
                 "columns": [{
                         "data": "customer_id",
-                        className: 'font-weight-bold'
-                    },
-                    {
-                        "data": "customer_name",
                         className: 'text-center font-weight-bold'
                     },
                     {
+                        "data": "customer_name",
+                        className: 'font-weight-bold'
+                    },
+                    {
                         "data": "service_name",
-                        className: 'text-center font-weight-bold',
+                        className: 'font-weight-bold',
                     },
                     {
                         "data": "service_status",

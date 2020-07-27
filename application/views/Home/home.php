@@ -155,9 +155,16 @@
                     </div>
                     <div class="col-2 float-right mt-2 mr-1">
                         <select name="filter-status-layanan" id="filter-status-layanan" class="form-control">
-                            <option value="">Status</option>
+                            <option class="font-w700" disabled="disabled" selected value="">Status</option>
+                            <option value="">Semua Status</option>
                             <option value="Active">Aktif</option>
+                            <option value="Pending">Pending</option>
                             <option value="Not Active">Tidak Aktif</option>
+
+                            
+
+                        
+
                         </select>
                     </div>
                     <div style="clear:both"></div>
@@ -165,11 +172,11 @@
                         <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0" id="table-pelanggan">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="text-center">#ID</th>
-                                    <th class="text-center">Customer</th>
-                                    <th class="text-center">Layanan</th>
-                                    <th class="text-center">Status</th>
-                                    <th class="text-center">+Tiket</th>
+                                <th class="font-w700 text-center" style="width: 10%;">ID Service</th>
+                                    <th class="font-w700 text-center" style="width: 25%;">Customer</th>
+                                    <th class="font-w700 text-center" style="width: 30%;">Layanan</th>
+                                    <th class="font-w700 text-center" style="width: 15%;">Status</th>
+                                    <th class="font-w700 text-center" style="width: 10%;">+Tiket</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -908,8 +915,8 @@
                 },
                 "deferRender": true,
                 "aLengthMenu": [
-                    [5, 50, 100],
-                    [5, 50, 100]
+                    [5, 10, 30, 50, 100],
+                    [5, 10, 30, 50, 100]
                 ],
                 "columns": [{
                         "data": "task_title",
@@ -973,8 +980,8 @@
                 },
                 "deferRender": true,
                 "aLengthMenu": [
-                    [5, 50, 100],
-                    [5, 50, 100]
+                    [5, 10, 30, 50, 100],
+                    [5, 10, 30, 50, 100]
                 ],
                 "columns": [{
                         "data": "customer_id",
@@ -991,12 +998,16 @@
                     {
                         "data": "service_status",
                         className: 'text-center',
+                        "orderable": false,
                         render: function(data, type, row) {
                             if (data == "Active" && data != "") {
                                 let html = "<strong class='btn-sm btn-block btn-success'><i class='fa fa-fw fa-check'></i>" + data + "</strong>";
                                 return html;
                             } else if (data == "Not Active" && data != "") {
                                 let html = "<strong class='btn-sm btn-block btn-danger'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</strong>";
+                                return html;
+                            } else if (data == "Pending" && data != "") {
+                                let html = "<strong class='btn-sm btn-block btn-warning'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</strong>";
                                 return html;
                             } else {
                                 let html = "<strong></strong>";
@@ -1007,10 +1018,18 @@
                     {
                         "data": "service_id",
                         className: 'text-center',
+                        "orderable": false,
                         render: function(data, type, row) {
-                            let html = "<a href='javascript:void(0)' data-toggle='modal' data-target='#modal-block-large' data-pk='" + data +
+                            if(data != null){
+                                let html = "<a href='javascript:void(0)' data-toggle='modal' data-target='#modal-block-large' data-pk='" + data +
                                 "' class='btn btn-light btn-edit'><i class='fa fa-plus fa-2x'></i></a>";
-                            return html;
+                                return html;
+                            }else {
+                                let html = "<strong></strong>";
+                                return html;
+                            }
+
+                           
                         }
                     }
                 ],

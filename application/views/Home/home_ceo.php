@@ -849,26 +849,33 @@
                         <h4>Isi Data Dibawah Ini dengan Lengkap untuk Tambah Layanan</h4>
                         <form action="<?php echo base_url('index.php/home/tambahlayanan/') . $username ?>" method="POST" id="form-staff">
                             <input type="text" name="customer_id" hidden>
+                            
                             <div class="form-group">
                                 <label for="title">Customer</label>
                                 <input type="text" class="form-control" name="customer-popup" id="customer-popup" readonly>
                             </div>
+                            
                             <div class="form-group">
                                 <label for="title">Nama Layanan</label>
                                 <input type="text" class="form-control" name="nama-layanan" id="nama-layanan">
                             </div>
+                           
                             <div class="form-group">
                                 <label for="kategori_produk">Kategori Produk</label>
                                 <select name="kategori_produk" id="kategori_produk" class="form-control">
-                                    <option value="" disabled="disabled">Project</option>
-                                    <option value="Website">Webstie</option>
+                               
+                                <optgroup label="Project">
+                                    <option value="Website">Website</option>
                                     <option value="Web Apps">App Website</option>
-                                    <option value="" disabled="disabled">Server & Hosting</option>
-                                    <option value="Dedicated Server">Dedicated Server</option>
+                                </optgroup>
+
+                                <optgroup label="Server & Hosting">
+                                <option value="Dedicated Server">Dedicated Server</option>
                                     <option value="Colocation Server">Colocation Server</option>
                                     <option value="Hosting 10">Hosting 10</option>
                                     <option value="Hosting 50">Hosting 50</option>
-
+                                </optgroup>
+                           
                                 </select>
                             </div>
                             <div class="form-group">
@@ -941,6 +948,7 @@
                     {
                         "data": "customer_id",
                         className: 'text-center',
+                        "orderable": false,
                         render: function(data, type, row) {
                             let html = "<a href='javascript:void(0)' data-toggle='modal' data-target='#tambah_layanan' data-pk='" + data +
                                 "' class='btn btn-light btn-tambah-layanan'><i class='fa fa-plus fa-2x'></i></a>";
@@ -954,12 +962,16 @@
                     {
                         "data": "service_status",
                         className: 'text-center',
+                        "orderable": false,
                         render: function(data, type, row) {
                             if (data == "Active" && data != "") {
                                 let html = "<strong class='btn-sm btn-block btn-success'><i class='fa fa-fw fa-check'></i>" + data + "</strong>";
                                 return html;
                             } else if (data == "Not Active" && data != "") {
                                 let html = "<strong class='btn-sm btn-block btn-danger'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</strong>";
+                                return html;
+                            } else if (data == "Pending" && data != "") {
+                                let html = "<strong class='btn-sm btn-block btn-warning'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</strong>";
                                 return html;
                             } else {
                                 let html = "<strong></strong>";
@@ -970,10 +982,18 @@
                     {
                         "data": "service_id",
                         className: 'text-center',
+                        "orderable": false,
                         render: function(data, type, row) {
-                            let html = "<a href='javascript:void(0)' data-toggle='modal' data-target='#modal-block-large' data-pk='" + data +
+                            if(data != null){
+                                let html = "<a href='javascript:void(0)' data-toggle='modal' data-target='#modal-block-large' data-pk='" + data +
                                 "' class='btn btn-light btn-edit'><i class='fa fa-plus fa-2x'></i></a>";
-                            return html;
+                                return html;
+                            }else {
+                                let html = "<strong></strong>";
+                                return html;
+                            }
+
+                           
                         }
                     }
                 ],

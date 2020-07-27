@@ -268,12 +268,12 @@
                                                     <span class="font-w600 text-danger">0 Tugas</span>
                                                 </td>
                                             </tr>
-                                        <!-- </tbody> -->
-                                <?php }
+                                            <!-- </tbody> -->
+                                    <?php }
                                 } ?>
-                                <?php $employe = [];
-                                foreach ($report as $value) { ?>
-                                    <!-- <tbody> -->
+                                    <?php $employe = [];
+                                    foreach ($report as $value) { ?>
+                                        <!-- <tbody> -->
                                         <?php foreach ($tugas_selesai as $value2) {
                                             if ($value2["employee_name"] == $value["employee_name"]) {
                                                 array_push($employe, $value["employee_name"]); ?>
@@ -300,10 +300,10 @@
                                         <?php
                                             }
                                         } ?>
-                                    <!-- </tbody> -->
-                                <?php } ?>
-                                <?php foreach ($report as $value) { ?>
-                                    <!-- <tbody> -->
+                                        <!-- </tbody> -->
+                                    <?php } ?>
+                                    <?php foreach ($report as $value) { ?>
+                                        <!-- <tbody> -->
                                         <?php foreach ($tugas_belum as $value2) {
                                             if ($value2["employee_name"] == $value["employee_name"] && !in_array($value["employee_name"], $employe)) {
                                                 array_push($employe, $value["employee_name"]); ?>
@@ -330,8 +330,8 @@
                                         <?php
                                             }
                                         } ?>
-                                    </tbody>
-                                <?php } ?>
+                                        </tbody>
+                                    <?php } ?>
                             </table>
                         </div>
                     </div>
@@ -405,7 +405,7 @@
                                                 <span class="font-w600">#<?php echo $valueparent["task_id"] . " " . $valueparent["task_title"] ?></span>
                                             </td>
                                             <td class="text-center" style="width: 10%;" rowspan="<?= $row_taskbelum ?>">
-                                                <span class="font-w600"><?php echo $valueparent["employee_destination"] ?></span>
+                                                <span class="font-w600"><?php echo $valueparent["employee_name"] ?></span>
                                             </td>
                                         <?php } ?>
                                     </tr>
@@ -464,7 +464,7 @@
                                                 <span class="font-w600">#<?php echo $valueparent["task_id"] . " " . $valueparent["task_title"] ?></span>
                                             </td>
                                             <td class="text-center" style="width: 10%;" `>
-                                                <span class="font-w600"><?php echo $valueparent["employee_destination"] ?></span>
+                                                <span class="font-w600"><?php echo $valueparent["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
                                                 <span class="font-w600">-</span>
@@ -500,7 +500,7 @@
                                                 <span class="font-w600">#<?php echo $valueparent["task_id"] . " " . $valueparent["task_title"] ?></span>
                                             </td>
                                             <td class="text-center" style="width: 10%;" rowspan="<?= $row_taskselesai ?>">
-                                                <span class="font-w600"><?php echo $valueparent["employee_destination"] ?></span>
+                                                <span class="font-w600"><?php echo $valueparent["employee_name"] ?></span>
                                             </td>
                                         <?php } ?>
                                     </tr>
@@ -586,7 +586,7 @@
                                                 <span class="font-w600">#<?php echo $value["task_id"] . " " . $value["task_title"] ?></span>
                                             </td>
                                             <td class="text-center" style="width: 10%;">
-                                                <span class="font-w600"><?php echo $value["employee_destination"] ?></span>
+                                                <span class="font-w600"><?php echo $value["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
                                                 <span class="font-w600">-</span>
@@ -598,7 +598,7 @@
                                                 <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["task_status"] ?></span>
                                             </td>
                                             <td class="text-center" style="width: 15%;">
-                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') .$designation."/". $employ_id . "/" . $value['task_id'] ."/".$status. "/Tiket" ?>" class="text-decoration-none">Buka</a>
+                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . "/" . $value['task_id'] . "/" . $status . "/Tiket" ?>" class="text-decoration-none">Buka</a>
                                             </td>
                                         </tr>
                                 <?php }
@@ -620,7 +620,7 @@
                                                 <span class="font-w600">#<?php echo $valueparent["task_id"] . " " . $valueparent["task_title"] ?></span>
                                             </td>
                                             <td class="text-center" style="width: 10%;" rowspan="<?= $row_tiketbelum ?>">
-                                                <span class="font-w600"><?php echo $valueparent["employee_destination"] ?></span>
+                                                <span class="font-w600"><?php echo $valueparent["employee_name"] ?></span>
                                             </td>
                                         <?php } ?>
                                     </tr>
@@ -637,7 +637,7 @@
                                                     <span class="font-w600  btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["task_status"] ?></span>
                                                 </td>
                                                 <td class="text-center" style="width: 15%;">
-                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') .$designation."/". $employ_id . "/" . $value['task_id'] ."/".$status. "/Tiket" ?>" class="text-decoration-none">Buka</a>
+                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . "/" . $value['task_id'] . "/" . $status . "/Tiket" ?>" class="text-decoration-none">Buka</a>
                                                 </td>
                                             </tr>
                                 <?php $i += 1;
@@ -678,7 +678,7 @@
                                                 <span class="font-w600">#<?php echo $value["task_id"] . " " . $value["task_title"] ?></span>
                                             </td>
                                             <td class="text-center" style="width: 10%;">
-                                                <span class="font-w600"><?php echo $value["employee_destination"] ?></span>
+                                                <span class="font-w600"><?php echo $value["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
                                                 <span class="font-w600">-</span>
@@ -690,7 +690,7 @@
                                                 <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["task_status"] ?></span>
                                             </td>
                                             <td class="text-center" style="width: 15%;">
-                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['task_id'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
+                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . "/" . $value['task_id'] . "/" . $status . "/Tiket" ?>" class="text-decoration-none">Buka</a>
                                             </td>
                                         </tr>
                                 <?php }
@@ -873,7 +873,7 @@
         <div class="content py-3">
             <div class="row font-size-sm">
                 <div class="col-sm-6 order-sm-2 py-1 text-center text-sm-right">
-                    Crafted with <i class="fa fa-heart text-danger"></i> by <a class="font-w600" href="" target="_blank">ARMTEAM</a>
+                    Developed with <i class="fa fa-heart text-danger"></i> by <a class="font-w600" href="" target="_blank">ARMTEAM</a>
                 </div>
                 <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left">
                     <a class="font-w600" href="https://1.envato.market/xWy" target="_blank">Gink Technology x ARMTEAM</a> &copy; <span data-toggle="year-copy"></span>

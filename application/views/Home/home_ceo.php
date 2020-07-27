@@ -121,7 +121,7 @@
                     <div class="block-header border-bottom">
                         <h3 class="block-title text-primary">Data Pelanggan</h3>
                     </div>
-                    <div class="col-3 float-right">
+                    <div class="col-2 float-right mt-2 mr-1">
                         <select name="filter-status-layanan" id="filter-status-layanan" class="form-control">
                             <option value="">Status</option>
                             <option value="Active">Aktif</option>
@@ -133,11 +133,11 @@
                         <table class="table table-bordered table-hover  table-vcenter font-size-sm mb-0" id="table-pelanggan">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 10%;">#ID Service</th>
-                                    <th class="font-w700 text-center" style="width: 30%;">Customer</th>
-                                    <th class="font-w700 text-center" style="width: 30%;">Layanan</th>
+                                    <th class="font-w700 text-center" style="width: 10%;">ID Service</th>
+                                    <th class="font-w700 text-center" style="width: 25%;">Customer</th>
+                                    <th class="font-w700 text-center" style="width: 40%;">Layanan</th>
                                     <th class="font-w700 text-center" style="width: 15%;">Status</th>
-                                    <th class="font-w700 text-center" style="width: 15%;">+Tiket</th>
+                                    <th class="font-w700 text-center" style="width: 10%;">+Tiket</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -285,7 +285,7 @@
                         <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">ID Task</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
                                     <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Departemen PJ</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
@@ -304,7 +304,7 @@
                                                 <span class="font-w600"><?php echo $valueparent["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
-                                                <span class="font-w600"><?php echo $valueparent["department_destination"] ?></span>
+                                                <span class="font-w600"><?php echo $valueparent["department_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
                                                 <span class="font-w600">-</span>
@@ -338,7 +338,7 @@
                                                 <span class="font-w600"><?php echo $valueparent["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center" rowspan="<?= $row_taskbelum ?>">
-                                                <span class="font-w600"><?php echo $valueparent["department_destination"] ?></span>
+                                                <span class="font-w600"><?php echo $valueparent["department_name"] ?></span>
                                             </td>
                                         <?php } ?>
                                     </tr>
@@ -375,7 +375,7 @@
                         <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">ID Task</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
                                     <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Departemen PJ</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
@@ -394,7 +394,7 @@
                                                 <span class="font-w600"><?php echo $valueparent["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
-                                                <span class="font-w600"><?php echo $valueparent["department_destination"] ?></span>
+                                                <span class="font-w600"><?php echo $valueparent["department_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
                                                 <span class="font-w600">-</span>
@@ -427,7 +427,7 @@
                                                 <span class="font-w600"><?php echo $valueparent["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center" rowspan="<?= $row_taskselesai ?>">
-                                                <span class="font-w600"><?php echo $valueparent["department_destination"] ?></span>
+                                                <span class="font-w600"><?php echo $valueparent["department_name"] ?></span>
                                             </td>
                                         <?php } ?>
                                     </tr>
@@ -466,7 +466,7 @@
                         <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">ID Task</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Deadline</th>
@@ -509,7 +509,7 @@
                                                 <span class="font-w600">#<?php echo $value["task_id"] . " " . $value["task_title"] ?></span>
                                             </td>
                                             <td class="text-center" style="width: 10%;">
-                                                <span class="font-w600"><?php echo $value["employee_destination"] ?></span>
+                                                <span class="font-w600"><?php echo $value["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
                                                 <span class="font-w600">-</span>
@@ -521,7 +521,7 @@
                                                 <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["task_status"] ?></span>
                                             </td>
                                             <td class="text-center" style="width: 15%;">
-                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') .$designation."/". $employ_id . "/" . $value['task_id'] ."/".$status. "/Tiket" ?>" class="text-decoration-none">Buka</a>
+                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . "/" . $value['task_id'] . "/" . $status . "/Tiket" ?>" class="text-decoration-none">Buka</a>
                                             </td>
                                         </tr>
                                 <?php }
@@ -543,7 +543,7 @@
                                                 <span class="font-w600">#<?php echo $valueparent["task_id"] . " " . $valueparent["task_title"] ?></span>
                                             </td>
                                             <td class="text-center" style="width: 10%;" rowspan="<?= $row_tiketbelum ?>">
-                                                <span class="font-w600"><?php echo $valueparent["employee_destination"] ?></span>
+                                                <span class="font-w600"><?php echo $valueparent["employee_name"] ?></span>
                                             </td>
                                         <?php } ?>
                                     </tr>
@@ -560,7 +560,7 @@
                                                     <span class="font-w600  btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["task_status"] ?></span>
                                                 </td>
                                                 <td class="text-center" style="width: 15%;">
-                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') .$designation."/". $employ_id . "/" . $value['task_id'] ."/".$status. "/Tiket" ?>" class="text-decoration-none">Buka</a>
+                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . "/" . $value['task_id'] . "/" . $status . "/Tiket" ?>" class="text-decoration-none">Buka</a>
                                                 </td>
                                             </tr>
                                 <?php $i += 1;
@@ -584,7 +584,7 @@
                         <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">ID Task</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Deadline</th>
@@ -601,7 +601,7 @@
                                                 <span class="font-w600">#<?php echo $value["task_id"] . " " . $value["task_title"] ?></span>
                                             </td>
                                             <td class="text-center" style="width: 10%;">
-                                                <span class="font-w600"><?php echo $value["employee_destination"] ?></span>
+                                                <span class="font-w600"><?php echo $value["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
                                                 <span class="font-w600">-</span>
@@ -613,7 +613,7 @@
                                                 <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["task_status"] ?></span>
                                             </td>
                                             <td class="text-center" style="width: 15%;">
-                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') .$designation."/". $employ_id . "/" . $value['task_id'] ."/".$status. "/Tiket" ?>" class="text-decoration-none">Buka</a>
+                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . "/" . $value['task_id'] . "/" . $status . "/Tiket" ?>" class="text-decoration-none">Buka</a>
                                             </td>
                                         </tr>
                                 <?php }
@@ -637,7 +637,7 @@
                                                 <span class="font-w600">#<?php echo $valueparent["task_id"] . " " . $valueparent["task_title"] ?></span>
                                             </td>
                                             <td class="text-center" style="width: 10%;" rowspan="<?= $row ?>">
-                                                <span class="font-w600"><?php echo $valueparent["employee_destination"] ?></span>
+                                                <span class="font-w600"><?php echo $valueparent["employee_name"] ?></span>
                                             </td>
                                         <?php } ?>
                                     </tr>
@@ -654,7 +654,7 @@
                                                     <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["task_status"] ?></span>
                                                 </td>
                                                 <td class="text-center" style="width: 15%;">
-                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') .$designation."/". $employ_id . "/" . $value['task_id'] ."/".$status. "/Tiket" ?>" class="text-decoration-none">Buka</a>
+                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . "/" . $value['task_id'] . "/" . $status . "/Tiket" ?>" class="text-decoration-none">Buka</a>
                                                 </td>
                                             </tr>
                                 <?php $i += 1;
@@ -825,7 +825,7 @@
         <div class="content py-3">
             <div class="row font-size-sm">
                 <div class="col-sm-6 order-sm-2 py-1 text-center text-sm-right">
-                    Crafted with <i class="fa fa-heart text-danger"></i> by <a class="font-w600" href="" target="_blank">ARMTEAM</a>
+                    Developed with <i class="fa fa-heart text-danger"></i> by <a class="font-w600" href="" target="_blank">ARMTEAM</a>
                 </div>
                 <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left">
                     <a class="font-w600" href="https://1.envato.market/xWy" target="_blank">Gink Technology x ARMTEAM</a> &copy; <span data-toggle="year-copy"></span>
@@ -858,20 +858,20 @@
                 },
                 "deferRender": true,
                 "aLengthMenu": [
-                    [5, 50, 100],
-                    [5, 50, 100]
+                    [5, 10, 30, 50, 100],
+                    [5, 10, 30, 50, 100]
                 ],
                 "columns": [{
                         "data": "customer_id",
-                        className: 'font-weight-bold'
-                    },
-                    {
-                        "data": "customer_name",
                         className: 'text-center font-weight-bold'
                     },
                     {
+                        "data": "customer_name",
+                        className: 'font-weight-bold'
+                    },
+                    {
                         "data": "service_name",
-                        className: 'text-center font-weight-bold',
+                        className: 'font-weight-bold',
                     },
                     {
                         "data": "service_status",

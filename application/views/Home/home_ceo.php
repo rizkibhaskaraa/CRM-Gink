@@ -171,6 +171,7 @@
                     </div>
 
                     <input type="text" id="searchemployee" name="searchemployee" class="form-control col-2 customer mt-3 ml-3" style="float:left" placeholder="Nama" required>
+                    <input type="text" id="link" name="link" value="<?php echo base_url('index.php/home/search/') . $employ_id . "/" ?>" hidden>
 
                     <button class="btn btn-primary search mt-3 ml-2 mr-4" data-toggle="click-ripple" id="button-report">Terapkan</button>
                     <button class="btn btn-outline-danger search mt-3 ml-1 mr-2" data-toggle="click-ripple" id="button-reset">Reset</button>

@@ -141,7 +141,7 @@ class Home extends CI_Controller
         $id_layanan = $this->input->post("id_layanan");
         $status = $this->input->post("status-layanan");
         $this->home_model->updatestatuslayanan($id_layanan, $status);
-        $this->session->set_flashdata("sukses_update_status","berhasil");
+        $this->session->set_flashdata("sukses_update_status", "berhasil");
         redirect(base_url('index.php/home/ceo/') . $user);
     }
     //fungsi menuju halaman detail
@@ -153,6 +153,25 @@ class Home extends CI_Controller
             $id = $_SESSION["staff_id"];
         }
         redirect(base_url('index.php/detail/detailumum/') . $designation . "/" . $id . "/" . $task . "/" . $status . "/" . $cekTabel);
+    }
+
+    //fungsi search report
+    public function search($employ_id, $name)
+    {
+        $employ = $this->home_model->getemploytiket($employ_id);
+        $user = $this->home_model->getuser($employ["employee_id"]);
+        $departemen = $this->home_model->getdepartemen($user["user_username"]);
+        $data["name"] = $name;
+
+        //mengambil data report staff dati tabel task
+        $data["report"] = $this->home_model->getreport_name($departemen["department_id"], $data["name"]);
+        $data['tugas_belum'] = $this->home_model->gettugaspjbelum_name($departemen["department_id"], $data["name"]);
+        $data['tugas_selesai'] = $this->home_model->gettugaspjselesai_name($departemen["department_id"], $data["name"]);
+        //akhir mengambil data report staff dati tabel task
+
+        $data["employ_id"] = $employ_id;
+        $data['employ_report'] = $this->home_model->getemploydept($departemen["department_id"]);
+        $this->load->view('home/hasil_search_report', $data);
     }
 
     //fungsi search report (periode report)
@@ -257,7 +276,7 @@ class Home extends CI_Controller
         }
         //akhir menentukan departemen tujuan
         $this->home_model->insert_task($data_task);
-        $this->session->set_flashdata("sukses_buat","Berhasil");
+        $this->session->set_flashdata("sukses_buat", "Berhasil");
         if ($departemen["department_id"] == "1") {
             redirect(base_url('index.php/home/ceo/') . $user["user_username"]);
         } else {
@@ -311,7 +330,7 @@ class Home extends CI_Controller
             "product_id" => $produk["product_id"],
         );
         $this->home_model->insert_layanan($data_layanan);
-        $this->session->set_flashdata("sukses_add_layanan","Berhasil");
+        $this->session->set_flashdata("sukses_add_layanan", "Berhasil");
         redirect(base_url('index.php/home/ceo/') . $username);
     }
 

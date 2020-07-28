@@ -72,7 +72,7 @@ class home_model extends CI_model
     }
     public function getcustomerbyid($id)
     {
-        return $this->db->get_where("crm_customer",array("customer_id"=>$id))->row_array();
+        return $this->db->get_where("crm_customer", array("customer_id" => $id))->row_array();
     }
 
     //fungsi ambil data tabel layanan
@@ -191,8 +191,8 @@ class home_model extends CI_model
         return $this->db->insert("tm_task", $data_task);
     }
 
-    
-	public function updatestatuslayanan($id, $status)
+
+    public function updatestatuslayanan($id, $status)
     {
         $this->db->set('service_status', $status);
         $this->db->where('service_id', $id);
@@ -223,7 +223,7 @@ class home_model extends CI_model
     }
     public function getproduk($produk)
     {
-        return $this->db->get_where("master_product", array("product_name"=>$produk))->row_array();
+        return $this->db->get_where("master_product", array("product_name" => $produk))->row_array();
     }
     //fungsi get report (untuk kolom tugas selesai)
     public function gettugaspjselesai($dept)
@@ -309,6 +309,56 @@ class home_model extends CI_model
     }
     // end report dengan periode
 
+    // report dengan nama
+    //fungsi get report (untuk kolom request tugas) dengan nama
+    public function getreport_name($dept, $name)
+    {
+        $this->db->order_by('department_destination', 'ASC');
+        // $this->db->order_by('status_employ', 'ASC');
+        if ($dept != "1") { //jika bukan CEO yang login
+            $this->db->where("department_destination", $dept);
+        }
+        $this->db->where('hr_employee.employee_name ==', $name);
+        $this->db->select("count(tm_task.task_status),employee_destination,employee_name,department_destination,department_name"); //select kolom
+        $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination"); //join
+        $this->db->join("hr_department", "hr_department.department_id = tm_task.department_destination"); //join
+        $this->db->group_by("employee_destination"); //group by 
+        return $this->db->get("tm_task")->result_array();
+    }
+
+    //fungsi get report (untuk kolom tugas selesai) dengan periode
+    public function gettugaspjselesai_name($dept, $name)
+    {
+        if ($dept != "1") {
+            $this->db->where("department_destination", $dept);
+        }
+        $this->db->where('hr_employee.employee_name ==', $name);
+        $this->db->where("tm_task.task_status", "Finish");
+        $this->db->where_not_in("employee_destination", "");
+        $this->db->select("count(tm_task.task_status),employee_destination,employee_name,department_destination,department_name");
+        $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination"); //join
+        $this->db->join("hr_department", "hr_department.department_id = tm_task.department_destination"); //join
+        $this->db->group_by("employee_destination");
+        return $this->db->get("tm_task")->result_array();
+    }
+
+    //fungsi get report (untuk kolom on progres) dengan periode
+    public function gettugaspjbelum_name($dept, $name)
+    {
+        if ($dept != "1") {
+            $this->db->where("department_destination", $dept);
+        }
+        $this->db->where('hr_employee.employee_name ==', $name);
+        $this->db->where("tm_task.task_status", "Not Finished");
+        $this->db->where_not_in("employee_destination", "");
+        $this->db->select("count(tm_task.task_status),employee_destination,employee_name,department_destination,department_name");
+        $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination"); //join
+        $this->db->join("hr_department", "hr_department.department_id = tm_task.department_destination"); //join
+        $this->db->group_by("employee_destination");
+        return $this->db->get("tm_task")->result_array();
+    }
+    // end report dengan periode
+
     //function-fiunction datatable
     public function count_all($dept, $status)
     {
@@ -320,7 +370,6 @@ class home_model extends CI_model
         $result = $this->db->count_all_results();
         return $this->db->count_all_results();
     }
-
     public function filter($search, $limit, $start, $order_field, $order_ascdesc, $dept, $status)
     {
         if ($search != "") {

@@ -3,7 +3,7 @@ console.log('ok');
 var cari = document.getElementById('searchemployee');
 // var status_pelanggan = document.getElementById("status-pelanggan");
 // var konten = document.getElementById('tabel-pelanggan');
-// var alamat = document.getElementById('link');
+var alamat = document.getElementById('link');
 var alamat_report = document.getElementById('alamat-report');
 var tgl_start = document.getElementById('tgl-start');
 var tgl_end = document.getElementById('tgl-end');
@@ -11,7 +11,7 @@ var button = document.getElementById('button-report');
 var button_reset = document.getElementById('button-reset');
 var kontenreport = document.getElementById('report-table');
 
-cari.addEventListener('keyup', function () {
+carii.addEventListener('keyup', function () {
 	//buat objeck
 	var ajaxCari = new XMLHttpRequest();
 

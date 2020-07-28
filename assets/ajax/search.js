@@ -1,6 +1,6 @@
 console.log('ok');
 //ambil elemen
-var cari = document.getElementById('searchemployee');
+var carii = document.getElementById('searchemployee');
 // var status_pelanggan = document.getElementById("status-pelanggan");
 // var konten = document.getElementById('tabel-pelanggan');
 var alamat = document.getElementById('link');
@@ -13,14 +13,16 @@ var kontenreport = document.getElementById('report-table');
 
 carii.addEventListener('keyup', function () {
 	//buat objeck
+	
+	// window.alert(alamat.value + carii.value);
 	var ajaxCari = new XMLHttpRequest();
 
 	ajaxCari.onreadystatechange = function () {
 		if (ajaxCari.readyState == 4 && ajaxCari.status == 200) {
-			konten.innerHTML = ajaxCari.responseText;
+			kontenreport.innerHTML = ajaxCari.responseText;
 		}
 	}
-	ajaxCari.open('GET', alamat.value + cari.value, true); //+status_pelanggan.value+"/"
+	ajaxCari.open('GET', alamat.value + carii.value, true); //+status_pelanggan.value+"/"
 
 	ajaxCari.send();
 

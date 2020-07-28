@@ -991,15 +991,15 @@
                         "data": "service_status",
                         className: 'text-center',
                         "orderable": false,
-                        render: function(data, type, row) {
+                        render: function(data, type, row,meta) {
                             if (data == "Active" && data != "") {
-                                let html = "<button class='btn-sm btn-block btn-success' data-toggle='modal' data-target='#modal-block-large-status-layanan' href='' id='' onclick='datalayanan(this);'><i class='fa fa-fw fa-check'></i>" + data + "</button>";
+                                let html = "<button class='btn-sm btn-block btn-success' data-toggle='modal' data-target='#modal-block-large-status-layanan' href='' id='"+row.service_id+"' onclick='datalayanan(this);'><i class='fa fa-fw fa-check'></i>" + data + "</button>";
                                 return html;
                             } else if (data == "Not Active" && data != "") {
-                                let html = "<button class='btn-sm btn-block btn-danger' data-toggle='modal' data-target='#modal-block-large-status-layanan' href='' id='' onclick='datalayanan(this);'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</button>";
+                                let html = "<button class='btn-sm btn-block btn-danger' data-toggle='modal' data-target='#modal-block-large-status-layanan' href='' id='"+row.service_id+"' onclick='datalayanan(this);'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</button>";
                                 return html;
                             } else if (data == "Pending" && data != "") {
-                                let html = "<button class='btn-sm btn-block btn-warning' data-toggle='modal' data-target='#modal-block-large-status-layanan' href='' id='' onclick='datalayanan(this);'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</button>";
+                                let html = "<button class='btn-sm btn-block btn-warning' data-toggle='modal' data-target='#modal-block-large-status-layanan' href='' id='"+row.service_id+"' onclick='datalayanan(this);'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</button>";
                                 return html;
                             } else {
                                 let html = "<button></button>";
@@ -1069,7 +1069,7 @@
         });
     function datalayanan(a) {
         var id_layanan = a.id;
-        $('input[name="id_layanan"]').val(1); //set value
+        $('input[name="id_layanan"]').val(id_layanan); //set value
     }
 		
     </script>

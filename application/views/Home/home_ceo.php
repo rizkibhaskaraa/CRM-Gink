@@ -50,10 +50,10 @@
     <!-- end home button -->
     <div class="col-md-2 ml-auto px-4">
         <!-- User Dropdown -->
-        <div class="dropdown d-inline-block ml-2">
+        <div class="dropdown d-inline-block">
             <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img class="rounded" src="<?php echo base_url('assets/oneui/media/avatars/avatar10.jpg') ?>" alt="Header Avatar" style="width: 18px;">
-                <span class="d-none d-sm-inline-block ml-1"><?php echo $employ_nama ?> </span>
+                <span class="d-none d-sm-inline-block"><?php echo $employ_nama ?> </span>
                 <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
             </button>
             <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm " aria-labelledby="page-header-user-dropdown">
@@ -134,8 +134,10 @@
                     </form>
                     <div class="col-2 float-right mt-2 mr-1">
                         <select name="filter-status-layanan" id="filter-status-layanan" class="form-control">
-                            <option value="">Status</option>
+                            <option class="font-w700" disabled="disabled" selected value="">Status</option>
+                            <option value="">Semua Status</option>
                             <option value="Active">Aktif</option>
+                            <option value="Pending">Pending</option>
                             <option value="Not Active">Tidak Aktif</option>
                         </select>
                     </div>

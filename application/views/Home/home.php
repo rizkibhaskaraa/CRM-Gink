@@ -146,11 +146,6 @@
                             <option value="Active">Aktif</option>
                             <option value="Pending">Pending</option>
                             <option value="Not Active">Tidak Aktif</option>
-
-                            
-
-                        
-
                         </select>
                     </div>
                     <div style="clear:both"></div>

@@ -452,7 +452,7 @@
                                             <td style="width: 10%;" `>
                                                 <span class="font-w600">#<?php echo $valueparent["task_id"] . " " . $valueparent["task_title"] ?></span>
                                             </td>
-                                            <td class="text-center" style="width: 10%;" `>
+                                            <td style="width: 10%;" `>
                                                 <span class="font-w600"><?php echo $valueparent["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
@@ -666,7 +666,7 @@
                                             <td style="width: 10%;">
                                                 <span class="font-w600">#<?php echo $value["task_id"] . " " . $value["task_title"] ?></span>
                                             </td>
-                                            <td class="text-center" style="width: 10%;">
+                                            <td  style="width: 10%;">
                                                 <span class="font-w600"><?php echo $value["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
@@ -765,7 +765,7 @@
                             <div class="form-group">
                                 <label for="masalah">Jenis Masalah</label>
                                 <select name="masalah" id="masalah" class="form-control custom-select" required>
-                                    <option selected disable value="">Masalah</option>
+                                    <option class="font-w700" disabled="disabled" selected value="">Masalah</option>
                                     <option value="umum">General</option>
                                     <option value="support">Support</option>
                                     <option value="hosting">Hosting</option>
@@ -823,7 +823,7 @@
                             <div class="form-group">
                                 <label for="departemen">Departemen tujuan</label>
                                 <select name="departemen" id="departemen" class="form-control custom-select" required>
-                                    <option selected disable value="">Departemen Tujuan</option>
+                                    <option class="font-w700" disabled="disabled" selected value="">Departemen Tujuan</option>
                                     <option value="Sales And Marketing">Sales And Marketing</option>
                                     <option value="Research And Development">Research And Development</option>
                                     <option value="Support">Support</option>
@@ -1118,18 +1118,38 @@
     $(document).ready(function() {
         var status_login = $(".status-login").data('flashdata');
         var sukses_buat = $(".sukses_buat").data('flashdata');
+        var sukses_add_layanan = $(".sukses_add_layanan").data('flashdata');
+        var sukses_update_status = $(".sukses_update_status").data('flashdata');
         if(status_login){
             Swal.fire({
                 title 	: "Berhasil Login",
                 text 	: "Selamat Datang, "+"<?= $employ_nama ?>",
-                type 	: "success"
+                type 	: "success",
+                timer   : 1000
             });
         }
         if(sukses_buat){
             Swal.fire({
                 title 	: "Berhasil Membuat Tiket",
                 text 	: "",
-                type 	: "success"
+                type 	: "success",
+                timer   : 1500
+            });
+        }
+        if(sukses_add_layanan){
+            Swal.fire({
+                title 	: "Berhasil Menambah Layanan",
+                text 	: "",
+                type 	: "success",
+                timer   : 1500
+            });
+        }
+        if(sukses_update_status){
+            Swal.fire({
+                title 	: "Berhasil Update Status Layanan",
+                text 	: "",
+                type 	: "success",
+                timer   : 1500
             });
         }
     });

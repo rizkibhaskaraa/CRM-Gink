@@ -191,6 +191,16 @@ class home_model extends CI_model
         return $this->db->insert("tm_task", $data_task);
     }
 
+    
+	public function updatestatuslayanan($id, $status)
+    {
+        $this->db->set('service_status', $status);
+        $this->db->where('service_id', $id);
+        $this->db->update('master_service');
+
+        return "berhasil";
+    }
+
     // report tanpa periode
     //fungsi get report (untuk kolom request tugas)
     public function getreport($dept)

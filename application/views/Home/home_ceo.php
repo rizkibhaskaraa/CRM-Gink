@@ -32,6 +32,7 @@
     <div class="status-login" data-flashdata="<?= $this->session->flashdata('status-login');?>"></div>
     <div class="sukses_buat" data-flashdata="<?= $this->session->flashdata('sukses_buat');?>"></div>
     <div class="sukses_add_layanan" data-flashdata="<?= $this->session->flashdata('sukses_add_layanan');?>"></div>
+    <div class="sukses_update_status" data-flashdata="<?= $this->session->flashdata('sukses_update_status');?>"></div>
 
     <!-- Right Section -->
     <!-- Home button -->
@@ -815,19 +816,11 @@
                                 <label for="deskripsi">Deskripsi</label>
                                 <textarea class="form-control required js-summernote" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
                             </div>
-
-
                     </div>
-
                     <div style="float:right;margin-bottom:3%">
                         <button type="reset" class="btn btn-outline-danger mr-2">Reset</button>
-
                         <button type="submit" class="btn btn-primary mr-4">Buat</button>
-
                     </div>
-
-
-
                     </form>
                 </div>
             </div>
@@ -898,6 +891,41 @@
         </div>
     </div>
     <!-- akhir pop up tambah layanan pelanggan -->
+    <!-- pop up tambah layanan pelanggan -->
+    <div class="modal fade" id="modal-block-large-status-layanan" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="block block-themed block-transparent mb-0">
+                    <div class="block-header bg-primary-dark">
+                        <h3 class="block-title">Update status</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                <i class="fa fa-fw fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content font-size-sm mt-3 text-justify ">
+                        <h4>Pilih Status Layanan Pelanggan</h4>
+                        <form action="<?php echo base_url('index.php/home/updatelayanan/') . $username ?>" method="POST" id="form-staff">
+                            <input type="text" name="id_layanan">
+                            <div class="form-group">
+                                <label for="status-layanan">Status Layanan</label>
+                                <select name="status-layanan" id="status-layanan" class="form-control">
+                                    <option value="Active">Aktif</option>
+                                    <option value="Not Active">Tidak Aktif</option>
+                                    <option value="Pending">Pending</option>
+                                </select>
+                            </div>
+                            <div style="float:right;margin-bottom:3%">
+                                <button type="submit" class="btn btn-primary mr-4">Simpan</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- akhir pop up update status layanan pelanggan -->
     <!-- Footer -->
     <footer id="page-footer" class="bg-body-light">
         <div class="content py-3">
@@ -965,18 +993,18 @@
                         "data": "service_status",
                         className: 'text-center',
                         "orderable": false,
-                        render: function(data, type, row) {
+                        render: function(data, type, row,meta) {
                             if (data == "Active" && data != "") {
-                                let html = "<strong class='btn-sm btn-block btn-success'><i class='fa fa-fw fa-check'></i>" + data + "</strong>";
+                                let html = "<button class='btn-sm btn-block btn-success' data-toggle='modal' data-target='#modal-block-large-status-layanan' href='' id='"+row.service_id+"' onclick='datalayanan(this);'><i class='fa fa-fw fa-check'></i>" + data + "</button>";
                                 return html;
                             } else if (data == "Not Active" && data != "") {
-                                let html = "<strong class='btn-sm btn-block btn-danger'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</strong>";
+                                let html = "<button class='btn-sm btn-block btn-danger' data-toggle='modal' data-target='#modal-block-large-status-layanan' href='' id='"+row.service_id+"' onclick='datalayanan(this);'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</button>";
                                 return html;
                             } else if (data == "Pending" && data != "") {
-                                let html = "<strong class='btn-sm btn-block btn-warning'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</strong>";
+                                let html = "<button class='btn-sm btn-block btn-warning' data-toggle='modal' data-target='#modal-block-large-status-layanan' href='' id='"+row.service_id+"' onclick='datalayanan(this);'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</button>";
                                 return html;
                             } else {
-                                let html = "<strong></strong>";
+                                let html = "<button></button>";
                                 return html;
                             }
                         }
@@ -1041,6 +1069,11 @@
                 table.ajax.reload();
             });
         });
+    function datalayanan(a) {
+        var id_layanan = a.id;
+        $('input[name="id_layanan"]').val(id_layanan); //set value
+    }
+		
     </script>
     <!-- end script datatable untuk data customer -->
     <!-- Page JS Plugins -->
@@ -1082,6 +1115,7 @@
         var status_login = $(".status-login").data('flashdata');
         var sukses_buat = $(".sukses_buat").data('flashdata');
         var sukses_add_layanan = $(".sukses_add_layanan").data('flashdata');
+        var sukses_update_status = $(".sukses_update_status").data('flashdata');
         if(status_login){
             Swal.fire({
                 title 	: "Berhasil Login",
@@ -1099,6 +1133,13 @@
         if(sukses_add_layanan){
             Swal.fire({
                 title 	: "Berhasil Menambah Layanan",
+                text 	: "",
+                type 	: "success"
+            });
+        }
+        if(sukses_update_status){
+            Swal.fire({
+                title 	: "Berhasil Update Status Layanan",
                 text 	: "",
                 type 	: "success"
             });

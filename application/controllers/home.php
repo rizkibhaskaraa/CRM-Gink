@@ -136,6 +136,14 @@ class Home extends CI_Controller
         redirect(base_url('index.php/home/index/') . $user);
     }
 
+    public function updatelayanan($user)
+    {
+        $id_layanan = $this->input->post("id_layanan");
+        $status = $this->input->post("status-layanan");
+        $this->home_model->updatestatuslayanan($id_layanan, $status);
+        $this->session->set_flashdata("sukses_update_status","berhasil");
+        redirect(base_url('index.php/home/ceo/') . $user);
+    }
     //fungsi menuju halaman detail
     public function detail($designation, $id, $task, $status, $cekTabel)
     {

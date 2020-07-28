@@ -45,7 +45,7 @@
     } else {
         $linkhome = base_url('index.php/home/index/') . $username;
     } ?>
-    <div class="ml-4" style="float:left;">
+    <div class="ml-5" style="float:left;">
         <a class="btn btn-sm btn-dual" href="<?php echo $linkhome ?>">
             <img class="rounded" src="<?php echo base_url('assets/oneui/media/avatars/home.png') ?>" alt="Header Avatar" style="width: 18px;">
             <span class="ml-2">Home</span>
@@ -53,9 +53,9 @@
         </a>
     </div>
     <!-- end home button -->
-    <div class="col-md-2 ml-auto px-4">
+    <div class="col-md-2 ml-auto">
         <!-- User Dropdown -->
-        <div class="dropdown d-inline-block ml-2">
+        <div class="dropdown d-inline-block">
             <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img class="rounded" src="<?php echo base_url('assets/oneui/media/avatars/avatar10.jpg') ?>" alt="Header Avatar" style="width: 18px;">
                 <span class="d-none d-sm-inline-block ml-1"><?php echo $employ_nama ?> </span>

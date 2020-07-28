@@ -813,19 +813,11 @@
                                 <label for="deskripsi">Deskripsi</label>
                                 <textarea class="form-control required js-summernote" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
                             </div>
-
-
                     </div>
-
                     <div style="float:right;margin-bottom:3%">
                         <button type="reset" class="btn btn-outline-danger mr-2">Reset</button>
-
                         <button type="submit" class="btn btn-primary mr-4">Buat</button>
-
                     </div>
-
-
-
                     </form>
                 </div>
             </div>
@@ -896,6 +888,41 @@
         </div>
     </div>
     <!-- akhir pop up tambah layanan pelanggan -->
+    <!-- pop up tambah layanan pelanggan -->
+    <div class="modal fade" id="modal-block-large-status-layanan" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="block block-themed block-transparent mb-0">
+                    <div class="block-header bg-primary-dark">
+                        <h3 class="block-title">Update status</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                <i class="fa fa-fw fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content font-size-sm mt-3 text-justify ">
+                        <h4>Pilih Status Layanan Pelanggan</h4>
+                        <form action="<?php echo base_url('index.php/home/updatelayanan/') . $username ?>" method="POST" id="form-staff">
+                            <input type="text" name="id_layanan" hidden>
+                            <div class="form-group">
+                                <label for="status-layanan">Status Layanan</label>
+                                <select name="status-layanan" id="status-layanan" class="form-control">
+                                    <option value="Active">Aktif</option>
+                                    <option value="Not Active">Tidak Aktif</option>
+                                    <option value="Pending">Pending</option>
+                                </select>
+                            </div>
+                            <div style="float:right;margin-bottom:3%">
+                                <button type="submit" class="btn btn-primary mr-4">Simpan</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- akhir pop up update status layanan pelanggan -->
     <!-- Footer -->
     <footer id="page-footer" class="bg-body-light">
         <div class="content py-3">

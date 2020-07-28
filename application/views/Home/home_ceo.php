@@ -32,6 +32,7 @@
     <div class="status-login" data-flashdata="<?= $this->session->flashdata('status-login');?>"></div>
     <div class="sukses_buat" data-flashdata="<?= $this->session->flashdata('sukses_buat');?>"></div>
     <div class="sukses_add_layanan" data-flashdata="<?= $this->session->flashdata('sukses_add_layanan');?>"></div>
+    <div class="sukses_update_status" data-flashdata="<?= $this->session->flashdata('sukses_update_status');?>"></div>
 
     <!-- Right Section -->
     <!-- Home button -->
@@ -904,7 +905,7 @@
                     <div class="block-content font-size-sm mt-3 text-justify ">
                         <h4>Pilih Status Layanan Pelanggan</h4>
                         <form action="<?php echo base_url('index.php/home/updatelayanan/') . $username ?>" method="POST" id="form-staff">
-                            <input type="text" name="id_layanan" hidden>
+                            <input type="text" name="id_layanan">
                             <div class="form-group">
                                 <label for="status-layanan">Status Layanan</label>
                                 <select name="status-layanan" id="status-layanan" class="form-control">
@@ -992,16 +993,16 @@
                         "orderable": false,
                         render: function(data, type, row) {
                             if (data == "Active" && data != "") {
-                                let html = "<strong class='btn-sm btn-block btn-success'><i class='fa fa-fw fa-check'></i>" + data + "</strong>";
+                                let html = "<button class='btn-sm btn-block btn-success' data-toggle='modal' data-target='#modal-block-large-status-layanan' href='' id='' onclick='datalayanan(this);'><i class='fa fa-fw fa-check'></i>" + data + "</button>";
                                 return html;
                             } else if (data == "Not Active" && data != "") {
-                                let html = "<strong class='btn-sm btn-block btn-danger'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</strong>";
+                                let html = "<button class='btn-sm btn-block btn-danger' data-toggle='modal' data-target='#modal-block-large-status-layanan' href='' id='' onclick='datalayanan(this);'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</button>";
                                 return html;
                             } else if (data == "Pending" && data != "") {
-                                let html = "<strong class='btn-sm btn-block btn-warning'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</strong>";
+                                let html = "<button class='btn-sm btn-block btn-warning' data-toggle='modal' data-target='#modal-block-large-status-layanan' href='' id='' onclick='datalayanan(this);'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</button>";
                                 return html;
                             } else {
-                                let html = "<strong></strong>";
+                                let html = "<button></button>";
                                 return html;
                             }
                         }
@@ -1066,6 +1067,11 @@
                 table.ajax.reload();
             });
         });
+    function datalayanan(a) {
+        var id_layanan = a.id;
+        $('input[name="id_layanan"]').val(1); //set value
+    }
+		
     </script>
     <!-- end script datatable untuk data customer -->
     <!-- Page JS Plugins -->
@@ -1107,6 +1113,7 @@
         var status_login = $(".status-login").data('flashdata');
         var sukses_buat = $(".sukses_buat").data('flashdata');
         var sukses_add_layanan = $(".sukses_add_layanan").data('flashdata');
+        var sukses_update_status = $(".sukses_update_status").data('flashdata');
         if(status_login){
             Swal.fire({
                 title 	: "Berhasil Login",
@@ -1124,6 +1131,13 @@
         if(sukses_add_layanan){
             Swal.fire({
                 title 	: "Berhasil Menambah Layanan",
+                text 	: "",
+                type 	: "success"
+            });
+        }
+        if(sukses_update_status){
+            Swal.fire({
+                title 	: "Berhasil Update Status Layanan",
                 text 	: "",
                 type 	: "success"
             });

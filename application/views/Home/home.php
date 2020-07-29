@@ -353,7 +353,14 @@
                             </thead>
                             <tbody>
                                 <?php foreach ($task as $value) {
-                                    if ($value["task_status"] == "Not Finished") { ?>
+                                    if ($value["task_status"] == "Not Finished") { 
+                                        $n =0;
+                                        foreach ($task as $value2){
+                                            if($value["task_id"]==$value2["task_parent"]){
+                                                $n +=1;
+                                            }
+                                        }
+                                        ?>
                                         <tr>
                                             <td style="width: 10%;">
                                                 <span class="font-w600">#<?php echo $value["task_id"] . " " . $value["title"] ?></span>
@@ -372,7 +379,7 @@
                                             </td>
                                             <td class="text-center" style="width: 15%;">
                                                 <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . "/" . $value['task_id'] . "/" . $status . "/TugasBelum" ?>" class="text-decoration-none">Buka</a>
-                                                <?php if($value["parent"] != null){?>
+                                                <?php if($value["parent"] != null || $n ==0 ){?>
                                                     <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/status/') . $value["task_id"] ?>" class="text-decoration-none"> | Selesai</a>
                                                 <?php }?>
                                             </td>

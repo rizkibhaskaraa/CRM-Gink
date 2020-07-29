@@ -173,7 +173,7 @@ class home_model extends CI_model
 
     public function gettaskall($id_employ, $dept)
     {
-        $this->db->select("b.task_title as parent,a.task_title as title,a.task_id,a.task_status,a.employee_destination,a.department_destination,a.task_dateline,employee_name,department_name");
+        $this->db->select("b.task_title as parent,a.task_parent,a.task_title as title,a.task_id,a.task_status,a.employee_destination,a.department_destination,a.task_dateline,employee_name,department_name");
         $this->db->join("tm_task as b", "b.task_id = a.task_parent", "left");
         $this->db->join("hr_employee", "hr_employee.employee_id = a.employee_destination", "left");
         $this->db->join("hr_department", "hr_department.department_id = a.department_destination", "left");
@@ -328,8 +328,9 @@ class home_model extends CI_model
     public function count_all($dept, $status)
     {
         $this->db->where("task_parent", null);
+        // $dept_dest = array($dept,"");
         $this->db->where("department_destination", $dept);
-        $this->db->or_where("department_destination", NULL);
+        // $this->db->or_where("department_destination", NULL);
         if ($status != "") {
             $this->db->where("task_status", $status);
         }
@@ -339,8 +340,9 @@ class home_model extends CI_model
     public function filter($search, $limit, $start, $order_field, $order_ascdesc, $dept, $status)
     {
         $this->db->like('task_title', $search);
+        // $dept_dest = array($dept,"");
         $this->db->where("department_destination", $dept);
-        $this->db->or_where("department_destination", NULL);
+        // $this->db->or_where("department_destination", NULL);
         if ($status != "") {
             $this->db->where("task_status", $status);
         }
@@ -357,8 +359,9 @@ class home_model extends CI_model
     {
         $this->db->where("task_parent", null);
         $this->db->like('task_title', $search);
+        // $dept_dest = array($dept,"");
         $this->db->where("department_destination", $dept);
-        $this->db->or_where("department_destination", NULL);
+        // $this->db->or_where("department_destination", NULL);
         if ($status != "") {
             $this->db->where("task_status", $status);
         }

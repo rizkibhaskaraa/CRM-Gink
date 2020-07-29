@@ -25,7 +25,8 @@ class Home extends CI_Controller
         } else { //jika sudah login
             $user = $_SESSION["staff_user"];
         }
-
+        //data seluruh employee//
+        $data["all_employ"] = $this->home_model->getall_employee();
         //ambil designation
         $designation = $this->home_model->getdesignationUser($user);
         $data["designation"] = $designation["designation_id"];
@@ -197,20 +198,9 @@ class Home extends CI_Controller
         $employ = $this->home_model->getemploytiket($id_employ);
         $user = $this->home_model->getuser($id_employ);
         $departemen = $this->home_model->getdepartemen($user["user_username"]);
+        
 
 
-        // //membuat id_task
-        // $task = $this->home_model->gettask();
-        // $id_task = [];
-        // foreach ($task as $value) {
-        //     $no_id = substr($value["id_task"], 5);
-        //     $no_id = intval($no_id);
-        //     array_push($id_task, $no_id);
-        // }
-        // $max_id = max($id_task);
-        // $id_task = "TASK-" . ($max_id + 1);
-        // //akhir membuat id_task
-        //menentukan departemen tujuan
         $masalah = $this->input->post("masalah");
         if ($masalah != null) {
             if ($masalah == "umum") {
@@ -242,11 +232,19 @@ class Home extends CI_Controller
         } else {
             $departemen_tujuan = $this->input->post("departemen");
             $department_id = $this->home_model->getdepartmentbyid($departemen_tujuan);
+            $id_pengirim = $this->input->post("nama_pengirim");
+            if($id_pengirim == $employ["employee_id"]){
+                $departemen_sent = $departemen["department_id"];    
+            } else { 
+                $id_employ = $id_pengirim;
+                $departemen_sent = null;
+
+            }
             //jika staff yang buat tiket untuk staff
             $data_task = array(
                 "department_destination" => $department_id["department_id"],
                 "employee_sent" => $id_employ,
-                "department_sent" => $departemen["department_id"],
+                "department_sent" => $departemen_sent ,
                 "task_title" => $this->input->post("title"),
                 "task_description" => $this->input->post("deskripsi"),
                 "task_date" => date("Y-m-d H-i-s"),

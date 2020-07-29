@@ -744,7 +744,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="title">Judul Tugas</label>
-                                <input type="text" class="form-control" name="title" id="title" placeholder="Judul/Subject" required>
+                                <input autocomplete="off" type="text" class="form-control" name="title" id="title" placeholder="Judul/Subject" required>
                             </div>
                             <div class="form-group">
                                 <label for="dateline">Deadline</label>
@@ -752,12 +752,12 @@
                                     <span class="input-group-text input-group-text-alt">
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
-                                    <input type="text" class="js-datepicker form-control" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="0" data-autoclose="true" data-today-highlight="true" required>
+                                    <input autocomplete="off" type="text" class="js-datepicker form-control" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="0" data-autoclose="true" data-today-highlight="true" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
-                                <textarea class="form-control required js-summernote" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
+                                <textarea class="form-control js-summernote" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
                             </div>
                             <div style="float:right;margin-bottom:3%">
                                 <button type="reset" class="btn btn-outline-danger mr-2">Reset</button>
@@ -801,7 +801,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="title">Judul Tugas</label>
-                                <input type="text" class="form-control" name="title" id="title" placeholder="Judul/Subject" required>
+                                <input autocomplete="off" type="text" class="form-control" name="title" id="title" placeholder="Judul/Subject" required>
                             </div>
                             <div class="form-group">
                                 <label for="dateline">Deadline</label>
@@ -809,12 +809,12 @@
                                     <span class="input-group-text input-group-text-alt">
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
-                                    <input type="text" class="js-datepicker form-control" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="0" data-autoclose="true" data-today-highlight="true" required>
+                                    <input autocomplete="off" type="text" class="js-datepicker form-control" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="0" data-autoclose="true" data-today-highlight="true" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
-                                <textarea class="form-control required js-summernote" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
+                                <textarea class="form-control js-summernote" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
                             </div>
                     </div>
                     <div style="float:right;margin-bottom:3%">

@@ -391,4 +391,9 @@ class home_model extends CI_model
     {
         return $this->db->insert("crm_customer", $data_pelanggan);
     }
+
+    public function getall_employee(){
+        return $this->db->get('hr_employee')->result_array();
+
+    }
 }

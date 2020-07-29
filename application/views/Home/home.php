@@ -189,11 +189,12 @@
                             <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0 w-100" id="table-request">
                                 <thead class="thead-dark">
                                     <tr class="text-uppercase">
-                                        <th class="font-w700 text-center" style="width: 20%;">Title</th>
-                                        <th class="font-w700 text-center" style="width: 20%;">Penanggung Jawab</th>
-                                        <th class="font-w700 text-center" style="width: 20%;">Deadline</th>
-                                        <th class="font-w700 text-center" style="width: 20%;">Status</th>
-                                        <th class="font-w700 text-center" style="width: 20%;">Aksi</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Title</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Nama Pengirim</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Penanggung Jawab</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Deadline</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Status</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -776,7 +777,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="title">Judul Tugas</label>
-                                <input type="text" class="form-control" name="title" id="title" placeholder="Judul/Subject" required>
+                                <input autocomplete="off" type="text" class="form-control" name="title" id="title" placeholder="Judul/Subject" required>
                             </div>
                             <div class="form-group">
                                 <label for="dateline">Deadline</label>
@@ -784,12 +785,12 @@
                                     <span class="input-group-text input-group-text-alt">
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
-                                    <input type="text" class="js-datepicker form-control" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" required>
+                                    <input autocomplete="off" type="text" class="js-datepicker form-control" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
-                                <textarea class="form-control required js-summernote" name="deskripsi" id="deskripsi" rows="3"></textarea>
+                                <textarea class="form-control js-summernote" name="deskripsi" id="deskripsi" rows="3"></textarea>
                             </div>
                             <div style="float:right;margin-bottom:3%;">
                                 <button type="reset" class="btn btn-outline-danger mr-2">Reset</button>
@@ -831,9 +832,25 @@
                                     <option value="Support">Support</option>
                                 </select>
                             </div>
+
+                            <div class="form-group">
+                                <label for="title">Nama Pengirim</label>
+                                <select name="nama_pengirim" id="nama_pengirim" class="form-control custom-select" required>
+                                   <?php foreach($all_employ as $value){ 
+                                       if($value["employee_name"]==$employ_nama){?>
+                                            <option selected class="font-w700" value="<?php echo $value["employee_id"]?>"><?php echo $value["employee_name"]?></option>
+                                       <?php }else{ ?>
+                                            <option value="<?php echo $value["employee_id"]?>"><?php echo $value["employee_name"]?></option>
+                                   <?php }} ?>
+                                   
+                                    
+                                </select>
+
+                            
+                            </div>
                             <div class="form-group">
                                 <label for="title">Judul Tugas</label>
-                                <input type="text" class="form-control" name="title" id="title" placeholder="Judul/Subject" required>
+                                <input autocomplete="off" type="text" class="form-control" name="title" id="title" placeholder="Judul/Subject" required>
                             </div>
                             <div class="form-group">
                                 <label for="dateline">Deadline</label>
@@ -841,16 +858,16 @@
                                     <span class="input-group-text input-group-text-alt">
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
-                                    <input type="text" class="js-datepicker form-control" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" required>
+                                    <input autocomplete="off" type="text" class="js-datepicker form-control" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
-                                <textarea class="form-control required js-summernote" name="deskripsi" id="deskripsi" rows="3"></textarea>
+                                <textarea class="form-control js-summernote" name="deskripsi" id="deskripsi" rows="3"></textarea>
                             </div>
                             <div style="float:right;margin-bottom:3%">
                                 <button type="reset" class="btn btn-outline-danger mr-2">Reset</button>
-                                <button type="submit" class="btn btn-primary mr-3">Buat</button>
+                                <button type="submit" class="btn btn-primary">Buat</button>
                             </div>
                         </form>
                     </div>
@@ -904,6 +921,10 @@
                 "columns": [{
                         "data": "task_title",
                         className: 'font-weight-bold'
+                    },
+                    {
+                        "data": "employee_name",
+                        className: 'text-center font-weight-bold'
                     },
                     {
                         "data": "employee_name",

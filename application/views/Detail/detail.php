@@ -31,7 +31,7 @@
     } else {
         $linkhome = base_url('index.php/home/index/') . $username;
     } ?>
-    <div class="ml-4" style="float:left;">
+    <div class="ml-5" style="float:left;">
         <a class="btn btn-sm btn-dual" href="<?php echo $linkhome ?>">
             <img class="rounded" src="<?php echo base_url('assets/oneui/media/avatars/home.png') ?>" alt="Header Avatar" style="width: 18px;">
             <span class="ml-2">Home</span>
@@ -484,7 +484,7 @@
 
                             <div class="form-group">
                                 <label for="title">Judul Sub Task</label>
-                                <input type="text" class="form-control required" name="title" id="title" placeholder="Judul/Subject " required>
+                                <input autocomplete="off" type="text" class="form-control required" name="title" id="title" placeholder="Judul/Subject " required>
                             </div>
                             <!-- Add pj sub task -->
                             <div class="form-group">
@@ -521,12 +521,12 @@
                                     <span class="input-group-text input-group-text-alt">
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
-                                    <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" required>
+                                    <input autocomplete="off" type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
-                                <textarea class="form-control required js-summernote" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi" required></textarea>
+                                <textarea class="form-control js-summernote" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi" required></textarea>
                             </div>
                             <div style="float:right;margin-bottom:3%">
                                 <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>

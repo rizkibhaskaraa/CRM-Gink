@@ -140,7 +140,10 @@ class home_model extends CI_model
     //fungsi ambil data tabel task untuk tiket berdarakan id_employ_tujuan(PJ task)
     public function gettiketsaya($id_employ)
     {
-        return $this->db->get_where('tm_task', array('employee_sent' => $id_employ, 'employee_destination' => NULL))->result_array();
+        $this->db->select("b.task_title as parent,a.task_title as title,a.task_id,a.task_status,a.task_dateline,a.employee_destination,employee_name");
+        $this->db->join("tm_task as b","b.task_id = a.task_parent","left");
+        $this->db->join("hr_employee","hr_employee.employee_id = a.employee_destination","left");
+        return $this->db->get_where('tm_task as a', array('a.employee_sent' => $id_employ))->result_array();
     }
 
     //fungsi ambil data tabel task untuk tugas saya berdarakan nama_dept_tujuan(departemen PJ task)
@@ -167,6 +170,18 @@ class home_model extends CI_model
         }
         return $this->db->get('tm_task')->result_array();
     }
+    
+    public function gettaskall($id_employ, $dept)
+    {
+        $this->db->select("b.task_title as parent,a.task_title as title,a.task_id,a.task_status,a.employee_destination,a.department_destination,a.task_dateline,employee_name,department_name");
+        $this->db->join("tm_task as b","b.task_id = a.task_parent","left");
+        $this->db->join("hr_employee", "hr_employee.employee_id = a.employee_destination","left");
+        $this->db->join("hr_department", "hr_department.department_id = a.department_destination","left");
+        if ($dept != "1") { //jika bukan CEO yang login
+            $this->db->where('a.employee_destination', $id_employ);
+        }
+        return $this->db->get('tm_task as a')->result_array();
+    }    
 
     //fungsi update db task
     public function updatestatus($id)
@@ -333,7 +348,9 @@ class home_model extends CI_model
         $this->db->order_by($order_field, $order_ascdesc);
         $this->db->limit($limit, $start);
         $this->db->where("task_parent", null);
-        $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination", 'left'); //join tabel employe dengan task
+        $this->db->select("task_title,a.employee_name as penerima,b.employee_name as pengirim,task_dateline,task_status,task_id");
+        $this->db->join("hr_employee as a", "a.employee_id = tm_task.employee_destination", 'left'); //join tabel employe dengan task
+        $this->db->join("hr_employee as b", "b.employee_id = tm_task.employee_sent", 'left'); //join tabel employe dengan task
         return $this->db->get_where('tm_task', array("department_destination" => $dept))->result_array();
     }
 

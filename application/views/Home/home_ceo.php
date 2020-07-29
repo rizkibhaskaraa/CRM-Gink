@@ -45,7 +45,6 @@
         <a class="btn btn-sm btn-dual" href="<?php echo $linkhome ?>">
             <img class="rounded" src="<?php echo base_url('assets/oneui/media/avatars/home.png') ?>" alt="Header Avatar" style="width: 18px;">
             <span class="ml-2">Home</span>
-
         </a>
     </div>
     <!-- end home button -->
@@ -301,40 +300,40 @@
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
                                     <th class="font-w700 text-center" style="width: 16%;">ID Task</th>
-                                    <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Penanggung Jawab</th>
                                     <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Departemen PJ</th>
-                                    <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Task Parent</th>
                                     <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Deadline</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($tasksaya as $valueparent) {
-                                    if ($valueparent["task_status"] == "Not Finished") { ?>
+                                <?php foreach ($task as $value) {
+                                    if ($value["task_status"] == "Not Finished") { ?>
                                         <tr>
                                             <td style="width: 10%;">
-                                                <span class="font-w600">#<?php echo $valueparent["task_id"] . " " . $valueparent["task_title"] ?></span>
+                                                <span class="font-w600">#<?php echo $value["task_id"] . " " . $value["title"] ?></span>
                                             </td>
                                             <td style="width: 10%;">
-                                                <span class="font-w600"><?php echo $valueparent["employee_name"] ?></span>
+                                                <span class="font-w600"><?php echo $value["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
-                                                <span class="font-w600"><?php echo $valueparent["department_name"] ?></span>
+                                                <span class="font-w600"><?php echo $value["department_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
-                                                <span class="font-w600">-</span>
+                                                <span class="font-w600"><?php echo $value["parent"] ?></span>
                                             </td>
                                             <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
-                                                <span class="font-size-sm  "><?php echo $valueparent["task_dateline"] ?></span>
+                                                <span class="font-size-sm  "><?php echo $value["task_dateline"] ?></span>
                                             </td>
                                             <td class="text-danger text-center" style="width: 15%;">
-                                                <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $valueparent["task_status"] ?></span>
+                                                <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["task_status"] ?></span>
                                             </td>
                                         </tr>
                                 <?php }
                                 } ?>
                             <tbody>
-                            <tbody>
+                            <!-- <tbody>
                                 <?php foreach ($taskparent as $valueparent) {
                                     $i = 1;
                                     $row_taskbelum = 1;
@@ -374,7 +373,7 @@
                                         }
                                     }
                                 } ?>
-                            </tbody>
+                            </tbody> -->
                         </table>
                     </div>
                 </div>
@@ -391,39 +390,40 @@
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
                                     <th class="font-w700 text-center" style="width: 16%;">ID Task</th>
-                                    <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Penanggung Jawab</th>
                                     <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Departemen PJ</th>
-                                    <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Task Parent</th>
                                     <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Deadline</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($tasksaya as $valueparent) {
-                                    if ($valueparent["task_status"] == "Finish") { ?>
+                                <?php foreach ($task as $value) {
+                                    if ($value["task_status"] == "Finish") { ?>
                                         <tr>
                                             <td style="width: 10%;" `>
-                                                <span class="font-w600">#<?php echo $valueparent["task_id"] . " " . $valueparent["task_title"]  ?></span>
+                                                <span class="font-w600">#<?php echo $value["task_id"] . " " . $value["title"]  ?></span>
                                             </td>
                                             <td style="width: 10%;" `>
-                                                <span class="font-w600"><?php echo $valueparent["employee_name"] ?></span>
+                                                <span class="font-w600"><?php echo $value["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
-                                                <span class="font-w600"><?php echo $valueparent["department_name"] ?></span>
+                                                <span class="font-w600"><?php echo $value["department_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
-                                                <span class="font-w600">-</span>
+                                                <span class="font-w600"><?php echo $value["parent"] ?></span>
                                             </td>
                                             <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
-                                                <span class="font-size-sm  "><?php echo $valueparent["task_dateline"] ?></span>
+                                                <span class="font-size-sm  "><?php echo $value["task_dateline"] ?></span>
                                             </td>
                                             <td class="text-danger text-center" style="width: 15%;">
-                                                <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $valueparent["task_status"] ?></span>
+                                                <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["task_status"] ?></span>
                                             </td>
                                         </tr>
                                 <?php }
                                 } ?>
-                            <tbody>
+                            </tbody>
+                            <!-- <tbody>
                                 <?php foreach ($taskparent as $valueparent) {
                                     $i = 1;
                                     $row_taskselesai = 1;
@@ -463,7 +463,7 @@
                                         }
                                     }
                                 } ?>
-                            </tbody>
+                            </tbody> -->
                         </table>
                     </div>
                 </div>
@@ -482,52 +482,25 @@
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
                                     <th class="font-w700 text-center" style="width: 16%;">ID Task</th>
-                                    <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
-                                    <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Penanggung Jawab</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Task Parent</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Deadline</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Status</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Aksi</th>
                                 </tr>
                             </thead>
-                            <!-- body jika tidak ada sub task dan belum ada PJ-->
                             <tbody>
                                 <?php foreach ($tiketsaya as $value) {
-                                    if ($value["task_status"] == "Not Finished" && $value["task_parent"] == "") { ?>
+                                    if ($value["task_status"] == "Not Finished") { ?>
                                         <tr>
                                             <td style="width: 10%;">
-                                                <span class="font-w600">#<?php echo $value["task_id"] . " " . $value["task_title"] ?></span>
+                                                <span class="font-w600">#<?php echo $value["task_id"] . " " . $value["title"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
-                                                <span class="font-w600">-</span>
-                                            </td>
-                                            <td style="width: 10%;" class="text-center">
-                                                <span class="font-w600">-</span>
-                                            </td>
-                                            <td class="text-center font-w700" style="width: 20%;">
-                                                <span class="font-size-sm  "><?php echo $value["task_dateline"] ?></span>
-                                            </td>
-                                            <td class="text-danger text-center" style="width: 15%;">
-                                                <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["task_status"] ?></span>
-                                            </td>
-                                            <td class="text-center" style="width: 15%;">
-                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . "/" . $value['task_id'] . "/" . $status . "/Tiket" ?>" class="text-decoration-none">Buka</a>
-                                            </td>
-                                        </tr>
-                                <?php }
-                                } ?>
-                                <!-- akhir body jika tidak ada sub task dan belum ada PJ-->
-                                <!-- body jika tidak ada sub task dan ada PJ-->
-                                <?php foreach ($tiket as $value) {
-                                    if ($value["task_status"] == "Not Finished" && $value["task_parent"] == "") { ?>
-                                        <tr>
-                                            <td style="width: 10%;">
-                                                <span class="font-w600">#<?php echo $value["task_id"] . " " . $value["task_title"] ?></span>
-                                            </td>
-                                            <td class="text-center" style="width: 10%;">
                                                 <span class="font-w600"><?php echo $value["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
-                                                <span class="font-w600">-</span>
+                                                <span class="font-w600"><?php echo $value["parent"] ?></span>
                                             </td>
                                             <td class="text-center font-w700" style="width: 20%;">
                                                 <span class="font-size-sm  "><?php echo $value["task_dateline"] ?></span>
@@ -541,49 +514,7 @@
                                         </tr>
                                 <?php }
                                 } ?>
-                                <!-- akhir body jika tidak ada sub task dan ada PJ-->
-                                <!-- body jika ada sub task dan ada PJ-->
-                                <?php foreach ($taskparent as $valueparent) {
-                                    $i = 1;
-                                    $row_tiketbelum = 1; //untuk rowspan
-                                    foreach ($tiket as $value) {
-                                        if ($valueparent["task_id"] == $value["task_parent"] && $value["task_status"] == "Not Finished") {
-                                            $row_tiketbelum += 1;
-                                        }
-                                    }
-                                ?>
-                                    <tr>
-                                        <?php if ($row_tiketbelum != 1) { ?>
-                                            <td style="width: 10%;" rowspan="<?= $row_tiketbelum ?>">
-                                                <span class="font-w600">#<?php echo $valueparent["task_id"] . " " . $valueparent["task_title"] ?></span>
-                                            </td>
-                                            <td class="text-center" style="width: 10%;" rowspan="<?= $row_tiketbelum ?>">
-                                                <span class="font-w600"><?php echo $valueparent["employee_name"] ?></span>
-                                            </td>
-                                        <?php } ?>
-                                    </tr>
-                                    <?php foreach ($tiket as $value) {
-                                        if ($valueparent["task_id"] == $value["task_parent"] && $value["task_status"] == "Not Finished") { ?>
-                                            <tr>
-                                                <td style="width: 10%;">
-                                                    <span class="font-w600"><?php echo $i . "." . $value["task_title"] ?></span>
-                                                </td>
-                                                <td class="text-center font-w700" style="width: 20%;">
-                                                    <span class="font-size-sm "><?php echo $value["task_dateline"] ?></span>
-                                                </td>
-                                                <td class="text-danger text-center" style="width: 15%;">
-                                                    <span class="font-w600  btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["task_status"] ?></span>
-                                                </td>
-                                                <td class="text-center" style="width: 15%;">
-                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . "/" . $value['task_id'] . "/" . $status . "/Tiket" ?>" class="text-decoration-none">Buka</a>
-                                                </td>
-                                            </tr>
-                                <?php $i += 1;
-                                        }
-                                    }
-                                } ?>
                             </tbody>
-                            <!-- akhir body jika ada sub task dan ada PJ-->
                         </table>
                     </div>
                 </div>
@@ -600,26 +531,25 @@
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
                                     <th class="font-w700 text-center" style="width: 16%;">ID Task</th>
-                                    <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
-                                    <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Penanggung Jawab</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Task Parent</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Deadline</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Status</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Aksi</th>
                                 </tr>
                             </thead>
-                            <!-- body jika tidak ada sub task dan ada PJ-->
                             <tbody>
-                                <?php foreach ($tiket as $value) {
-                                    if ($value["task_status"] == "Finish" && $value["task_parent"] == "") { ?>
+                                <?php foreach ($tiketsaya as $value) {
+                                    if ($value["task_status"] == "Finish") { ?>
                                         <tr>
                                             <td style="width: 10%;">
-                                                <span class="font-w600">#<?php echo $value["task_id"] . " " . $value["task_title"] ?></span>
+                                                <span class="font-w600">#<?php echo $value["task_id"] . " " . $value["title"] ?></span>
                                             </td>
                                             <td style="width: 10%;">
                                                 <span class="font-w600"><?php echo $value["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
-                                                <span class="font-w600">-</span>
+                                                <span class="font-w600"><?php echo $value["parent"] ?></span>
                                             </td>
                                             <td class="text-center font-w700" style="width: 20%;">
                                                 <span class="font-size-sm  "><?php echo $value["task_dateline"] ?></span>
@@ -633,51 +563,7 @@
                                         </tr>
                                 <?php }
                                 } ?>
-
-                                <!-- akhir body jika tidak ada sub task dan ada PJ-->
-                                <!-- body jika ada sub task dan ada PJ-->
-                            <tbody>
-                                <?php foreach ($taskparent as $valueparent) {
-                                    $i = 1;
-                                    $row = 1;
-                                    foreach ($tiket as $value) {
-                                        if ($valueparent["task_id"] == $value["task_parent"] && $value["task_status"] == "Finish") {
-                                            $row += 1;
-                                        }
-                                    }
-                                ?>
-                                    <tr>
-                                        <?php if ($row != 1) { ?>
-                                            <td style="width: 10%;" rowspan="<?= $row ?>">
-                                                <span class="font-w600">#<?php echo $valueparent["task_id"] . " " . $valueparent["task_title"] ?></span>
-                                            </td>
-                                            <td class="text-center" style="width: 10%;" rowspan="<?= $row ?>">
-                                                <span class="font-w600"><?php echo $valueparent["employee_name"] ?></span>
-                                            </td>
-                                        <?php } ?>
-                                    </tr>
-                                    <?php foreach ($tiket as $value) {
-                                        if ($valueparent["task_id"] == $value["task_parent"] && $value["task_status"] == "Finish") { ?>
-                                            <tr>
-                                                <td style="width: 10%;">
-                                                    <span class="font-w600"><?php echo $i . "." . $value["task_title"] ?></span>
-                                                </td>
-                                                <td class="text-center font-w700" style="width: 20%;">
-                                                    <span class="font-size-sm  "><?php echo $value["task_dateline"] ?></span>
-                                                </td>
-                                                <td class="text-danger text-center" style="width: 15%;">
-                                                    <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["task_status"] ?></span>
-                                                </td>
-                                                <td class="text-center" style="width: 15%;">
-                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . "/" . $value['task_id'] . "/" . $status . "/Tiket" ?>" class="text-decoration-none">Buka</a>
-                                                </td>
-                                            </tr>
-                                <?php $i += 1;
-                                        }
-                                    }
-                                } ?>
                             </tbody>
-                            <!-- akhir body jika ada sub task dan ada PJ-->
                         </table>
                     </div>
                 </div>

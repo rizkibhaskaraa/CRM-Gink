@@ -50,10 +50,11 @@ class Home extends CI_Controller
         $data["product"] = $product = $this->home_model->getproduct(); //memanggil fungsi getlayanan di home_model
 
         //ambil data tabel task untuk tugas saya
-        $data["taskselesai"] = $this->home_model->gettaskselesai($data["employ_id"], $data["employ_dept"]["department_id"]);
-        $data["taskbelum"] = $this->home_model->gettaskbelum($data["employ_id"], $data["employ_dept"]["department_id"]);
-        $data["tasksaya"] = $this->home_model->gettasksaya($data["employ_id"], $data["employ_dept"]["department_id"]);
-        $data["taskparent"] = $this->home_model->gettaskparent($data["employ_dept"]["department_id"]);
+        // $data["taskselesai"] = $this->home_model->gettaskselesai($data["employ_id"], $data["employ_dept"]["department_id"]);
+        // $data["taskbelum"] = $this->home_model->gettaskbelum($data["employ_id"], $data["employ_dept"]["department_id"]);
+        // $data["tasksaya"] = $this->home_model->gettasksaya($data["employ_id"], $data["employ_dept"]["department_id"]);
+        $data["task"] = $this->home_model->gettaskall($data["employ_id"], $data["employ_dept"]["department_id"]);
+        // $data["taskparent"] = $this->home_model->gettaskparent($data["employ_dept"]["department_id"]);
         //akhir ambil data tabel task untuk tugas saya
 
         //ambil data tabel task untuk request tugas
@@ -62,7 +63,7 @@ class Home extends CI_Controller
         //akhir ambil data tabel task untuk request tugas
 
         //ambil data tabel task untuk tiket saya
-        $data["tiket"] = $this->home_model->gettiket($data["employ_id"]);
+        // $data["tiket"] = $this->home_model->gettiket($data["employ_id"]);
         $data["tiketsaya"] = $this->home_model->gettiketsaya($data["employ_id"]);
         //akhir ambil data tabel task untuk tiket saya
 
@@ -109,10 +110,11 @@ class Home extends CI_Controller
         $data["product"] = $product = $this->home_model->getproduct(); //memanggil fungsi getlayanan di home_model
 
         //ambil data tabel task untuk tugas saya
-        $data["taskselesai"] = $this->home_model->gettaskselesai($data["employ_id"], $data["employ_dept"]["department_id"]);
-        $data["taskbelum"] = $this->home_model->gettaskbelum($data["employ_id"], $data["employ_dept"]["department_id"]);
-        $data["tasksaya"] = $this->home_model->gettasksaya($data["employ_id"], $data["employ_dept"]["department_id"]);
-        $data["taskparent"] = $this->home_model->gettaskparent($data["employ_dept"]["department_id"]);
+        // $data["taskselesai"] = $this->home_model->gettaskselesai($data["employ_id"], $data["employ_dept"]["department_id"]);
+        // $data["taskbelum"] = $this->home_model->gettaskbelum($data["employ_id"], $data["employ_dept"]["department_id"]);
+        // $data["tasksaya"] = $this->home_model->gettasksaya($data["employ_id"], $data["employ_dept"]["department_id"]);
+        $data["task"] = $this->home_model->gettaskall($data["employ_id"], $data["employ_dept"]["department_id"]);
+        // $data["taskparent"] = $this->home_model->gettaskparent($data["employ_dept"]["department_id"]);
         //akhir ambil data tabel task untuk tugas saya
 
         //ambil data tabel task untuk menghitung report staff
@@ -123,7 +125,7 @@ class Home extends CI_Controller
         //akhir ambil data tabel task untuk menghitung report staff
 
         //ambil data tabel task untuk tiket saya
-        $data["tiket"] = $this->home_model->gettiket($data["employ_id"]);
+        // $data["tiket"] = $this->home_model->gettiket($data["employ_id"]);
         $data["tiketsaya"] = $this->home_model->gettiketsaya($data["employ_id"]);
         //akhir ambil data tabel task untuk tiket saya
 

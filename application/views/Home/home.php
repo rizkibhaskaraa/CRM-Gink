@@ -175,13 +175,15 @@
                         <div class="block-header border-bottom ">
                             <h3 class="block-title text-primary">Request Tugas</h3>
                         </div>
-                        <div class="col-3 float-right">
+                        <div class="col-2 float-right mt-2 mr-1">
                             <select name="filter-status" id="filter-status" class="form-control">
-                                <option value="">Status</option>
+                            <option class="font-w700" disabled="disabled" selected value="">Status</option>
+                                <option value="">Semua Status</option>
                                 <option value="Finish">Selesai</option>
                                 <option value="Not Finished">Belum Selesai</option>
                             </select>
                         </div>
+
                         <div style="clear:both"></div>
                         <div class="block-content block-content-full">
                             <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0 w-100" id="table-request">
@@ -190,7 +192,7 @@
                                         <th class="font-w700 text-center" style="width: 20%;">Title</th>
                                         <th class="font-w700 text-center" style="width: 20%;">Penanggung Jawab</th>
                                         <th class="font-w700 text-center" style="width: 20%;">Deadline</th>
-                                        <th class="font-w700 text-center" style="width:15%" ;>Status</th>
+                                        <th class="font-w700 text-center" style="width: 20%;">Status</th>
                                         <th class="font-w700 text-center" style="width: 20%;">Aksi</th>
                                     </tr>
                                 </thead>
@@ -357,7 +359,7 @@
                                                 <span class="font-w600">#<?php echo $valueparent["task_id"] . " " . $valueparent["task_title"] ?></span>
                                             </td>
                                             <td class="text-center" style="width: 10%;">
-                                                <span class="font-w600"><?php echo $valueparent["employee_destination"] ?></span>
+                                                <span class="font-w600"><?php echo $valueparent["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
                                                 <span class="font-w600">-</span>
@@ -449,10 +451,10 @@
                                 <?php foreach ($tasksaya as $valueparent) {
                                     if ($valueparent["task_status"] == "Finish") { ?>
                                         <tr>
-                                            <td style="width: 10%;" `>
+                                            <td style="width: 10%;" >
                                                 <span class="font-w600">#<?php echo $valueparent["task_id"] . " " . $valueparent["task_title"] ?></span>
                                             </td>
-                                            <td style="width: 10%;" `>
+                                            <td class="text-center" style="width: 10%;" >
                                                 <span class="font-w600"><?php echo $valueparent["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
@@ -666,7 +668,7 @@
                                             <td style="width: 10%;">
                                                 <span class="font-w600">#<?php echo $value["task_id"] . " " . $value["task_title"] ?></span>
                                             </td>
-                                            <td  style="width: 10%;">
+                                            <td class="text-center"  style="width: 10%;">
                                                 <span class="font-w600"><?php echo $value["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
@@ -916,6 +918,7 @@
                     {
                         "data": "task_status",
                         className: 'text-center',
+                        "orderable": false,
                         render: function(data, type, row) {
                             if (data == "Finish") {
                                 let html = "<strong class='btn-sm btn-block btn-success'><i class='fa fa-fw fa-check'></i>" + data + "</strong>";
@@ -929,6 +932,7 @@
                     {
                         "data": "task_id",
                         className: 'text-center',
+                        "orderable": false,
                         render: function(data, type, row) {
                             let html = "<a class='link-fx font-weight-bold' href='<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . '/' ?>" +
                                 data + "/<?php echo $status ?>" + "/Request'>Buka</a>";

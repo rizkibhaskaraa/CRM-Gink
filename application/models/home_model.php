@@ -111,31 +111,31 @@ class home_model extends CI_model
     }
 
     //fungsi ambil data task selesai berdarakan id_employ_tujuan(PJ task)
-    public function gettaskselesai($id_employ, $dept)
-    {
-        if ($dept == "1") { //jika CEO yang login
-            return $this->db->get_where('tm_task', array("task_status" => "Finish"))->result_array();
-        } else {
-            return $this->db->get_where('tm_task', array('employee_destination' => $id_employ, "task_status" => "Finish"))->result_array();
-        }
-    }
+    // public function gettaskselesai($id_employ, $dept)
+    // {
+    //     if ($dept == "1") { //jika CEO yang login
+    //         return $this->db->get_where('tm_task', array("task_status" => "Finish"))->result_array();
+    //     } else {
+    //         return $this->db->get_where('tm_task', array('employee_destination' => $id_employ, "task_status" => "Finish"))->result_array();
+    //     }
+    // }
 
     //fungsi ambil data task belum selesai berdarakan id_employ_tujuan(PJ task)
-    public function gettaskbelum($id_employ, $dept)
-    {
-        if ($dept == "1") { //jika CEO yang login
-            return $this->db->get_where('tm_task', array("task_status" => "Not Finished"))->result_array();
-        } else {
-            return $this->db->get_where('tm_task', array('employee_destination' => $id_employ, "task_status" => "Not Finished"))->result_array();
-        }
-    }
+    // public function gettaskbelum($id_employ, $dept)
+    // {
+    //     if ($dept == "1") { //jika CEO yang login
+    //         return $this->db->get_where('tm_task', array("task_status" => "Not Finished"))->result_array();
+    //     } else {
+    //         return $this->db->get_where('tm_task', array('employee_destination' => $id_employ, "task_status" => "Not Finished"))->result_array();
+    //     }
+    // }
 
     //fungsi ambil data tabel task untuk tiket berdarakan id_employ_tujuan(PJ task)
-    public function gettiket($id_employ)
-    {
-        $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination"); //join tabel employe ke task
-        return $this->db->get_where('tm_task', array('employee_sent' => $id_employ))->result_array();
-    }
+    // public function gettiket($id_employ)
+    // {
+    //     $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination"); //join tabel employe ke task
+    //     return $this->db->get_where('tm_task', array('employee_sent' => $id_employ))->result_array();
+    // }
 
     //fungsi ambil data tabel task untuk tiket berdarakan id_employ_tujuan(PJ task)
     public function gettiketsaya($id_employ)
@@ -147,29 +147,29 @@ class home_model extends CI_model
     }
 
     //fungsi ambil data tabel task untuk tugas saya berdarakan nama_dept_tujuan(departemen PJ task)
-    public function gettaskparent($nama_departemen)
-    {
-        $departemen = array($nama_departemen, null);
-        $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination");
-        $this->db->join("hr_department", "hr_department.department_id = tm_task.department_destination");
-        if ($nama_departemen != "1") {
-            $this->db->where_in('department_destination', $departemen);
-        }
-        $this->db->where('task_parent', NULL);
-        return $this->db->get('tm_task')->result_array();
-    }
+    // public function gettaskparent($nama_departemen)
+    // {
+    //     $departemen = array($nama_departemen, null);
+    //     $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination");
+    //     $this->db->join("hr_department", "hr_department.department_id = tm_task.department_destination");
+    //     if ($nama_departemen != "1") {
+    //         $this->db->where_in('department_destination', $departemen);
+    //     }
+    //     $this->db->where('task_parent', NULL);
+    //     return $this->db->get('tm_task')->result_array();
+    // }
 
     //fungsi ambil data tabel task untuk tugas saya berdarakan nama_dept_tujuan(departemen PJ task) dan id_employ_tujuan
-    public function gettasksaya($id_employ, $dept)
-    {
-        $this->db->where('task_parent', null);
-        $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination");
-        $this->db->join("hr_department", "hr_department.department_id = tm_task.department_destination");
-        if ($dept != "1") { //jika bukan CEO yang login
-            $this->db->where('employee_destination', $id_employ);
-        }
-        return $this->db->get('tm_task')->result_array();
-    }
+    // public function gettasksaya($id_employ, $dept)
+    // {
+    //     $this->db->where('task_parent', null);
+    //     $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination");
+    //     $this->db->join("hr_department", "hr_department.department_id = tm_task.department_destination");
+    //     if ($dept != "1") { //jika bukan CEO yang login
+    //         $this->db->where('employee_destination', $id_employ);
+    //     }
+    //     return $this->db->get('tm_task')->result_array();
+    // }
     
     public function gettaskall($id_employ, $dept)
     {
@@ -327,21 +327,18 @@ class home_model extends CI_model
     //function-fiunction datatable
     public function count_all($dept, $status)
     {
+        $this->db->where("task_parent",null);
         $this->db->where("department_destination", $dept);
         if ($status != "") {
             $this->db->where("task_status", $status);
         }
-        $this->db->from('tm_task');
-        $result = $this->db->count_all_results();
-        return $this->db->count_all_results();
+        return $this->db->count_all_results('tm_task');
     }
 
     public function filter($search, $limit, $start, $order_field, $order_ascdesc, $dept, $status)
     {
-        if ($search != "") {
-            $this->db->like('task_title', $search);
-            $this->db->where("department_destination", $dept);
-        }
+        $this->db->like('task_title', $search);
+        $this->db->where("department_destination", $dept);
         if ($status != "") {
             $this->db->where("task_status", $status);
         }
@@ -356,10 +353,9 @@ class home_model extends CI_model
 
     public function count_filter($search, $dept, $status)
     {
-        if ($search != "") {
-            $this->db->like('task_title', $search);
-            $this->db->where("department_destination", $dept);
-        }
+        $this->db->where("task_parent",null);
+        $this->db->like('task_title', $search);
+        $this->db->where("department_destination", $dept);
         if ($status != "") {
             $this->db->where("task_status", $status);
         }

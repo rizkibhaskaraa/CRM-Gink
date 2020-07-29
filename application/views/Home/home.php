@@ -372,6 +372,9 @@
                                             </td>
                                             <td class="text-center" style="width: 15%;">
                                                 <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . "/" . $value['task_id'] . "/" . $status . "/TugasBelum" ?>" class="text-decoration-none">Buka</a>
+                                                <?php if($value["parent"] != null){?>
+                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/status/') . $value["task_id"] ?>" class="text-decoration-none"> | Selesai</a>
+                                                <?php }?>
                                             </td>
                                         </tr>
                                 <?php }
@@ -505,7 +508,7 @@
                                     if ($value["task_status"] == "Finish") { ?>
                                         <tr>
                                             <td style="width: 10%;">
-                                                <span class="font-w600">#<?php echo $value["task_id"] . " " . $value["task_title"] ?></span>
+                                                <span class="font-w600">#<?php echo $value["task_id"] . " " . $value["title"] ?></span>
                                             </td>
                                             <td class="text-center"  style="width: 10%;">
                                                 <span class="font-w600"><?php echo $value["employee_name"] ?></span>

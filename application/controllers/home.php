@@ -144,7 +144,7 @@ class Home extends CI_Controller
         $id_layanan = $this->input->post("id_layanan");
         $status = $this->input->post("status-layanan");
         $this->home_model->updatestatuslayanan($id_layanan, $status);
-        $this->session->set_flashdata("sukses_update_status","berhasil");
+        $this->session->set_flashdata("sukses_update_status", "berhasil");
         redirect(base_url('index.php/home/ceo/') . $user);
     }
     //fungsi menuju halaman detail
@@ -200,7 +200,7 @@ class Home extends CI_Controller
         $employ = $this->home_model->getemploytiket($id_employ);
         $user = $this->home_model->getuser($id_employ);
         $departemen = $this->home_model->getdepartemen($user["user_username"]);
-        
+
 
 
         $masalah = $this->input->post("masalah");
@@ -235,18 +235,17 @@ class Home extends CI_Controller
             $departemen_tujuan = $this->input->post("departemen");
             $department_id = $this->home_model->getdepartmentbyid($departemen_tujuan);
             $id_pengirim = $this->input->post("nama_pengirim");
-            if($id_pengirim == $employ["employee_id"]){
-                $departemen_sent = $departemen["department_id"];    
-            } else { 
+            if ($id_pengirim == $employ["employee_id"] || $id_pengirim == null) {
+                $departemen_sent = $departemen["department_id"];
+            } else {
                 $id_employ = $id_pengirim;
                 $departemen_sent = null;
-
             }
             //jika staff yang buat tiket untuk staff
             $data_task = array(
                 "department_destination" => $department_id["department_id"],
                 "employee_sent" => $id_employ,
-                "department_sent" => $departemen_sent ,
+                "department_sent" => $departemen_sent,
                 "task_title" => $this->input->post("title"),
                 "task_description" => $this->input->post("deskripsi"),
                 "task_date" => date("Y-m-d H-i-s"),
@@ -257,7 +256,7 @@ class Home extends CI_Controller
         }
         //akhir menentukan departemen tujuan
         $this->home_model->insert_task($data_task);
-        $this->session->set_flashdata("sukses_buat","Berhasil");
+        $this->session->set_flashdata("sukses_buat", "Berhasil");
         if ($departemen["department_id"] == "1") {
             redirect(base_url('index.php/home/ceo/') . $user["user_username"]);
         } else {
@@ -311,7 +310,7 @@ class Home extends CI_Controller
             "product_id" => $produk["product_id"],
         );
         $this->home_model->insert_layanan($data_layanan);
-        $this->session->set_flashdata("sukses_add_layanan","Berhasil");
+        $this->session->set_flashdata("sukses_add_layanan", "Berhasil");
         redirect(base_url('index.php/home/ceo/') . $username);
     }
 

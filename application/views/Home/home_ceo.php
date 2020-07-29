@@ -9,7 +9,7 @@
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
     <link rel="shortcut icon" href="<?php echo base_url('assets/oneui/media/favicons/favicon.png') ?>">
     <link rel="icon" type="image/png" sizes="192x192" href="<?php echo base_url('assets/oneui/media/favicons/favicon-192x192.png') ?>">
-    
+
     <!-- END Icons -->
     <!-- Stylesheets -->
     <!-- Fonts and OneUI framework -->
@@ -29,10 +29,10 @@
 </head>
 
 <body>
-    <div class="status-login" data-flashdata="<?= $this->session->flashdata('status-login');?>"></div>
-    <div class="sukses_buat" data-flashdata="<?= $this->session->flashdata('sukses_buat');?>"></div>
-    <div class="sukses_add_layanan" data-flashdata="<?= $this->session->flashdata('sukses_add_layanan');?>"></div>
-    <div class="sukses_update_status" data-flashdata="<?= $this->session->flashdata('sukses_update_status');?>"></div>
+    <div class="status-login" data-flashdata="<?= $this->session->flashdata('status-login'); ?>"></div>
+    <div class="sukses_buat" data-flashdata="<?= $this->session->flashdata('sukses_buat'); ?>"></div>
+    <div class="sukses_add_layanan" data-flashdata="<?= $this->session->flashdata('sukses_add_layanan'); ?>"></div>
+    <div class="sukses_update_status" data-flashdata="<?= $this->session->flashdata('sukses_update_status'); ?>"></div>
 
     <!-- Right Section -->
     <!-- Home button -->
@@ -333,7 +333,7 @@
                                 <?php }
                                 } ?>
                             <tbody>
-                            <!-- <tbody>
+                                <!-- <tbody>
                                 <?php foreach ($taskparent as $valueparent) {
                                     $i = 1;
                                     $row_taskbelum = 1;
@@ -490,6 +490,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php echo count($tiketsaya) ?>
                                 <?php foreach ($tiketsaya as $value) {
                                     if ($value["task_status"] == "Not Finished") { ?>
                                         <tr>
@@ -730,33 +731,33 @@
                         <h4>Isi Data Dibawah Ini dengan Lengkap untuk Tambah Layanan</h4>
                         <form action="<?php echo base_url('index.php/home/tambahlayanan/') . $username ?>" method="POST" id="form-staff">
                             <input type="text" name="customer_id" hidden>
-                            
+
                             <div class="form-group">
                                 <label for="title">Customer</label>
                                 <input type="text" class="form-control" name="customer-popup" id="customer-popup" readonly>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="title">Nama Layanan</label>
                                 <input type="text" class="form-control" name="nama-layanan" id="nama-layanan">
                             </div>
-                           
+
                             <div class="form-group">
                                 <label for="kategori_produk">Kategori Produk</label>
                                 <select name="kategori_produk" id="kategori_produk" class="form-control">
-                               
-                                <optgroup label="Project">
-                                    <option value="Website">Website</option>
-                                    <option value="Web Apps">App Website</option>
-                                </optgroup>
 
-                                <optgroup label="Server & Hosting">
-                                <option value="Dedicated Server">Dedicated Server</option>
-                                    <option value="Colocation Server">Colocation Server</option>
-                                    <option value="Hosting 10">Hosting 10</option>
-                                    <option value="Hosting 50">Hosting 50</option>
-                                </optgroup>
-                           
+                                    <optgroup label="Project">
+                                        <option value="Website">Website</option>
+                                        <option value="Web Apps">App Website</option>
+                                    </optgroup>
+
+                                    <optgroup label="Server & Hosting">
+                                        <option value="Dedicated Server">Dedicated Server</option>
+                                        <option value="Colocation Server">Colocation Server</option>
+                                        <option value="Hosting 10">Hosting 10</option>
+                                        <option value="Hosting 50">Hosting 50</option>
+                                    </optgroup>
+
                                 </select>
                             </div>
                             <div class="form-group">
@@ -879,15 +880,15 @@
                         "data": "service_status",
                         className: 'text-center',
                         "orderable": false,
-                        render: function(data, type, row,meta) {
+                        render: function(data, type, row, meta) {
                             if (data == "Active" && data != "") {
-                                let html = "<button class='btn-sm btn-block btn-success' data-toggle='modal' data-target='#modal-block-large-status-layanan' href='' id='"+row.service_id+"' onclick='datalayanan(this);'><i class='fa fa-fw fa-check'></i>" + data + "</button>";
+                                let html = "<button class='btn-sm btn-block btn-success' data-toggle='modal' data-target='#modal-block-large-status-layanan' href='' id='" + row.service_id + "' onclick='datalayanan(this);'><i class='fa fa-fw fa-check'></i>" + data + "</button>";
                                 return html;
                             } else if (data == "Not Active" && data != "") {
-                                let html = "<button class='btn-sm btn-block btn-danger' data-toggle='modal' data-target='#modal-block-large-status-layanan' href='' id='"+row.service_id+"' onclick='datalayanan(this);'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</button>";
+                                let html = "<button class='btn-sm btn-block btn-danger' data-toggle='modal' data-target='#modal-block-large-status-layanan' href='' id='" + row.service_id + "' onclick='datalayanan(this);'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</button>";
                                 return html;
                             } else if (data == "Pending" && data != "") {
-                                let html = "<button class='btn-sm btn-block btn-warning' data-toggle='modal' data-target='#modal-block-large-status-layanan' href='' id='"+row.service_id+"' onclick='datalayanan(this);'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</button>";
+                                let html = "<button class='btn-sm btn-block btn-warning' data-toggle='modal' data-target='#modal-block-large-status-layanan' href='' id='" + row.service_id + "' onclick='datalayanan(this);'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</button>";
                                 return html;
                             } else {
                                 let html = "<button></button>";
@@ -900,16 +901,16 @@
                         className: 'text-center',
                         "orderable": false,
                         render: function(data, type, row) {
-                            if(data != null){
+                            if (data != null) {
                                 let html = "<a href='javascript:void(0)' data-toggle='modal' data-target='#modal-block-large' data-pk='" + data +
-                                "' class='btn btn-light btn-edit'><i class='fa fa-plus fa-2x'></i></a>";
+                                    "' class='btn btn-light btn-edit'><i class='fa fa-plus fa-2x'></i></a>";
                                 return html;
-                            }else {
+                            } else {
                                 let html = "<strong></strong>";
                                 return html;
                             }
 
-                           
+
                         }
                     }
                 ],
@@ -955,11 +956,11 @@
                 table.ajax.reload();
             });
         });
-    function datalayanan(a) {
-        var id_layanan = a.id;
-        $('input[name="id_layanan"]').val(id_layanan); //set value
-    }
-		
+
+        function datalayanan(a) {
+            var id_layanan = a.id;
+            $('input[name="id_layanan"]').val(id_layanan); //set value
+        }
     </script>
     <!-- end script datatable untuk data customer -->
     <!-- Page JS Plugins -->
@@ -997,44 +998,44 @@
     <script src="<?php echo base_url('assets/oneui/js/plugins/sweetalert2/sweetalert2.min.js') ?>"></script>
     <script src="<?php echo base_url('assets/oneui/js/pages/be_comp_dialogs.min.js') ?>"></script>
     <script>
-    $(document).ready(function() {
-        var status_login = $(".status-login").data('flashdata');
-        var sukses_buat = $(".sukses_buat").data('flashdata');
-        var sukses_add_layanan = $(".sukses_add_layanan").data('flashdata');
-        var sukses_update_status = $(".sukses_update_status").data('flashdata');
-        if(status_login){
-            Swal.fire({
-                title 	: "Berhasil Login",
-                text 	: "Selamat Datang, "+"<?= $employ_nama ?>",
-                type 	: "success",
-                timer   : 1000
-            });
-        }
-        if(sukses_buat){
-            Swal.fire({
-                title 	: "Berhasil Membuat Tiket",
-                text 	: "",
-                type 	: "success",
-                timer   : 1500
-            });
-        }
-        if(sukses_add_layanan){
-            Swal.fire({
-                title 	: "Berhasil Menambah Layanan",
-                text 	: "",
-                type 	: "success",
-                timer   : 1500
-            });
-        }
-        if(sukses_update_status){
-            Swal.fire({
-                title 	: "Berhasil Update Status Layanan",
-                text 	: "",
-                type 	: "success",
-                timer   : 1500
-            });
-        }
-    });
+        $(document).ready(function() {
+            var status_login = $(".status-login").data('flashdata');
+            var sukses_buat = $(".sukses_buat").data('flashdata');
+            var sukses_add_layanan = $(".sukses_add_layanan").data('flashdata');
+            var sukses_update_status = $(".sukses_update_status").data('flashdata');
+            if (status_login) {
+                Swal.fire({
+                    title: "Berhasil Login",
+                    text: "Selamat Datang, " + "<?= $employ_nama ?>",
+                    type: "success",
+                    timer: 1000
+                });
+            }
+            if (sukses_buat) {
+                Swal.fire({
+                    title: "Berhasil Membuat Tiket",
+                    text: "",
+                    type: "success",
+                    timer: 1500
+                });
+            }
+            if (sukses_add_layanan) {
+                Swal.fire({
+                    title: "Berhasil Menambah Layanan",
+                    text: "",
+                    type: "success",
+                    timer: 1500
+                });
+            }
+            if (sukses_update_status) {
+                Swal.fire({
+                    title: "Berhasil Update Status Layanan",
+                    text: "",
+                    type: "success",
+                    timer: 1500
+                });
+            }
+        });
     </script>
     <!-- akhir -->
 </body>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 27, 2020 at 10:15 AM
+-- Generation Time: Jul 30, 2020 at 08:11 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -38,7 +38,6 @@ CREATE TABLE `crm_customer` (
 --
 
 INSERT INTO `crm_customer` (`customer_id`, `customer_name`) VALUES
-(0, 'apa'),
 (1, 'Bank Lampung'),
 (2, 'Utomo Bank'),
 (3, 'PT. Multi Karya Engineering'),
@@ -218,8 +217,8 @@ CREATE TABLE `master_service` (
 --
 
 INSERT INTO `master_service` (`service_id`, `service_name`, `service_status`, `product_id`, `customer_id`) VALUES
-(1, 'Official Website', 'Active', 3, 1),
-(2, 'ATMB and Debut Transaction', 'Active', 4, 1),
+(1, 'Official Website', 'Pending', 3, 1),
+(2, 'ATMB and Debut Transaction', 'Pending', 4, 1),
 (3, 'Official Website', 'Active', 3, 2),
 (4, 'Official Website', 'Active', 3, 4),
 (5, 'Aplikasi Whistleblowing System Bank Lampung', 'Active', 4, 1);
@@ -277,7 +276,6 @@ INSERT INTO `tm_comment` (`comment_id`, `comment_description`, `task_id`, `emplo
 (2, '<p>Mana pekerjaan yang sama minta??</p>\r\n', 1, 5, 3, '2020-07-24 10:07:35'),
 (7, '<p>Sebentar Pak</p>\r\n', 1, 16, 8, '2020-07-24 11:00:01'),
 (9, '<p>Oke</p>\r\n', 1, 5, 3, '2020-07-24 14:03:04'),
-(11, '<p>Baik pak laksanakan</p>\r\n', 14, 18, 14, '2020-07-24 14:28:23'),
 (13, '<p>Baik ditunggu</p>\r\n', 1, 5, 3, '2020-07-24 14:30:03'),
 (15, '<p>SIAP</p>\r\n', 6, 7, 11, '2020-07-27 14:35:22');
 
@@ -290,8 +288,6 @@ INSERT INTO `tm_comment` (`comment_id`, `comment_description`, `task_id`, `emplo
 CREATE TABLE `tm_task` (
   `task_id` int(11) NOT NULL,
   `task_parent` int(11) DEFAULT NULL,
-  `customer_id` int(11) DEFAULT NULL,
-  `product_id` int(11) DEFAULT NULL,
   `service_id` int(11) DEFAULT NULL,
   `employee_destination` int(11) DEFAULT NULL,
   `department_destination` int(11) DEFAULT NULL,
@@ -310,16 +306,15 @@ CREATE TABLE `tm_task` (
 -- Dumping data for table `tm_task`
 --
 
-INSERT INTO `tm_task` (`task_id`, `task_parent`, `customer_id`, `product_id`, `service_id`, `employee_destination`, `department_destination`, `employee_sent`, `department_sent`, `task_title`, `task_description`, `task_date`, `task_dateline`, `task_file`, `task_finish`, `task_status`) VALUES
-(1, NULL, NULL, NULL, 1, 16, 2, 5, 1, 'Hosting Website Official Bank Lampung', '<p>Hosting Website Official Bank Lampung dengan jangka waktu 5 tahun<br></p>', '2020-07-22 14:04:24', '2020-09-12', NULL, NULL, 'Finish'),
-(2, NULL, NULL, NULL, 3, NULL, 3, 6, 1, 'Maintenance Website ', 'Perbaikan bug dan tampilan kurang baik pada website', '2020-07-22 14:06:13', '2020-10-03', NULL, NULL, 'Not Finished'),
-(3, NULL, NULL, NULL, 2, 16, 2, 6, 1, 'Hosting Fitur', '<p>Hosting Bank Lampung<br></p>', '2020-07-22 14:09:41', '2020-08-08', '20200421_085234.jpg', '2020-07-24 11:24:07', 'Finish'),
-(4, NULL, NULL, NULL, NULL, NULL, 2, 6, 1, 'Daftar Keuangan Mingguan', '<p>Tolong rekap data ke saya</p>', '2020-07-22 14:16:08', '2020-08-08', NULL, NULL, 'Not Finished'),
-(5, NULL, NULL, NULL, NULL, NULL, 3, 10, 3, 'Tugas Impossible', '<p>Tugas yang tidak mungkin dikerjakan oleh saya</p>', '2020-07-23 13:32:06', '2020-08-09', NULL, NULL, 'Not Finished'),
-(6, NULL, NULL, NULL, NULL, 7, 3, 16, 2, 'Tugas Impossible lagi', '<p>Tugas yang tidak mungkin dikerjakan oleh saya</p>', '2020-07-23 13:32:06', '2020-08-09', NULL, '2020-07-23 15:03:51', 'Finish'),
-(8, NULL, NULL, NULL, NULL, NULL, 3, 5, 1, 'Pembaharuan Website Ginktech ', '<p>Pembaharuan Website Ginktech dan Mintenance rutin</p>', '2020-07-24 09:41:46', '2020-08-08', NULL, NULL, 'Not Finished'),
-(14, 1, NULL, NULL, 1, 18, 2, 16, 2, 'Cepetan di Hosting', '<p>Pak Yudha udah nanyain<br></p>', '2020-07-24 14:21:51', '2020-08-09', NULL, NULL, 'Not Finished'),
-(15, 1, NULL, NULL, 1, NULL, 2, 16, 2, 'asd', '<p>asd</p>', '2020-07-24 14:36:30', '2020-07-19', NULL, NULL, 'Not Finished');
+INSERT INTO `tm_task` (`task_id`, `task_parent`, `service_id`, `employee_destination`, `department_destination`, `employee_sent`, `department_sent`, `task_title`, `task_description`, `task_date`, `task_dateline`, `task_file`, `task_finish`, `task_status`) VALUES
+(1, NULL, 1, 16, 2, 5, 1, 'Hosting Website Official Bank Lampung', '<p>Hosting Website Official Bank Lampung dengan jangka waktu 5 tahun<br></p>', '2020-07-22 14:04:24', '2020-09-12', NULL, NULL, 'Finish'),
+(2, NULL, 3, NULL, 3, 6, 1, 'Maintenance Website ', 'Perbaikan bug dan tampilan kurang baik pada website', '2020-07-22 14:06:13', '2020-10-03', NULL, NULL, 'Not Finished'),
+(3, NULL, 2, 16, 2, 6, 1, 'Hosting Fitur', '<p>Hosting Bank Lampung<br></p>', '2020-07-22 14:09:41', '2020-08-08', '20200421_085234.jpg', '2020-07-24 11:24:07', 'Finish'),
+(4, NULL, NULL, 16, 2, 6, 1, 'Daftar Keuangan Mingguan', '<p>Tolong rekap data ke saya</p>', '2020-07-22 14:16:08', '2020-08-08', NULL, NULL, 'Not Finished'),
+(5, NULL, NULL, 7, 3, 16, 2, 'Tugas Impossible lagi', '<p>Tugas yang tidak mungkin dikerjakan oleh saya</p>', '2020-07-23 13:32:06', '2020-08-09', NULL, '2020-07-23 15:03:51', 'Finish'),
+(6, NULL, NULL, NULL, 3, 5, 1, 'Pembaharuan Website Ginktech ', '<p>Pembaharuan Website Ginktech dan Mintenance rutin</p>', '2020-07-24 09:41:46', '2020-08-08', NULL, NULL, 'Not Finished'),
+(7, 1, 1, 18, 2, 16, 2, 'Cepetan di Hosting', '<p>Pak Yudha udah nanyain<br></p>', '2020-07-24 14:21:51', '2020-08-09', 'ERD.jpg', '2020-07-29 10:22:52', 'Finish'),
+(21, NULL, NULL, 3, NULL, 18, 2, 'Mau Buat Website', '', '2020-07-29 16:44:20', '2020-08-02', NULL, NULL, 'Not Finished');
 
 --
 -- Indexes for dumped tables
@@ -396,8 +391,7 @@ ALTER TABLE `tm_comment`
 --
 ALTER TABLE `tm_task`
   ADD PRIMARY KEY (`task_id`),
-  ADD KEY `customer_id` (`customer_id`),
-  ADD KEY `product_id` (`product_id`),
+  
   ADD KEY `service_id` (`service_id`),
   ADD KEY `employee_sent` (`employee_sent`),
   ADD KEY `employee_destination` (`employee_destination`),
@@ -409,14 +403,16 @@ ALTER TABLE `tm_task`
 --
 
 --
+-- AUTO_INCREMENT for table `crm_customer`
+--
+ALTER TABLE `crm_customer`
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `hr_department`
 --
 ALTER TABLE `hr_department`
   MODIFY `department_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
-
-ALTER TABLE `crm_customer`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `hr_designation`
@@ -428,37 +424,37 @@ ALTER TABLE `hr_designation`
 -- AUTO_INCREMENT for table `hr_employee`
 --
 ALTER TABLE `hr_employee`
-  MODIFY `employee_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `employee_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `hr_position`
 --
 ALTER TABLE `hr_position`
-  MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `master_product`
 --
 ALTER TABLE `master_product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `master_service`
 --
 ALTER TABLE `master_service`
-  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tm_comment`
 --
 ALTER TABLE `tm_comment`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tm_task`
 --
 ALTER TABLE `tm_task`
-  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -510,14 +506,11 @@ ALTER TABLE `tm_comment`
 -- Constraints for table `tm_task`
 --
 ALTER TABLE `tm_task`
-  ADD CONSTRAINT `tm_task_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `crm_customer` (`customer_id`),
-  ADD CONSTRAINT `tm_task_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `master_product` (`product_id`),
-  ADD CONSTRAINT `tm_task_ibfk_3` FOREIGN KEY (`service_id`) REFERENCES `master_service` (`service_id`),
-  ADD CONSTRAINT `tm_task_ibfk_4` FOREIGN KEY (`service_id`) REFERENCES `master_service` (`service_id`),
-  ADD CONSTRAINT `tm_task_ibfk_5` FOREIGN KEY (`employee_sent`) REFERENCES `hr_employee` (`employee_id`),
-  ADD CONSTRAINT `tm_task_ibfk_6` FOREIGN KEY (`employee_destination`) REFERENCES `hr_employee` (`employee_id`),
-  ADD CONSTRAINT `tm_task_ibfk_7` FOREIGN KEY (`department_sent`) REFERENCES `hr_department` (`department_id`),
-  ADD CONSTRAINT `tm_task_ibfk_8` FOREIGN KEY (`department_destination`) REFERENCES `hr_department` (`department_id`);
+  ADD CONSTRAINT `tm_task_ibfk_1` FOREIGN KEY (`service_id`) REFERENCES `master_service` (`service_id`),
+  ADD CONSTRAINT `tm_task_ibfk_2` FOREIGN KEY (`employee_sent`) REFERENCES `hr_employee` (`employee_id`),
+  ADD CONSTRAINT `tm_task_ibfk_3` FOREIGN KEY (`employee_destination`) REFERENCES `hr_employee` (`employee_id`),
+  ADD CONSTRAINT `tm_task_ibfk_4` FOREIGN KEY (`department_sent`) REFERENCES `hr_department` (`department_id`),
+  ADD CONSTRAINT `tm_task_ibfk_5` FOREIGN KEY (`department_destination`) REFERENCES `hr_department` (`department_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

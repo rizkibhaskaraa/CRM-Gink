@@ -328,14 +328,11 @@ class home_model extends CI_model
     public function count_all($dept, $status)
     {
         $this->db->where("task_parent", null);
-        // $dept_dest = array($dept,"");
+        $dept_dest = array($dept,5);
+        $this->db->where_in("department_destination", $dept_dest);
         if ($status != "") {
             $this->db->where("task_status", $status);
-            $this->db->where("department_destination", $dept);
-        } else {
-            $this->db->where("department_destination", $dept);
         }
-        $this->db->or_where("department_destination", NULL);
         return $this->db->count_all_results('tm_task');
     }
 
@@ -343,14 +340,11 @@ class home_model extends CI_model
     {
         $this->db->like('task_title', $search);
         $this->db->where("task_parent", null);
-        // $dept_dest = array($dept,"");
+        $dept_dest = array($dept,5);
+        $this->db->where_in("department_destination", $dept_dest);
         if ($status != "") {
             $this->db->where("task_status", $status);
-            $this->db->where("department_destination", $dept);
-        } else {
-            $this->db->where("department_destination", $dept);
         }
-        $this->db->or_where("department_destination", NULL);
         $this->db->order_by($order_field, $order_ascdesc);
         $this->db->limit($limit, $start);
         $this->db->select("task_title,a.employee_name as penerima,b.employee_name as pengirim,task_dateline,task_status,task_id");
@@ -363,15 +357,11 @@ class home_model extends CI_model
     {
         $this->db->where("task_parent", null);
         $this->db->like('task_title', $search);
-        // $dept_dest = array($dept,"");
-
+        $dept_dest = array($dept,5);
+        $this->db->where_in("department_destination", $dept_dest);
         if ($status != "") {
             $this->db->where("task_status", $status);
-            $this->db->where("department_destination", $dept);
-        } else {
-            $this->db->where("department_destination", $dept);
         }
-        $this->db->or_where("department_destination", NULL);
         return $this->db->get('tm_task')->num_rows();
     }
     //akhir function-fiunction datatable

@@ -83,7 +83,7 @@
                         <div class="flex-sm-fill">
                             <h1 class="font-w600 text-white mb-0 invisible" data-toggle="appear">Dashboard</h1>
 
-                            <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250">Selama Datang , <?php echo $employ_nama ?></h2>
+                            <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250">Selamat Datang , <?php echo $employ_nama ?></h2>
 
                             <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250"><?php echo $nama_departemen ?> di Gink Technology</h2>
                         </div>
@@ -490,7 +490,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php echo count($tiketsaya) ?>
                                 <?php foreach ($tiketsaya as $value) {
                                     if ($value["task_status"] == "Not Finished") { ?>
                                         <tr>

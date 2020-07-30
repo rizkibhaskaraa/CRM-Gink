@@ -332,7 +332,7 @@ class home_model extends CI_model
         if ($status != "") {
             $this->db->where("task_status", $status);
             $this->db->where("department_destination", $dept);
-        }else{
+        } else {
             $this->db->where("department_destination", $dept);
         }
         $this->db->or_where("department_destination", NULL);
@@ -347,7 +347,7 @@ class home_model extends CI_model
         if ($status != "") {
             $this->db->where("task_status", $status);
             $this->db->where("department_destination", $dept);
-        }else{
+        } else {
             $this->db->where("department_destination", $dept);
         }
         $this->db->or_where("department_destination", NULL);
@@ -364,11 +364,11 @@ class home_model extends CI_model
         $this->db->where("task_parent", null);
         $this->db->like('task_title', $search);
         // $dept_dest = array($dept,"");
-        
+
         if ($status != "") {
             $this->db->where("task_status", $status);
             $this->db->where("department_destination", $dept);
-        }else{
+        } else {
             $this->db->where("department_destination", $dept);
         }
         $this->db->or_where("department_destination", NULL);
@@ -412,6 +412,7 @@ class home_model extends CI_model
         $this->db->join("master_service", "master_service.customer_id = crm_customer.customer_id", 'left'); //join tabel employe dengan task
         return $this->db->get('crm_customer')->num_rows();
     }
+
     //akhir function-fiunction datatable pelanggan
     public function insert_pelanggan($data_pelanggan)
     {
@@ -421,5 +422,44 @@ class home_model extends CI_model
     public function getall_employee()
     {
         return $this->db->get('hr_employee')->result_array();
+    }
+    public function count_all_dept($dept, $status)
+    {
+        if ($status != "") {
+            $this->db->where("a.task_status", $status);
+        }
+        $this->db->select("b.task_title as task_parent, employee_name, a.task_title as task, a.task_id, a.task_dateline, a.task_status, a.department_destination");
+        $this->db->join("hr_employee", "hr_employee.employee_id = a.employee_destination", 'left'); //join tabel employe dengan task
+        $this->db->join("tm_task as b", "b.task_id = a.task_parent", 'left'); //join tabel employe dengan task
+        $this->db->where("a.department_destination", $dept);
+        return $this->db->count_all_results("tm_task as a");
+    }
+
+    public function filter_dept($search, $limit, $start, $order_field, $order_ascdesc, $dept, $status)
+    {
+        if ($status != "") {
+            $this->db->where("a.task_status", $status);
+        }
+        $this->db->like('a.task_title', $search);
+        $this->db->order_by($order_field, $order_ascdesc);
+        $this->db->limit($limit, $start);
+        $this->db->select("b.task_title as task_parent, employee_name, a.task_title as task, a.task_id, a.task_dateline, a.task_status, a.department_destination");
+        $this->db->join("hr_employee", "hr_employee.employee_id = a.employee_destination", 'left'); //join tabel employe dengan task
+        $this->db->join("tm_task as b", "b.task_id = a.task_parent", 'left'); //join tabel employe dengan task
+        $this->db->where("a.department_destination", $dept);
+        return $this->db->get('tm_task as a')->result_array();
+    }
+
+    public function count_filter_dept($search, $dept, $status)
+    {
+        if ($status != "") {
+            $this->db->where("a.task_status", $status);
+        }
+        $this->db->like('a.task_title', $search);
+        $this->db->select("b.task_title as task_parent, employee_name, a.task_title as task, a.task_id, a.task_dateline, a.task_status, a.department_destination");
+        $this->db->join("hr_employee", "hr_employee.employee_id = a.employee_destination", 'left'); //join tabel employe dengan task
+        $this->db->join("tm_task as b", "b.task_id = a.task_parent", 'left'); //join tabel employe dengan task
+        $this->db->where("a.department_destination", $dept);
+        return $this->db->get('tm_task as a')->num_rows();
     }
 }

@@ -339,6 +339,31 @@ class Home extends CI_Controller
         header('Content-Type: application/json');
         echo json_encode($callback);
     }
+    public function viewtabel_dept($dept)
+    {
+        $search = $_POST['search']['value'];
+        $limit = $_POST['length'];
+        $start = $_POST['start'];
+        $status = $this->input->post('searchStatus');
+        $order_index = $_POST['order'][0]['column'];
+        $order_field = $_POST['columns'][$order_index]['data'];
+        $order_ascdesc = $_POST['order'][0]['dir'];
+        $sql_total = $this->home_model->count_all_dept($dept, $status);
+        $sql_data = $this->home_model->filter_dept($search, $limit, $start, $order_field, $order_ascdesc, $dept, $status);
+        $sql_filter = $this->home_model->count_filter_dept($search, $dept, $status);
+        // $layanan = $this->home_model->getlayanan();
+        $callback = array(
+            'draw' => $_POST['draw'],
+            'recordsTotal' => $sql_total,
+            'recordsFiltered' => $sql_filter,
+            'data' => $sql_data,
+            // 'data-layanan'=>$layanan
+        );
+
+        header('Content-Type: application/json');
+        echo json_encode($callback);
+    }
+
     //akhir function-fiunction datatable pelanggan   
     public function addcustomer($user)
     {

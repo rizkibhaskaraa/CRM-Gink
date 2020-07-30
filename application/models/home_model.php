@@ -329,26 +329,30 @@ class home_model extends CI_model
     {
         $this->db->where("task_parent", null);
         // $dept_dest = array($dept,"");
-        $this->db->where("department_destination", $dept);
-        // $this->db->or_where("department_destination", NULL);
         if ($status != "") {
             $this->db->where("task_status", $status);
+            $this->db->where("department_destination", $dept);
+        }else{
+            $this->db->where("department_destination", $dept);
         }
+        $this->db->or_where("department_destination", NULL);
         return $this->db->count_all_results('tm_task');
     }
 
     public function filter($search, $limit, $start, $order_field, $order_ascdesc, $dept, $status)
     {
         $this->db->like('task_title', $search);
+        $this->db->where("task_parent", null);
         // $dept_dest = array($dept,"");
-        $this->db->where("department_destination", $dept);
-        // $this->db->or_where("department_destination", NULL);
         if ($status != "") {
             $this->db->where("task_status", $status);
+            $this->db->where("department_destination", $dept);
+        }else{
+            $this->db->where("department_destination", $dept);
         }
+        $this->db->or_where("department_destination", NULL);
         $this->db->order_by($order_field, $order_ascdesc);
         $this->db->limit($limit, $start);
-        $this->db->where("task_parent", null);
         $this->db->select("task_title,a.employee_name as penerima,b.employee_name as pengirim,task_dateline,task_status,task_id");
         $this->db->join("hr_employee as a", "a.employee_id = tm_task.employee_destination", 'left'); //join tabel employe dengan task
         $this->db->join("hr_employee as b", "b.employee_id = tm_task.employee_sent", 'left'); //join tabel employe dengan task
@@ -360,11 +364,14 @@ class home_model extends CI_model
         $this->db->where("task_parent", null);
         $this->db->like('task_title', $search);
         // $dept_dest = array($dept,"");
-        $this->db->where("department_destination", $dept);
-        // $this->db->or_where("department_destination", NULL);
+        
         if ($status != "") {
             $this->db->where("task_status", $status);
+            $this->db->where("department_destination", $dept);
+        }else{
+            $this->db->where("department_destination", $dept);
         }
+        $this->db->or_where("department_destination", NULL);
         return $this->db->get('tm_task')->num_rows();
     }
     //akhir function-fiunction datatable

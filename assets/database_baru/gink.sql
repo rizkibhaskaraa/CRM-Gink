@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 30, 2020 at 08:11 AM
+-- Generation Time: Jul 30, 2020 at 10:57 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -63,7 +63,8 @@ INSERT INTO `hr_department` (`department_id`, `department_name`) VALUES
 (1, 'C-Level'),
 (2, 'Sales And Marketing'),
 (3, 'Research And Development'),
-(4, 'Support');
+(4, 'Support'),
+(5, 'General');
 
 -- --------------------------------------------------------
 
@@ -267,18 +268,6 @@ CREATE TABLE `tm_comment` (
   `comment_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `tm_comment`
---
-
-INSERT INTO `tm_comment` (`comment_id`, `comment_description`, `task_id`, `employee_id`, `position_id`, `comment_date`) VALUES
-(1, '<p>Cepet Diselesaikan sebelum deadline!!!</p>\r\n', 1, 5, 3, '2020-07-24 10:05:44'),
-(2, '<p>Mana pekerjaan yang sama minta??</p>\r\n', 1, 5, 3, '2020-07-24 10:07:35'),
-(7, '<p>Sebentar Pak</p>\r\n', 1, 16, 8, '2020-07-24 11:00:01'),
-(9, '<p>Oke</p>\r\n', 1, 5, 3, '2020-07-24 14:03:04'),
-(13, '<p>Baik ditunggu</p>\r\n', 1, 5, 3, '2020-07-24 14:30:03'),
-(15, '<p>SIAP</p>\r\n', 6, 7, 11, '2020-07-27 14:35:22');
-
 -- --------------------------------------------------------
 
 --
@@ -301,20 +290,6 @@ CREATE TABLE `tm_task` (
   `task_finish` datetime DEFAULT NULL,
   `task_status` varchar(14) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tm_task`
---
-
-INSERT INTO `tm_task` (`task_id`, `task_parent`, `service_id`, `employee_destination`, `department_destination`, `employee_sent`, `department_sent`, `task_title`, `task_description`, `task_date`, `task_dateline`, `task_file`, `task_finish`, `task_status`) VALUES
-(1, NULL, 1, 16, 2, 5, 1, 'Hosting Website Official Bank Lampung', '<p>Hosting Website Official Bank Lampung dengan jangka waktu 5 tahun<br></p>', '2020-07-22 14:04:24', '2020-09-12', NULL, NULL, 'Finish'),
-(2, NULL, 3, NULL, 3, 6, 1, 'Maintenance Website ', 'Perbaikan bug dan tampilan kurang baik pada website', '2020-07-22 14:06:13', '2020-10-03', NULL, NULL, 'Not Finished'),
-(3, NULL, 2, 16, 2, 6, 1, 'Hosting Fitur', '<p>Hosting Bank Lampung<br></p>', '2020-07-22 14:09:41', '2020-08-08', '20200421_085234.jpg', '2020-07-24 11:24:07', 'Finish'),
-(4, NULL, NULL, 16, 2, 6, 1, 'Daftar Keuangan Mingguan', '<p>Tolong rekap data ke saya</p>', '2020-07-22 14:16:08', '2020-08-08', NULL, NULL, 'Not Finished'),
-(5, NULL, NULL, 7, 3, 16, 2, 'Tugas Impossible lagi', '<p>Tugas yang tidak mungkin dikerjakan oleh saya</p>', '2020-07-23 13:32:06', '2020-08-09', NULL, '2020-07-23 15:03:51', 'Finish'),
-(6, NULL, NULL, NULL, 3, 5, 1, 'Pembaharuan Website Ginktech ', '<p>Pembaharuan Website Ginktech dan Mintenance rutin</p>', '2020-07-24 09:41:46', '2020-08-08', NULL, NULL, 'Not Finished'),
-(7, 1, 1, 18, 2, 16, 2, 'Cepetan di Hosting', '<p>Pak Yudha udah nanyain<br></p>', '2020-07-24 14:21:51', '2020-08-09', 'ERD.jpg', '2020-07-29 10:22:52', 'Finish'),
-(21, NULL, NULL, 3, NULL, 18, 2, 'Mau Buat Website', '', '2020-07-29 16:44:20', '2020-08-02', NULL, NULL, 'Not Finished');
 
 --
 -- Indexes for dumped tables
@@ -391,7 +366,6 @@ ALTER TABLE `tm_comment`
 --
 ALTER TABLE `tm_task`
   ADD PRIMARY KEY (`task_id`),
-  
   ADD KEY `service_id` (`service_id`),
   ADD KEY `employee_sent` (`employee_sent`),
   ADD KEY `employee_destination` (`employee_destination`),
@@ -412,7 +386,7 @@ ALTER TABLE `crm_customer`
 -- AUTO_INCREMENT for table `hr_department`
 --
 ALTER TABLE `hr_department`
-  MODIFY `department_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `department_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `hr_designation`
@@ -424,37 +398,37 @@ ALTER TABLE `hr_designation`
 -- AUTO_INCREMENT for table `hr_employee`
 --
 ALTER TABLE `hr_employee`
-  MODIFY `employee_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `employee_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `hr_position`
 --
 ALTER TABLE `hr_position`
-  MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `master_product`
 --
 ALTER TABLE `master_product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `master_service`
 --
 ALTER TABLE `master_service`
-  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tm_comment`
 --
 ALTER TABLE `tm_comment`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tm_task`
 --
 ALTER TABLE `tm_task`
-  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Constraints for dumped tables

@@ -718,6 +718,7 @@
                             <div class="form-group">
                                 <label for="layanan">Layanan</label>
                                 <input type="text" class="form-control" name="layanan" id="layanan-pelanggan" readonly>
+                                <input type="text" class="form-control" name="service" id="service">
                             </div>
                             <div class="form-group">
                                 <label for="masalah">Jenis Masalah</label>

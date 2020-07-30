@@ -206,22 +206,22 @@ class Home extends CI_Controller
         $masalah = $this->input->post("masalah");
         if ($masalah != null) {
             if ($masalah == "umum") {
-                $departemen_tujuan = "umum";
+                $departemen_tujuan = "General";
             } else if ($masalah == "hosting" || $masalah == "billing") {
                 $departemen_tujuan = "Sales And Marketing";
             } else if ($masalah == "support") {
                 $departemen_tujuan = "Research And Development";
             }
             $department_id = $this->home_model->getdepartmentbyid($departemen_tujuan);
-            if ($department_id == "") {
-                $department_id = NULL;
-            } else {
-                $department_id = $department_id["department_id"];
-            }
+            // if ($department_id == "") {
+            //     $department_id = NULL;
+            // } else {
+            //     $department_id = $department_id["department_id"];
+            // }
             //jika buat tiket dari tabel pelanggan
             $data_task = array(
                 "service_id" => $this->input->post("service"),
-                "department_destination" => $department_id,
+                "department_destination" => $department_id["department_id"],
                 "employee_sent" => $id_employ,
                 "department_sent" => $departemen["department_id"],
                 "task_title" => $this->input->post("title"),

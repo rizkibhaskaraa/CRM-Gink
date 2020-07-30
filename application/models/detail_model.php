@@ -47,6 +47,10 @@ class detail_model extends CI_model
         $result = $this->db->get_where('hr_department', array('department_id' => $dept_id))->row_array();
         return $result["department_name"];
     }
+    public function getdeptuser($id)
+    {
+        return $this->db->get_where('hr_position', array('position_id' => $id))->row_array();
+    }
     public function getsubtask($id_parent)
     {
         //dapatkan data subtask sesuai id parent yang dikirim
@@ -124,9 +128,10 @@ class detail_model extends CI_model
 
         return $id;
     }
-    public function ubahPJ($id_tujuan, $id)
+    public function ubahPJ($id_tujuan, $id, $dept_id)
     {
         //update
+        $this->db->set('department_destination', $dept_id);
         $this->db->set('employee_destination', $id_tujuan);
         $this->db->where('task_id', $id);
         $this->db->update('tm_task');

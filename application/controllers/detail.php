@@ -34,6 +34,8 @@ class Detail extends CI_Controller
         $data["task"] = $this->detail_model->getdetail($task); //data task dengan id $task
 
         $data["department_destination"] = $this->detail_model->getdeptbyid($data["task"]["department_destination"]);
+        $dept_user = $this->detail_model->getdeptuser($posisi["position_id"]);
+        $data["department_user"] = $dept_user["department_id"];
         $data["customer"] = $this->detail_model->getcustomer($data["task"]["service_id"]);
         $data["nama_layanan"] = $this->detail_model->getservice($data["task"]["service_id"]);
 
@@ -51,9 +53,10 @@ class Detail extends CI_Controller
         $this->load->view('detail/detail', $data);
     }
     //add PJ task
-    public function ubahPJ($id, $task)
+    public function ubahPJ($id, $task, $dept_id)
     {
-        $ubah = $this->detail_model->ubahPJ($this->input->post("PJbaru"), $task);
+
+        $ubah = $this->detail_model->ubahPJ($this->input->post("PJbaru"), $task, $dept_id);
         $user = $this->detail_model->getuser($id);
         redirect(base_url('index.php/home/index/') . $user['user_username']);
     }

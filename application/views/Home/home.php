@@ -9,7 +9,7 @@
 
     <!-- Icons -->
     <link rel="icon" type="image/png" sizes="192x192" href="<?php echo base_url('assets/oneui/media/favicons/favicon-192x192.png') ?>">
-  
+
     <!-- END Icons -->
 
     <!-- Stylesheets -->
@@ -36,8 +36,8 @@
 </head>
 
 <body>
-    <div class="status-login" data-flashdata="<?= $this->session->flashdata('status-login');?>"></div>
-    <div class="sukses_buat" data-flashdata="<?= $this->session->flashdata('sukses_buat');?>"></div>
+    <div class="status-login" data-flashdata="<?= $this->session->flashdata('status-login'); ?>"></div>
+    <div class="sukses_buat" data-flashdata="<?= $this->session->flashdata('sukses_buat'); ?>"></div>
 
     <!-- Home button -->
     <?php if ($status == "C-Level") {
@@ -122,6 +122,9 @@
             <li style="background-color:lavender" class="nav-item">
                 <a class="nav-link" href="#report">Report Staff</a>
             </li>
+            <li style="background-color:lavender" class="nav-item">
+                <a class="nav-link" href="#">Tugas Departemen</a>
+            </li>
         <?php } ?>
         <li style="background-color:lavender" class="nav-item">
             <a class="nav-link" href="#tugas">Tugas Saya</a>
@@ -153,7 +156,7 @@
                         <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0" id="table-pelanggan">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                <th class="font-w700 text-center" style="width: 10%;">ID Service</th>
+                                    <th class="font-w700 text-center" style="width: 10%;">ID Service</th>
                                     <th class="font-w700 text-center" style="width: 25%;">Customer</th>
                                     <th class="font-w700 text-center" style="width: 30%;">Layanan</th>
                                     <th class="font-w700 text-center" style="width: 15%;">Status</th>
@@ -177,7 +180,7 @@
                         </div>
                         <div class="col-2 float-right mt-2 mr-1">
                             <select name="filter-status" id="filter-status" class="form-control">
-                            <option class="font-w700" disabled="disabled" selected value="">Status</option>
+                                <option class="font-w700" disabled="disabled" selected value="">Status</option>
                                 <option value="">Semua Status</option>
                                 <option value="Finish">Selesai</option>
                                 <option value="Not Finished">Belum Selesai</option>
@@ -353,14 +356,14 @@
                             </thead>
                             <tbody>
                                 <?php foreach ($task as $value) {
-                                    if ($value["task_status"] == "Not Finished") { 
-                                        $n =0;
-                                        foreach ($task as $value2){
-                                            if($value["task_id"]==$value2["task_parent"]){
-                                                $n +=1;
+                                    if ($value["task_status"] == "Not Finished") {
+                                        $n = 0;
+                                        foreach ($task as $value2) {
+                                            if ($value["task_id"] == $value2["task_parent"]) {
+                                                $n += 1;
                                             }
                                         }
-                                        ?>
+                                ?>
                                         <tr>
                                             <td style="width: 10%;">
                                                 <span class="font-w600">#<?php echo $value["task_id"] . " " . $value["title"] ?></span>
@@ -379,9 +382,9 @@
                                             </td>
                                             <td class="text-center" style="width: 15%;">
                                                 <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . "/" . $value['task_id'] . "/" . $status . "/TugasBelum" ?>" class="text-decoration-none">Buka</a>
-                                                <?php if($value["parent"] != null || $n ==0 ){?>
+                                                <?php if ($value["parent"] != null || $n == 0) { ?>
                                                     <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/status/') . $value["task_id"] ?>" class="text-decoration-none"> | Selesai</a>
-                                                <?php }?>
+                                                <?php } ?>
                                             </td>
                                         </tr>
                                 <?php }
@@ -414,10 +417,10 @@
                                 <?php foreach ($task as $value) {
                                     if ($value["task_status"] == "Finish") { ?>
                                         <tr>
-                                            <td style="width: 10%;" >
+                                            <td style="width: 10%;">
                                                 <span class="font-w600">#<?php echo $value["task_id"] . " " . $value["title"] ?></span>
                                             </td>
-                                            <td class="text-center" style="width: 10%;" >
+                                            <td class="text-center" style="width: 10%;">
                                                 <span class="font-w600"><?php echo $value["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
@@ -517,7 +520,7 @@
                                             <td style="width: 10%;">
                                                 <span class="font-w600">#<?php echo $value["task_id"] . " " . $value["title"] ?></span>
                                             </td>
-                                            <td class="text-center"  style="width: 10%;">
+                                            <td class="text-center" style="width: 10%;">
                                                 <span class="font-w600"><?php echo $value["employee_name"] ?></span>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
@@ -640,17 +643,18 @@
                             <div class="form-group">
                                 <label for="title">Nama Pengirim</label>
                                 <select name="nama_pengirim" id="nama_pengirim" class="form-control custom-select" required>
-                                   <?php foreach($all_employ as $value){ 
-                                       if($value["employee_name"]==$employ_nama){?>
-                                            <option selected class="font-w700" value="<?php echo $value["employee_id"]?>"><?php echo $value["employee_name"]?></option>
-                                       <?php }else{ ?>
-                                            <option value="<?php echo $value["employee_id"]?>"><?php echo $value["employee_name"]?></option>
-                                   <?php }} ?>
-                                   
-                                    
+                                    <?php foreach ($all_employ as $value) {
+                                        if ($value["employee_name"] == $employ_nama) { ?>
+                                            <option selected class="font-w700" value="<?php echo $value["employee_id"] ?>"><?php echo $value["employee_name"] ?></option>
+                                        <?php } else { ?>
+                                            <option value="<?php echo $value["employee_id"] ?>"><?php echo $value["employee_name"] ?></option>
+                                    <?php }
+                                    } ?>
+
+
                                 </select>
 
-                            
+
                             </div>
                             <div class="form-group">
                                 <label for="title">Judul Tugas</label>
@@ -726,11 +730,11 @@
                         "data": "task_title",
                         className: 'font-weight-bold'
                     },
-                    {   //pengirim
+                    { //pengirim
                         "data": "pengirim",
                         className: 'text-center font-weight-bold'
                     },
-                    {   
+                    {
                         "data": "penerima",
                         className: 'text-center font-weight-bold'
                     },
@@ -830,16 +834,16 @@
                         className: 'text-center',
                         "orderable": false,
                         render: function(data, type, row) {
-                            if(data != null){
+                            if (data != null) {
                                 let html = "<a href='javascript:void(0)' data-toggle='modal' data-target='#modal-block-large' data-pk='" + data +
-                                "' class='btn btn-light btn-edit'><i class='fa fa-plus fa-2x'></i></a>";
+                                    "' class='btn btn-light btn-edit'><i class='fa fa-plus fa-2x'></i></a>";
                                 return html;
-                            }else {
+                            } else {
                                 let html = "<strong></strong>";
                                 return html;
                             }
 
-                           
+
                         }
                     }
                 ],
@@ -944,44 +948,44 @@
     <script src="<?php echo base_url('assets/oneui/js/plugins/sweetalert2/sweetalert2.min.js') ?>"></script>
     <script src="<?php echo base_url('assets/oneui/js/pages/be_comp_dialogs.min.js') ?>"></script>
     <script>
-    $(document).ready(function() {
-        var status_login = $(".status-login").data('flashdata');
-        var sukses_buat = $(".sukses_buat").data('flashdata');
-        var sukses_add_layanan = $(".sukses_add_layanan").data('flashdata');
-        var sukses_update_status = $(".sukses_update_status").data('flashdata');
-        if(status_login){
-            Swal.fire({
-                title 	: "Berhasil Login",
-                text 	: "Selamat Datang, "+"<?= $employ_nama ?>",
-                type 	: "success",
-                timer   : 1000
-            });
-        }
-        if(sukses_buat){
-            Swal.fire({
-                title 	: "Berhasil Membuat Tiket",
-                text 	: "",
-                type 	: "success",
-                timer   : 1500
-            });
-        }
-        if(sukses_add_layanan){
-            Swal.fire({
-                title 	: "Berhasil Menambah Layanan",
-                text 	: "",
-                type 	: "success",
-                timer   : 1500
-            });
-        }
-        if(sukses_update_status){
-            Swal.fire({
-                title 	: "Berhasil Update Status Layanan",
-                text 	: "",
-                type 	: "success",
-                timer   : 1500
-            });
-        }
-    });
+        $(document).ready(function() {
+            var status_login = $(".status-login").data('flashdata');
+            var sukses_buat = $(".sukses_buat").data('flashdata');
+            var sukses_add_layanan = $(".sukses_add_layanan").data('flashdata');
+            var sukses_update_status = $(".sukses_update_status").data('flashdata');
+            if (status_login) {
+                Swal.fire({
+                    title: "Berhasil Login",
+                    text: "Selamat Datang, " + "<?= $employ_nama ?>",
+                    type: "success",
+                    timer: 1000
+                });
+            }
+            if (sukses_buat) {
+                Swal.fire({
+                    title: "Berhasil Membuat Tiket",
+                    text: "",
+                    type: "success",
+                    timer: 1500
+                });
+            }
+            if (sukses_add_layanan) {
+                Swal.fire({
+                    title: "Berhasil Menambah Layanan",
+                    text: "",
+                    type: "success",
+                    timer: 1500
+                });
+            }
+            if (sukses_update_status) {
+                Swal.fire({
+                    title: "Berhasil Update Status Layanan",
+                    text: "",
+                    type: "success",
+                    timer: 1500
+                });
+            }
+        });
     </script>
 </body>
 

@@ -7,10 +7,9 @@
 
     <title>Detail Tiket - Task Manager </title>
 
-
     <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-   
+
     <link rel="icon" type="image/png" sizes="192x192" href="<?php echo base_url('assets/oneui/media/favicons/favicon-192x192.png') ?>">
 
     <!-- Stylesheets -->
@@ -35,7 +34,6 @@
         <a class="btn btn-sm btn-dual" href="<?php echo $linkhome ?>">
             <img class="rounded" src="<?php echo base_url('assets/oneui/media/avatars/home.png') ?>" alt="Header Avatar" style="width: 18px;">
             <span class="ml-2">Home</span>
-
         </a>
     </div>
     <!-- end home button -->
@@ -63,9 +61,7 @@
         <!-- END User Dropdown -->
     </div>
     <!-- END Right Section -->
-
     <!-- Batas account dan main container -->
-
     <!-- Main Container -->
     <main id="main-container">
         <!-- Hero -->
@@ -157,7 +153,7 @@
                             <?php if ($cekTabel == 'Request') { ?>
                                 <td class="font-weight-bold" style="width: 20%;">Penanggung Jawab</td>
                                 <td>
-                                    <form method="post" action="<?php echo base_url('index.php/detail/ubahPJ/' . $employ_id . '/' . $task['task_id']) ?>">
+                                    <form method="post" action="<?php echo base_url('index.php/detail/ubahPJ/' . $employ_id . '/' . $task['task_id'] . '/' . $department_user) ?>">
                                         <?php $isi = $PJ_task['employee_destination'] ?>
                                         <!-- jika PJ task == null, add selection untuk pilih PJ task -->
                                         <?php if ($isi != null) {
@@ -189,7 +185,6 @@
                                             </select>
                                             </br>
                                             </br>
-
                                             <div style="float:right;">
                                                 <input type="submit" value="Simpan" class="btn btn-primary" data-toggle="click-ripple"></input>
                                             </div>
@@ -275,16 +270,16 @@
                                                 </div>
                                                 <?php if ($progres == 100 && $task['task_status'] == 'Not Finished') { ?>
                                                     <?php echo form_open_multipart('index.php/detail/ubahstatustask/' . $designation . "/" . $employ_id . '/' . $task['task_id'] . "/" . $status); ?>
-                                                        <td class="font-weight-bold" style="width: 20%;">Berkas (opsional)</td>
-                                                        <td>
-                                                            <input type="file" name="file">
-                                                            <div class="mt-5" style="float:right;">
-                                                                <input type="submit" class="btn btn-success" value="Konfirmasi Selesai">
-                                                            </div>
-                                                        </td>
-                                                    <?php echo form_close(); ?>
-                                                 <?php } ?>
+                                            <td class="font-weight-bold" style="width: 20%;">Berkas (opsional)</td>
+                                            <td>
+                                                <input type="file" name="file">
+                                                <div class="mt-5" style="float:right;">
+                                                    <input type="submit" class="btn btn-success" value="Konfirmasi Selesai">
+                                                </div>
                                             </td>
+                                            <?php echo form_close(); ?>
+                                        <?php } ?>
+                                        </td>
                                         </tr>
                                     </thead>
                                     <thead class="thead-dark">

@@ -93,25 +93,25 @@ class home_model extends CI_model
     }
 
     //fungsi ambil data tabel task untuk tiket berdarakan id_employ_tujuan(PJ task)
-    public function gettiketsaya($id_employ)
-    {
-        $this->db->select("b.task_title as parent,a.task_title as title,a.task_id,a.task_status,a.task_dateline,a.employee_destination,employee_name");
-        $this->db->join("tm_task as b", "b.task_id = a.task_parent", "left");
-        $this->db->join("hr_employee", "hr_employee.employee_id = a.employee_destination", "left");
-        return $this->db->get_where('tm_task as a', array('a.employee_sent' => $id_employ))->result_array();
-    }
+    // public function gettiketsaya($id_employ)
+    // {
+    //     $this->db->select("b.task_title as parent,a.task_title as title,a.task_id,a.task_status,a.task_dateline,a.employee_destination,employee_name");
+    //     $this->db->join("tm_task as b", "b.task_id = a.task_parent", "left");
+    //     $this->db->join("hr_employee", "hr_employee.employee_id = a.employee_destination", "left");
+    //     return $this->db->get_where('tm_task as a', array('a.employee_sent' => $id_employ))->result_array();
+    // }
 
-    public function gettaskall($id_employ, $dept)
-    {
-        $this->db->select("b.task_title as parent,a.task_parent,a.task_title as title,a.task_id,a.task_status,a.employee_destination,a.department_destination,a.task_dateline,employee_name,department_name");
-        $this->db->join("tm_task as b", "b.task_id = a.task_parent", "left");
-        $this->db->join("hr_employee", "hr_employee.employee_id = a.employee_destination", "left");
-        $this->db->join("hr_department", "hr_department.department_id = a.department_destination", "left");
-        if ($dept != "1") { //jika bukan CEO yang login
-            $this->db->where('a.employee_destination', $id_employ);
-        }
-        return $this->db->get('tm_task as a')->result_array();
-    }
+    // public function gettaskall($id_employ, $dept)
+    // {
+    //     $this->db->select("b.task_title as parent,a.task_parent,a.task_title as title,a.task_id,a.task_status,a.employee_destination,a.department_destination,a.task_dateline,employee_name,department_name");
+    //     $this->db->join("tm_task as b", "b.task_id = a.task_parent", "left");
+    //     $this->db->join("hr_employee", "hr_employee.employee_id = a.employee_destination", "left");
+    //     $this->db->join("hr_department", "hr_department.department_id = a.department_destination", "left");
+    //     if ($dept != "1") { //jika bukan CEO yang login
+    //         $this->db->where('a.employee_destination', $id_employ);
+    //     }
+    //     return $this->db->get('tm_task as a')->result_array();
+    // }
 
     //fungsi update db task
     public function updatestatus($id)
@@ -387,5 +387,100 @@ class home_model extends CI_model
             return $this->db->get('tm_task as a')->num_rows();
         }
     //akhir function-fiunction datatable task departement
+
+    //function-fiunction datatable tiket saya
+        public function count_all_tiket($employ_id,$status)
+        {
+            if ($status != "") {
+                $this->db->where("a.task_status",$status);
+            }
+            // $this->db->select("b.task_title as task_parent, employee_name, a.task_title as task, a.task_id,a.task_parent, a.task_dateline, a.task_status, a.employee_sent,a.employee_destination)");
+            $this->db->join("hr_employee", "hr_employee.employee_id = a.employee_destination", 'left'); //join tabel employe dengan task
+            $this->db->join("tm_task as b", "b.task_id = a.task_parent", 'left'); //join tabel employe dengan task
+            $this->db->where("a.employee_sent", $employ_id);
+            return $this->db->count_all_results("tm_task as a");
+        }
+
+        public function filter_tiket($search, $limit, $start, $order_field, $order_ascdesc, $employ_id,$status)
+        {
+            if ($status != "") {
+                $this->db->where("a.task_status",$status);
+            }
+            $this->db->where("a.employee_sent", $employ_id);
+            $this->db->like('a.task_title', $search);
+            // $this->db->like('b.task_title', $search);
+            $this->db->order_by($order_field, $order_ascdesc);
+            $this->db->limit($limit, $start);
+            $this->db->select("b.task_title as task_parent, employee_name, a.task_title as task, a.task_id, a.task_dateline, a.task_status, a.department_destination,a.employee_sent");
+            $this->db->join("hr_employee", "hr_employee.employee_id = a.employee_destination", 'left'); //join tabel employe dengan task
+            $this->db->join("tm_task as b", "b.task_id = a.task_parent", 'left'); //join tabel employe dengan task
+            return $this->db->get('tm_task as a')->result_array();
+        }
+
+        public function count_filter_tiket($search, $employ_id,$status)
+        {
+            if ($status != "") {
+                $this->db->where("a.task_status",$status);
+            }
+            $this->db->like('a.task_title', $search);
+            // $this->db->select("b.task_title as task_parent, employee_name, a.task_title as task, a.task_id,a.task_parent, a.task_dateline, a.task_status, a.employee_sent,a.employee_destination)");
+            $this->db->join("hr_employee", "hr_employee.employee_id = a.employee_destination", 'left'); //join tabel employe dengan task
+            $this->db->join("tm_task as b", "b.task_id = a.task_parent", 'left'); //join tabel employe dengan task
+            $this->db->where("a.employee_sent", $employ_id);
+            return $this->db->get('tm_task as a')->num_rows();
+        }
+    //akhir function-fiunction datatable tiket saya
+
+    //function-fiunction datatable tugas saya
+        public function count_all_tugas($employ_id,$status,$status_employee)
+        {
+            if ($status != "") {
+                $this->db->where("a.task_status",$status);
+            }
+            // $this->db->select("b.task_title as task_parent, employee_name, a.task_title as task, a.task_id,a.task_parent, a.task_dateline, a.task_status, a.employee_sent,a.employee_destination)");
+            $this->db->join("hr_employee", "hr_employee.employee_id = a.employee_destination", 'left'); //join tabel employe dengan task
+            $this->db->join("tm_task as b", "b.task_id = a.task_parent", 'left'); //join tabel employe dengan task
+            $this->db->join("hr_department", "hr_department.department_id = a.department_destination", "left");
+            if($status_employee != "C-Level"){
+                $this->db->where("a.employee_destination", $employ_id);
+            }
+            return $this->db->count_all_results("tm_task as a");
+        }
+
+        public function filter_tugas($search, $limit, $start, $order_field, $order_ascdesc, $employ_id,$status,$status_employee)
+        {
+            if ($status != "") {
+                $this->db->where("a.task_status",$status);
+            }
+            if($status_employee != "C-Level"){
+                $this->db->where("a.employee_destination", $employ_id);
+            }
+            $this->db->like('a.task_title', $search);
+            // $this->db->like('b.task_title', $search);
+            $this->db->order_by($order_field, $order_ascdesc);
+            $this->db->limit($limit, $start);
+            $this->db->select("b.task_title as task_parent, employee_name, a.task_title as task, a.task_id, a.task_dateline, a.task_status, a.department_destination,a.employee_sent,a.employee_destination,department_name");
+            $this->db->join("hr_employee", "hr_employee.employee_id = a.employee_destination", 'left'); //join tabel employe dengan task
+            $this->db->join("tm_task as b", "b.task_id = a.task_parent", 'left'); //join tabel employe dengan task
+            $this->db->join("hr_department", "hr_department.department_id = a.department_destination", "left");
+            return $this->db->get('tm_task as a')->result_array();
+        }
+
+        public function count_filter_tugas($search, $employ_id,$status,$status_employee)
+        {
+            if ($status != "") {
+                $this->db->where("a.task_status",$status);
+            }
+            $this->db->like('a.task_title', $search);
+            // $this->db->select("b.task_title as task_parent, employee_name, a.task_title as task, a.task_id,a.task_parent, a.task_dateline, a.task_status, a.employee_sent,a.employee_destination)");
+            $this->db->join("hr_employee", "hr_employee.employee_id = a.employee_destination", 'left'); //join tabel employe dengan task
+            $this->db->join("tm_task as b", "b.task_id = a.task_parent", 'left'); //join tabel employe dengan task
+            $this->db->join("hr_department", "hr_department.department_id = a.department_destination", "left");
+            if($status_employee != "C-Level"){
+                $this->db->where("a.employee_destination", $employ_id);
+            }
+            return $this->db->get('tm_task as a')->num_rows();
+        }
+    //akhir function-fiunction datatable tugas saya
 
 }

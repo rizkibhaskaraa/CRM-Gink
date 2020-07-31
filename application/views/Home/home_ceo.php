@@ -293,10 +293,19 @@
             <div class="container-fluid">
                 <div class="block block-mode-loading-oneui">
                     <div class="block-header border-bottom">
-                        <h3 class="block-title text-danger">Tugas staff | Belum Selesai</h3>
+                        <h3 class="block-title text-primary ">Tugas Staff</h3>
                     </div>
+                    <div class="col-2 float-right mt-2 mr-1">
+                        <select name="filter-status-tugas" id="filter-status-tugas" class="form-control">
+                            <option class="font-w700" disabled="disabled" selected value="">Status</option>
+                            <option value="">Semua Status</option>
+                            <option value="Finish">Selesai</option>
+                            <option value="Not Finished">Belum Selesai</option>
+                        </select>
+                    </div>
+                    <div style="clear:both"></div>
                     <div class="block-content block-content-full">
-                        <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
+                        <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0 w-100" id="table-tugas">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
                                     <th class="font-w700 text-center" style="width: 16%;">ID Task</th>
@@ -308,7 +317,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($task as $value) {
+                                <!-- <?php foreach ($task as $value) {
                                     if ($value["task_status"] == "Not Finished") { ?>
                                         <tr>
                                             <td style="width: 10%;">
@@ -331,56 +340,15 @@
                                             </td>
                                         </tr>
                                 <?php }
-                                } ?>
-                            <tbody>
-                                <!-- <tbody>
-                                <?php foreach ($taskparent as $valueparent) {
-                                    $i = 1;
-                                    $row_taskbelum = 1;
-                                    foreach ($taskbelum as $value) {
-                                        if ($valueparent["task_id"] == $value["task_parent"]) {
-                                            $row_taskbelum += 1;
-                                        }
-                                    }
-                                ?>
-                                    <tr>
-                                        <?php if ($row_taskbelum != 1) { ?>
-                                            <td style="width: 10%;" rowspan="<?= $row_taskbelum ?>">
-                                                <span class="font-w600">#<?php echo $valueparent["task_id"] . " " . $valueparent["task_title"] ?></span>
-                                            </td>
-                                            <td style="width: 10%;" rowspan="<?= $row_taskbelum ?>">
-                                                <span class="font-w600"><?php echo $valueparent["employee_name"] ?></span>
-                                            </td>
-                                            <td style="width: 10%;" class="text-center" rowspan="<?= $row_taskbelum ?>">
-                                                <span class="font-w600"><?php echo $valueparent["department_name"] ?></span>
-                                            </td>
-                                        <?php } ?>
-                                    </tr>
-                                    <?php foreach ($taskbelum as $value) {
-                                        if ($valueparent["task_id"] == $value["task_parent"]) { ?>
-                                            <tr>
-                                                <td style="width: 10%;">
-                                                    <span class="font-w600"><?php echo $i . "." . $value["task_title"] ?></span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
-                                                    <span class="font-size-sm  "><?php echo $value["task_dateline"] ?></span>
-                                                </td>
-                                                <td class="text-danger text-center" style="width: 15%;">
-                                                    <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["task_status"] ?></span>
-                                                </td>
-                                            </tr>
-                                <?php $i += 1;
-                                        }
-                                    }
-                                } ?>
-                            </tbody> -->
+                                } ?> -->
+                            </tbody>
                         </table>
                     </div>
                 </div>
             </div>
             <!-- END Belum Selesai -->
             <!--  Selesai -->
-            <div class="container-fluid">
+            <!-- <div class="container-fluid">
                 <div class="block block-mode-loading-oneui">
                     <div class="block-header border-bottom">
                         <h3 class="block-title text-success">Tugas Staff | Selesai</h3>
@@ -423,51 +391,10 @@
                                 <?php }
                                 } ?>
                             </tbody>
-                            <!-- <tbody>
-                                <?php foreach ($taskparent as $valueparent) {
-                                    $i = 1;
-                                    $row_taskselesai = 1;
-                                    foreach ($taskselesai as $value) {
-                                        if ($valueparent["task_id"] == $value["task_parent"]) {
-                                            $row_taskselesai += 1;
-                                        }
-                                    }
-                                ?>
-                                    <tr>
-                                        <?php if ($row_taskselesai != 1) { ?>
-                                            <td style="width: 10%;" rowspan="<?= $row_taskselesai ?>">
-                                                <span class="font-w600">#<?php echo $valueparent["task_id"] . " " . $valueparent["task_title"] ?></span>
-                                            </td>
-                                            <td style="width: 10%;" rowspan="<?= $row_taskselesai ?>">
-                                                <span class="font-w600"><?php echo $valueparent["employee_name"] ?></span>
-                                            </td>
-                                            <td style="width: 10%;" class="text-center" rowspan="<?= $row_taskselesai ?>">
-                                                <span class="font-w600"><?php echo $valueparent["department_name"] ?></span>
-                                            </td>
-                                        <?php } ?>
-                                    </tr>
-                                    <?php foreach ($taskselesai as $value) {
-                                        if ($valueparent["task_id"] == $value["task_parent"]) { ?>
-                                            <tr>
-                                                <td style="width: 10%;">
-                                                    <span class="font-w600"><?php echo $i . "." . $value["task_title"] ?></span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell text-center font-w700" style="width: 20%;">
-                                                    <span class="font-size-sm  "><?php echo $value["task_dateline"] ?></span>
-                                                </td>
-                                                <td class="text-danger text-center" style="width: 15%;">
-                                                    <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["task_status"] ?></span>
-                                                </td>
-                                            </tr>
-                                <?php $i += 1;
-                                        }
-                                    }
-                                } ?>
-                            </tbody> -->
                         </table>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- END  Selesai -->
         </div>
         <div class="tab-pane fade fade-up" id="tiket" role="tabpanel">
@@ -475,10 +402,19 @@
             <div class="container-fluid">
                 <div class="block block-mode-loading-oneui">
                     <div class="block-header border-bottom">
-                        <h3 class="block-title text-danger">Tiket Saya | Belum Selesai</h3>
+                        <h3 class="block-title text-primary ">Tiket Saya</h3>
                     </div>
+                    <div class="col-2 float-right mt-2 mr-1">
+                        <select name="filter-status-tiket" id="filter-status-tiket" class="form-control">
+                            <option class="font-w700" disabled="disabled" selected value="">Status</option>
+                            <option value="">Semua Status</option>
+                            <option value="Finish">Selesai</option>
+                            <option value="Not Finished">Belum Selesai</option>
+                        </select>
+                    </div>
+                    <div style="clear:both"></div>
                     <div class="block-content block-content-full">
-                        <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
+                        <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0 w-100" id="table-tiket">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
                                     <th class="font-w700 text-center" style="width: 16%;">ID Task</th>
@@ -490,7 +426,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($tiketsaya as $value) {
+                                <!-- <?php foreach ($tiketsaya as $value) {
                                     if ($value["task_status"] == "Not Finished") { ?>
                                         <tr>
                                             <td style="width: 10%;">
@@ -513,7 +449,7 @@
                                             </td>
                                         </tr>
                                 <?php }
-                                } ?>
+                                } ?> -->
                             </tbody>
                         </table>
                     </div>
@@ -521,7 +457,7 @@
             </div>
             <!-- END  Tiket Belum Selesai -->
             <!--  Tiket Selesai -->
-            <div class="container-fluid">
+            <!-- <div class="container-fluid">
                 <div class="block block-mode-loading-oneui">
                     <div class="block-header border-bottom">
                         <h3 class="block-title text-success">Tiket Saya | Selesai</h3>
@@ -567,7 +503,7 @@
                         </table>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- END  Tiket Selesai -->
         </div>
     </div>
@@ -960,6 +896,158 @@
             var id_layanan = a.id;
             $('input[name="id_layanan"]').val(id_layanan); //set value
         }
+    </script>
+    <script>
+        $(document).ready(function() {
+            var table = null;
+            table = $('#table-tiket').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "ordering": true,
+                "order": [
+                    [0, 'asc']
+                ],
+                "ajax": {
+                    "url": "<?php echo base_url('index.php/home/viewtabel_tiket/') . $employ_id ?>",
+                    "type": "POST",
+                    'data': function(data) {
+                        data.searchStatus = $('#filter-status-tiket').val();;
+                    }
+                },
+                "deferRender": true,
+                "aLengthMenu": [
+                    [5, 10, 30, 50, 100],
+                    [5, 10, 30, 50, 100]
+                ],
+                "columns": [
+                    {
+                        "data": "task",
+                        className: 'font-weight-bold',
+                        render: function(data, type, row, meta) {
+                                let html = "#"+row.task_id+" "+row.task;
+                                return html;
+                        }
+                    },
+                    {
+                        "data": "employee_name",
+                        className: 'text-center font-weight-bold'
+                    },
+                    {
+                        "data": "task_parent",
+                        className: 'text-center font-weight-bold'
+                    },
+                    {
+                        "data": "task_dateline",
+                        className: 'text-center font-weight-bold'
+                    },
+                    {
+                        "data": "task_status",
+                        className: 'text-center',
+                        "orderable": false,
+                        render: function(data, type, row) {
+                            if (data == "Finish") {
+                                let html = "<strong class='btn-sm btn-block btn-success'><i class='fa fa-fw fa-check'></i>" + data + "</strong>";
+                                return html;
+                            } else {
+                                let html = "<strong class='btn-sm btn-block btn-danger'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</strong>";
+                                return html;
+                            }
+                        }
+                    },
+                    {
+                        "data": "task_id",
+                        className: 'text-center',
+                        "orderable": false,
+                        render: function(data, type, row) {
+                            let html = "<a class='link-fx font-weight-bold' href='<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . '/' ?>" +
+                                data + "/<?php echo $status ?>" + "/Tiket'>Buka</a>";
+                            return html;
+                        }
+                    }
+                ],
+            });
+            $("#filter-status-tiket").change(function() {
+                table.ajax.reload();
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            var table = null;
+            table = $('#table-tugas').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "ordering": true,
+                "order": [
+                    [0, 'asc']
+                ],
+                "ajax": {
+                    "url": "<?php echo base_url('index.php/home/viewtabel_tugas/') . $employ_id ."/".$status?>",
+                    "type": "POST",
+                    'data': function(data) {
+                        data.searchStatus = $('#filter-status-tugas').val();;
+                    }
+                },
+                "deferRender": true,
+                "aLengthMenu": [
+                    [5, 10, 30, 50, 100],
+                    [5, 10, 30, 50, 100]
+                ],
+                "columns": [
+                    {
+                        "data": "task",
+                        className: 'font-weight-bold',
+                        render: function(data, type, row, meta) {
+                                let html = "#"+row.task_id+" "+row.task;
+                                return html;
+                        }
+                    },
+                    {
+                        "data": "employee_name",
+                        className: 'text-center font-weight-bold'
+                    },
+                    {
+                        "data": "department_name",
+                        className: 'text-center font-weight-bold'
+                    },
+                    {
+                        "data": "task_parent",
+                        className: 'text-center font-weight-bold'
+                    },
+                    {
+                        "data": "task_dateline",
+                        className: 'text-center font-weight-bold'
+                    },
+                    {
+                        "data": "task_status",
+                        className: 'text-center',
+                        "orderable": false,
+                        render: function(data, type, row) {
+                            if (data == "Finish") {
+                                let html = "<strong class='btn-sm btn-block btn-success'><i class='fa fa-fw fa-check'></i>" + data + "</strong>";
+                                return html;
+                            } else {
+                                let html = "<strong class='btn-sm btn-block btn-danger'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</strong>";
+                                return html;
+                            }
+                        }
+                    }
+                    // {
+                    //     "data": "task_id",
+                    //     className: 'text-center',
+                    //     "orderable": false,
+                    //     render: function(data, type, row) {
+                    //         let html = "<a class='link-fx font-weight-bold' href='<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . '/' ?>" +
+                    //             data + "/<?php echo $status ?>" + "/Tiket'>Buka</a>";
+                    //         return html;
+                    //     }
+                    // }
+                ],
+            });
+            $("#filter-status-tugas").change(function() {
+                table.ajax.reload();
+            });
+        });
     </script>
     <!-- end script datatable untuk data customer -->
     <!-- Page JS Plugins -->

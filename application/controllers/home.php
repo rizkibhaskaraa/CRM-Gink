@@ -50,11 +50,11 @@ class Home extends CI_Controller
         $data["product"] = $product = $this->home_model->getproduct(); //memanggil fungsi getlayanan di home_model
 
         //ambil data tabel task untuk tugas saya
-        $data["task"] = $this->home_model->gettaskall($data["employ_id"], $data["employ_dept"]["department_id"]);
+        // $data["task"] = $this->home_model->gettaskall($data["employ_id"], $data["employ_dept"]["department_id"]);
         //akhir ambil data tabel task untuk tugas saya
 
         //ambil data tabel task untuk tiket saya
-        $data["tiketsaya"] = $this->home_model->gettiketsaya($data["employ_id"]);
+        // $data["tiketsaya"] = $this->home_model->gettiketsaya($data["employ_id"]);
         //akhir ambil data tabel task untuk tiket saya
 
         //ambil data tabel task untuk menghitung report staff
@@ -100,7 +100,7 @@ class Home extends CI_Controller
         $data["product"] = $product = $this->home_model->getproduct(); //memanggil fungsi getlayanan di home_model
 
         //ambil data tabel task untuk tugas saya
-        $data["task"] = $this->home_model->gettaskall($data["employ_id"], $data["employ_dept"]["department_id"]);
+        // $data["task"] = $this->home_model->gettaskall($data["employ_id"], $data["employ_dept"]["department_id"]);
         //akhir ambil data tabel task untuk tugas saya
 
         //ambil data tabel task untuk menghitung report staff
@@ -111,7 +111,7 @@ class Home extends CI_Controller
         //akhir ambil data tabel task untuk menghitung report staff
 
         //ambil data tabel task untuk tiket saya
-        $data["tiketsaya"] = $this->home_model->gettiketsaya($data["employ_id"]);
+        // $data["tiketsaya"] = $this->home_model->gettiketsaya($data["employ_id"]);
         //akhir ambil data tabel task untuk tiket saya
 
         $this->load->view('home/home_ceo', $data);
@@ -335,6 +335,54 @@ class Home extends CI_Controller
         echo json_encode($callback);
     }
     
+    //function-fiunction datatable tiket saya
+    public function viewtabel_tiket($employ_id)
+    {
+        $search = $_POST['search']['value'];
+        $limit = $_POST['length'];
+        $start = $_POST['start'];
+        $status = $this->input->post('searchStatus');
+        $order_index = $_POST['order'][0]['column'];
+        $order_field = $_POST['columns'][$order_index]['data'];
+        $order_ascdesc = $_POST['order'][0]['dir'];
+        $sql_total = $this->home_model->count_all_tiket($employ_id,$status);
+        $sql_data = $this->home_model->filter_tiket($search, $limit, $start, $order_field, $order_ascdesc, $employ_id,$status);
+        $sql_filter = $this->home_model->count_filter_tiket($search, $employ_id,$status);
+        $callback = array(
+            'draw' => $_POST['draw'],
+            'recordsTotal' => $sql_total,
+            'recordsFiltered' => $sql_filter,
+            'data' => $sql_data,
+        );
+
+        header('Content-Type: application/json');
+        echo json_encode($callback);
+    }
+
+    //function-fiunction datatable tugas saya
+    public function viewtabel_tugas($employ_id,$status_employee)
+    {
+        $search = $_POST['search']['value'];
+        $limit = $_POST['length'];
+        $start = $_POST['start'];
+        $status = $this->input->post('searchStatus');
+        $order_index = $_POST['order'][0]['column'];
+        $order_field = $_POST['columns'][$order_index]['data'];
+        $order_ascdesc = $_POST['order'][0]['dir'];
+        $sql_total = $this->home_model->count_all_tugas($employ_id,$status,$status_employee);
+        $sql_data = $this->home_model->filter_tugas($search, $limit, $start, $order_field, $order_ascdesc, $employ_id,$status,$status_employee);
+        $sql_filter = $this->home_model->count_filter_tugas($search, $employ_id,$status,$status_employee);
+        $callback = array(
+            'draw' => $_POST['draw'],
+            'recordsTotal' => $sql_total,
+            'recordsFiltered' => $sql_filter,
+            'data' => $sql_data,
+        );
+
+        header('Content-Type: application/json');
+        echo json_encode($callback);
+    }
+
     //fungsi untuk add customer
     public function addcustomer($user)
     {

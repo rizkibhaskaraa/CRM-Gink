@@ -201,7 +201,7 @@
                                     </div>
                                 </td>
                                 <?php echo form_close(); ?>
-                            <?php } else if ($cekTabel == 'TugasSelesai' && $task["task_parent"] != NULL && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum' || (count($subtask) == 0 && $task["task_parent"] == NULL && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum')) { ?>
+                            <?php } else if ($cekTabel == 'TugasSelesai' && $task["task_parent"] != NULL && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum' || (count($subtask) == 0 && $task["task_parent"] == NULL && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum') || (count($subtask) != 0 && $task["task_status"]=="Finish")) { ?>
                                 <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['task_id']); ?>
                                 <td class="font-weight-bold" style="width: 20%;">Berkas (opsional)</td>
                                 <td>
@@ -245,7 +245,7 @@
                                 </td>
                             </tr>
                         <?php } ?>
-                        <?php if ($cekTabel == "Request" && count($subtask) != 0) { ?>
+                        <?php if (($cekTabel == "Request" && count($subtask) != 0) || ($cekTabel == "TugasBelum" && count($subtask) != 0) || ($cekTabel == "TugasSelesai" && count($subtask) != 0)) { ?>
                             <!-- tabel sub task -->
                             <div class="container-fluid">
                                 <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">

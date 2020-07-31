@@ -50,20 +50,10 @@ class Home extends CI_Controller
         $data["product"] = $product = $this->home_model->getproduct(); //memanggil fungsi getlayanan di home_model
 
         //ambil data tabel task untuk tugas saya
-        // $data["taskselesai"] = $this->home_model->gettaskselesai($data["employ_id"], $data["employ_dept"]["department_id"]);
-        // $data["taskbelum"] = $this->home_model->gettaskbelum($data["employ_id"], $data["employ_dept"]["department_id"]);
-        // $data["tasksaya"] = $this->home_model->gettasksaya($data["employ_id"], $data["employ_dept"]["department_id"]);
         $data["task"] = $this->home_model->gettaskall($data["employ_id"], $data["employ_dept"]["department_id"]);
-        // $data["taskparent"] = $this->home_model->gettaskparent($data["employ_dept"]["department_id"]);
         //akhir ambil data tabel task untuk tugas saya
 
-        //ambil data tabel task untuk request tugas
-        // $data["taskdihead"] = $this->home_model->gettaskdihead($departemen["nama_departemen"]);
-        // $data["taskdiheadkosong"] = $this->home_model->gettaskdiheadkosong($departemen["nama_departemen"]);
-        //akhir ambil data tabel task untuk request tugas
-
         //ambil data tabel task untuk tiket saya
-        // $data["tiket"] = $this->home_model->gettiket($data["employ_id"]);
         $data["tiketsaya"] = $this->home_model->gettiketsaya($data["employ_id"]);
         //akhir ambil data tabel task untuk tiket saya
 
@@ -110,11 +100,7 @@ class Home extends CI_Controller
         $data["product"] = $product = $this->home_model->getproduct(); //memanggil fungsi getlayanan di home_model
 
         //ambil data tabel task untuk tugas saya
-        // $data["taskselesai"] = $this->home_model->gettaskselesai($data["employ_id"], $data["employ_dept"]["department_id"]);
-        // $data["taskbelum"] = $this->home_model->gettaskbelum($data["employ_id"], $data["employ_dept"]["department_id"]);
-        // $data["tasksaya"] = $this->home_model->gettasksaya($data["employ_id"], $data["employ_dept"]["department_id"]);
         $data["task"] = $this->home_model->gettaskall($data["employ_id"], $data["employ_dept"]["department_id"]);
-        // $data["taskparent"] = $this->home_model->gettaskparent($data["employ_dept"]["department_id"]);
         //akhir ambil data tabel task untuk tugas saya
 
         //ambil data tabel task untuk menghitung report staff
@@ -125,7 +111,6 @@ class Home extends CI_Controller
         //akhir ambil data tabel task untuk menghitung report staff
 
         //ambil data tabel task untuk tiket saya
-        // $data["tiket"] = $this->home_model->gettiket($data["employ_id"]);
         $data["tiketsaya"] = $this->home_model->gettiketsaya($data["employ_id"]);
         //akhir ambil data tabel task untuk tiket saya
 
@@ -139,6 +124,7 @@ class Home extends CI_Controller
         redirect(base_url('index.php/home/index/') . $user);
     }
 
+    //fungsi update status layanan pelanggan
     public function updatelayanan($user)
     {
         $id_layanan = $this->input->post("id_layanan");
@@ -147,6 +133,7 @@ class Home extends CI_Controller
         $this->session->set_flashdata("sukses_update_status", "berhasil");
         redirect(base_url('index.php/home/ceo/') . $user);
     }
+
     //fungsi menuju halaman detail
     public function detail($designation, $id, $task, $status, $cekTabel)
     {
@@ -178,7 +165,7 @@ class Home extends CI_Controller
         $this->load->view('home/hasil_search_report', $data);
     }
 
-    //fungsi mendapatkan data tabel pelanggan join layanan
+    //fungsi mendapatkan data pelanggan by id
     function get_pelanggan()
     {
         $id_layanan = $this->input->get('id');
@@ -186,12 +173,14 @@ class Home extends CI_Controller
         echo json_encode($data);
     }
 
+    //fungsi mendapatkan data customer by id
     function get_customer()
     {
         $id_customer = $this->input->get('id');
         $data = $this->home_model->getcustomerbyid($id_customer);
         echo json_encode($data);
     }
+
     //fungsi untuk menambah data tiket/task
     public function addtiket($id_employ)
     {
@@ -200,8 +189,6 @@ class Home extends CI_Controller
         $employ = $this->home_model->getemploytiket($id_employ);
         $user = $this->home_model->getuser($id_employ);
         $departemen = $this->home_model->getdepartemen($user["user_username"]);
-
-
 
         $masalah = $this->input->post("masalah");
         if ($masalah != null) {
@@ -213,11 +200,6 @@ class Home extends CI_Controller
                 $departemen_tujuan = "Research And Development";
             }
             $department_id = $this->home_model->getdepartmentbyid($departemen_tujuan);
-            // if ($department_id == "") {
-            //     $department_id = NULL;
-            // } else {
-            //     $department_id = $department_id["department_id"];
-            // }
             //jika buat tiket dari tabel pelanggan
             $data_task = array(
                 "service_id" => $this->input->post("service"),
@@ -264,7 +246,7 @@ class Home extends CI_Controller
         }
     }
 
-    //function-fiunction datatable
+    //function-fiunction datatable untuk request task
     public function view($dept)
     {
         $search = $_POST['search']['value'];
@@ -289,20 +271,11 @@ class Home extends CI_Controller
     }
     //akhir function-fiunction datatable
 
+    //fungsi untuk tambah layanan
     public function tambahlayanan($username)
     {
         $produk = $this->input->post("kategori_produk");
         $produk = $this->home_model->getproduk($produk);
-        // $id_lay = [];
-        // foreach ($layanan as $value) {
-        //     $no_id = substr($value["id_layanan"], 4);
-        //     $no_id = intval($no_id);
-        //     array_push($id_lay, $no_id);
-        // }
-        // $max_id = max($id_lay);
-        // $id_layanan = "LYN-" . ($max_id + 1);
-        //akhir membuat id_layanan
-
         $data_layanan = array(
             "service_name" => $this->input->post("nama-layanan"),
             "service_status" => $this->input->post("status-layanan"),
@@ -327,18 +300,18 @@ class Home extends CI_Controller
         $sql_total = $this->home_model->count_all_pelanggan($status);
         $sql_data = $this->home_model->filter_pelanggan($search, $limit, $start, $order_field, $order_ascdesc, $status);
         $sql_filter = $this->home_model->count_filter_pelanggan($search, $status);
-        // $layanan = $this->home_model->getlayanan();
         $callback = array(
             'draw' => $_POST['draw'],
             'recordsTotal' => $sql_total,
             'recordsFiltered' => $sql_filter,
-            'data' => $sql_data,
-            // 'data-layanan'=>$layanan
+            'data' => $sql_data
         );
 
         header('Content-Type: application/json');
         echo json_encode($callback);
     }
+
+    //function-fiunction datatable task departemen
     public function viewtabel_dept($dept)
     {
         $search = $_POST['search']['value'];
@@ -351,20 +324,18 @@ class Home extends CI_Controller
         $sql_total = $this->home_model->count_all_dept($dept, $status);
         $sql_data = $this->home_model->filter_dept($search, $limit, $start, $order_field, $order_ascdesc, $dept, $status);
         $sql_filter = $this->home_model->count_filter_dept($search, $dept, $status);
-        // $layanan = $this->home_model->getlayanan();
         $callback = array(
             'draw' => $_POST['draw'],
             'recordsTotal' => $sql_total,
             'recordsFiltered' => $sql_filter,
             'data' => $sql_data,
-            // 'data-layanan'=>$layanan
         );
 
         header('Content-Type: application/json');
         echo json_encode($callback);
     }
-
-    //akhir function-fiunction datatable pelanggan   
+    
+    //fungsi untuk add customer
     public function addcustomer($user)
     {
         $data_pelanggan = array(

@@ -32,7 +32,7 @@ class detail_model extends CI_model
     public function getcustomer($service_id)
     {
         //dapatkan data task berdasarkan id task
-        $this->db->join("crm_customer", "crm_customer.customer_id = master_service.service_id");
+        $this->db->join("crm_customer", "crm_customer.customer_id = master_service.customer_id");
         $result = $this->db->get_where('master_service', array('service_id' => $service_id))->row_array();
         return $result["customer_name"];
     }

@@ -521,7 +521,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
-                                <textarea class="form-control js-summernote" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi" required></textarea>
+                                <textarea class="form-control js-summernote" name="deskripsi" id="deskripsi" rows="3" placeholder="Isi Deskripsi"></textarea>
                             </div>
                             <div style="float:right;margin-bottom:3%">
                                 <button type="reset" class="btn btn-outline-warning mr-2">Reset</button>

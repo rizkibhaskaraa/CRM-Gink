@@ -17,16 +17,17 @@ class Detail extends CI_Controller
             $user = $_SESSION["staff_id"];
         }
         $data["designation"] = $designation;
+
         //data employ yang akses
-        $user1 = $this->detail_model->getuser($user);
-        $data["username"] = $user1["user_username"];
-        $employ = $this->detail_model->getemploy($user);
-        $data["employ_nama"] = $employ["employee_name"];
-        $data["employ_id"] = $employ["employee_id"];
-        $data["status"] = $status;
-        //get nama posisi
-        $posisi = $this->detail_model->getdeptposisi($designation);
-        $data["position"] = $posisi["position_name"];
+            $user1 = $this->detail_model->getuser($user);
+            $data["username"] = $user1["user_username"];
+            $employ = $this->detail_model->getemploy($user);
+            $data["employ_nama"] = $employ["employee_name"];
+            $data["employ_id"] = $employ["employee_id"];
+            $data["status"] = $status;
+            //get nama posisi
+            $posisi = $this->detail_model->getdeptposisi($designation);
+            $data["position"] = $posisi["position_name"];
         //akhir data employ yang akses
 
         $data["cekTabel"] = $cekTabel; //cek table asal

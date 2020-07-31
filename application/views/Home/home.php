@@ -356,13 +356,15 @@
                             </thead>
                             <tbody>
                                 <?php foreach ($task as $value) {
+                                    // $n = 0;
+                                    // echo count($task);
+                                    // foreach ($task as $value2) {
+                                        // if ($value["task_id"] == $value2["task_parent"]) {
+                                            // echo $value2["task_parent"]."<br>";
+                                            // $n += 1;
+                                        // }
+                                    // }
                                     if ($value["task_status"] == "Not Finished") {
-                                        $n = 0;
-                                        foreach ($task as $value2) {
-                                            if ($value["task_id"] == $value2["task_parent"]) {
-                                                $n += 1;
-                                            }
-                                        }
                                 ?>
                                         <tr>
                                             <td style="width: 10%;">
@@ -382,7 +384,7 @@
                                             </td>
                                             <td class="text-center" style="width: 15%;">
                                                 <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . "/" . $value['task_id'] . "/" . $status . "/TugasBelum" ?>" class="text-decoration-none">Buka</a>
-                                                <?php if ($value["parent"] != null || $n == 0) { ?>
+                                                <?php if ($value["task_parent"] != null) { ?>
                                                     <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/status/') . $value["task_id"] ?>" class="text-decoration-none"> | Selesai</a>
                                                 <?php } ?>
                                             </td>
@@ -718,7 +720,7 @@
                             <div class="form-group">
                                 <label for="layanan">Layanan</label>
                                 <input type="text" class="form-control" name="layanan" id="layanan-pelanggan" readonly>
-                                <input type="text" class="form-control" name="service" id="service">
+                                <input type="text" class="form-control" name="service" id="service" hidden>
                             </div>
                             <div class="form-group">
                                 <label for="masalah">Jenis Masalah</label>
@@ -798,11 +800,7 @@
                                             <option value="<?php echo $value["employee_id"] ?>"><?php echo $value["employee_name"] ?></option>
                                     <?php }
                                     } ?>
-
-
                                 </select>
-
-
                             </div>
                             <div class="form-group">
                                 <label for="title">Judul Tugas</label>

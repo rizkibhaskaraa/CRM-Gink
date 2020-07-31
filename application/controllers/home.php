@@ -194,7 +194,7 @@ class Home extends CI_Controller
         if ($masalah != null) {
             if ($masalah == "umum") {
                 $departemen_tujuan = "General";
-            } else if ($masalah == "hosting" || $masalah == "billing") {
+            } else if ($masalah == "hosting" || $masalah == "biling") {
                 $departemen_tujuan = "Sales And Marketing";
             } else if ($masalah == "support") {
                 $departemen_tujuan = "Research And Development";

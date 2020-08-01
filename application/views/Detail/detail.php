@@ -76,7 +76,7 @@
 
                             <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250"><?php echo $position ?> di Gink Technology</h2>
                         </div>
-                        <?php if ($cekTabel == 'Request') { ?>
+                        <?php if ($cekTabel == 'Request' || ($cekTabel == "TugasBelum" && count($subtask) != 0) || ($cekTabel == "TugasSelesai" && count($subtask) != 0)) { ?>
                             <div class="flex-sm-00-auto mt-3 mt-sm-0 ml-sm-3">
                                 <span class="d-inline-block invisible" data-toggle="appear" data-timeout="350">
                                     <a class="btn btn-primary px-4 py-2" class="p-2 bg-primary text-white text-decoration-none tiket" data-toggle="modal" data-target="#modal-block-large-sub-tiket" href="">
@@ -201,7 +201,7 @@
                                     </div>
                                 </td>
                                 <?php echo form_close(); ?>
-                            <?php } else if ($cekTabel == 'TugasSelesai' && $task["task_parent"] != NULL && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum' || (count($subtask) == 0 && $task["task_parent"] == NULL && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum') || (count($subtask) != 0 && $task["task_status"]=="Finish")) { ?>
+                            <?php } else if ($cekTabel == 'TugasSelesai' && $task["task_parent"] != NULL && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum' || (count($subtask) == 0 && $task["task_parent"] == NULL && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum') || (count($subtask) != 0 && $task["task_status"]=="Finish" && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum')) { ?>
                                 <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['task_id']); ?>
                                 <td class="font-weight-bold" style="width: 20%;">Berkas (opsional)</td>
                                 <td>

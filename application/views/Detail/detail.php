@@ -248,13 +248,26 @@
                         <?php } ?>
                         <?php if (($cekTabel == "Request" && count($subtask) != 0) || ($cekTabel == "TugasBelum" && count($subtask) != 0) || ($cekTabel == "TugasSelesai" && count($subtask) != 0)) { ?>
                             <!-- tabel sub task -->
+                            <tr>
+                                <?php $progres = count($subtaskselesai) / count($subtask) * 100;
+                                if ($progres == 100 && $task['task_status'] == 'Not Finished') { ?>
+                                            <?php echo form_open_multipart('index.php/detail/ubahstatustask/' . $designation . "/" . $employ_id . '/' . $task['task_id'] . "/" . $status); ?>
+                                            <td class="font-weight-bold" style="width: 20%;">Berkas (opsional)</td>
+                                            <td>
+                                                <input type="file" name="file">
+                                                <div class="mt-5" style="float:right;">
+                                                    <input type="submit" class="btn btn-success" value="Konfirmasi Selesai">
+                                                </div>
+                                            </td>
+                                            <?php echo form_close(); ?>
+                                <?php } ?>
+                            </tr>
                             <div class="container-fluid">
                                 <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
                                     <thead>
                                         <tr>
-                                            <td colspan="4">
+                                            <td colspan="6">
                                                 <?php $color = "bg-success";
-                                                $progres = count($subtaskselesai) / count($subtask) * 100;
                                                 if ($progres < 80) {
                                                     $color = "bg-warning";
                                                 }
@@ -269,18 +282,7 @@
                                                         <span class="font-size-sm font-w600"><?php echo (count($subtaskselesai) / count($subtask)) * 100 ?>%</span>
                                                     </div>
                                                 </div>
-                                                <?php if ($progres == 100 && $task['task_status'] == 'Not Finished') { ?>
-                                                    <?php echo form_open_multipart('index.php/detail/ubahstatustask/' . $designation . "/" . $employ_id . '/' . $task['task_id'] . "/" . $status); ?>
-                                            <td class="font-weight-bold" style="width: 20%;">Berkas (opsional)</td>
-                                            <td>
-                                                <input type="file" name="file">
-                                                <div class="mt-5" style="float:right;">
-                                                    <input type="submit" class="btn btn-success" value="Konfirmasi Selesai">
-                                                </div>
                                             </td>
-                                            <?php echo form_close(); ?>
-                                        <?php } ?>
-                                        </td>
                                         </tr>
                                     </thead>
                                     <thead class="thead-dark">

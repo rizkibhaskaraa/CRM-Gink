@@ -37,9 +37,9 @@ class Home extends CI_Controller
         $data["employ_nama"] = $employ["employee_name"];
         $data["employ_id"] = $employ["employee_id"];
 
-        $data["employ_dept"] = $this->home_model->getdepartemen($user);
+        $data["employ_dept"] = $this->home_model->getposition($user);
         $data["user_dept"] = $data["employ_dept"];
-        $data["nama_departemen"] = $data["employ_dept"]["position_name"];
+        $data["nama_departemen"] =  $this->home_model->getdepartmentuser($user);;
 
         $userdata = $this->home_model->getuser($data["employ_id"]);
         $data["status"] = $userdata["user_status"];
@@ -91,7 +91,7 @@ class Home extends CI_Controller
         $data["status"] = $userdata["user_status"];
 
         //ambil departemen user
-        $data["employ_dept"] = $this->home_model->getdepartemen($user);
+        $data["employ_dept"] = $this->home_model->getposition($user);
         $data["user_dept"] = $data["employ_dept"];
         $data["nama_departemen"] = $data["employ_dept"]["position_name"];
 
@@ -150,7 +150,7 @@ class Home extends CI_Controller
     {
         $employ = $this->home_model->getemploytiket($employ_id);
         $user = $this->home_model->getuser($employ["employee_id"]);
-        $departemen = $this->home_model->getdepartemen($user["user_username"]);
+        $departemen = $this->home_model->getposition($user["user_username"]);
         $data["tgl_start"] = $tgl_start . " 00:00:00"; //concat tanggal dengan jam 00:00:00
         $data["tgl_end"] = $tgl_end . " 00:00:00"; //concat tanggal dengan jam 00:00:00
 
@@ -188,7 +188,7 @@ class Home extends CI_Controller
 
         $employ = $this->home_model->getemploytiket($id_employ);
         $user = $this->home_model->getuser($id_employ);
-        $departemen = $this->home_model->getdepartemen($user["user_username"]);
+        $departemen = $this->home_model->getposition($user["user_username"]);
 
         $masalah = $this->input->post("masalah");
         if ($masalah != null) {
@@ -334,7 +334,7 @@ class Home extends CI_Controller
         header('Content-Type: application/json');
         echo json_encode($callback);
     }
-    
+
     //function-fiunction datatable tiket saya
     public function viewtabel_tiket($employ_id)
     {
@@ -345,9 +345,9 @@ class Home extends CI_Controller
         $order_index = $_POST['order'][0]['column'];
         $order_field = $_POST['columns'][$order_index]['data'];
         $order_ascdesc = $_POST['order'][0]['dir'];
-        $sql_total = $this->home_model->count_all_tiket($employ_id,$status);
-        $sql_data = $this->home_model->filter_tiket($search, $limit, $start, $order_field, $order_ascdesc, $employ_id,$status);
-        $sql_filter = $this->home_model->count_filter_tiket($search, $employ_id,$status);
+        $sql_total = $this->home_model->count_all_tiket($employ_id, $status);
+        $sql_data = $this->home_model->filter_tiket($search, $limit, $start, $order_field, $order_ascdesc, $employ_id, $status);
+        $sql_filter = $this->home_model->count_filter_tiket($search, $employ_id, $status);
         $callback = array(
             'draw' => $_POST['draw'],
             'recordsTotal' => $sql_total,
@@ -360,7 +360,7 @@ class Home extends CI_Controller
     }
 
     //function-fiunction datatable tugas saya
-    public function viewtabel_tugas($employ_id,$status_employee)
+    public function viewtabel_tugas($employ_id, $status_employee)
     {
         $search = $_POST['search']['value'];
         $limit = $_POST['length'];
@@ -369,9 +369,9 @@ class Home extends CI_Controller
         $order_index = $_POST['order'][0]['column'];
         $order_field = $_POST['columns'][$order_index]['data'];
         $order_ascdesc = $_POST['order'][0]['dir'];
-        $sql_total = $this->home_model->count_all_tugas($employ_id,$status,$status_employee);
-        $sql_data = $this->home_model->filter_tugas($search, $limit, $start, $order_field, $order_ascdesc, $employ_id,$status,$status_employee);
-        $sql_filter = $this->home_model->count_filter_tugas($search, $employ_id,$status,$status_employee);
+        $sql_total = $this->home_model->count_all_tugas($employ_id, $status, $status_employee);
+        $sql_data = $this->home_model->filter_tugas($search, $limit, $start, $order_field, $order_ascdesc, $employ_id, $status, $status_employee);
+        $sql_filter = $this->home_model->count_filter_tugas($search, $employ_id, $status, $status_employee);
         $callback = array(
             'draw' => $_POST['draw'],
             'recordsTotal' => $sql_total,

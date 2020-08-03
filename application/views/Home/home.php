@@ -479,13 +479,13 @@
                         <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0 w-100" id="table-department">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 10%;"># ID Task</th>
-                                    <th class="font-w700 text-center" style="width: 15%;">Title</th>
-                                    <th class="font-w700 text-center" style="width: 15%;">Penanggung Jawab</th>
-                                    <th class="font-w700 text-center" style="width: 15%;">Task Parent</th>
-                                    <th class="font-w700 text-center" style="width: 15%;">Deadline</th>
-                                    <th class="font-w700 text-center" style="width: 15%;">Status</th>
-                                    <th class="font-w700 text-center" style="width: 15%;">Aksi</th>
+                                    <th class="font-w700 text-center" style="width: 14%;"># ID Task</th>
+                                    <th class="font-w700 text-center" style="width: 14%;">Title</th>
+                                    <th class="font-w700 text-center" style="width: 14%;">Penanggung Jawab</th>
+                                    <th class="font-w700 text-center" style="width: 14%;">Task Parent</th>
+                                    <th class="font-w700 text-center" style="width: 14%;">Deadline</th>
+                                    <th class="font-w700 text-center" style="width: 14%;">Status</th>
+                                    <th class="font-w700 text-center" style="width: 14%;">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -959,11 +959,12 @@
                 ],
                 "columns": [{
                         "data": "task_id",
-                        className: 'font-weight-bold'
+                        className: 'text-center font-weight-bold'
+                
                     },
                     {
                         "data": "task",
-                        className: 'text-center font-weight-bold'
+                        className: 'font-weight-bold'
                     },
                     {
                         "data": "employee_name",

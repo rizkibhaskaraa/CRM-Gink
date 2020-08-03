@@ -76,15 +76,7 @@
 
                             <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250"><?php echo $position ?> di Gink Technology</h2>
                         </div>
-                        <?php if ($cekTabel == 'Request' || ($cekTabel == "TugasBelum" && count($subtask) != 0) || ($cekTabel == "TugasSelesai" && count($subtask) != 0)) { ?>
-                            <div class="flex-sm-00-auto mt-3 mt-sm-0 ml-sm-3">
-                                <span class="d-inline-block invisible" data-toggle="appear" data-timeout="350">
-                                    <a class="btn btn-primary px-4 py-2" class="p-2 bg-primary text-white text-decoration-none tiket" data-toggle="modal" data-target="#modal-block-large-sub-tiket" href="">
-                                        <i class="fa fa-plus mr-1"></i> Buat Sub Tiket
-                                    </a>
-                                </span>
-                            </div>
-                        <?php } ?>
+                        
                     </div>
                 </div>
             </div>
@@ -93,13 +85,22 @@
     </main>
     <!-- END Main Container -->
     <!-- Page Content -->
-    <div class="content">
+    <div class="content ">
         <!-- Discussion -->
         <!-- Tampilan Detail Tugas secara umum -->
-        <div class="block col-10 mx-auto mb-5 mt-2">
-            <div class="block-header block-header-default ">
-                <h3 class="block-title dark ">Hallo <?php echo $employ_nama ?> , berikut isi Detail Tasknya</h3>
+        <div class="block block-rounded block-themed mx-auto mb-5 ">
+            <div class="block-header block-header-default bg-amethyst-darker">
+                <h3 class="block-title">Hallo <?php echo $employ_nama ?> , berikut isi Detail Tasknya</h3>
             </div>
+            <?php if ($cekTabel == 'Request' || ($cekTabel == "TugasBelum" && count($subtask) != 0) || ($cekTabel == "TugasSelesai" && count($subtask) != 0)) { ?>
+                            <div class="mt-2 mb-2 mr-4" style="float:right";>
+                                <span class="d-inline-block invisible" data-toggle="appear" data-timeout="350">
+                                    <a class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#modal-block-large-sub-tiket" href="">
+                                        <i class="fa fa-plus mr-1" ></i> Buat Sub Tiket
+                                    </a>
+                                </span>
+                            </div>
+                        <?php } ?>
             <div class="block-content">
                 <table class="table table-bordered">
                     <tbody>
@@ -334,8 +335,8 @@
     </div>
     <!-- END Page Content -->
     <!-- ADD Komentar -->
-    <div class="block col-10 mx-auto mb-5 mt-2">
-        <div class="block-header block-header-default bg-dark ">
+    <div class="block col-md-11 mx-auto">
+        <div class="block-header block-header-default bg-dark">
             <h3 class="block-title text-gray-lighter ml-3 pt-2 pb-2">Komentar / Catatan</h3>
             <div class="block-options">
                 <a class="btn-block-option mr-2 text-gray-lighter" href="#forum-reply-form " data-toggle="scroll-to">
@@ -343,7 +344,7 @@
                 </a>
             </div>
         </div>
-        <div class="block-content">
+        <div class="block-content ">
             <table class="table table-borderless">
                 <tbody>
                     <!-- untuk ID parent=null / tidak punya sub task -->

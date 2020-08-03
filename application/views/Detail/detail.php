@@ -37,7 +37,7 @@
         </a>
     </div>
     <!-- end home button -->
-    <div class="col-md-2 ml-auto px-4">
+    <div class="col-md-2 ml-auto">
         <!-- User Dropdown -->
         <div class="dropdown d-inline-block">
             <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -112,7 +112,12 @@
                                         <img class="img-avatar " src="<?php echo base_url('assets/oneui/media/avatars/avatar7.jpg') ?>" alt="">
                                     </a>
                                 </p>
-                                <p class="font-size-sm "><?php echo $nama_kirim . " (" . $task["department_name"] . ")" ?></p>
+                                <?php if($task["department_name"] == NULL){?>
+                                    <p class="font-size-sm "><?php echo $nama_kirim ?></p>
+                                <?php }else{ ?>
+                                    <p class="font-size-sm "><?php echo $nama_kirim . " (" . $task["department_name"] . ")" ?></p>
+                                <?php } ?>
+                                
                             </td>
                             <td class="font-weight-bold mt-2" style="width: 20%;">Title</td>
                             <td width="70%"><?php echo $task["task_title"] ?> </td>

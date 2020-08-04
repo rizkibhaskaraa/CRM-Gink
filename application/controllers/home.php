@@ -41,7 +41,7 @@ class Home extends CI_Controller
         $data["user_dept"] = $data["employ_dept"];
         $data["nama_departemen"] =  $this->home_model->getdepartmentuser($user);;
 
-        $userdata = $this->home_model->getuser($data["employ_id"]);
+        $userdata = $this->home_model->getuserbyusername($user);
         $data["status"] = $userdata["user_status"];
         //akhir ambil data dari tabel employ berdasarkan user yang login ($user)
 
@@ -78,7 +78,7 @@ class Home extends CI_Controller
         $data["designation"] = $designation["designation_id"];
 
         //ambil data status 
-        $userdata = $this->home_model->getuser($data["employ_id"]);
+        $userdata = $this->home_model->getuserbyusername($user);
         $data["status"] = $userdata["user_status"];
 
         //ambil departemen user

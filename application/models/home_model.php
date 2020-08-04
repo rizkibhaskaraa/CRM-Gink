@@ -25,6 +25,11 @@ class home_model extends CI_model
         return $this->db->get_where("master_user", array("employee_id" => $id_employ))->row_array();
     }
 
+    //fungsi ambil data tabel user by username
+    public function getuserbyusername($username)
+    {
+        return $this->db->get_where("master_user", array("user_username" => $username))->row_array();
+    }
     //fungsi ambil data tabel employ by id employee
     public function getemploytiket($id_employ)
     {

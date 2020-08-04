@@ -1,162 +1,104 @@
 <?php
-error_reporting(0); //menyembunyikan error
+// error_reporting(0); //menyembunyikan error
 class home_model extends CI_model
 {
     //fungsi ambil data tabel employ
     public function getemploy($user)
     {
-        //ambil data berdasarkan username yang login
-        $user = $this->db->get_where("user", array("username" => $user))->row_array();
-        $id_employ = $user["id_employ"];
-        return $this->db->get_where("employe", array("id_employ" => $id_employ))->row_array();
+        //ambil data employe berdasarkan username yang login
+        $user = $this->db->get_where("master_user", array("user_username" => $user))->row_array();
+        $id_employ = $user["employee_id"];
+        return $this->db->get_where("hr_employee", array("employee_id" => $id_employ))->row_array();
     }
 
-    //fungsi ambil data tabel user
+    //fungsi ambil data tabel designation by username yang login
+    public function getdesignationUser($username)
+    {
+        $user = $this->db->get_where("master_user", array("user_username" => $username))->row_array();
+        $id_position = $user["position_id"];
+        return $this->db->get_where("hr_designation", array("position_id" => $id_position = $user["position_id"]))->row_array();
+    }
+
+    //fungsi ambil data tabel user by id employee
     public function getuser($id_employ)
     {
-        //mendapatkan data berdasarkan id_employ
-        return $this->db->get_where("user", array("id_employ" => $id_employ))->row_array();
+        return $this->db->get_where("master_user", array("employee_id" => $id_employ))->row_array();
     }
 
-    //fungsi ambil data tabel task
-    public function gettask()
-    {
-        return $this->db->get("task")->result_array();
-    }
-
-    //fungsi ambil data tabel employ
+    //fungsi ambil data tabel employ by id employee
     public function getemploytiket($id_employ)
     {
-        //ambil data berdasarkan id_emoloy
-        return $this->db->get_where("employe", array("id_employ" => $id_employ))->row_array();
+        return $this->db->get_where("hr_employee", array("employee_id" => $id_employ))->row_array();
     }
 
     //fungsi ambil data table employ
     public function getemploydept($id_dept)
     {
-        if($id_dept != "ceo"){ //jika yang login dari CEO
-            $this->db->order_by('nama_departemen', 'ASC'); //sort hasil menurut nama_departemen
-            $this->db->order_by('status_employ', 'ASC'); //sort hasil menurut status employ 
-            //join tabel departemen ke tabel employ dimana employe.id_departemen = departemen.id_departemen
-            $this->db->join("departemen", "employe.id_departemen = departemen.id_departemen"); 
-            //ambil data employ menurut id_departemen
-            return $this->db->get_where("employe", array("employe.id_departemen" => $id_dept))->result_array();
-        }else{
-            $this->db->order_by('nama_departemen', 'ASC');
-            $this->db->order_by('status_employ', 'ASC');
-            $this->db->join("departemen", "employe.id_departemen = departemen.id_departemen");
-            return $this->db->get_where("employe")->result_array();
+        $this->db->select("hr_employee.employee_name,hr_department.department_name,hr_department.department_id");
+        $this->db->order_by('hr_department.department_name', 'ASC');
+        $this->db->join("hr_designation", "hr_employee.employee_id = hr_designation.employee_id", 'left');
+        $this->db->join("hr_position", "hr_position.position_id = hr_designation.position_id");
+        $this->db->join("hr_department", "hr_department.department_id = hr_position.department_id");
+        if ($id_dept != "1") { //jika yang login dari CEO
+            return $this->db->get_where("hr_employee", array("hr_department.department_id" => $id_dept))->result_array();
+        } else {
+            return $this->db->get_where("hr_employee")->result_array();
         }
-        
     }
 
     //fungsi ambil data tabel pelanggan
     public function getpelanggan()
     {
-        return $this->db->get("pelanggan")->result_array();
+        return $this->db->get("crm_customer")->result_array();
+    }
+
+    //fungsi ambil data tabel customer by id
+    public function getcustomerbyid($id)
+    {
+        return $this->db->get_where("crm_customer", array("customer_id" => $id))->row_array();
     }
 
     //fungsi ambil data tabel layanan
     public function getlayanan()
     {
-        return $this->db->get("layanan_pelanggan")->result_array();
+        return $this->db->get("master_service")->result_array();
     }
 
-    //fungsi ambil data tabel pelanggan berdasarkan id pelanggan
-    public function getpelangganbyid($id)
+    public function getproduct()
     {
-        return $this->db->get_where("pelanggan", array("id_pelanggan" => $id))->row_array();
+        return $this->db->get("master_product")->result_array();
     }
 
     //fungsi ambil data tabel layanan berdasarkan id layanan
     public function getlayananbyid($id)
     {
-        $this->db->join("pelanggan", "pelanggan.id_pelanggan = layanan_pelanggan.id_pelanggan"); //join tabel pelanggan dengan layanan
-        return $this->db->get_where("layanan_pelanggan", array("id_layanan" => $id))->row_array();
+        $this->db->select("crm_customer.customer_id,customer_name,service_name,service_id");
+        $this->db->join("crm_customer", "master_service.customer_id = crm_customer.customer_id"); //join tabel employe dengan task
+        return $this->db->get_where("master_service", array("service_id" => $id))->row_array();
     }
 
     //fungsi ambil data tabel departemen berdasarkan id departemen
-    public function getdepartemen($id_departemen)
+    public function getposition($user)
     {
-        return $this->db->get_where("departemen", array("id_departemen" => $id_departemen))->row_array();
+        $datauser = $this->db->get_where("master_user", array("user_username" => $user))->row_array();
+        return $this->db->get_where("hr_position", array("position_id" => $datauser["position_id"]))->row_array();
     }
 
-    //fungsi ambil data task selesai berdarakan id_employ_tujuan(PJ task)
-    public function gettaskselesai($id_employ,$dept)
+    //fungsi ambil data nama departemen dari tabel departmen
+    public function getdepartmentuser($username)
     {
-        if($dept == "Chief Executive Officer "){ //jika CEO yang login
-            return $this->db->get_where('task', array("status" => "Selesai"))->result_array();
-        }else{
-            return $this->db->get_where('task', array('id_employ_tujuan' => $id_employ, "status" => "Selesai"))->result_array();
-        }
-        
+        $datauser = $this->db->get_where("master_user", array("user_username" => $username))->row_array();
+        $pos_id = $datauser["position_id"];
+        $getpos = $this->db->get_where("hr_position", array("position_id" => $pos_id))->row_array();
+        $id_dept = $getpos["department_id"];
+        $table_dept = $this->db->get_where("hr_department", array("department_id" => $id_dept))->row_array();
+        return $table_dept["department_name"];
     }
 
-    //fungsi ambil data task belum selesai berdarakan id_employ_tujuan(PJ task)
-    public function gettaskbelum($id_employ,$dept)
+    //fungsi ambil data nama departemen dari tabel departmen
+    public function getdepartmentbyid($department_name)
     {
-        if($dept == "Chief Executive Officer "){ //jika CEO yang login
-            return $this->db->get_where('task', array('status' => "Belum Selesai"))->result_array();
-        }else{
-            return $this->db->get_where('task', array('id_employ_tujuan' => $id_employ, 'status' => "Belum Selesai"))->result_array();
-        }
-    }
-
-    //fungsi ambil data tabel task untuk tiket berdarakan id_employ_tujuan(PJ task)
-    public function gettiket($id_employ)
-    {
-        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan"); //join tabel employe ke task
-        return $this->db->get_where('task', array('id_employ_kirim' => $id_employ))->result_array();
-    }
-
-    //fungsi ambil data tabel task untuk tiket berdarakan id_employ_tujuan(PJ task)
-    public function gettiketsaya($id_employ)
-    {
-        return $this->db->get_where('task', array('id_employ_kirim' => $id_employ,'id_employ_tujuan' => NULL))->result_array();
-    }
-
-    //fungsi ambil data tabel task untuk request task berdarakan nama_dept_tujuan(departemen PJ task)
-    public function gettaskdihead($nama_departemen)
-    {
-        $departemen = array($nama_departemen, "umum");
-        $this->db->order_by('status', 'ASC');
-        $this->db->order_by('dateline', 'ASC');
-        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan"); //join tabel employe dengan task
-        $this->db->where_in('nama_dept_tujuan', $departemen); //clause where_in
-        return $this->db->get('task')->result_array();
-    }
-
-    //fungsi ambil data tabel task untuk tugas saya berdarakan nama_dept_tujuan(departemen PJ task)
-    public function gettaskparent($nama_departemen)
-    {
-        $departemen = array($nama_departemen, "umum");
-        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
-        if($nama_departemen != "Chief Executive Officer "){
-            $this->db->where_in('nama_dept_tujuan', $departemen);
-        }
-        $this->db->where('id_parent', "");
-        return $this->db->get('task')->result_array();
-    }
-
-    //fungsi ambil data tabel task untuk tugas saya berdarakan nama_dept_tujuan(departemen PJ task) dan id_employ_tujuan
-    public function gettasksaya($id_employ,$dept)
-    {
-        $this->db->where('id_parent', "");
-        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
-        if($dept != "Chief Executive Officer "){ //jika bukan CEO yang login
-            $this->db->where('id_employ_tujuan', $id_employ);
-        }
-        return $this->db->get('task')->result_array();
-    }
-
-    //ambil data tabel task untuk data request task
-    public function gettaskdiheadkosong($nama_departemen)
-    {
-        $departemen = array($nama_departemen, "umum");
-        $this->db->order_by('status', 'ASC');
-        $this->db->order_by('dateline', 'ASC');
-        $this->db->where_in('nama_dept_tujuan', $departemen);
-        return $this->db->get('task')->result_array();
+       return $this->db->get_where("hr_department", array("department_name" => $department_name))->row_array();
     }
 
     //fungsi update db task
@@ -164,166 +106,374 @@ class home_model extends CI_model
     {
         //update
         date_default_timezone_set('Asia/Bangkok');
-        $this->db->set('status', "Selesai"); //set status jadi selesai
-        $this->db->set('waktu_selesai', date("Y-m-d H-i-s")); //set waktu_selesai menjadi waktu saat ini
-        $this->db->where('id_task', $id);
-        $this->db->update('task');
+        $this->db->set('task_status', "Finish"); //set status jadi selesai
+        $this->db->set('task_finish', date("Y-m-d H-i-s")); //set waktu_selesai menjadi waktu saat ini
+        $this->db->where('task_id', $id);
+        $this->db->update('tm_task');
         //akhir update
+
         //data user
-        $task = $this->db->get_where("task", array("id_task" => $id))->row_array();
-        $employ = $this->db->get_where("employe", array("id_employ" => $task["id_employ_tujuan"]))->row_array();
-        $user = $this->db->get_where("user", array("id_employ" => $employ["id_employ"]))->row_array();
+        $task = $this->db->get_where("tm_task", array("task_id" => $id))->row_array();
+        $employ = $this->db->get_where("hr_employee", array("employee_id" => $task["employee_destination"]))->row_array();
+        $user = $this->db->get_where("master_user", array("employee_id" => $employ["employee_id"]))->row_array();
         //akhir data user
-        return $user["username"];
+
+        return $user["user_username"];
     }
 
-    //fungsi search tabel pelanggan untuk searching dan sorting tabel pelanggan
-    public function getsearch($search)
-    {
-            // if ($status == "semua") {
-                
-            // } else {
-            //     $this->db->where("status", $status);
-            // }
-        
-        $this->db->like('customer', $search);
-        $this->db->or_like('id_pelanggan', $search);
-        return $this->db->get("pelanggan")->result_array();
-    }
-
-    //fungsi search departemen di report
-    // public function getsearchreport($dept, $tglend, $tglstart)
-    // {
-    //     $this->db->where("nama_dept_tujuan", $dept);
-    //     $this->db->where("dateline", $tglend);
-    //     $this->db->select("count(task.status),id_employ_tujuan,nama,status_employ");
-    //     $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
-    //     $this->db->group_by("id_employ_tujuan");
-    //     return $this->db->get("task")->result_array();
-    // }
-
+    // fungsi insert task
     public function insert_task($data_task)
     {
-        return $this->db->insert("task", $data_task);
+        return $this->db->insert("tm_task", $data_task);
+    }
+
+    //update status layanan / service
+    public function updatestatuslayanan($id, $status)
+    {
+        $this->db->set('service_status', $status);
+        $this->db->where('service_id', $id);
+        $this->db->update('master_service');
+
+        return "berhasil";
+    }
+
+    //fungsi untuk tambah layanan / service
+    public function insert_layanan($data_layanan)
+    {
+        return $this->db->insert("master_service", $data_layanan);
+    }
+
+    //fungsi ambil data table produk by nama produk
+    public function getproduk($produk)
+    {
+        return $this->db->get_where("master_product", array("product_name" => $produk))->row_array();
+    }
+
+    //fungsi untuk tambah pelanggan / customer
+    public function insert_pelanggan($data_pelanggan)
+    {
+        return $this->db->insert("crm_customer", $data_pelanggan);
+    }
+
+    //fungsi ambil data seluruh employe
+    public function getall_employee()
+    {
+        return $this->db->get('hr_employee')->result_array();
     }
 
     // report tanpa periode
-    //fungsi get report (untuk kolom request tugas)
-    public function getreport($dept)
-    {   
-        $this->db->order_by('nama_dept_tujuan', 'ASC');
-        $this->db->order_by('status_employ', 'ASC');
-        if($dept != "Chief Executive Officer "){ //jika bukan CEO yang login
-            $this->db->where("nama_dept_tujuan", $dept);
+        //fungsi get report (untuk kolom request tugas)
+        public function getreport($dept)
+        {
+            $this->db->order_by('department_destination', 'ASC');
+            if ($dept != "1") { //jika bukan CEO yang login
+                $this->db->where("department_destination", $dept);
+            }
+            $this->db->select("count(tm_task.task_status),employee_destination,employee_name,department_destination,department_name"); //select kolom
+            $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination"); //join
+            $this->db->join("hr_department", "hr_department.department_id = tm_task.department_destination"); //join
+            $this->db->group_by("employee_destination"); //group by 
+            return $this->db->get("tm_task")->result_array();
         }
-        $this->db->select("count(task.status),id_employ_tujuan,nama,status_employ,id_departemen,nama_dept_tujuan"); //select kolom
-        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan"); //join
-        $this->db->group_by("id_employ_tujuan"); //group by 
-        return $this->db->get("task")->result_array();
-    }
 
-    //fungsi get report (untuk kolom tugas selesai)
-    public function gettugaspjselesai($dept)
-    {
-        if($dept != "Chief Executive Officer "){
-            $this->db->where("nama_dept_tujuan", $dept);
+        //fungsi get report (untuk kolom tugas selesai)
+        public function gettugaspjselesai($dept)
+        {
+            if ($dept != "1") {
+                $this->db->where("department_destination", $dept);
+            }
+            $this->db->where("tm_task.task_status", "Finish");
+            $this->db->where_not_in("employee_destination", "");
+            $this->db->select("count(tm_task.task_status),employee_destination,employee_name,department_destination,department_name");
+            $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination"); //join
+            $this->db->join("hr_department", "hr_department.department_id = tm_task.department_destination"); //join
+            $this->db->group_by("employee_destination");
+            return $this->db->get("tm_task")->result_array();
         }
-        $this->db->where("task.status", "Selesai");
-        $this->db->where_not_in("id_employ_tujuan", ""); //clause where not in
-        $this->db->select("count(task.status),id_employ_tujuan,nama,status_employ,id_departemen");
-        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
-        $this->db->group_by("id_employ_tujuan");
-        return $this->db->get("task")->result_array();
-    }
 
-    //fungsi get report (untuk kolom on progres)
-    public function gettugaspjbelum($dept)
-    {
-        if($dept != "Chief Executive Officer "){
-            $this->db->where("nama_dept_tujuan", $dept);
+        //fungsi get report (untuk kolom on progres)
+        public function gettugaspjbelum($dept)
+        {
+            if ($dept != "1") {
+                $this->db->where("department_destination", $dept);
+            }
+            $this->db->where("tm_task.task_status", "Not Finished");
+            $this->db->where_not_in("employee_destination", "");
+            $this->db->select("count(tm_task.task_status),employee_destination,employee_name,department_destination,department_name");
+            $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination"); //join
+            $this->db->join("hr_department", "hr_department.department_id = tm_task.department_destination"); //join
+            $this->db->group_by("employee_destination");
+            return $this->db->get("tm_task")->result_array();
         }
-        $this->db->where("task.status", "Belum Selesai");
-        $this->db->where_not_in("id_employ_tujuan", "");
-        $this->db->select("count(task.status),id_employ_tujuan,nama,status_employ,id_departemen");
-        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
-        $this->db->group_by("id_employ_tujuan");
-        return $this->db->get("task")->result_array();
-    }
     // end report tanpa periode
 
     // report dengan periode
-    //fungsi get report (untuk kolom request tugas) dengan periode
-    public function getreport_periode($dept,$tgl_start,$tgl_end)
-    {
-        $this->db->order_by('nama_dept_tujuan', 'ASC');
-        $this->db->order_by('status_employ', 'ASC');
-        if($dept != "Chief Executive Officer "){
-            $this->db->where("nama_dept_tujuan", $dept);
+        //fungsi get report (untuk kolom request tugas) dengan periode
+        public function getreport_periode($dept, $tgl_start, $tgl_end)
+        {
+            $this->db->order_by('department_destination', 'ASC');
+            if ($dept != "1") { //jika bukan CEO yang login
+                $this->db->where("department_destination", $dept);
+            }
+            $this->db->where('task_date >=', $tgl_start); //where tanggal
+            $this->db->where('task_date <=', $tgl_end); //where tanggan
+            $this->db->select("count(tm_task.task_status),employee_destination,employee_name,department_destination,department_name"); //select kolom
+            $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination"); //join
+            $this->db->join("hr_department", "hr_department.department_id = tm_task.department_destination"); //join
+            $this->db->group_by("employee_destination"); //group by 
+            return $this->db->get("tm_task")->result_array();
         }
-        $this->db->where('date >=', $tgl_start); //where tanggal
-        $this->db->where('date <=', $tgl_end); //where tanggan
-        $this->db->select("count(task.status),id_employ_tujuan,nama,status_employ,nama_dept_tujuan"); //select kolom
-        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan"); //join
-        $this->db->group_by("id_employ_tujuan"); //group by
-        return $this->db->get("task")->result_array();
-    }
-    
-    //fungsi get report (untuk kolom tugas selesai) dengan periode
-    public function gettugaspjselesai_periode($dept,$tgl_start,$tgl_end)
-    {
-        if($dept != "Chief Executive Officer "){
-            $this->db->where("nama_dept_tujuan", $dept);
+
+        //fungsi get report (untuk kolom tugas selesai) dengan periode
+        public function gettugaspjselesai_periode($dept, $tgl_start, $tgl_end)
+        {
+            if ($dept != "1") {
+                $this->db->where("department_destination", $dept);
+            }
+            $this->db->where('task_date >=', $tgl_start);
+            $this->db->where('task_date <=', $tgl_end);
+            $this->db->where("tm_task.task_status", "Finish");
+            $this->db->where_not_in("employee_destination", "");
+            $this->db->select("count(tm_task.task_status),employee_destination,employee_name,department_destination,department_name");
+            $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination"); //join
+            $this->db->join("hr_department", "hr_department.department_id = tm_task.department_destination"); //join
+            $this->db->group_by("employee_destination");
+            return $this->db->get("tm_task")->result_array();
         }
-        $this->db->where("task.status", "Selesai");
-        $this->db->where('date >=', $tgl_start);
-        $this->db->where('date <=', $tgl_end);
-        $this->db->where_not_in("id_employ_tujuan", "");
-        $this->db->select("count(task.status),id_employ_tujuan,nama,status_employ,id_departemen");
-        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
-        $this->db->group_by("id_employ_tujuan");
-        return $this->db->get("task")->result_array();
-    }
-    
-    //fungsi get report (untuk kolom on progres) dengan periode
-    public function gettugaspjbelum_periode($dept,$tgl_start,$tgl_end)
-    {
-        if($dept != "Chief Executive Officer "){
-            $this->db->where("nama_dept_tujuan", $dept);
+
+        //fungsi get report (untuk kolom on progres) dengan periode
+        public function gettugaspjbelum_periode($dept, $tgl_start, $tgl_end)
+        {
+            if ($dept != "1") {
+                $this->db->where("department_destination", $dept);
+            }
+            $this->db->where('task_date >=', $tgl_start);
+            $this->db->where('task_date <=', $tgl_end);
+            $this->db->where("tm_task.task_status", "Not Finished");
+            $this->db->where_not_in("employee_destination", "");
+            $this->db->select("count(tm_task.task_status),employee_destination,employee_name,department_destination,department_name");
+            $this->db->join("hr_employee", "hr_employee.employee_id = tm_task.employee_destination"); //join
+            $this->db->join("hr_department", "hr_department.department_id = tm_task.department_destination"); //join
+            $this->db->group_by("employee_destination");
+            return $this->db->get("tm_task")->result_array();
         }
-        $this->db->where("task.status", "Belum Selesai");
-        $this->db->where('date >=', $tgl_start);
-        $this->db->where('date <=', $tgl_end);
-        $this->db->where_not_in("id_employ_tujuan", "");
-        $this->db->select("count(task.status),id_employ_tujuan,nama,status_employ,id_departemen");
-        $this->db->join("employe", "employe.id_employ = task.id_employ_tujuan");
-        $this->db->group_by("id_employ_tujuan");
-        return $this->db->get("task")->result_array();
-    }
     // end report dengan periode
 
     //function-fiunction datatable
-    public function count_all($dept){
-        $this->db->where("nama_dept_tujuan",$dept);
-        $this->db->from('task');
-        return $this->db->count_all_results(); 
-    }
+        public function count_all($dept, $status)
+        {
+            $this->db->where("task_parent", null);
+            $dept_dest = array($dept, 5);
+            $this->db->where_in("department_destination", $dept_dest);
+            if ($status != "") {
+                $this->db->where("task_status", $status);
+            }
+            return $this->db->count_all_results('tm_task');
+        }
 
-    public function filter($search, $limit, $start, $order_field, $order_ascdesc,$dept){    
-        if($search != ""){
-            $this->db->like('title', $search); 
-            $this->db->where("nama_dept_tujuan",$dept);
-        }   
-        $this->db->order_by($order_field, $order_ascdesc); 
-        $this->db->limit($limit, $start); 
-        return $this->db->get_where('task',array("nama_dept_tujuan"=>$dept))->result_array(); 
-    }
+        public function filter($search, $limit, $start, $order_field, $order_ascdesc, $dept, $status)
+        {
+            $this->db->like('task_title', $search);
+            $this->db->where("task_parent", null);
+            $dept_dest = array($dept, 5);
+            $this->db->where_in("department_destination", $dept_dest);
+            if ($status != "") {
+                $this->db->where("task_status", $status);
+            }
+            $this->db->order_by($order_field, $order_ascdesc);
+            $this->db->limit($limit, $start);
+            $this->db->select("task_title,a.employee_name as penerima,b.employee_name as pengirim,task_dateline,task_status,task_id");
+            $this->db->join("hr_employee as a", "a.employee_id = tm_task.employee_destination", 'left'); //join tabel employe dengan task
+            $this->db->join("hr_employee as b", "b.employee_id = tm_task.employee_sent", 'left'); //join tabel employe dengan task
+            return $this->db->get('tm_task')->result_array();
+        }
 
-    public function count_filter($search,$dept){
-        if($search != ""){
-            $this->db->like('title', $search); 
-            $this->db->where("nama_dept_tujuan",$dept); 
-        }  
-        return $this->db->get_where('task',array("nama_dept_tujuan"=>$dept))->num_rows(); 
-    }
+        public function count_filter($search, $dept, $status)
+        {
+            $this->db->where("task_parent", null);
+            $this->db->like('task_title', $search);
+            $dept_dest = array($dept, 5);
+            $this->db->where_in("department_destination", $dept_dest);
+            if ($status != "") {
+                $this->db->where("task_status", $status);
+            }
+            return $this->db->get('tm_task')->num_rows();
+        }
     //akhir function-fiunction datatable
+
+    //function-fiunction datatable pelanggan
+        public function count_all_pelanggan($status)
+        {
+            $this->db->select("crm_customer.customer_id,customer_name,service_name,service_id,service_status");
+            if ($status != "") {
+                $this->db->where("service_status", $status);
+            }
+            $this->db->join("master_service", "master_service.customer_id = crm_customer.customer_id", 'left'); //join tabel employe dengan task
+            return $this->db->count_all_results("crm_customer");
+        }
+
+        public function filter_pelanggan($search, $limit, $start, $order_field, $order_ascdesc, $status)
+        {
+            $this->db->select("crm_customer.customer_id,customer_name,service_name,service_id,service_status");
+            if ($status != "") {
+                $this->db->where("service_status", $status);
+            }
+            // $this->db->like('crm_customer.customer_id', $search); 
+            $this->db->like('customer_name', $search);
+            $this->db->order_by($order_field, $order_ascdesc);
+            $this->db->limit($limit, $start);
+            $this->db->join("master_service", "master_service.customer_id = crm_customer.customer_id", 'left'); //join tabel employe dengan task
+            return $this->db->get('crm_customer')->result_array();
+        }
+
+        public function count_filter_pelanggan($search, $status)
+        {
+            $this->db->select("crm_customer.customer_id,customer_name,service_name,service_id,service_status");
+            if ($status != "") {
+                $this->db->where("service_status", $status);
+            }
+            // $this->db->like('crm_customer.customer_id', $search); 
+            $this->db->like('customer_name', $search);
+            $this->db->join("master_service", "master_service.customer_id = crm_customer.customer_id", 'left'); //join tabel employe dengan task
+            return $this->db->get('crm_customer')->num_rows();
+        }
+    //akhir function-fiunction datatable pelanggan
+
+    //function-fiunction datatable task departement
+        public function count_all_dept($dept, $status)
+        {
+            if ($status != "") {
+                $this->db->where("a.task_status", $status);
+            }
+            $this->db->select("b.task_title as task_parent, employee_name, a.task_title as task, a.task_id, a.task_dateline, a.task_status, a.department_destination");
+            $this->db->join("hr_employee", "hr_employee.employee_id = a.employee_destination", 'left'); //join tabel employe dengan task
+            $this->db->join("tm_task as b", "b.task_id = a.task_parent", 'left'); //join tabel employe dengan task
+            $this->db->where("a.department_destination", $dept);
+            return $this->db->count_all_results("tm_task as a");
+        }
+
+        public function filter_dept($search, $limit, $start, $order_field, $order_ascdesc, $dept, $status)
+        {
+            if ($status != "") {
+                $this->db->where("a.task_status", $status);
+            }
+            $this->db->like('a.task_title', $search);
+            $this->db->order_by($order_field, $order_ascdesc);
+            $this->db->limit($limit, $start);
+            $this->db->select("b.task_title as task_parent, employee_name, a.task_title as task, a.task_id, a.task_dateline, a.task_status, a.department_destination");
+            $this->db->join("hr_employee", "hr_employee.employee_id = a.employee_destination", 'left'); //join tabel employe dengan task
+            $this->db->join("tm_task as b", "b.task_id = a.task_parent", 'left'); //join tabel employe dengan task
+            $this->db->where("a.department_destination", $dept);
+            return $this->db->get('tm_task as a')->result_array();
+        }
+
+        public function count_filter_dept($search, $dept, $status)
+        {
+            if ($status != "") {
+                $this->db->where("a.task_status", $status);
+            }
+            $this->db->like('a.task_title', $search);
+            $this->db->select("b.task_title as task_parent, employee_name, a.task_title as task, a.task_id, a.task_dateline, a.task_status, a.department_destination");
+            $this->db->join("hr_employee", "hr_employee.employee_id = a.employee_destination", 'left'); //join tabel employe dengan task
+            $this->db->join("tm_task as b", "b.task_id = a.task_parent", 'left'); //join tabel employe dengan task
+            $this->db->where("a.department_destination", $dept);
+            return $this->db->get('tm_task as a')->num_rows();
+        }
+    //akhir function-fiunction datatable task departement
+
+    //function-fiunction datatable tiket saya
+        public function count_all_tiket($employ_id, $status)
+        {
+            if ($status != "") {
+                $this->db->where("a.task_status", $status);
+            }
+            // $this->db->select("b.task_title as task_parent, employee_name, a.task_title as task, a.task_id,a.task_parent, a.task_dateline, a.task_status, a.employee_sent,a.employee_destination)");
+            $this->db->join("hr_employee", "hr_employee.employee_id = a.employee_destination", 'left'); //join tabel employe dengan task
+            $this->db->join("tm_task as b", "b.task_id = a.task_parent", 'left'); //join tabel employe dengan task
+            $this->db->where("a.employee_sent", $employ_id);
+            return $this->db->count_all_results("tm_task as a");
+        }
+
+        public function filter_tiket($search, $limit, $start, $order_field, $order_ascdesc, $employ_id, $status)
+        {
+            if ($status != "") {
+                $this->db->where("a.task_status", $status);
+            }
+            $this->db->where("a.employee_sent", $employ_id);
+            $this->db->like('a.task_title', $search);
+            // $this->db->like('b.task_title', $search);
+            $this->db->order_by($order_field, $order_ascdesc);
+            $this->db->limit($limit, $start);
+            $this->db->select("b.task_title as task_parent, employee_name, a.task_title as task, a.task_id, a.task_dateline, a.task_status, a.department_destination,a.employee_sent");
+            $this->db->join("hr_employee", "hr_employee.employee_id = a.employee_destination", 'left'); //join tabel employe dengan task
+            $this->db->join("tm_task as b", "b.task_id = a.task_parent", 'left'); //join tabel employe dengan task
+            return $this->db->get('tm_task as a')->result_array();
+        }
+
+        public function count_filter_tiket($search, $employ_id, $status)
+        {
+            if ($status != "") {
+                $this->db->where("a.task_status", $status);
+            }
+            $this->db->like('a.task_title', $search);
+            // $this->db->select("b.task_title as task_parent, employee_name, a.task_title as task, a.task_id,a.task_parent, a.task_dateline, a.task_status, a.employee_sent,a.employee_destination)");
+            $this->db->join("hr_employee", "hr_employee.employee_id = a.employee_destination", 'left'); //join tabel employe dengan task
+            $this->db->join("tm_task as b", "b.task_id = a.task_parent", 'left'); //join tabel employe dengan task
+            $this->db->where("a.employee_sent", $employ_id);
+            return $this->db->get('tm_task as a')->num_rows();
+        }
+    //akhir function-fiunction datatable tiket saya
+
+    //function-fiunction datatable tugas saya
+        public function count_all_tugas($employ_id, $status, $status_employee)
+        {
+            if ($status != "") {
+                $this->db->where("a.task_status", $status);
+            }
+            // $this->db->select("b.task_title as task_parent, employee_name, a.task_title as task, a.task_id,a.task_parent, a.task_dateline, a.task_status, a.employee_sent,a.employee_destination)");
+            $this->db->join("hr_employee", "hr_employee.employee_id = a.employee_destination", 'left'); //join tabel employe dengan task
+            $this->db->join("tm_task as b", "b.task_id = a.task_parent", 'left'); //join tabel employe dengan task
+            $this->db->join("hr_department", "hr_department.department_id = a.department_destination", "left");
+            if ($status_employee != "C-Level") {
+                $this->db->where("a.employee_destination", $employ_id);
+            }
+            return $this->db->count_all_results("tm_task as a");
+        }
+
+        public function filter_tugas($search, $limit, $start, $order_field, $order_ascdesc, $employ_id, $status, $status_employee)
+        {
+            if ($status != "") {
+                $this->db->where("a.task_status", $status);
+            }
+            if ($status_employee != "C-Level") {
+                $this->db->where("a.employee_destination", $employ_id);
+            }
+            $this->db->like('a.task_title', $search);
+            // $this->db->like('b.task_title', $search);
+            $this->db->order_by($order_field, $order_ascdesc);
+            $this->db->limit($limit, $start);
+            $this->db->select("b.task_title as task_parent, employee_name, a.task_title as task, a.task_id, a.task_dateline, a.task_status, a.department_destination,a.employee_sent,a.employee_destination,department_name");
+            $this->db->join("hr_employee", "hr_employee.employee_id = a.employee_destination", 'left'); //join tabel employe dengan task
+            $this->db->join("tm_task as b", "b.task_id = a.task_parent", 'left'); //join tabel employe dengan task
+            $this->db->join("hr_department", "hr_department.department_id = a.department_destination", "left");
+            return $this->db->get('tm_task as a')->result_array();
+        }
+
+        public function count_filter_tugas($search, $employ_id, $status, $status_employee)
+        {
+            if ($status != "") {
+                $this->db->where("a.task_status", $status);
+            }
+            $this->db->like('a.task_title', $search);
+            // $this->db->select("b.task_title as task_parent, employee_name, a.task_title as task, a.task_id,a.task_parent, a.task_dateline, a.task_status, a.employee_sent,a.employee_destination)");
+            $this->db->join("hr_employee", "hr_employee.employee_id = a.employee_destination", 'left'); //join tabel employe dengan task
+            $this->db->join("tm_task as b", "b.task_id = a.task_parent", 'left'); //join tabel employe dengan task
+            $this->db->join("hr_department", "hr_department.department_id = a.department_destination", "left");
+            if ($status_employee != "C-Level") {
+                $this->db->where("a.employee_destination", $employ_id);
+            }
+            return $this->db->get('tm_task as a')->num_rows();
+        }
+    //akhir function-fiunction datatable tugas saya
+
 }

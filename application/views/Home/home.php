@@ -5,25 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-    <title>Dashboard </title>
-
-    <meta name="description" content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
-    <meta name="author" content="pixelcave">
-    <meta name="robots" content="noindex, nofollow">
-
-    <!-- Open Graph Meta -->
-    <meta property="og:title" content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework">
-    <meta property="og:site_name" content="OneUI">
-    <meta property="og:description" content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="">
-    <meta property="og:image" content="">
+    <title>Dashboard - Task Manager</title>
 
     <!-- Icons -->
-    <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-    <link rel="shortcut icon" href="<?php echo base_url('assets/oneui/media/favicons/favicon.png') ?>">
     <link rel="icon" type="image/png" sizes="192x192" href="<?php echo base_url('assets/oneui/media/favicons/favicon-192x192.png') ?>">
-    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url('assets/oneui/media/favicons/apple-touch-icon-180x180.png') ?>">
+
     <!-- END Icons -->
 
     <!-- Stylesheets -->
@@ -33,7 +19,10 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/oneui/js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css') ?>">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
     <link rel="stylesheet" id="css-main" href="<?php echo base_url('assets/oneui/css/oneui.min.css') ?>">
-    
+
+    <!-- style sweetalert -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/oneui/js/plugins/sweetalert2/sweetalert2.min.css') ?>">
+
     <!-- style tdatepicker -->
     <link rel="stylesheet" href="<?php echo base_url('assets/oneui/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') ?>">
 
@@ -47,31 +36,32 @@
 </head>
 
 <body>
-    <!-- Home button -->
-    <?php if ($employ_dept == "ceo") {
-        $linkhome = base_url('index.php/home/ceo/') . $username;
-    } else {
-        $linkhome = base_url('index.php/home/index/') . $username;
-    } ?>
-    <div class="ml-4" style="float:left;">
-        <a class="btn btn-sm btn-dual" href="<?php echo $linkhome ?>">
-            <img class="rounded" src="<?php echo base_url('assets/oneui/media/avatars/home.png') ?>" alt="Header Avatar" style="width: 18px;">
-            <span class="ml-2">Home</span>
+    <div class="status-login" data-flashdata="<?= $this->session->flashdata('status-login'); ?>"></div>
+    <div class="sukses_buat" data-flashdata="<?= $this->session->flashdata('sukses_buat'); ?>"></div>
 
-        </a>
-    </div>
+    <!-- Home button -->
+        <?php if ($status == "C-Level") {
+            $linkhome = base_url('index.php/home/ceo/') . $username;
+        } else {
+            $linkhome = base_url('index.php/home/index/') . $username;
+        } ?>
+        <div class="ml-5" style="float:left;">
+            <a class="btn btn-sm btn-dual" href="<?php echo $linkhome ?>">
+                <img class="rounded" src="<?php echo base_url('assets/oneui/media/avatars/home.png') ?>" alt="Header Avatar" style="width: 18px;">
+                <span class="ml-2">Home</span>
+
+            </a>
+        </div>
     <!-- end home button -->
 
-    <div class="col-md-2 ml-auto px-4">
+    <div class="col-md-2 ml-auto">
         <!-- User Dropdown -->
-        <div class="dropdown d-inline-block ml-2">
+        <div class="dropdown d-inline-block">
             <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img class="rounded" src="<?php echo base_url('assets/oneui/media/avatars/avatar10.jpg') ?>" alt="Header Avatar" style="width: 18px;">
                 <span class="d-none d-sm-inline-block ml-1"><?php echo $employ_nama ?> </span>
                 <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
             </button>
-
-
             <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm " aria-labelledby="page-header-user-dropdown">
                 <div class="p-3 text-center bg-primary">
                     <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?php echo base_url('assets/oneui/media/avatars/avatar10.jpg') ?>" alt="">
@@ -100,9 +90,9 @@
                         <div class="flex-sm-fill">
                             <h1 class="font-w600 text-white mb-0 invisible" data-toggle="appear">Dashboard</h1>
 
-                            <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250">Selama Datang , <?php echo $employ_nama ?></h2>
+                            <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250">Selamat Datang , <?php echo $employ_nama ?></h2>
 
-                            <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250"><?php echo $status . " " . $nama_departemen ?> di Gink Technology</h2>
+                            <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250"><?php echo $nama_departemen ?> di Gink Technology</h2>
                         </div>
                         <div class="flex-sm-00-auto mt-3 mt-sm-0 ml-sm-3">
                             <span class="d-inline-block invisible" data-toggle="appear" data-timeout="350">
@@ -118,20 +108,25 @@
         <!-- END Hero -->
     </main>
     <!-- END Main Container -->
-    <!-- Page Content -->
-    <!-- request task,pelanggan,tugas selesai,tugas Belum Selesai,tiket selesai,tiket Belum Selesai -->
 
+    <!-- Page Content -->
+
+    <!-- request task,pelanggan,tugas selesai,tugas Belum Selesai,tiket selesai,tiket Belum Selesai -->
+    
     <!-- navigasi bar pilih tabel -->
-    <ul class="nav nav-tabs nav-tabs-block ml-3 px-3 mt-3" data-toggle="tabs" role="tablist">
+    <ul class="nav nav-tabs nav-tabs-block ml-4 px-2 mt-3" data-toggle="tabs" role="tablist">
         <li style="background-color:lavender" class="nav-item">
             <a class="nav-link" href="#pelanggan">Data Pelanggan</a>
         </li>
-        <?php if ($status == "kepala") { ?>
+        <?php if ($status == "Manager") { ?>
             <li style="background-color:lavender" class="nav-item">
                 <a class="nav-link" href="#request">Request Tugas</a>
             </li>
             <li style="background-color:lavender" class="nav-item">
                 <a class="nav-link" href="#report">Report Staff</a>
+            </li>
+            <li style="background-color:lavender" class="nav-item">
+                <a class="nav-link" href="#departemen">Tugas Department</a>
             </li>
         <?php } ?>
         <li style="background-color:lavender" class="nav-item">
@@ -144,7 +139,6 @@
     <!-- akhir navigasi bar pilih tabel -->
 
     <div class="block-content tab-content overflow-hidden">
-
         <!-- pelanggan -->
         <div class="tab-pane fade fade-up show active" id="pelanggan" role="tabpanel">
             <div class="container-fluid">
@@ -152,90 +146,61 @@
                     <div class="block-header border-bottom">
                         <h3 class="block-title text-primary">Data Pelanggan</h3>
                     </div>
-                    <!-- bagian field search dan sorting -->
-                    <input type="text" id="search" class="form-control col-2 search  mt-3 ml-2 mr-4" name="search" placeholder="Cari Customer">
-                    <!-- <select name="status" id="status-pelanggan" class="form-control col-2 status-pelanggan mt-3">
-                        <option value="semua">Semua Status</option>
-                        <option value="aktif">Aktif</option>
-                        <option value="tidak aktif">Tidak Aktif</option>
-                    </select> -->
-                    <input type="text" id="link" name="link" value="<?php echo base_url('index.php/home/search/') . $employ_id . "/" ?>" hidden>
-                    <!-- akhir bagian field search dan sorting -->
+                    <div class="col-2 float-right mt-2 mr-1">
+                        <select name="filter-status-layanan" id="filter-status-layanan" class="form-control">
+                            <option class="font-w700" disabled="disabled" selected value="">Status</option>
+                            <option value="">Semua Status</option>
+                            <option value="Active">Aktif</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Not Active">Tidak Aktif</option>
+                        </select>
+                    </div>
+                    <div style="clear:both"></div>
                     <div class="block-content block-content-full">
-                        <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0" id="tabel-pelanggan">
+                        <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0" id="table-pelanggan">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 10%;">#ID</th>
-                                    <th class="font-w700 text-center" style="width: 30%;">Customer</th>
+                                    <th class="font-w700 text-center" style="width: 10%;">ID Service</th>
+                                    <th class="font-w700 text-center" style="width: 25%;">Customer</th>
                                     <th class="font-w700 text-center" style="width: 30%;">Layanan</th>
                                     <th class="font-w700 text-center" style="width: 15%;">Status</th>
-                                    <th class="font-w700 text-center" style="width: 15%;">+Tiket</th>
+                                    <th class="font-w700 text-center" style="width: 10%;">+Tiket</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <?php foreach ($pelanggan as $value) {
-                                    $i = 1;
-                                    $row_layanan = 1; //untuk row span
-                                    foreach ($layanan as $valuelayanan) {
-                                        if ($value["id_pelanggan"] == $valuelayanan["id_pelanggan"]) {
-                                            $row_layanan += 1;
-                                        }
-                                    } ?>
-                                    <tr>
-                                        <td class="text-center" rowspan="<?= $row_layanan ?>">
-                                            <span class="font-w600 ">#<?php echo $value["id_pelanggan"] ?></span>
-                                        </td>
-                                        <td class="text-center" rowspan="<?= $row_layanan ?>">
-                                            <span class="font-w600"><?php echo $value["customer"] ?></span>
-                                        </td>
-                                    </tr>
-                                    <?php foreach ($layanan as $value1) {
-                                        if ($value["id_pelanggan"] == $value1["id_pelanggan"]) { ?>
-                                            <tr>
-                                                <td>
-                                                    <span class="font-w600"><?php echo $i . ". " . $value1["nama_layanan"] ?></span>
-                                                </td>
-                                                <?php if ($value1["status"] == "Tidak Aktif") { ?>
-                                                    <!-- jika status tidak aktif -->
-                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value1["status"] ?></span></td>
-                                                <?php } else { ?>
-                                                    <!-- jika status aktif -->
-                                                    <td class="text-center"><span class="font-w600   btn-sm btn-block btn-success"><i class="fa fa-fw fa-check"></i> <?php echo $value1["status"] ?></span></td>
-                                                <?php } ?>
-                                                <td class="text-center">
-                                                    <a href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value1["id_layanan"] ?>" onclick="datapelanggan(this,'CS');"><button class="btn btn-light"><i class="fa fa-plus fa-2x"></i></button></a>
-                                                    <!-- <a class="text-decoration-none" href="" data-toggle="modal" data-target="#modal-block-large" id="<?php echo $value["id_pelanggan"] ?>" onclick="datapelanggan(this,'CS');">+ tiket</a> -->
-                                                </td>
-                                            </tr>
-                                <?php $i += 1;
-                                        }
-                                    }
-                                } ?>
-                            </tbody>
+                            <tbody></tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
         <!-- END pelanggan -->
-
         <!-- Request Task dan report -->
-        <?php if ($status == "kepala") { ?>
+        <?php if ($status == "Manager") { ?>
             <div class="tab-pane fade fade-up" id="request" role="tabpanel">
                 <div class="container-fluid">
                     <div class="block block-mode-loading-oneui">
                         <div class="block-header border-bottom ">
                             <h3 class="block-title text-primary">Request Tugas</h3>
                         </div>
+                        <div class="col-2 float-right mt-2 mr-1">
+                            <select name="filter-status" id="filter-status" class="form-control">
+                                <option class="font-w700" disabled="disabled" selected value="">Status</option>
+                                <option value="">Semua Status</option>
+                                <option value="Finish">Selesai</option>
+                                <option value="Not Finished">Belum Selesai</option>
+                            </select>
+                        </div>
+                        <div style="clear:both"></div>
                         <div class="block-content block-content-full">
                             <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0 w-100" id="table-request">
                                 <thead class="thead-dark">
                                     <tr class="text-uppercase">
-                                        <th class="font-w700 text-center" style="width: 20%;">Title</th>
-                                        <th class="font-w700 text-center" style="width: 20%;">Penanggung Jawab</th>
-                                        <th class="font-w700 text-center" style="width: 20%;">Deadline</th>
-                                        <th class="font-w700 text-center" style="width:15%" ;>Status</th>
-                                        <th class="font-w700 text-center" style="width: 20%;">Aksi</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Title</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Nama Pengirim</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Penanggung Jawab</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Deadline</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Status</th>
+                                        <th class="font-w700 text-center" style="width: 16%;">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -244,21 +209,23 @@
                     </div>
                 </div>
             </div>
+            <!--report -->
             <div class="tab-pane fade fade-up" id="report" role="tabpanel">
                 <div class="container-fluid">
                     <div class="block block-mode-loading-oneui">
                         <div class="block-header border-bottom ">
                             <h3 class="block-title text-primary">Report Staff</h3>
                         </div>
-                        <!-- bagian input tanggal periode -->
-
-                        <button class="btn btn-primary search mt-3 ml-2 mr-4" id="button-report">Terapkan</button>
+                        <button class="btn btn-primary search mt-3 ml-2 mr-4" data-toggle="click-ripple" id="button-report">Terapkan</button>
                         <button class="btn btn-outline-danger search mt-3 ml-1 mr-2" data-toggle="click-ripple" id="button-reset">Reset</button>
-                        <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-end" id="tgl-end" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal End">
-                        <h1 class="search "><i class="fa fa-minus mr-2"></i></h1>
-                        <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-start" id="tgl-start" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal Start">
+
+                        <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-end" id="tgl-end" data-date-format="yyyy-mm-dd" data-week-start="0" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal End">
+
+                        <h1 class="search"><i class="fa fa-minus mr-2"></i></h1>
+
+                        <input type="text" class="js-datepicker form-control col-2 search  mt-3 ml-2 mr-4 search required" name="tgl-start" id="tgl-start" data-date-format="yyyy-mm-dd" data-week-start="0" data-autoclose="true" data-today-highlight="true" placeholder="Tanggal Start">
+
                         <input type="text" name="alamat-report" id="alamat-report" value="<?php echo base_url('index.php/home/searchreport/') . $employ_id . "/" ?>" hidden>
-                        <!-- bagian input tanggal periode -->
 
                         <div class="block-content block-content-full" id="report-table">
                             <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
@@ -266,31 +233,28 @@
                                     <tr class="text-uppercase">
                                         <th class="font-w700 text-center" style="width: 16%;">Nama</th>
                                         <th class="font-w700 text-center" style="width: 16%;">Departemen</th>
-                                        <th class="font-w700 text-center" style="width: 16%;">Jabatan</th>
-                                        <th class="font-w700 text-center" style="width: 16%;">Request Tugas</th>
-                                        <th class="font-w700 text-center" style="width: 16%;">Selesai</th>
-                                        <th class="font-w700 text-center" style="width: 16%;">On Progress</th>
+                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Request Tugas</th>
+                                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 16%;">Selesai</th>
+                                        <th class="font-w700 text-center" style="width:16%" ;>On Progress</th>
                                     </tr>
                                 </thead>
-                                <?php $data_report = []; //array untuk simpan data staff
+                                <?php $data_report = [];
                                 foreach ($report as $value) {
-                                    //insert nama staff dari hasil $report ke array $data_report
-                                    array_push($data_report, $value["nama"]);
+                                    array_push($data_report, $value["employee_name"]);
                                 }
                                 foreach ($employ_report as $value) {
-                                    if (!in_array($value["nama"], $data_report)) { //jika nama tidak ada di dalam array $data_report
-                                ?>
+                                    if (!in_array($value["employee_name"], $data_report)) { ?>
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <span class="font-w600"><?php echo $value["nama"] ?></span>
+                                                    <span class="font-w600"><?php echo $value["employee_name"] ?></span>
                                                 </td>
                                                 <td class="text-center">
-                                                    <span class="font-w600"><?php echo $value["nama_departemen"] ?></span>
+                                                    <span class="font-w600"><?php echo $value["department_name"] ?></span>
                                                 </td>
-                                                <td class="text-center">
+                                                <!-- <td class="text-center">
                                                     <span class="font-w600"><?php echo $value["status_employ"] ?></span>
-                                                </td>
+                                                </td> -->
                                                 <td class="text-center">
                                                     <span class="font-w600">0 Tugas</span>
                                                 </td>
@@ -301,491 +265,186 @@
                                                     <span class="font-w600 text-danger">0 Tugas</span>
                                                 </td>
                                             </tr>
-                                        </tbody>
-                                <?php }
+                                            <!-- </tbody> -->
+                                    <?php }
                                 } ?>
-                                <?php $employe = []; //array untuk simpan data staff
-                                foreach ($report as $value) { ?>
-                                    <tbody>
+                                    <?php $employe = [];
+                                    foreach ($report as $value) { ?>
+                                        <!-- <tbody> -->
                                         <?php foreach ($tugas_selesai as $value2) {
-                                            if ($value2["nama"] == $value["nama"]) {
-                                                //insert nama staff dari hasil $report ke array $employe
-                                                array_push($employe, $value["nama"]); ?>
+                                            if ($value2["employee_name"] == $value["employee_name"]) {
+                                                array_push($employe, $value["employee_name"]); ?>
                                                 <tr>
                                                     <td>
-                                                        <span class="font-w600"><?php echo $value["nama"] ?></span>
+                                                        <span class="font-w600"><?php echo $value["employee_name"] ?></span>
                                                     </td>
                                                     <td class="text-center">
-                                                        <span class="font-w600"><?php echo $value["nama_dept_tujuan"] ?></span>
+                                                        <span class="font-w600"><?php echo $value["department_name"] ?></span>
                                                     </td>
-                                                    <td class="text-center">
+                                                    <!-- <td class="text-center">
                                                         <span class="font-w600"><?php echo $value["status_employ"] ?></span>
+                                                    </td> -->
+                                                    <td class="text-center">
+                                                        <span class="font-w600"><?php echo $value["count(tm_task.task_status)"] ?> Tugas</span>
                                                     </td>
                                                     <td class="text-center">
-                                                        <span class="font-w600"><?php echo $value["count(task.status)"] ?> Tugas</span>
+                                                        <span class="font-w600 text-success"><?php echo $value2["count(tm_task.task_status)"] ?> Tugas</span>
                                                     </td>
                                                     <td class="text-center">
-                                                        <span class="font-w600 text-success"><?php echo $value2["count(task.status)"] ?> Tugas</span>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <span class="font-w600 text-danger"><?php echo $value["count(task.status)"] - $value2["count(task.status)"] ?> Tugas</span>
+                                                        <span class="font-w600 text-danger"><?php echo $value["count(tm_task.task_status)"] - $value2["count(tm_task.task_status)"] ?> Tugas</span>
                                                     </td>
                                                 </tr>
                                         <?php
                                             }
                                         } ?>
-                                    </tbody>
-                                <?php } ?>
-                                <?php foreach ($report as $value) { ?>
-                                    <tbody>
+                                        <!-- </tbody> -->
+                                    <?php } ?>
+                                    <?php foreach ($report as $value) { ?>
+                                        <!-- <tbody> -->
                                         <?php foreach ($tugas_belum as $value2) {
-                                            if ($value2["nama"] == $value["nama"] && !in_array($value["nama"], $employe)) { //jika nama tidak ada di dalam array $employe
-                                                array_push($employe, $value["nama"]); ?>
+                                            if ($value2["employee_name"] == $value["employee_name"] && !in_array($value["employee_name"], $employe)) {
+                                                array_push($employe, $value["employee_name"]); ?>
                                                 <tr>
                                                     <td>
-                                                        <span class="font-w600"><?php echo $value["nama"] ?></span>
+                                                        <span class="font-w600"><?php echo $value["employee_name"] ?></span>
                                                     </td>
                                                     <td class="text-center">
-                                                        <span class="font-w600"><?php echo $value["nama_dept_tujuan"] ?></span>
+                                                        <span class="font-w600"><?php echo $value["department_name"] ?></span>
                                                     </td>
-                                                    <td class="text-center">
+                                                    <!-- <td class="text-center">
                                                         <span class="font-w600"><?php echo $value["status_employ"] ?></span>
+                                                    </td> -->
+                                                    <td class="text-center">
+                                                        <span class="font-w600"><?php echo $value["count(tm_task.task_status)"] ?> Tugas</span>
                                                     </td>
                                                     <td class="text-center">
-                                                        <span class="font-w600"><?php echo $value["count(task.status)"] ?> Tugas</span>
+                                                        <span class="font-w600 text-success"><?php echo $value["count(tm_task.task_status)"] - $value2["count(tm_task.task_status)"] ?> Tugas</span>
                                                     </td>
                                                     <td class="text-center">
-                                                        <span class="font-w600 text-success"><?php echo $value["count(task.status)"] - $value2["count(task.status)"] ?> Tugas</span>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <span class="font-w600 text-danger"><?php echo $value2["count(task.status)"] ?> Tugas</span>
+                                                        <span class="font-w600 text-danger"><?php echo $value2["count(tm_task.task_status)"] ?> Tugas</span>
                                                     </td>
                                                 </tr>
                                         <?php
                                             }
                                         } ?>
-                                    </tbody>
-                                <?php } ?>
+                                        </tbody>
+                                    <?php } ?>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- END report-->
         <?php } ?>
         <!-- END Request Task dan report-->
-
         <div class="tab-pane fade fade-up" id="tugas" role="tabpanel">
-            <!-- Belum Selesai -->
             <div class="container-fluid">
                 <div class="block block-mode-loading-oneui">
                     <div class="block-header border-bottom">
-                        <h3 class="block-title text-danger">Tugas Saya | Belum Selesai</h3>
+                        <h3 class="block-title text-primary ">Tugas Saya</h3>
                     </div>
+                    <div class="col-2 float-right mt-2 mr-1">
+                        <select name="filter-status-tugas" id="filter-status-tugas" class="form-control">
+                            <option class="font-w700" disabled="disabled" selected value="">Status</option>
+                            <option value="">Semua Status</option>
+                            <option value="Finish">Selesai</option>
+                            <option value="Not Finished">Belum Selesai</option>
+                        </select>
+                    </div>
+                    <div style="clear:both"></div>
                     <div class="block-content block-content-full">
-                        <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
+                        <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0 w-100" id="table-tugas">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
                                     <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
-                                    <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
-                                    <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Penanggung Jawab</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Task Parent</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Deadline</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Status</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Aksi</th>
                                 </tr>
                             </thead>
-                            <!-- body jika tidak ada sub task -->
                             <tbody>
-                                <?php foreach ($tasksaya as $valueparent) {
-                                    if ($valueparent["status"] == "Belum Selesai") { ?>
-                                        <tr>
-                                            <td style="width: 10%;" rowspan="<?= $row ?>">
-                                                <span class="font-w600">#<?php echo $valueparent["id_task"] . " " . $valueparent["title"] ?></span>
-                                            </td>
-                                            <td class="text-center" style="width: 10%;" rowspan="<?= $row ?>">
-                                                <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
-                                            </td>
-                                            <td style="width: 10%;" class="text-center">
-                                                <span class="font-w600">-</span>
-                                            </td>
-                                            <td class="text-center font-w700" style="width: 20%;">
-                                                <span class="font-size-sm "><?php echo $valueparent["dateline"] ?></span>
-                                            </td>
-                                            <td class="text-danger text-center" style="width: 15%;">
-                                                <span class="font-w600 btn-sm btn-block btn-danger"><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $valueparent["status"] ?></span>
-                                            </td>
-                                            <td class="text-center" style="width: 15%;">
-                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $valueparent['id_task'] . "/TugasBelum" ?>" class="text-decoration-none">Buka</a>
-                                            </td>
-                                        </tr>
-                                <?php }
-                                } ?>
                             <tbody>
-                                <!-- akhir body jika tidak ada sub task -->
-                                <!-- body jika tidak sub task -->
-                            <tbody>
-                                <?php foreach ($taskparent as $valueparent) {
-                                    $i = 1;
-                                    $row_taskbelum = 1; //untuk row span
-                                    foreach ($taskbelum as $value) {
-                                        if ($valueparent["id_task"] == $value["id_parent"]) {
-                                            $row_taskbelum += 1;
-                                        }
-                                    }
-                                ?>
-                                    <tr>
-                                        <?php if ($row_taskbelum != 1) { //jika $row_taskbelum bukan 1
-                                        ?>
-                                            <td style="width: 10%;" rowspan="<?= $row_taskbelum ?>">
-                                                <span class="font-w600">#<?php echo $valueparent["id_task"] . " " . $valueparent["title"] ?></span>
-                                            </td>
-                                            <td class="text-center" style="width: 10%;" rowspan="<?= $row_taskbelum ?>">
-                                                <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
-                                            </td>
-                                        <?php } ?>
-                                    </tr>
-                                    <?php foreach ($taskbelum as $value) {
-                                        if ($valueparent["id_task"] == $value["id_parent"]) { ?>
-                                            <tr>
-                                                <td style="width: 10%;">
-                                                    <span class="font-w600"><?php echo $i . "." . $value["title"] ?></span>
-                                                </td>
-                                                <td class="text-center font-w700" style="width: 20%;">
-                                                    <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
-                                                </td>
-                                                <td class="text-danger text-center" style="width: 15%;">
-                                                    <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
-                                                </td>
-                                                <td class="text-center" style="width: 15%;">
-                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/TugasBelum" ?>" class="text-decoration-none">Buka | </a>
-                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/status/') . $value["id_task"] ?>" class="text-decoration-none">Selesai</a>
-                                                </td>
-                                            </tr>
-                                <?php $i += 1;
-                                        }
-                                    }
-                                } ?>
-                            </tbody>
-                            <!-- akhir body jika ada sub task -->
                         </table>
                     </div>
                 </div>
             </div>
-            <!-- END Belum Selesai -->
-            <!--  Selesai -->
-            <div class="container-fluid">
-                <div class="block block-mode-loading-oneui">
-                    <div class="block-header border-bottom">
-                        <h3 class="block-title text-success">Tugas Saya | Selesai</h3>
-                    </div>
-                    <div class="block-content block-content-full">
-                        <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
-                            <thead class="thead-dark">
-                                <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
-                                    <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
-                                    <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
-                                    <th class="font-w700 text-center" style="width: 16%;">Deadline</th>
-                                    <th class="font-w700 text-center" style="width: 16%;">Status</th>
-                                    <th class="font-w700 text-center" style="width: 16%;">Aksi</th>
-                                </tr>
-                            </thead>
-                            <!-- body jika tidak ada sub task -->
-                            <tbody>
-                                <?php foreach ($tasksaya as $valueparent) {
-                                    if ($valueparent["status"] == "Selesai") { ?>
-                                        <tr>
-                                            <td style="width: 10%;" `>
-                                                <span class="font-w600">#<?php echo $valueparent["id_task"] . " " . $valueparent["title"] ?></span>
-                                            </td>
-                                            <td class="text-center" style="width: 10%;" `>
-                                                <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
-                                            </td>
-                                            <td style="width: 10%;" class="text-center">
-                                                <span class="font-w600">-</span>
-                                            </td>
-                                            <td class="text-center font-w700" style="width: 20%;">
-                                                <span class="font-size-sm  "><?php echo $valueparent["dateline"] ?></span>
-                                            </td>
-                                            <td class="text-danger text-center" style="width: 15%;">
-                                                <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $valueparent["status"] ?></span>
-                                            </td>
-                                            <td class="text-center" style="width: 15%;">
-                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $valueparent['id_task'] . "/TugasSelesai" ?>" class="text-decoration-none">Buka</a>
-                                            </td>
-                                        </tr>
-                                <?php }
-                                } ?>
-                            </tbody>
-                            <!-- akhir body jika tidak ada sub task -->
-                            <!-- body jika ada sub task -->
-                            <tbody>
-                                <?php foreach ($taskparent as $valueparent) {
-                                    $i = 1;
-                                    $row_taskselesai = 1; //untuk row span
-                                    foreach ($taskselesai as $value) {
-                                        if ($valueparent["id_task"] == $value["id_parent"]) {
-                                            $row_taskselesai += 1;
-                                        }
-                                    }
-                                ?>
-                                    <tr>
-                                        <?php if ($row_taskselesai != 1) { ?>
-                                            <td style="width: 10%;" rowspan="<?= $row_taskselesai ?>">
-                                                <span class="font-w600">#<?php echo $valueparent["id_task"] . " " . $valueparent["title"] ?></span>
-                                            </td>
-                                            <td class="text-center" style="width: 10%;" rowspan="<?= $row_taskselesai ?>">
-                                                <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
-                                            </td>
-                                        <?php } ?>
-                                    </tr>
-                                    <?php foreach ($taskselesai as $value) {
-                                        if ($valueparent["id_task"] == $value["id_parent"]) { ?>
-                                            <tr>
-                                                <td style="width: 10%;">
-                                                    <span class="font-w600"><?php echo $i . "." . $value["title"] ?></span>
-                                                </td>
-                                                <td class="text-center font-w700" style="width: 20%;">
-                                                    <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
-                                                </td>
-                                                <td class="text-danger text-center" style="width: 15%;">
-                                                    <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span>
-                                                </td>
-                                                <td class="text-center" style="width: 15%;">
-                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/TugasSelesai" ?>" class="text-decoration-none">Buka</a>
-                                                </td>
-                                            </tr>
-                                <?php $i += 1;
-                                        }
-                                    }
-                                } ?>
-                            </tbody>
-                            <!-- akhir body jika ada sub task -->
-                        </table>
-                    </div>
-                </div>
-            </div>
-        <!-- END  Selesai -->
         </div>
-
+        <div class="tab-pane fade fade-up" id="departemen" role="tabpanel">
+            <div class="container-fluid">
+                <div class="block block-mode-loading-oneui">
+                    <div class="block-header border-bottom">
+                        <h3 class="block-title text-primary ">Tugas Departemen <?= $nama_departemen ?></h3>
+                    </div>
+                    <div class="col-2 float-right mt-2 mr-1">
+                        <select name="filter-status-task" id="filter-status-task" class="form-control">
+                            <option class="font-w700" disabled="disabled" selected value="">Status</option>
+                            <option value="">Semua Status</option>
+                            <option value="Finish">Selesai</option>
+                            <option value="Not Finished">Belum Selesai</option>
+                        </select>
+                    </div>
+                    <div style="clear:both"></div>
+                    <div class="block-content block-content-full">
+                        <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0 w-100" id="table-department">
+                            <thead class="thead-dark">
+                                <tr class="text-uppercase">
+                                    <th class="font-w700 text-center" style="width: 14%;"># ID Task</th>
+                                    <th class="font-w700 text-center" style="width: 14%;">Title</th>
+                                    <th class="font-w700 text-center" style="width: 14%;">Penanggung Jawab</th>
+                                    <th class="font-w700 text-center" style="width: 14%;">Task Parent</th>
+                                    <th class="font-w700 text-center" style="width: 14%;">Deadline</th>
+                                    <th class="font-w700 text-center" style="width: 14%;">Status</th>
+                                    <th class="font-w700 text-center" style="width: 14%;">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="tab-pane fade fade-up" id="tiket" role="tabpanel">
-            <!--  Tiket Belum Selesai -->
             <div class="container-fluid">
                 <div class="block block-mode-loading-oneui">
                     <div class="block-header border-bottom">
-                        <h3 class="block-title text-danger">Tiket Saya | Belum Selesai</h3>
+                        <h3 class="block-title text-primary ">Tiket Saya</h3>
                     </div>
+                    <div class="col-2 float-right mt-2 mr-1">
+                        <select name="filter-status-tiket" id="filter-status-tiket" class="form-control">
+                            <option class="font-w700" disabled="disabled" selected value="">Status</option>
+                            <option value="">Semua Status</option>
+                            <option value="Finish">Selesai</option>
+                            <option value="Not Finished">Belum Selesai</option>
+                        </select>
+                    </div>
+                    <div style="clear:both"></div>
                     <div class="block-content block-content-full">
-                        <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
+                        <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0 w-100" id="table-tiket">
                             <thead class="thead-dark">
                                 <tr class="text-uppercase">
                                     <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
-                                    <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
-                                    <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Penanggung Jawab</th>
+                                    <th class="font-w700 text-center" style="width: 16%;">Task Parent</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Deadline</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Status</th>
                                     <th class="font-w700 text-center" style="width: 16%;">Aksi</th>
                                 </tr>
                             </thead>
-                            <!-- body jika tidak ada sub task dan belum ada PJ-->
                             <tbody>
-                                <?php foreach ($tiketsaya as $value) {
-                                    if ($value["status"] == "Belum Selesai" && $value["id_parent"] == "") { ?>
-                                        <tr>
-                                            <td style="width: 10%;">
-                                                <span class="font-w600">#<?php echo $value["id_task"] . " " . $value["title"] ?></span>
-                                            </td>
-                                            <td style="width: 10%;" class="text-center">
-                                                <span class="font-w600">-</span>
-                                            </td>
-                                            <td style="width: 10%;" class="text-center">
-                                                <span class="font-w600">-</span>
-                                            </td>
-                                            <td class="text-center font-w700" style="width: 20%;">
-                                                <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
-                                            </td>
-                                            <td class="text-danger text-center" style="width: 15%;">
-                                                <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
-                                            </td>
-                                            <td class="text-center" style="width: 15%;">
-                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
-                                            </td>
-                                        </tr>
-                                <?php }
-                                } ?>
-                                <!-- akhir body jika tidak ada sub task dan belum ada PJ-->
-                                <!-- body jika tidak ada sub task dan ada PJ-->
-                                <?php foreach ($tiket as $value) {
-                                    if ($value["status"] == "Belum Selesai" && $value["id_parent"] == "") { ?>
-                                        <tr>
-                                            <td style="width: 10%;">
-                                                <span class="font-w600">#<?php echo $value["id_task"] . " " . $value["title"] ?></span>
-                                            </td>
-                                            <td class="text-center" style="width: 10%;">
-                                                <span class="font-w600"><?php echo $value["nama"] ?></span>
-                                            </td>
-                                            <td style="width: 10%;" class="text-center">
-                                                <span class="font-w600">-</span>
-                                            </td>
-                                            <td class="text-center font-w700" style="width: 20%;">
-                                                <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
-                                            </td>
-                                            <td class="text-danger text-center" style="width: 15%;">
-                                                <span class="font-w600   btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
-                                            </td>
-                                            <td class="text-center" style="width: 15%;">
-                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
-                                            </td>
-                                        </tr>
-                                <?php }
-                                } ?>
-                                <!-- akhir body jika tidak ada sub task dan ada PJ-->
-                                <!-- body jika ada sub task dan ada PJ-->
-                                <?php foreach ($taskparent as $valueparent) {
-                                    $i = 1;
-                                    $row_tiketbelum = 1; //untuk rowspan
-                                    foreach ($tiket as $value) {
-                                        if ($valueparent["id_task"] == $value["id_parent"] && $value["status"] == "Belum Selesai") {
-                                            $row_tiketbelum += 1;
-                                        }
-                                    }
-                                ?>
-                                    <tr>
-                                        <?php if ($row_tiketbelum != 1) { ?>
-                                            <td style="width: 10%;" rowspan="<?= $row_tiketbelum ?>">
-                                                <span class="font-w600">#<?php echo $valueparent["id_task"] . " " . $valueparent["title"] ?></span>
-                                            </td>
-                                            <td class="text-center" style="width: 10%;" rowspan="<?= $row_tiketbelum ?>">
-                                                <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
-                                            </td>
-                                        <?php } ?>
-                                    </tr>
-                                    <?php foreach ($tiket as $value) {
-                                        if ($valueparent["id_task"] == $value["id_parent"] && $value["status"] == "Belum Selesai") { ?>
-                                            <tr>
-                                                <td style="width: 10%;">
-                                                    <span class="font-w600"><?php echo $i . "." . $value["title"] ?></span>
-                                                </td>
-                                                <td class="text-center font-w700" style="width: 20%;">
-                                                    <span class="font-size-sm "><?php echo $value["dateline"] ?></span>
-                                                </td>
-                                                <td class="text-danger text-center" style="width: 15%;">
-                                                    <span class="font-w600  btn-sm btn-block btn-danger "><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $value["status"] ?></span>
-                                                </td>
-                                                <td class="text-center" style="width: 15%;">
-                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
-                                                </td>
-                                            </tr>
-                                <?php $i += 1;
-                                        }
-                                    }
-                                } ?>
                             </tbody>
-                            <!-- akhir body jika ada sub task dan ada PJ-->
                         </table>
                     </div>
                 </div>
             </div>
-            <!-- END  Tiket Belum Selesai -->
-            <!--  Tiket Selesai -->
-            <div class="container-fluid">
-                <div class="block block-mode-loading-oneui">
-                    <div class="block-header border-bottom">
-                        <h3 class="block-title text-success">Tiket Saya | Selesai</h3>
-                    </div>
-                    <div class="block-content block-content-full">
-                        <table class="table table-bordered table-hover table-vcenter font-size-sm mb-0">
-                            <thead class="thead-dark">
-                                <tr class="text-uppercase">
-                                    <th class="font-w700 text-center" style="width: 16%;"># ID Task</th>
-                                    <th class="font-w700 text-center" style="width: 16%;">Ketua Task</th>
-                                    <th class="font-w700 text-center" style="width: 16%;">Sub Title Task</th>
-                                    <th class="font-w700 text-center" style="width: 16%;">Deadline</th>
-                                    <th class="font-w700 text-center" style="width: 16%;">Status</th>
-                                    <th class="font-w700 text-center" style="width: 16%;">Aksi</th>
-                                </tr>
-                            </thead>
-                            <!-- body jika tidak ada sub task dan ada PJ-->
-                            <tbody>
-                                <?php foreach ($tiket as $value) {
-                                    if ($value["status"] == "Selesai" && $value["id_parent"] == "") { ?>
-                                        <tr>
-                                            <td style="width: 10%;">
-                                                <span class="font-w600">#<?php echo $value["id_task"] . " " . $value["title"] ?></span>
-                                            </td>
-                                            <td class="text-center" style="width: 10%;">
-                                                <span class="font-w600"><?php echo $value["nama"] ?></span>
-                                            </td>
-                                            <td style="width: 10%;" class="text-center">
-                                                <span class="font-w600">-</span>
-                                            </td>
-                                            <td class="text-center font-w700" style="width: 20%;">
-                                                <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
-                                            </td>
-                                            <td class="text-danger text-center" style="width: 15%;">
-                                                <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span>
-                                            </td>
-                                            <td class="text-center" style="width: 15%;">
-                                                <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
-                                            </td>
-                                        </tr>
-                                <?php }
-                                } ?>
-
-                                <!-- akhir body jika tidak ada sub task dan ada PJ-->
-                                <!-- body jika ada sub task dan ada PJ-->
-                            <tbody>
-                                <?php foreach ($taskparent as $valueparent) {
-                                    $i = 1;
-                                    $row = 1;
-                                    foreach ($tiket as $value) {
-                                        if ($valueparent["id_task"] == $value["id_parent"] && $value["status"] == "Selesai") {
-                                            $row += 1;
-                                        }
-                                    }
-                                ?>
-                                    <tr>
-                                        <?php if ($row != 1) { ?>
-                                            <td style="width: 10%;" rowspan="<?= $row ?>">
-                                                <span class="font-w600">#<?php echo $valueparent["id_task"] . " " . $valueparent["title"] ?></span>
-                                            </td>
-                                            <td class="text-center" style="width: 10%;" rowspan="<?= $row ?>">
-                                                <span class="font-w600"><?php echo $valueparent["nama"] ?></span>
-                                            </td>
-                                        <?php } ?>
-                                    </tr>
-                                    <?php foreach ($tiket as $value) {
-                                        if ($valueparent["id_task"] == $value["id_parent"] && $value["status"] == "Selesai") { ?>
-                                            <tr>
-                                                <td style="width: 10%;">
-                                                    <span class="font-w600"><?php echo $i . "." . $value["title"] ?></span>
-                                                </td>
-                                                <td class="text-center font-w700" style="width: 20%;">
-                                                    <span class="font-size-sm  "><?php echo $value["dateline"] ?></span>
-                                                </td>
-                                                <td class="text-danger text-center" style="width: 15%;">
-                                                    <span class="font-w600   btn-sm btn-block btn-success "><i class="fa fa-fw fa-check"></i> <?php echo $value["status"] ?></span>
-                                                </td>
-                                                <td class="text-center" style="width: 15%;">
-                                                    <a class="link-fx font-weight-bold" href="<?php echo base_url('index.php/home/detail/') . $employ_id . "/" . $value['id_task'] . "/Tiket" ?>" class="text-decoration-none">Buka</a>
-                                                </td>
-                                            </tr>
-                                <?php $i += 1;
-                                        }
-                                    }
-                                } ?>
-                            </tbody>
-                            <!-- akhir body jika ada sub task dan ada PJ-->
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <!-- END  Tiket Selesai -->
         </div>
-
     </div>
     <!-- END request task,pelanggan,tugas selesai,tugas Belum Selesai,tiket selesai,tiket Belum Selesai -->
-        <!-- pop up tiket pelanggan -->
-        <div class="modal fade" id="modal-block-large" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
+
+    <!-- pop up tiket pelanggan -->
+    <div class="modal fade" id="modal-block-large" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="block block-themed block-transparent mb-0">
@@ -803,15 +462,17 @@
                             <input type="text" name="id_pelanggan" id="id_pelanggan" value="123" hidden>
                             <div class="form-group">
                                 <label for="title">Customer</label>
-                                <input type="text" class="form-control" name="customer" id="customer" value="<?php echo $customer ?>" placeholder="<?php echo $customer ?>" readonly>
+                                <input type="text" class="form-control" name="customer" id="customer" value="" placeholder="" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="layanan">Layanan</label>
                                 <input type="text" class="form-control" name="layanan" id="layanan-pelanggan" readonly>
+                                <input type="text" class="form-control" name="service" id="service" hidden>
                             </div>
                             <div class="form-group">
                                 <label for="masalah">Jenis Masalah</label>
-                                <select name="masalah" id="masalah" class="form-control">
+                                <select name="masalah" id="masalah" class="form-control custom-select" required>
+                                    <option class="font-w700" disabled="disabled" selected value="">Masalah</option>
                                     <option value="umum">General</option>
                                     <option value="support">Support</option>
                                     <option value="hosting">Hosting</option>
@@ -820,8 +481,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="title">Judul Tugas</label>
-                                <input type="text" class="form-control required" name="title" id="title" placeholder="Judul/Subject">
-                                <?= form_error('title', '<span class="text-danger">', '</span>') ?>
+                                <input autocomplete="off" type="text" class="form-control" name="title" id="title" placeholder="Judul/Subject" required>
                             </div>
                             <div class="form-group">
                                 <label for="dateline">Deadline</label>
@@ -829,14 +489,12 @@
                                     <span class="input-group-text input-group-text-alt">
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
-                                    <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true">
+                                    <input autocomplete="off" type="text" class="js-datepicker form-control" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
-                                <textarea class="form-control required js-summernote" name="deskripsi" id="deskripsi" rows="3"></textarea>
-                                <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
-
+                                <textarea class="form-control js-summernote" name="deskripsi" id="deskripsi" rows="3"></textarea>
                             </div>
                             <div style="float:right;margin-bottom:3%;">
                                 <button type="reset" class="btn btn-outline-danger mr-2">Reset</button>
@@ -848,7 +506,9 @@
                 </div>
             </div>
         </div>
+    </div>
     <!-- akhir pop up tiket pelanggan -->
+
     <!-- pop up tiket staff -->
     <div class="modal fade" id="modal-block-large-staff" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -865,21 +525,34 @@
                     <div class="block-content font-size-sm mt-3 text-justify ">
                         <h4>Isi Data Dibawah Ini dengan Lengkap untuk Membuat Tiket</h4>
                         <form action="<?php echo base_url('index.php/home/addtiket/') . $employ_id ?>" method="POST" id="form-staff">
-                            <input type="text" name="id_pelanggan" value="<?php echo $id_pelanggan ?>" hidden>
+
                             <input type="text" name="masalah" value="" hidden>
                             <input type="text" name="layanan" value="" hidden>
                             <div class="form-group">
                                 <label for="departemen">Departemen tujuan</label>
-                                <select name="departemen" id="departemen" class="form-control">
-                                    <option value="Developer">Developer</option>
-                                    <option value="Marketing">Marketing</option>
+                                <select name="departemen" id="departemen" class="form-control custom-select" required>
+                                    <option class="font-w700" disabled="disabled" selected value="">Departemen Tujuan</option>
+                                    <option value="Sales And Marketing">Sales And Marketing</option>
+                                    <option value="Research And Development">Research And Development</option>
                                     <option value="Support">Support</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="title">Nama Pengirim</label>
+                                <select name="nama_pengirim" id="nama_pengirim" class="form-control custom-select" required>
+                                    <?php foreach ($all_employ as $value) {
+                                        if ($value["employee_name"] == $employ_nama) { ?>
+                                            <option selected class="font-w700" value="<?php echo $value["employee_id"] ?>"><?php echo $value["employee_name"] ?></option>
+                                        <?php } else { ?>
+                                            <option value="<?php echo $value["employee_id"] ?>"><?php echo $value["employee_name"] ?></option>
+                                    <?php }
+                                    } ?>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="title">Judul Tugas</label>
-                                <input type="text" class="form-control required" name="title" id="title" placeholder="Judul/Subject">
-                                <?= form_error('title', '<span class="text-danger">', '</span>') ?>
+                                <input autocomplete="off" type="text" class="form-control" name="title" id="title" placeholder="Judul/Subject" required>
                             </div>
                             <div class="form-group">
                                 <label for="dateline">Deadline</label>
@@ -887,41 +560,31 @@
                                     <span class="input-group-text input-group-text-alt">
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
-                                    <input type="text" class="js-datepicker form-control required" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true">
+                                    <input autocomplete="off" type="text" class="js-datepicker form-control" name="dateline" id="dateline" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
-                                <textarea class="form-control required js-summernote" name="deskripsi" id="deskripsi" rows="3"></textarea>
-                                <?= form_error('deskripsi', '<span class="text-danger">', '</span>') ?>
+                                <textarea class="form-control js-summernote" name="deskripsi" id="deskripsi" rows="3"></textarea>
                             </div>
-
-
+                            <div style="float:right;margin-bottom:3%">
+                                <button type="reset" class="btn btn-outline-danger mr-2">Reset</button>
+                                <button type="submit" class="btn btn-primary">Buat</button>
+                            </div>
+                        </form>
                     </div>
-
-
-                    <div style="float:right;margin-bottom:3%">
-                        <button type="reset" class="btn btn-outline-danger mr-2">Reset</button>
-
-                        <button type="submit" class="btn btn-primary mr-3">Buat</button>
-
-                    </div>
-
-
-
-                    </form>
                 </div>
             </div>
         </div>
     </div>
-    </div>
     <!-- akhir pop up tiket staff -->
+
     <!-- Footer -->
     <footer id="page-footer" class="bg-body-light">
         <div class="content py-3">
             <div class="row font-size-sm">
                 <div class="col-sm-6 order-sm-2 py-1 text-center text-sm-right">
-                    Crafted with <i class="fa fa-heart text-danger"></i> by <a class="font-w600" href="" target="_blank">ARMTEAM</a>
+                    Developed with <i class="fa fa-heart text-danger"></i> by <a class="font-w600" href="" target="_blank">ARMTEAM</a>
                 </div>
                 <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left">
                     <a class="font-w600" href="https://1.envato.market/xWy" target="_blank">Gink Technology x ARMTEAM</a> &copy; <span data-toggle="year-copy"></span>
@@ -930,53 +593,419 @@
         </div>
     </footer>
     <!-- END Footer -->
+
     <!-- END Page Content -->
+
     <script src="<?php echo base_url('assets/oneui/js/oneui.core.min.js') ?>"></script>
     <script src="<?php echo base_url('assets/oneui/js/oneui.app.min.js') ?>"></script>
-
     <!-- //script datatable -->
-    <script src="<?php echo base_url('assets/oneui/js/plugins/datatables/jquery.dataTables.min.js')?>"></script>
-    <script src="<?php echo base_url('assets/oneui/js/plugins/datatables/dataTables.bootstrap4.min.js')?>"></script>
-    <script>    
-        $(document).ready(function() {        
-            $('#table-request').DataTable({            
-                "processing": true,            
-                "serverSide": true,            
-                "ordering": true, 
-                "order": [[ 0, 'asc' ]],
-                "ajax":            
-                {                
-                    "url": "<?php echo base_url('index.php/home/view/').$nama_departemen ?>",
-                    "type": "POST"            
-                },            
-                "deferRender": true,            
-                "aLengthMenu": [[5, 50, 100],[ 5, 50, 100]],          
-                "columns": [                
-                    { "data": "title" },
-                    { "data": "id_employ_tujuan" },
-                    { "data": "dateline" },          
-                    { "data": "status" }, 
-                    { className : 'text-center',
-                        render 	: function( data, type, row ){
-						let html = '<div class="dropdown">'+
-									'<button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" >'+
-										'<i class="fa fa-cogs"></i>'+
-									'</button>'+
-									'<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">'+
-										'<a class="dropdown-item" href="#modal-form" data-toggle="modal" data-pk="'+ data +'" data-a ction="update">Edit</a>'+
-										'<a class="dropdown-item btn-delete" href="javascript:void(0)"  data-pk="'+ data +'">Delete</a>'+
-									'</div>'+
-								'</div>';
-						return html;
-					}
+    <script src="<?php echo base_url('assets/oneui/js/plugins/datatables/jquery.dataTables.min.js') ?>"></script>
+    <script src="<?php echo base_url('assets/oneui/js/plugins/datatables/dataTables.bootstrap4.min.js') ?>"></script>
+    <script>
+        $(document).ready(function() {
+            var table = null;
+            table = $('#table-request').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "ordering": true,
+                "order": [
+                    [0, 'asc']
+                ],
+                "ajax": {
+                    "url": "<?php echo base_url('index.php/home/view/') . $employ_dept["department_id"] ?>",
+                    "type": "POST",
+                    'data': function(data) {
+                        data.searchStatus = $('#filter-status').val();;
                     }
-                ],        
-            });    
-        });    
-    </script>   
-    <!-- //end script datatable -->
+                },
+                "deferRender": true,
+                "aLengthMenu": [
+                    [5, 10, 30, 50, 100],
+                    [5, 10, 30, 50, 100]
+                ],
+                "columns": [{
+                        "data": "task_title",
+                        className: 'font-weight-bold'
+                    },
+                    { //pengirim
+                        "data": "pengirim",
+                        className: 'text-center font-weight-bold'
+                    },
+                    {
+                        "data": "penerima",
+                        className: 'text-center font-weight-bold'
+                    },
+                    {
+                        "data": "task_dateline",
+                        className: 'text-center font-weight-bold'
 
-    <!-- POP UP BUAT TIKET -->
+
+                    },
+                    {
+                        "data": "task_status",
+                        className: 'text-center',
+                        "orderable": false,
+                        render: function(data, type, row) {
+                            if (data == "Finish") {
+                                let html = "<strong class='btn-sm btn-block btn-success'><i class='fa fa-fw fa-check'></i>" + data + "</strong>";
+                                return html;
+                            } else {
+                                let html = "<strong class='btn-sm btn-block btn-danger'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</strong>";
+                                return html;
+                            }
+                        }
+                    },
+                    {
+                        "data": "task_id",
+                        className: 'text-center',
+                        "orderable": false,
+                        render: function(data, type, row) {
+                            let html = "<a class='link-fx font-weight-bold' href='<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . '/' ?>" +
+                                data + "/<?php echo $status ?>" + "/Request'>Buka</a>";
+                            return html;
+                        }
+                    }
+                ],
+            });
+            $("#filter-status").change(function() {
+                table.ajax.reload();
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            var table = null;
+            table = $('#table-pelanggan').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "ordering": true,
+                "order": [
+                    [0, 'asc']
+                ],
+                "ajax": {
+                    "url": "<?php echo base_url('index.php/home/view_pelanggan/') ?>",
+                    "type": "POST",
+                    'data': function(data) {
+                        data.searchStatus = $('#filter-status-layanan').val();
+                    }
+                },
+                "deferRender": true,
+                "aLengthMenu": [
+                    [5, 10, 30, 50, 100],
+                    [5, 10, 30, 50, 100]
+                ],
+                "columns": [{
+                        "data": "customer_id",
+                        className: 'font-weight-bold text-center'
+                    },
+                    {
+                        "data": "customer_name",
+                        className: 'font-weight-bold'
+                    },
+                    {
+                        "data": "service_name",
+                        className: 'font-weight-bold',
+                    },
+                    {
+                        "data": "service_status",
+                        className: 'text-center',
+                        "orderable": false,
+                        render: function(data, type, row) {
+                            if (data == "Active" && data != "") {
+                                let html = "<strong class='btn-sm btn-block btn-success'><i class='fa fa-fw fa-check'></i>" + data + "</strong>";
+                                return html;
+                            } else if (data == "Not Active" && data != "") {
+                                let html = "<strong class='btn-sm btn-block btn-danger'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</strong>";
+                                return html;
+                            } else if (data == "Pending" && data != "") {
+                                let html = "<strong class='btn-sm btn-block btn-warning'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</strong>";
+                                return html;
+                            } else {
+                                let html = "<strong></strong>";
+                                return html;
+                            }
+                        }
+                    },
+                    {
+                        "data": "service_id",
+                        className: 'text-center',
+                        "orderable": false,
+                        render: function(data, type, row) {
+                            if (data != null) {
+                                let html = "<a href='javascript:void(0)' data-toggle='modal' data-target='#modal-block-large' data-pk='" + data +
+                                    "' class='btn btn-light btn-edit'><i class='fa fa-plus fa-2x'></i></a>";
+                                return html;
+                            } else {
+                                let html = "<strong></strong>";
+                                return html;
+                            }
+
+
+                        }
+                    }
+                ],
+                drawCallback: function() {
+                    $('.btn-edit').click(function(a) {
+                        let pk = $(this).data('pk');
+                        // alert(pk);
+                        $.ajax({ //ajax ambil data pelanggan
+                            type: "GET",
+                            url: "<?php echo base_url('index.php/home/get_pelanggan') ?>",
+                            dataType: "JSON",
+                            data: {
+                                id: pk
+                            },
+                            success: function(data) { //jika ambil data sukses
+                                $('input[name="customer"]').val(data["customer_name"]); //set value
+                                $('input[name="service"]').val(pk); //set value
+                                $('input[name="id_pelanggan"]').val(data["customer_id"]); //set value
+                                $('input[id="layanan-pelanggan"]').val(data["service_name"]); //set value
+                            }
+                        });
+                    });
+                }
+            });
+            $("#filter-status-layanan").change(function() {
+                // alert($('#filter-status-layanan').val());   
+                table.ajax.reload();
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            var table = null;
+            table = $('#table-department').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "ordering": true,
+                "order": [
+                    [0, 'asc']
+                ],
+                "ajax": {
+                    "url": "<?php echo base_url('index.php/home/viewtabel_dept/') . $employ_dept["department_id"] ?>",
+                    "type": "POST",
+                    'data': function(data) {
+                        data.searchStatus = $('#filter-status-task').val();;
+                    }
+                },
+                "deferRender": true,
+                "aLengthMenu": [
+                    [5, 10, 30, 50, 100],
+                    [5, 10, 30, 50, 100]
+                ],
+                "columns": [{
+                        "data": "task_id",
+                        className: 'text-center font-weight-bold'
+                
+                    },
+                    {
+                        "data": "task",
+                        className: 'font-weight-bold'
+                    },
+                    {
+                        "data": "employee_name",
+                        className: 'text-center font-weight-bold'
+                    },
+                    {
+                        "data": "task_parent",
+                        className: 'text-center font-weight-bold'
+                    },
+                    {
+                        "data": "task_dateline",
+                        className: 'text-center font-weight-bold'
+                    },
+                    {
+                        "data": "task_status",
+                        className: 'text-center',
+                        "orderable": false,
+                        render: function(data, type, row) {
+                            if (data == "Finish") {
+                                let html = "<strong class='btn-sm btn-block btn-success'><i class='fa fa-fw fa-check'></i>" + data + "</strong>";
+                                return html;
+                            } else {
+                                let html = "<strong class='btn-sm btn-block btn-danger'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</strong>";
+                                return html;
+                            }
+                        }
+                    },
+                    {
+                        "data": "task_id",
+                        className: 'text-center',
+                        "orderable": false,
+                        render: function(data, type, row) {
+                            let html = "<a class='link-fx font-weight-bold' href='<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . '/' ?>" +
+                                data + "/<?php echo $status ?>" + "/Tiket'>Buka</a>";
+                            return html;
+                        }
+                    }
+                ],
+            });
+            $("#filter-status-task").change(function() {
+                table.ajax.reload();
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            var table = null;
+            table = $('#table-tiket').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "ordering": true,
+                "order": [
+                    [0, 'asc']
+                ],
+                "ajax": {
+                    "url": "<?php echo base_url('index.php/home/viewtabel_tiket/') . $employ_id ?>",
+                    "type": "POST",
+                    'data': function(data) {
+                        data.searchStatus = $('#filter-status-tiket').val();;
+                    }
+                },
+                "deferRender": true,
+                "aLengthMenu": [
+                    [5, 10, 30, 50, 100],
+                    [5, 10, 30, 50, 100]
+                ],
+                "columns": [
+                    {
+                        "data": "task",
+                        className: 'font-weight-bold',
+                        render: function(data, type, row, meta) {
+                                let html = "#"+row.task_id+" "+row.task;
+                                return html;
+                        }
+                    },
+                    {
+                        "data": "employee_name",
+                        className: 'text-center font-weight-bold'
+                    },
+                    {
+                        "data": "task_parent",
+                        className: 'text-center font-weight-bold'
+                    },
+                    {
+                        "data": "task_dateline",
+                        className: 'text-center font-weight-bold'
+                    },
+                    {
+                        "data": "task_status",
+                        className: 'text-center',
+                        "orderable": false,
+                        render: function(data, type, row) {
+                            if (data == "Finish") {
+                                let html = "<strong class='btn-sm btn-block btn-success'><i class='fa fa-fw fa-check'></i>" + data + "</strong>";
+                                return html;
+                            } else {
+                                let html = "<strong class='btn-sm btn-block btn-danger'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</strong>";
+                                return html;
+                            }
+                        }
+                    },
+                    {
+                        "data": "task_id",
+                        className: 'text-center',
+                        "orderable": false,
+                        render: function(data, type, row,meta) {
+                            let html = "<a class='link-fx font-weight-bold' href='<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . '/' ?>" +
+                                data + "/<?php echo $status ?>" + "/Tiket'>Buka</a>";
+                            return html;
+                        }
+                    }
+                ],
+            });
+            $("#filter-status-tiket").change(function() {
+                table.ajax.reload();
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            var table = null;
+            table = $('#table-tugas').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "ordering": true,
+                "order": [
+                    [0, 'asc']
+                ],
+                "ajax": {
+                    "url": "<?php echo base_url('index.php/home/viewtabel_tugas/') . $employ_id ."/".$status?>",
+                    "type": "POST",
+                    'data': function(data) {
+                        data.searchStatus = $('#filter-status-tugas').val();;
+                    }
+                },
+                "deferRender": true,
+                "aLengthMenu": [
+                    [5, 10, 30, 50, 100],
+                    [5, 10, 30, 50, 100]
+                ],
+                "columns": [
+                    {
+                        "data": "task",
+                        className: 'font-weight-bold',
+                        render: function(data, type, row, meta) {
+                                let html = "#"+row.task_id+" "+row.task;
+                                return html;
+                        }
+                    },
+                    {
+                        "data": "employee_name",
+                        className: 'text-center font-weight-bold'
+                    },
+                    {
+                        "data": "task_parent",
+                        className: 'text-center font-weight-bold'
+                    },
+                    {
+                        "data": "task_dateline",
+                        className: 'text-center font-weight-bold'
+                    },
+                    {
+                        "data": "task_status",
+                        className: 'text-center',
+                        "orderable": false,
+                        render: function(data, type, row) {
+                            if (data == "Finish") {
+                                let html = "<strong class='btn-sm btn-block btn-success'><i class='fa fa-fw fa-check'></i>" + data + "</strong>";
+                                return html;
+                            } else {
+                                let html = "<strong class='btn-sm btn-block btn-danger'><i class='fa fa-fw fa-exclamation-circle'></i>" + data + "</strong>";
+                                return html;
+                            }
+                        }
+                    },
+                    {
+                        "data": "task_id",
+                        className: 'text-center',
+                        "orderable": false,
+                        render: function(data, type, row, meta) {
+                            if(row.task_parent!=null && row.task_status=="Not Finished") {
+                                let html = "<a class='link-fx font-weight-bold' href='<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . '/' ?>" +
+                                    data + "/<?php echo $status ?>" + "/Tugasbelum'>Buka</a>"+
+                                    "<a class='link-fx font-weight-bold' href='<?php echo base_url('index.php/home/status/')?>"+data+"' class='text-decoration-none'> | Selesai</a>";
+                                return html;
+                            }else if(row.task_parent==null && row.task_status=="Not Finished"){
+                                let html = "<a class='link-fx font-weight-bold' href='<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . '/' ?>" +
+                                    data + "/<?php echo $status ?>" + "/TugasBelum'>Buka</a>";
+                                return html;                                
+                            }
+                            // if(row.task=="Finish"){
+                                let html = "<a class='link-fx font-weight-bold' href='<?php echo base_url('index.php/home/detail/') . $designation . "/" . $employ_id . '/' ?>" +
+                                    data + "/<?php echo $status ?>" + "/TugasSelesai'>Buka</a>";
+                                return html;
+                            // };
+                        }
+                    }
+                ],
+            });
+            $("#filter-status-tugas").change(function() {
+                table.ajax.reload();
+            });
+        });
+    </script>
+    <!-- //end script datatable -->
     <script>
         //fungsi ambil data pelanggan
         function datapelanggan(a, status) {
@@ -1012,7 +1041,6 @@
             // });
         }
     </script>
-
     <!-- script atur summernote height di buat tiket pelanggan -->
     <script type='text/javascript'>
         //<![CDATA[ 
@@ -1024,21 +1052,6 @@
         }); //]]>  
     </script>
     <!-- akhir script atur summernote height di buat tiket pelanggan-->
-
-    <!-- validasi form -->
-    <script src="<?php echo base_url('assets/oneui/js/plugins/jquery-validation/jquery.validate.js') ?>"></script>
-    <script>
-        $(document).ready(function() {
-            $("#form-staff").validate(); //validasi form
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $("#form-tiket").validate(); //validasi form
-        });
-    </script>
-    <!-- akhir validasi form -->
-
     <!-- Page JS Plugins -->
     <script src="<?php echo base_url('assets/oneui/js/plugins/chart.js/Chart.bundle.min.js') ?>"></script>
     <!-- Page JS Code -->
@@ -1061,6 +1074,50 @@
         });
     </script>
 
+    <!-- script untuk menampilkan sweetalert2 -->
+    <script src="<?php echo base_url('assets/oneui/js/plugins/es6-promise/es6-promise.auto.min.js') ?>"></script>
+    <script src="<?php echo base_url('assets/oneui/js/plugins/sweetalert2/sweetalert2.min.js') ?>"></script>
+    <script src="<?php echo base_url('assets/oneui/js/pages/be_comp_dialogs.min.js') ?>"></script>
+    <script>
+        $(document).ready(function() {
+            var status_login = $(".status-login").data('flashdata');
+            var sukses_buat = $(".sukses_buat").data('flashdata');
+            var sukses_add_layanan = $(".sukses_add_layanan").data('flashdata');
+            var sukses_update_status = $(".sukses_update_status").data('flashdata');
+            if (status_login) {
+                Swal.fire({
+                    title: "Berhasil Login",
+                    text: "Selamat Datang, " + "<?= $employ_nama ?>",
+                    type: "success",
+                    timer: 1000
+                });
+            }
+            if (sukses_buat) {
+                Swal.fire({
+                    title: "Berhasil Membuat Tiket",
+                    text: "",
+                    type: "success",
+                    timer: 1500
+                });
+            }
+            if (sukses_add_layanan) {
+                Swal.fire({
+                    title: "Berhasil Menambah Layanan",
+                    text: "",
+                    type: "success",
+                    timer: 1500
+                });
+            }
+            if (sukses_update_status) {
+                Swal.fire({
+                    title: "Berhasil Update Status Layanan",
+                    text: "",
+                    type: "success",
+                    timer: 1500
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

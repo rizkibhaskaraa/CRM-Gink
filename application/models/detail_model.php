@@ -14,10 +14,11 @@ class detail_model extends CI_model
     }
     public function getdeptposisi($id_desig)
     {
+        //get nama posisi 
         $id = $this->db->get_where("hr_designation", array("designation_id" => $id_desig))->row_array();
         return $this->db->get_where("hr_position", array("position_id" => $id["position_id"]))->row_array();
     }
-    //fungsi ambil data tabel task
+    //fungsi ambil semua data tabel task
     public function gettask()
     {
         return $this->db->get("tm_task")->result_array();
@@ -25,20 +26,20 @@ class detail_model extends CI_model
     public function getdetail($id_task)
     {
         //dapatkan data task berdasarkan id task
-        $this->db->join("hr_position", "hr_position.department_id = tm_task.department_sent","left");
-        $this->db->join("hr_department", "hr_department.department_id = tm_task.department_sent","left");
+        $this->db->join("hr_position", "hr_position.department_id = tm_task.department_sent", "left");
+        $this->db->join("hr_department", "hr_department.department_id = tm_task.department_sent", "left");
         return $this->db->get_where('tm_task', array('task_id' => $id_task))->row_array();
     }
     public function getcustomer($service_id)
     {
-        //dapatkan data task berdasarkan id task
+        //dapatkan data customer berdasarkan id service
         $this->db->join("crm_customer", "crm_customer.customer_id = master_service.customer_id");
         $result = $this->db->get_where('master_service', array('service_id' => $service_id))->row_array();
         return $result["customer_name"];
     }
     public function getservice($service_id)
     {
-        //dapatkan data task berdasarkan id task
+        //dapatkan data service
         $result =  $this->db->get_where('master_service', array('service_id' => $service_id))->row_array();
         return $result["service_name"];
     }
@@ -49,6 +50,7 @@ class detail_model extends CI_model
     }
     public function getdeptuser($id)
     {
+        //get posisi user
         return $this->db->get_where('hr_position', array('position_id' => $id))->row_array();
     }
     public function getsubtask($id_parent)
@@ -75,6 +77,7 @@ class detail_model extends CI_model
     }
     public function getPJ_task($id_task)
     {
+        //get data pada tabel task
         return $this->db->get_where('tm_task', array('task_id' => $id_task))->row_array();
     }
     public function getdept($id_dept)
@@ -107,6 +110,7 @@ class detail_model extends CI_model
     }
     public function getdeptPJTask($id_task)
     {
+        //get department PJ pada task
         $employ = $this->db->get_where('tm_task', array('task_id' => $id_task))->row_array();
         $id_employ_tujuan = $employ['employee_destination'];
         $data_pj = $this->db->get_where('hr_designation', array('employee_id' => $id_employ_tujuan))->row_array();
@@ -125,7 +129,6 @@ class detail_model extends CI_model
         $this->db->where('task_id', $id);
         $this->db->update('tm_task');
         //data user
-
         return $id;
     }
     public function ubahPJ($id_tujuan, $id, $dept_id)
@@ -165,7 +168,6 @@ class detail_model extends CI_model
     {
         //ambil data nama departemen calon PJ pada departemen
         $nama_position = $this->db->get_where('hr_position', array('position_id' => $id_dept))->row_array();
-        // $nama_Dept = $this->db->get_where('hr_department', array('department_id' => $nama_postion["department_id"]))->row_array();
         return $nama_position["position_name"];
     }
 
@@ -183,10 +185,10 @@ class detail_model extends CI_model
 
     public function getsemuaemploy($position_id) //id_posisi
     {
+        //geta all employ berdasarkan department user
         $dept = $this->db->get_where("hr_position", array("position_id" => $position_id))->row_array();
         $this->db->join("hr_designation", "hr_employee.employee_id = hr_designation.employee_id", 'left');
         $this->db->join("hr_position", "hr_position.position_id = hr_designation.position_id");
-        // $this->db->join("hr_department", "hr_department.department_id = hr_position.department_id");
         return $this->db->get_where("hr_employee", array("hr_position.department_id" => $dept["department_id"]))->result_array();
     }
 
@@ -210,11 +212,12 @@ class detail_model extends CI_model
     }
     public function getallkomen()
     {
+        //get all komentar
         return $this->db->get("tm_comment")->result_array();
     }
     public function getkomentar($task)
     {
-        // $this->db->or_where("id_parent", $task);
+        //get komentar berdasarkan parent task
         $this->db->order_by('comment_date', 'ASC');
         $this->db->join("hr_employee", "tm_comment.employee_id = hr_employee.employee_id");
         $this->db->join("hr_position", "tm_comment.position_id = hr_position.position_id");
@@ -225,7 +228,7 @@ class detail_model extends CI_model
     }
     public function getkomentarsub($task)
     {
-        // $this->db->or_where("id_parent", $task);
+        //get komentar pada setiap sub task, berdasarkan parent task
         $parent = $this->db->get_where("tm_task", array("task_id" => $task))->row_array();
         $parent1 = $parent["task_parent"];
         $subtask = $this->db->get_where("tm_task", array("task_parent" => $parent1))->result_array();

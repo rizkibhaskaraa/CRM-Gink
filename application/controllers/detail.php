@@ -19,24 +19,26 @@ class Detail extends CI_Controller
         $data["designation"] = $designation;
 
         //data employ yang akses
-            $user1 = $this->detail_model->getuser($user);
-            $data["username"] = $user1["user_username"];
-            $employ = $this->detail_model->getemploy($user);
-            $data["employ_nama"] = $employ["employee_name"];
-            $data["employ_id"] = $employ["employee_id"];
-            $data["status"] = $status;
-            //get nama posisi
-            $posisi = $this->detail_model->getdeptposisi($designation);
-            $data["position"] = $posisi["position_name"];
+        $user1 = $this->detail_model->getuser($user);
+        $data["username"] = $user1["user_username"];
+        $employ = $this->detail_model->getemploy($user);
+        $data["employ_nama"] = $employ["employee_name"];
+        $data["employ_id"] = $employ["employee_id"];
+        $data["status"] = $status;
+        //get nama posisi
+        $posisi = $this->detail_model->getdeptposisi($designation);
+        $data["position"] = $posisi["position_name"];
         //akhir data employ yang akses
-
+        //status tabel u/ menentukan tampilan detail
         $data["cekTabel"] = $cekTabel; //cek table asal
         $data["getPJ"] = $this->detail_model->getsemuaPJ($posisi["position_id"]); //data employ di departemen
         $data["task"] = $this->detail_model->getdetail($task); //data task dengan id $task
-
+        //get data departemen tujuan untuk option select PJ task
         $data["department_destination"] = $this->detail_model->getdeptbyid($data["task"]["department_destination"]);
+        //get department user
         $dept_user = $this->detail_model->getdeptuser($posisi["position_id"]);
         $data["department_user"] = $dept_user["department_id"];
+        //get nama customer dan layanan customer
         $data["customer"] = $this->detail_model->getcustomer($data["task"]["service_id"]);
         $data["nama_layanan"] = $this->detail_model->getservice($data["task"]["service_id"]);
 
@@ -53,11 +55,10 @@ class Detail extends CI_Controller
         $data["subtaskselesai"] = $this->detail_model->getsubtaskselesai($task); //get subtask yang sudah selesai
         $this->load->view('detail/detail', $data);
     }
-    //add PJ task
+    //fungsi add PJ task
     public function ubahPJ($id, $task, $dept_id)
     {
-
-        $ubah = $this->detail_model->ubahPJ($this->input->post("PJbaru"), $task, $dept_id);
+        $this->detail_model->ubahPJ($this->input->post("PJbaru"), $task, $dept_id);
         $user = $this->detail_model->getuser($id);
         redirect(base_url('index.php/home/index/') . $user['user_username']);
     }
@@ -66,7 +67,7 @@ class Detail extends CI_Controller
     {
         $config['upload_path'] = './upload/'; //letak folder file yang akan diupload
         $config['allowed_types'] = 'gif|jpg|png|img|jpeg|doc|docx|xls|xlsx|ppt|pptx|pdf'; //jenis file yang dapat diterima
-        $this->load->library('upload', $config);
+        $this->load->library('upload', $config); //deklarasi library upload (config)
         if ($this->upload->do_upload('file')) {
             $this->upload->data();
             $data['nama_berkas'] =  $this->upload->data('file_name');
@@ -80,9 +81,10 @@ class Detail extends CI_Controller
         $config['upload_path'] = './upload/'; //letak folder file yang akan diupload
         $config['allowed_types'] = 'gif|jpg|png|img|jpeg|doc|docx|xls|xlsx|ppt|pptx|pdf'; //jenis file yang dapat diterima
 
-        $this->load->library('upload', $config);
+        $this->load->library('upload', $config); //deklarasi library upload (config)
         date_default_timezone_set('Asia/Bangkok');
         $date = date('Y-m-d H:i:s');
+        //model edit status task = "selesai"
         $this->detail_model->taskSelesai($task, $date);
 
         if ($this->upload->do_upload('file')) {
@@ -98,24 +100,12 @@ class Detail extends CI_Controller
     public function addsubtiket($designation, $id_employ, $id_Task, $status, $tabel)
     {
         date_default_timezone_set('Asia/Bangkok');
-        $employ = $this->detail_model->getemploy($id_employ);
-        $posisi = $this->detail_model->getdeptposisi($designation);
-        $departemen = $this->detail_model->getdept($posisi["department_id"]);
-
-        //membuat id_task
-        // $task = $this->detail_model->gettask();
-        // $id_task = [];
-        // foreach ($task as $value) {
-        //     $no_id = substr($value["id_task"], 5);
-        //     $no_id = intval($no_id);
-        //     array_push($id_task, $no_id);
-        // }
-        // $max_id = max($id_task);
-        // $id_task = "TASK-" . ($max_id + 1);
-        //akhir membuat id_task
+        $employ = $this->detail_model->getemploy($id_employ); //get data employ
+        $posisi = $this->detail_model->getdeptposisi($designation); //get posisi user
+        $departemen = $this->detail_model->getdept($posisi["department_id"]); //get department id
+        //Jika parent task bukan merupakan task dari customer
         if ($this->input->post("id_service") == NULL) {
             $data_sub_task = array(
-                // "id_task" => $id_task,
                 "department_destination" => $departemen["department_id"],
                 "employee_destination" => $this->input->post("PJsubtask"),
                 "task_parent" => $this->input->post("id_parent"),
@@ -127,12 +117,10 @@ class Detail extends CI_Controller
                 "task_dateline" => $this->input->post("dateline"),
                 "task_status" => "Not Finished"
             );
+            //Jika parent task merupakan task dari customer
         } else {
             $data_sub_task = array(
-                // "id_task" => $id_task,
                 "service_id" => $this->input->post("id_service"),
-                // "customer" => $this->input->post("customer"),
-                // "nama_layanan" => $this->input->post("nama_layanan"),
                 "department_destination" => $departemen["department_id"],
                 "employee_destination" => $this->input->post("PJsubtask"),
                 "task_parent" => $this->input->post("id_parent"),
@@ -152,6 +140,7 @@ class Detail extends CI_Controller
     public function addkomen($designation, $id_employ, $id_task, $status, $tabel)
     {
         date_default_timezone_set('Asia/Bangkok');
+        //get posisi user yang add komentar
         $position = $this->detail_model->getdeptposisi($designation);
 
         $data = array(

@@ -238,23 +238,20 @@
                                         <th class="font-w700 text-center" style="width:16%" ;>On Progress</th>
                                     </tr>
                                 </thead>
+                            <tbody>
                                 <?php $data_report = [];
-                                foreach ($report as $value) {
+                                foreach ($reportall as $value) {
                                     array_push($data_report, $value["employee_name"]);
                                 }
                                 foreach ($employ_report as $value) {
                                     if (!in_array($value["employee_name"], $data_report)) { ?>
-                                        <tbody>
                                             <tr>
                                                 <td>
                                                     <span class="font-w600"><?php echo $value["employee_name"] ?></span>
                                                 </td>
                                                 <td class="text-center">
-                                                    <span class="font-w600"><?php echo $value["department_name"] ?></span>
+                                                    <span class="font-w600"><?php echo $value["department_name"]?></span>
                                                 </td>
-                                                <!-- <td class="text-center">
-                                                    <span class="font-w600"><?php echo $value["status_employ"] ?></span>
-                                                </td> -->
                                                 <td class="text-center">
                                                     <span class="font-w600">0 Tugas</span>
                                                 </td>
@@ -265,70 +262,28 @@
                                                     <span class="font-w600 text-danger">0 Tugas</span>
                                                 </td>
                                             </tr>
-                                            <!-- </tbody> -->
                                     <?php }
                                 } ?>
-                                    <?php $employe = [];
-                                    foreach ($report as $value) { ?>
-                                        <!-- <tbody> -->
-                                        <?php foreach ($tugas_selesai as $value2) {
-                                            if ($value2["employee_name"] == $value["employee_name"]) {
-                                                array_push($employe, $value["employee_name"]); ?>
-                                                <tr>
-                                                    <td>
-                                                        <span class="font-w600"><?php echo $value["employee_name"] ?></span>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <span class="font-w600"><?php echo $value["department_name"] ?></span>
-                                                    </td>
-                                                    <!-- <td class="text-center">
-                                                        <span class="font-w600"><?php echo $value["status_employ"] ?></span>
-                                                    </td> -->
-                                                    <td class="text-center">
-                                                        <span class="font-w600"><?php echo $value["count(tm_task.task_status)"] ?> Tugas</span>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <span class="font-w600 text-success"><?php echo $value2["count(tm_task.task_status)"] ?> Tugas</span>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <span class="font-w600 text-danger"><?php echo $value["count(tm_task.task_status)"] - $value2["count(tm_task.task_status)"] ?> Tugas</span>
-                                                    </td>
-                                                </tr>
-                                        <?php
-                                            }
-                                        } ?>
-                                        <!-- </tbody> -->
-                                    <?php } ?>
-                                    <?php foreach ($report as $value) { ?>
-                                        <!-- <tbody> -->
-                                        <?php foreach ($tugas_belum as $value2) {
-                                            if ($value2["employee_name"] == $value["employee_name"] && !in_array($value["employee_name"], $employe)) {
-                                                array_push($employe, $value["employee_name"]); ?>
-                                                <tr>
-                                                    <td>
-                                                        <span class="font-w600"><?php echo $value["employee_name"] ?></span>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <span class="font-w600"><?php echo $value["department_name"] ?></span>
-                                                    </td>
-                                                    <!-- <td class="text-center">
-                                                        <span class="font-w600"><?php echo $value["status_employ"] ?></span>
-                                                    </td> -->
-                                                    <td class="text-center">
-                                                        <span class="font-w600"><?php echo $value["count(tm_task.task_status)"] ?> Tugas</span>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <span class="font-w600 text-success"><?php echo $value["count(tm_task.task_status)"] - $value2["count(tm_task.task_status)"] ?> Tugas</span>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <span class="font-w600 text-danger"><?php echo $value2["count(tm_task.task_status)"] ?> Tugas</span>
-                                                    </td>
-                                                </tr>
-                                        <?php
-                                            }
-                                        } ?>
-                                        </tbody>
-                                    <?php } ?>
+                                <?php foreach ($reportall as $value) {?>
+                                    <tr>
+                                        <td>
+                                            <span class="font-w600"><?php echo $value["employee_name"] ?></span>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="font-w600"><?php echo $value["department_name"] ?></span>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="font-w600"><?php  echo $value["total_task"]?> Tugas</span>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="font-w600 text-success"><?php  echo $value["total_selesai"]?> Tugas</span>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="font-w600 text-danger"><?php echo $value["total_belum"]?> Tugas</span>
+                                        </td>
+                                    </tr>
+                                <?php }?>
+                            </tbody>
                             </table>
                         </div>
                     </div>

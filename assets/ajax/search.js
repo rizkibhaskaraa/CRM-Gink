@@ -37,7 +37,7 @@ button.addEventListener('click', function(){
 	//buat objeck
 	var ajaxstart = new XMLHttpRequest();
 
-	// window.alert(alamat_report.value+tgl_start.value+"/"+tgl_end.value);
+	// window.alert(tgl_start.value+"===/==="+tgl_end.value);
 	ajaxstart.onreadystatechange = function(){
 		if(ajaxstart.readyState == 4 && ajaxstart.status == 200){
 			kontenreport.innerHTML = ajaxstart.responseText;

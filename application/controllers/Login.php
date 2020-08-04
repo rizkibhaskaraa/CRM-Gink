@@ -6,13 +6,13 @@ class Login extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('login_model');
+		$this->load->model('login_model'); //load model
 	}
 
 	//fungsi index
 	public function index()
 	{
-		$this->load->view('login/login');
+		$this->load->view('login/login'); //load view
 	}
 
 	//fungsi login 
@@ -23,9 +23,9 @@ class Login extends CI_Controller
 		$this->form_validation->set_rules('password', 'Password', 'required');
 		//akhir validasi form
 
-		if ($this->form_validation->run() == false) { //jika validasi tidak gagal
+		if ($this->form_validation->run() == false) { //jika validasi gagal
 			redirect(base_url());
-		} else {
+		} else { //jika validasi berhasil
 			$this->validationLogin();
 		}
 	}
@@ -38,9 +38,10 @@ class Login extends CI_Controller
 		$user = $this->login_model->getuser($email); //ambil data user
 		$employ = $this->login_model->getemploy($user["employee_id"]); //ambil data employe
 		$data["user"] = $user;
-		if ($user) { //jika hasil ada
+		if ($user) { //jika data user ada
 			$saved_password = password_hash($user['user_password'], PASSWORD_DEFAULT);
 			if (password_verify($password, $saved_password)) { //cek kecocokan password
+
 				//set session
 				$_SESSION["login"] = true;
 				$_SESSION["staff_user"] = $email;
@@ -49,7 +50,7 @@ class Login extends CI_Controller
 				
 				$this->session->set_flashdata('status-login', 'Berhasil');
 
-				if ($user["user_status"] == "C-Level") {
+				if ($user["user_status"] == "C-Level") { //jika yang login C-Level
 					redirect(base_url('index.php/home/ceo/') . $email);
 				} else {
 					redirect(base_url('index.php/home/index/') . $email);
@@ -58,49 +59,7 @@ class Login extends CI_Controller
 				redirect(base_url());
 			}
 		} else {
-			echo "kamu disini";
 			redirect(base_url());
 		}
 	}
-
-	// public function email(){
-	// 	$this->load->view("login/email");
-	// }
-
-	// public function register(){
-	// 	$this->load->view('login/register');
-	// }
-
-	// public function send_email(){
-
-	// 	//$email_to = $this->input->post('email');
-
-	// 	$config = [
-	// 		'protocol' => 'smtp',
-	// 		'smtp_host' => 'ssl://smtp.googlemail.com',
-	// 		'smtp_port' =>	465,
-	// 		'smtp_user' => 'technologygink@gmail.com',
-	// 		'smtp_pass' => 'kpgink1234',
-	// 		'mailtype'  => 'html', 
-	// 		'charset'   => 'utf-8',
-	// 		'wordwrap' => TRUE
-	// 	];
-
-	// 	$this->load->library('email',$config);
-	// 	$this->email->set_newline("\r\n");
-	//     $this->email->from('technologygink@gmail.com','gink technology');
-	//     $this->email->to("aldi.14117055@student.itera.ac.id");
-	//     $this->email->subject('Contoh Kirim Email Dengan Codeigniter');
-	// 	$this->email->message('Contoh pesan yang dikirim dengan codeigniter');
-
-	//     if($this->email->send()) {
-	//         echo 'Email berhasil dikirim';
-	//     }
-	//     else {
-	//         echo 'Email tidak berhasil dikirim';
-	//         echo '<br />';
-	//     	echo $this->email->print_debugger();
-	//     }
-	// }
-
 }

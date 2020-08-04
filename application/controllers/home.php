@@ -25,14 +25,14 @@ class Home extends CI_Controller
         } else { //jika sudah login
             $user = $_SESSION["staff_user"];
         }
-        //data seluruh employee//
-        $data["all_employ"] = $this->home_model->getall_employee();
+        $data["all_employ"] = $this->home_model->getall_employee(); //data seluruh employee
+        
         //ambil designation
         $designation = $this->home_model->getdesignationUser($user);
         $data["designation"] = $designation["designation_id"];
 
         //ambil data dari tabel employ berdasarkan user yang login ($user)
-        $employ = $this->home_model->getemploy($user); //memanggil fungsi getemploy di home_model
+        $employ = $this->home_model->getemploy($user); 
         $data["username"] = $user;
         $data["employ_nama"] = $employ["employee_name"];
         $data["employ_id"] = $employ["employee_id"];
@@ -48,14 +48,6 @@ class Home extends CI_Controller
         $data["pelanggan"] = $pelanggan = $this->home_model->getpelanggan(); //memanggil fungsi getpelanggan di home_model
         $data["layanan"] = $layanan = $this->home_model->getlayanan(); //memanggil fungsi getlayanan di home_model
         $data["product"] = $product = $this->home_model->getproduct(); //memanggil fungsi getlayanan di home_model
-
-        //ambil data tabel task untuk tugas saya
-        // $data["task"] = $this->home_model->gettaskall($data["employ_id"], $data["employ_dept"]["department_id"]);
-        //akhir ambil data tabel task untuk tugas saya
-
-        //ambil data tabel task untuk tiket saya
-        // $data["tiketsaya"] = $this->home_model->gettiketsaya($data["employ_id"]);
-        //akhir ambil data tabel task untuk tiket saya
 
         //ambil data tabel task untuk menghitung report staff
         $data["report"] = $this->home_model->getreport($data["employ_dept"]["department_id"]);
@@ -75,6 +67,7 @@ class Home extends CI_Controller
         } else { //jika sudah login
             $user = $_SESSION["staff_user"];
         }
+
         //ambil data dari tabel employ berdasarkan user yang login ($user)
         $employ = $this->home_model->getemploy($user); //memanggil fungsi getemploy di home_model
         $data["username"] = $user;
@@ -99,20 +92,12 @@ class Home extends CI_Controller
         $data["layanan"] = $layanan = $this->home_model->getlayanan(); //memanggil fungsi getlayanan di home_model
         $data["product"] = $product = $this->home_model->getproduct(); //memanggil fungsi getlayanan di home_model
 
-        //ambil data tabel task untuk tugas saya
-        // $data["task"] = $this->home_model->gettaskall($data["employ_id"], $data["employ_dept"]["department_id"]);
-        //akhir ambil data tabel task untuk tugas saya
-
         //ambil data tabel task untuk menghitung report staff
         $data["report"] = $this->home_model->getreport($data["employ_dept"]["department_id"]);
         $data['tugas_belum'] = $this->home_model->gettugaspjbelum($data["employ_dept"]["department_id"]);
         $data['tugas_selesai'] = $this->home_model->gettugaspjselesai($data["employ_dept"]["department_id"]);
         $data['employ_report'] = $this->home_model->getemploydept($data["employ_dept"]["department_id"]);
         //akhir ambil data tabel task untuk menghitung report staff
-
-        //ambil data tabel task untuk tiket saya
-        // $data["tiketsaya"] = $this->home_model->gettiketsaya($data["employ_id"]);
-        //akhir ambil data tabel task untuk tiket saya
 
         $this->load->view('home/home_ceo', $data);
     }
@@ -239,7 +224,8 @@ class Home extends CI_Controller
         //akhir menentukan departemen tujuan
         $this->home_model->insert_task($data_task);
         $this->session->set_flashdata("sukses_buat", "Berhasil");
-        if ($departemen["department_id"] == "1") {
+        if ($departemen["department_id"] == "1") { 
+            // jika yang login C-level (id = 1) kembali ke halaman ceo
             redirect(base_url('index.php/home/ceo/') . $user["user_username"]);
         } else {
             redirect(base_url('index.php/home/index/') . $user["user_username"]);
@@ -269,7 +255,6 @@ class Home extends CI_Controller
         header('Content-Type: application/json');
         echo json_encode($callback);
     }
-    //akhir function-fiunction datatable
 
     //fungsi untuk tambah layanan
     public function tambahlayanan($username)

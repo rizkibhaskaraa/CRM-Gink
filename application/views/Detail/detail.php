@@ -76,7 +76,7 @@
 
                             <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250"><?php echo $position ?> di Gink Technology</h2>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -93,14 +93,14 @@
                 <h3 class="block-title">Hallo <?php echo $employ_nama ?> , berikut isi Detail Tasknya</h3>
             </div>
             <?php if ($cekTabel == 'Request' || ($cekTabel == "TugasBelum" && count($subtask) != 0) || ($cekTabel == "TugasSelesai" && count($subtask) != 0)) { ?>
-                            <div class="mt-2 mb-2 mr-4" style="float:right";>
-                                <span class="d-inline-block invisible" data-toggle="appear" data-timeout="350">
-                                    <a class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#modal-block-large-sub-tiket" href="">
-                                        <i class="fa fa-plus mr-1" ></i> Buat Sub Tiket
-                                    </a>
-                                </span>
-                            </div>
-                        <?php } ?>
+                <div class="mt-2 mb-2 mr-4" style="float:right" ;>
+                    <span class="d-inline-block invisible" data-toggle="appear" data-timeout="350">
+                        <a class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#modal-block-large-sub-tiket" href="">
+                            <i class="fa fa-plus mr-1"></i> Buat Sub Tiket
+                        </a>
+                    </span>
+                </div>
+            <?php } ?>
             <div class="block-content">
                 <table class="table table-bordered">
                     <tbody>
@@ -112,16 +112,18 @@
                                         <img class="img-avatar " src="<?php echo base_url('assets/oneui/media/avatars/avatar7.jpg') ?>" alt="">
                                     </a>
                                 </p>
-                                <?php if($task["department_name"] == NULL){?>
+                                <!-- Jika department sent == NULL -->
+                                <?php if ($task["department_name"] == NULL) { ?>
                                     <p class="font-size-sm "><?php echo $nama_kirim ?></p>
-                                <?php }else{ ?>
+                                <?php } else { ?>
                                     <p class="font-size-sm "><?php echo $nama_kirim . " (" . $task["department_name"] . ")" ?></p>
                                 <?php } ?>
-                                
+
                             </td>
                             <td class="font-weight-bold mt-2" style="width: 20%;">Title</td>
                             <td width="70%"><?php echo $task["task_title"] ?> </td>
                         </tr>
+                        <!-- Jika task berasal dari layanan pelanggan -->
                         <?php if ($task["service_id"] != NULL) { ?>
                             <tr>
                                 <td class="font-weight-bold" style="width: 20%;">Customer</td>
@@ -142,6 +144,7 @@
                         </tr>
                         <tr>
                             <td class="font-weight-bold" style="width: 20%;">Status Task</td>
+                            <!-- Cek status task -->
                             <?php if ($task["task_status"] == "Not Finished") { ?>
                                 <td><span class=" font-w600 btn-sm btn-block btn-danger col-3"><i class="fa fa-fw fa-exclamation-circle"></i> <?php echo $task["task_status"] ?></span></td>
                             <?php } else { ?>
@@ -207,10 +210,11 @@
                                     </div>
                                 </td>
                                 <?php echo form_close(); ?>
-                            <?php } else if ($cekTabel == 'TugasSelesai' && $task["task_parent"] != NULL && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum' || (count($subtask) == 0 && $task["task_parent"] == NULL && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum') || (count($subtask) != 0 && $task["task_status"]=="Finish" && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum')) { ?>
+                            <?php } else if ($cekTabel == 'TugasSelesai' && $task["task_parent"] != NULL && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum' || (count($subtask) == 0 && $task["task_parent"] == NULL && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum') || (count($subtask) != 0 && $task["task_status"] == "Finish" && $cekTabel != 'Tiket' && $cekTabel != 'TugasBelum')) { ?>
                                 <?php echo form_open_multipart('index.php/detail/insertLaporan/' . $employ_id . '/' . $task['task_id']); ?>
                                 <td class="font-weight-bold" style="width: 20%;">Berkas (opsional)</td>
                                 <td>
+                                    <!-- Cek file -->
                                     <?php if ($task['task_file'] != null) { ?>
                                         <a href="<?= base_url('upload/') . $task['task_file'] ?>"><?= $task['task_file'] ?></a>
                                         </br>
@@ -256,15 +260,15 @@
                             <tr>
                                 <?php $progres = count($subtaskselesai) / count($subtask) * 100;
                                 if ($progres == 100 && $task['task_status'] == 'Not Finished') { ?>
-                                            <?php echo form_open_multipart('index.php/detail/ubahstatustask/' . $designation . "/" . $employ_id . '/' . $task['task_id'] . "/" . $status); ?>
-                                            <td class="font-weight-bold" style="width: 20%;">Berkas (opsional)</td>
-                                            <td>
-                                                <input type="file" name="file">
-                                                <div class="mt-5" style="float:right;">
-                                                    <input type="submit" class="btn btn-success" value="Konfirmasi Selesai">
-                                                </div>
-                                            </td>
-                                            <?php echo form_close(); ?>
+                                    <?php echo form_open_multipart('index.php/detail/ubahstatustask/' . $designation . "/" . $employ_id . '/' . $task['task_id'] . "/" . $status); ?>
+                                    <td class="font-weight-bold" style="width: 20%;">Berkas (opsional)</td>
+                                    <td>
+                                        <input type="file" name="file">
+                                        <div class="mt-5" style="float:right;">
+                                            <input type="submit" class="btn btn-success" value="Konfirmasi Selesai">
+                                        </div>
+                                    </td>
+                                    <?php echo form_close(); ?>
                                 <?php } ?>
                             </tr>
                             <div class="container-fluid">
